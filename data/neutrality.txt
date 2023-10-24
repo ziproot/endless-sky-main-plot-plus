@@ -1,0 +1,232 @@
+mission "Neutrality 1"
+    invisible
+    deadline 0
+    source
+        government "Republic" "Syndicate" "Free Worlds"
+    to offer
+        "year" >= 2023
+        not "chosen sides"
+    on offer
+        conversation
+            `As you enter the bar, a man approaches you.`
+            `"So, about that war between the Free Worlds and the Republic. Whose side are you on?"`
+            label "whose side are you on"
+            choice
+                `"The Free Worlds!"`
+                    goto "free worlds"
+                `"The Republic!"`
+                    goto "republic"
+                `"The Syndicate!"`
+                    goto "syndicate"
+                `"Actually, none of them."`
+                    goto "neutral"
+                    to display
+                        not "claimed neutrality"
+                `No, I really am neutral.`
+                    goto "really neutral"
+                    to display
+                        has "claimed neutrality"
+                `(Go someplace else)`
+                    decline
+
+            label "free worlds"
+            `"You support freedom and equality, eh? I prefer the Republic's order and stability."`
+                goto "end"
+
+            label "republic"
+            `"You support order and stability, eh? So do I, so do I."`
+                goto "end"
+
+            label "syndicate"
+            `"You support free markets and wealth, eh? Nothing wrong with that."`
+                goto "end"
+
+            label "neutral"
+            action
+                set "claimed neutrality"
+            `The main looks taken aback.`
+            `"No sides, eh? You have to pick a side!"`
+                goto "whose side are you on"
+
+            label "really neutral"
+            action
+                event "pug notice neutrality" 5
+            `"Huh. Well, I admire your resolve. Can't go wrong with that."`
+
+            label "end"
+            action
+                clear "claimed neutrality"
+            `The man leaves without another word.`
+                decline
+
+event "pug notice neutrality"
+
+mission "Neutrality 2"
+    invisible
+    landing
+    source
+        attributes "near pug"
+    infiltrating
+    to offer
+        has "event: pug notice neutrality"
+        or
+            has "pug reputation override"
+            not "reputation: Pug" < 0
+    on offer
+        clear "pug reputation override"
+        conversation
+            `As you try to land on <planet>, your ship throws a strange error message and starts moving away from the spaceport.`
+            choice
+                `(Try to regain control)`
+                `(Don't try to regain control)`
+                    goto "remote landing"
+
+            `You try to regain control of your ship manually, but it doesn't respond to your inputs.`
+
+            label "remote landing"
+            `Your ship comes to a stop in a remote location.`
+            `Shortly after, strange, yellow, alien ships uncloak next to you. But it's what comes out of these ships that's really weird: pale aliens with strange proportions, large heads, and long arms and legs compared to their short, cylindrical torsoes. As they walk towards your ship, their gait appears somewhat similar to that of insects.`
+            `"So you don't want to fight in your war?" asks one of the aliens.`
+
+            label "are you neutral"
+            choice
+                `"No."`
+                    goto "neutral"
+                `"Actually, yes."`
+                    goto "changed mind"
+                `"It's not my war."`
+                    goto "war independent"
+                    to display
+                        not "neutral: war independent"
+
+            label "war independent"
+            action
+                set "neutral: war independent"
+            `"Oh, but it is. Just because you aren't actually fighting doesn't make it not your war. So, will you fight, or not?"`
+                goto "are you neutral"
+
+            label "changed mind"
+            `"That's not what it seemed like to us. If that is really the case, we have no use here."`
+            `The aliens depart. Your ship stops throwing the error message and lets you depart.`
+                flee
+
+            label "neutral"
+            action
+                "reputation: Pug" >?= 0
+            `"We have been monitoring your species closely, as there have been some unsettling developments. We noticed that you had resumed your use of nuclear weapons, weapons of genocide. We are glad that you have chosen the side of peace."`
+
+            choice
+                `"Who are you?"`
+                    goto "pug"
+                `"I wasn't the one who dropped nuclear weapons."`
+                    to display
+                        not "neutral: nuke independent"
+                    goto "nuke independent"
+
+            label "nuke independent"
+            action
+                set "neutral: nuke independent"
+            `"And yet you have made no effort to discover who did."`
+                to display
+                    not "FW Katya 3: done"
+            `"And yet you have made little effort to discover who did."`
+                to display
+                    has "FW Katya 3: done"
+            choice
+                `"Who are you?"`
+
+            label "pug"
+            `"We call ourselves the Pug. Our goal is to bring peace and prevent your species from inflicting significant harm upon itself."`
+
+            label "staff"
+            action
+                clear "neutral: nuke independent"
+                clear "neutral: war independent"
+
+            `"Your decision to avoid war is honorable, so we shall honor it."`
+            `Without another word, the Pug rushes towards you and hits you with its staff. Everything blacks out.`
+                accept
+
+    on accept
+        conversation
+            `You wake up in a featureless room. Shortly after, one of the Pug returns.`
+            `"The war is over. You shall return. Remember our goal: to prevent your species from inflicting excessive harm upon itself."`
+            branch "jump drive"
+                "outfit (all): Jump Drive" > 0
+
+            # As a reward for choosing peace and for consistency, the pug give you a jump drive.
+            action
+                outfit "Jump Drive"
+            `They then release you, and you step outside onto a very strange looking spaceport, which is a ring of landing pads surrounded by water. You find your ship parked nearby, next to the one that has a human-style connector, and when you power it on, you notice that it has something unusual in it. And when you look at your ship's clock, you notice that several years have passed, any time sensitive missions you may have had have been failed, and you have automatically received tribute and paid necessary salaries. It seems like the Pug have been busy, and you have been gone for much longer than you realized...`
+                goto "end"
+
+            # The Pug don't give you a Jump Drive if you already have one. You can go back to human space in a hyperdrive if needed.
+            label "jump drive"
+            `They then release you, and you step outside onto a very strange looking spaceport, which is a ring of landing pads surrounded by water. You find your ship parked nearby, next to the one that has a human-style connector. When you look at your ship's clock, you notice that several years have passed, any time sensitive missions you may have had have been failed, and you have automatically received tribute and paid necessary salaries. It seems like the Pug have been busy, and you have been gone for much longer than you realized...`
+            label "end"
+        fail
+
+    on fail
+        # As seen below, a lot of this makes no sense without two PRs being implemented. However, I am keeping this here for later. For now, use your imagination.
+        # Requires relocate mission PR
+        # relocate
+        #     "flagship only"
+        #     location
+        #         Ruin
+
+        # Requires time travel
+        # "pass days" 1500
+        # OR
+        # "year" += 4
+
+        set "chosen sides"
+        set "skipped main plot"
+        set "main plot completed"
+        set "free worlds checkmate"
+        # TO DO: Fix hai reveal missions that assume you fought the Pug.
+        set "Hai Reveal: Secret Leaks: offered"
+        event "fw zug expansion complete"
+        event "oathkeepers founded"
+        event "Tarazed neutrality"
+        event "syndicate assistance"
+        event "syndicate convoys to Tarazed"
+        event "tarazed assistance"
+        event "fw dirt belt patrols"
+        event "plasma turret available"
+        event "fw conservatory founded"
+        event "Thule becomes independent"
+        event "Greenrock recovered"
+        event "flamethrower available"
+        event "navy occupying the south"
+        event "catalytic ramscoop available"
+        event "fw gets catalytic ramscoop"
+        event "navy using mark ii ships"
+        event "fw southern expansion"
+        event "fw occupying the north"
+        event "fw northern expansion"
+        event "death of nguyen"
+        event "dreadnoughts for sale"
+        event "dreadnought deployment"
+        event "bloodsea joins free worlds"
+        event "bloodsea spaceport completed"
+        event "albatross joins free worlds"
+        event "fw expanded and cut"
+        event "fw tarazed republic"
+        event "deep sky tech available"
+        event "navy out of rastaban"
+        event "stack core for sale"
+        event "fwc southern liberation"
+        event "fwc capture kaus borealis"
+        event "fwc capture cebalrai"
+        # no nukes, you didn't fight for the free worlds
+        event "fwc defended cebalrai"
+        event "fwc capture menkent"
+        event "fwc navy retakes cebalrai"
+        event "fwc pug defeated"
+        event "tribute patch"
+        event "syndicate tech available"
+
+event "tribute patch"
+    "tribute: Shiver" /= 300
+    "tribute: Maker" /= 1700
+    "tribute: Furnace" /= 1200
