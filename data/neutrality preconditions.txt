@@ -1,11 +1,11 @@
-mission "Neutral Campaign: Preconditions"
+mission "Neutrality: Preconditions"
     invisible
     landing
     on offer
-        event "neutral campaign: preconditions"
+        event "neutrality: preconditions"
         fail
 
-event "neutral campaign: preconditions"
+event "neutrality: preconditions"
     system "Zeta Aquilae"
         add attributes "near pug"
     system "Rasalhague"
