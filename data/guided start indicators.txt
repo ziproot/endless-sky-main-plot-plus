@@ -47,9 +47,10 @@ mission "Guided Start: Neutrality"
 mission "Guided Start: Crisis in Management"
     name "Side with the Syndicate"
     priority
+    repeat    
     source
-        near Sol 100
-        not planet "Crossroads"
+            near Sol 100
+            not planet "Crossroads"
     destination "Crossroads"
     description "Head to 'Crossroads' and use the spaceport to side with the Syndicate."
     to offer
