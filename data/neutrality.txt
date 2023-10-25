@@ -164,7 +164,7 @@ mission "Neutrality 2"
             label "jump drive"
             `They then release you, and you step outside onto a very strange looking spaceport, which is a ring of landing pads surrounded by water. You find your ship parked nearby, next to the one that has a human-style connector. When you look at your ship's clock, you notice that several years have passed, any time sensitive missions you may have had have been failed, and you have automatically received tribute and paid necessary salaries. It seems like the Pug have been busy, and you have been gone for much longer than you realized...`
             label "end"
-        log "Interacted with aliens who call themselves the Pug, and met with some of them, then were kidnapped for several years until the 'war' ended. They say that they want to bring peace and protect humanity from excessive self-harm."
+        log "Interacted with aliens who call themselves the Pug, and met with some of them, then got kidnapped for several years until the 'war' ended. They say that they want to bring peace and protect humanity from excessive self-harm."
         log "Factions" "Pug" `The Pug are aliens with barrel-shaped bodies and spindly legs. They claim their goals are to bring humanity peace and protect humanity from excessive self-harm.`
         # As seen below, a lot of this makes no sense without two PRs being implemented. However, I am keeping this here for later. For now, use your imagination.
         # Requires relocate mission PR
