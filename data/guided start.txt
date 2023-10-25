@@ -174,5 +174,6 @@ mission "Guided Start: Changed Mind"
         clear "FW Commitment: aborted"
         clear "ScS Catch a Fly 1: declined"
         clear "guided start: changed mind"
+        clear "Neutrality 1: declined"
         "guided start: unsure" ++
         fail "Guided Start"

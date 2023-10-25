@@ -97,7 +97,7 @@ mission "Guided Start: ScS Spaceport Reminder"
         conversation
             branch "reminder"
                 "guided start: unsure" = 3
-            `Do you still want to join the Syndicate?`
+            `Do you still want to side with the Syndicate?`
             choice
                 `(Yes)`
                     goto "reminder"
