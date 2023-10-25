@@ -75,7 +75,7 @@ mission "Neutrality 2"
     on offer
         clear "pug reputation override"
         conversation
-            `As you try to land on <planet>, your ship throws a strange error message and starts moving away from the spaceport.`
+            `As you try to land on <origin>, your ship throws a strange error message and starts moving away from the spaceport.`
             choice
                 `(Try to regain control)`
                 `(Don't try to regain control)`
@@ -107,7 +107,7 @@ mission "Neutrality 2"
 
             label "changed mind"
             `"That's not what it seemed like to us. If that is really the case, we have no use here."`
-            `The aliens depart. Your ship stops throwing the error message and lets you depart.`
+            `The aliens depart. Your ship stops throwing the error message and also lets you depart.`
                 flee
 
             label "neutral"
@@ -164,9 +164,8 @@ mission "Neutrality 2"
             label "jump drive"
             `They then release you, and you step outside onto a very strange looking spaceport, which is a ring of landing pads surrounded by water. You find your ship parked nearby, next to the one that has a human-style connector. When you look at your ship's clock, you notice that several years have passed, any time sensitive missions you may have had have been failed, and you have automatically received tribute and paid necessary salaries. It seems like the Pug have been busy, and you have been gone for much longer than you realized...`
             label "end"
-        fail
-
-    on fail
+        log "Interacted with aliens who call themselves the Pug, and met with some of them, then were kidnapped for several years until the 'war' ended. They say that they want to bring peace and protect humanity from excessive self-harm."
+        log "Factions" "Pug" `The Pug are aliens with barrel-shaped bodies and spindly legs. They claim their goals are to bring humanity peace and protect humanity from excessive self-harm.`
         # As seen below, a lot of this makes no sense without two PRs being implemented. However, I am keeping this here for later. For now, use your imagination.
         # Requires relocate mission PR
         # relocate
@@ -225,6 +224,117 @@ mission "Neutrality 2"
         event "fwc pug defeated"
         event "tribute patch"
         event "syndicate tech available"
+
+    on enter Deneb
+        dialog `This appears to be a system in the middle of human space, just one jump away from where you were kidnapped, yet it is now linked to the rest of human space. You should probably land one of of the two planets and try to figure out what is going on.`
+        fail
+
+
+
+mission "Neutrality 3"
+    invisible
+    source
+        system Deneb
+    # For alt first last's home planet
+    destination
+        attributes "dirt belt"
+        attributes "shipyard"
+        not
+            planet "New Boston"
+    to offer
+        has "skipped main plot"
+    on offer
+        # End part of log entries taken from log entries in free worlds checkmate
+        log "It turns out the Pug invaded human space and cut neighboring hyperlinks, using the same claims about peace and protecting humanity as their justification for their invasion. The Free Worlds had nuclear weapons, which were no match for the Pug. Then, a Free Worlds captain was able to steal one of their jump drive technologies, arouse the Navy, and restore hyperlinks. At least, that's what a receptionist on what used to be one their planets said when asked about it. It is possible that the true purpose of their attack was to give human beings a common enemy that would force them to band together and forget their internal struggles."
+        log "Factions" "Pug" "The Pug invaded human space and cut neighboring hyperlinks, using the same claims about peace and protecting humanity as their justification for their invasion. They were able to defeat a nuclear armed fleet, but a brave Free Worlds captain was able to steal one of their drives and reconnected the hyperspace lanes. When the Free Worlds and the Navy banded together to attack them, they disappeared into a wormhole, which goes to the planet the Pug released you onto. It is possible that the true purpose of their attack was to give human beings a common enemy that would force them to band together and forget their internal struggles."
+        log "Factions" "Free Worlds" "During the war with the Pug, the Free Worlds had nuclear weapons. It is likely that this isn't the first time that they used them. After the Pug war, the Free Worlds was granted autonomy by the Republic."
+        conversation
+            `You decide to checkout the spaceport anyways, which looks just as alien as the rest of the planet. You approach what appears to be this <origin>'s information kiosk, which looks significantly less alien.`
+                to display
+                    not "Neutrality 3b: declined"
+            `Entering the spaceport, which looks just as alien as the rest of the planet, you approach what appears to be <origin>'s information kiosk, which looks significantly less alien.`
+                to display
+                    not "Neutrality 3b: declined"
+            `"How can I help you?" asks the receptionist.`
+            label "help"
+            choice
+                `"Why are there humans on an alien planet?"`
+                    goto "humans"
+                `"Why people were people gesturing towards the sky as I landed?"`
+                    goto "gesture"
+
+            label "gesture"
+            `"Wait, are you Captain <last>? We had reports of a vessel associated with you coming from the wormhole," they explain, "and your ship appears to have last requested permission to land several years ago. Someone probably spread the word around to look for a ship looking like yours. What's going on?"`
+            choice
+                `"I was going to ask you the same thing. Why are there people on an alien planet?"`
+                `"I was abducted by aliens who call themselves the Pug."`
+                    goto "abducted"
+                `"It's a long story."
+
+            `"Does this have something to do with the Pug?"`
+            choice
+                `"Actually, it does. They abducted me."`
+                    goto "abducted"
+                `"How do you know about the pug?"`
+                    goto "pug"
+
+            label "abducted"
+            `"Really? The ones who invaded human space?"`
+            choice
+                `"They invaded human space?"`
+                    goto "out of the loop"
+                `"They told me they wanted to preserve peace."`
+                    goto "peace"
+
+            label "out of the loop"
+            `"Oh right, you probably don't know about that."`
+                goto "pug"
+
+            label "peace"
+            `"That's what they said when they annexed Silver."`
+                goto "pug"
+
+            label "humans"
+            `"You don't know? An alien race called the Pug attacked Silver, claiming that they were there to end the war and bring peace. They cut the hyperspace links from the other planets and connected them to this system instead. A few tried to resist, but not even the Free Worlds, with their nuclear weapons, were successful. At least, not at first. A brave captain from <planet> who was a member of the free worlds council stole a jump drive from them, like those that the Quarg use, that let them bypass hyperlanes. With this, they roused the Navy, reconnected the hyperspace lanes, and helped chase the Pug fleet back to this system. But when they got here, the Pug were gone, with only a strange wormhole in its place. Now the Free Worlds and the Republic are no longer at war, with the Free Worlds an autonomous part of the Republic, like the Syndicate. At least, that is what I have been told. Maybe that's what the Pug meant by 'peace.'"
+                goto "end"
+
+            label "pug"
+            `"The Pug attacked Silver, claiming that they were there to end the war and bring peace. They cut the hyperspace links from the other planets and connected them to this system instead. A few tried to resist, but not even the Free Worlds, with their nuclear weapons, were successful. At least, not at first. A brave captain from <planet> who was a member of the free worlds council stole a jump drive from them, like those that the Quarg use, that let them bypass hyperlanes. With this, they roused the Navy, reconnected the hyperspace lanes, and helped chase the Pug fleet back to this system. But when they got here, the Pug were gone, with that wormhole you came from in its place. Now the Free Worlds and the Republic are no longer at war, with the Free Worlds an autonomous part of the Republic, like the Syndicate. At least, that is what I have been told. Maybe that's what the Pug meant by 'peace.'"
+            `The receptionist pauses. "I'm not assuming they told you anything."`
+            `"Not much," you admit.`
+
+            label "end"
+            `You thank the receptionist and head on your way, knowing a little more about what happened while you were gone.`
+                decline
+
+
+# An affectionate parody of FWC Pug 2B: Pugglequat
+
+mission "Neutrality 3a"
+    invisible
+    landing
+    source
+        system Deneb
+    to offer
+        has "skipped main plot"
+        not "Neutrality 3: offered"
+    on offer
+        conversation
+            `This planet was clearly one of the native Pug worlds. The architecture is entirely alien, yet you see people working here. As you land, you see people gesturing towards the sky, perhaps as a way of indicating that you should visit the other inhabited planet in this system.`
+                decline
+
+mission "Neutrality 3b"
+    invisible
+    landing
+    source
+        system Deneb
+    to offer
+        has "Neutrality 3a: declined"
+        not "Neutrality 3: offered"
+    on offer
+        conversation
+            `This planet was also clearly one of the native Pug worlds. Once again, architecture is entirely alien, yet you see people working here. As you land, you also see more people gesturing towards the sky. Maybe this doesn't have to do with which planet you should visit. You should probably check the spaceport to see what is going on.`
+                decline
 
 event "tribute patch"
     "tribute: Shiver" /= 300

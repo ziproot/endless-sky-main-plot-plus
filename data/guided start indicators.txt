@@ -29,13 +29,13 @@ mission "Guided Start: Neutrality"
     repeat
     destination
         attributes "near pug"
-    description "Head to '<destination>' to choose neutrality."
+    description "Head to '<planet>' to choose neutrality."
     to offer
         has "guided start: neutral"
         not "neutral spaceport deadline"
     on offer
         conversation
-            `Marked the location of <destination> on your map.`
+            `Marked the location of '<planet>' on your map.`
                 accept
     to complete
         never
