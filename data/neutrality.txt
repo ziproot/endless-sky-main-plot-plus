@@ -226,7 +226,7 @@ mission "Neutrality 2"
         event "syndicate tech available"
 
     on enter Deneb
-        dialog `This appears to be a system in the middle of human space, just one jump away from where you were kidnapped, yet it is now linked to the rest of human space. You should probably land one of of the two planets and try to figure out what is going on.`
+        dialog `This appears to be a system in the middle of human space, just one jump away from where you were kidnapped, yet it is now linked to the rest of human space. You should probably land one of the two planets and try to figure out what is going on.`
         fail
 
 
