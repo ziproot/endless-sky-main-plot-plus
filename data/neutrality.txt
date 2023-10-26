@@ -1,11 +1,11 @@
 mission "Neutrality 1"
-    invisible
     deadline 0
-    source
-        government "Republic" "Syndicate" "Free Worlds"
+    invisible
     to offer
         "year" >= 2023
         not "chosen sides"
+    source
+        government "Republic" "Syndicate" "Free Worlds"
     on offer
         conversation
             `As you enter the bar, a man approaches you.`
@@ -23,11 +23,15 @@ mission "Neutrality 1"
                     to display
                         not "claimed neutrality"
                 `No, I really am neutral.`
-                    goto "really neutral"
                     to display
                         has "claimed neutrality"
                 `(Go someplace else)`
                     decline
+
+            action
+                event "pug notice neutrality" 5
+            `"Huh. Well, I admire your resolve. Can't go wrong with that."`
+                goto "end"
 
             label "free worlds"
             `"You support freedom and equality, eh? I prefer the Republic's order and stability."`
@@ -48,11 +52,6 @@ mission "Neutrality 1"
             `"No sides, eh? You have to pick a side!"`
                 goto "whose side are you on"
 
-            label "really neutral"
-            action
-                event "pug notice neutrality" 5
-            `"Huh. Well, I admire your resolve. Can't go wrong with that."`
-
             label "end"
             action
                 clear "claimed neutrality"
@@ -64,14 +63,14 @@ event "pug notice neutrality"
 mission "Neutrality 2"
     invisible
     landing
-    source
-        attributes "near pug"
     infiltrating
     to offer
         has "event: pug notice neutrality"
         or
             has "pug reputation override"
             not "reputation: Pug" < 0
+    source
+        attributes "near pug"
     on offer
         clear "pug reputation override"
         conversation
@@ -95,11 +94,9 @@ mission "Neutrality 2"
                 `"Actually, yes."`
                     goto "changed mind"
                 `"It's not my war."`
-                    goto "war independent"
                     to display
                         not "neutral: war independent"
 
-            label "war independent"
             action
                 set "neutral: war independent"
             `"Oh, but it is. Just because you aren't actually fighting doesn't make it not your war. So, will you fight, or not?"`
@@ -121,9 +118,7 @@ mission "Neutrality 2"
                 `"I wasn't the one who dropped nuclear weapons."`
                     to display
                         not "neutral: nuke independent"
-                    goto "nuke independent"
 
-            label "nuke independent"
             action
                 set "neutral: nuke independent"
             `"And yet you have made no effort to discover who did."`
@@ -167,6 +162,7 @@ mission "Neutrality 2"
         log "Interacted with aliens who call themselves the Pug, and met with some of them, then got kidnapped for several years until the 'war' ended. They say that they want to bring peace and protect humanity from excessive self-harm."
         log "Factions" "Pug" `The Pug are aliens with barrel-shaped bodies and spindly legs. They claim their goals are to bring humanity peace and protect humanity from excessive self-harm.`
         # As seen below, a lot of this makes no sense without two PRs being implemented. However, I am keeping this here for later. For now, use your imagination.
+        dialog `Parts of this mission are dependent on future content which has not yet been released. To continue the campaign, please head to the planet 'Deneb' which should now be linked to the system you are in. It will assume you came from a wormhole and that a lot of time has passed, which will happen once the future content gets released.`
         # Requires relocate mission PR
         # relocate
         #     "flagship only"
@@ -233,6 +229,10 @@ mission "Neutrality 2"
 
 mission "Neutrality 3"
     invisible
+    # alt first last's home planet isn't dependent on what planets will let you land
+    ignore clearance
+    to offer
+        has "skipped main plot"
     source
         system Deneb
     # For alt first last's home planet
@@ -241,8 +241,6 @@ mission "Neutrality 3"
         attributes "shipyard"
         not
             planet "New Boston"
-    to offer
-        has "skipped main plot"
     on offer
         # End part of log entries taken from log entries in free worlds checkmate
         log "It turns out the Pug invaded human space and cut neighboring hyperlinks, using the same claims about peace and protecting humanity as their justification for their invasion. The Free Worlds had nuclear weapons, which were no match for the Pug. Then, a Free Worlds captain was able to steal one of their jump drive technologies, arouse the Navy, and restore hyperlinks. At least, that's what a receptionist on what used to be one their planets said when asked about it. It is possible that the true purpose of their attack was to give human beings a common enemy that would force them to band together and forget their internal struggles."
@@ -261,9 +259,7 @@ mission "Neutrality 3"
                 `"Why are there humans on an alien planet?"`
                     goto "humans"
                 `"Why people were people gesturing towards the sky as I landed?"`
-                    goto "gesture"
 
-            label "gesture"
             `"Wait, are you Captain <last>? We had reports of a vessel associated with you coming from the wormhole," they explain, "and your ship appears to have last requested permission to land several years ago. Someone probably spread the word around to look for a ship looking like yours. What's going on?"`
             choice
                 `"I was going to ask you the same thing. Why are there people on an alien planet?"`
@@ -274,7 +270,6 @@ mission "Neutrality 3"
             `"Does this have something to do with the Pug?"`
             choice
                 `"Actually, it does. They abducted me."`
-                    goto "abducted"
                 `"How do you know about the pug?"`
                     goto "pug"
 
@@ -282,11 +277,9 @@ mission "Neutrality 3"
             `"Really? The ones who invaded human space?"`
             choice
                 `"They invaded human space?"`
-                    goto "out of the loop"
                 `"They told me they wanted to preserve peace."`
                     goto "peace"
 
-            label "out of the loop"
             `"Oh right, you probably don't know about that."`
                 goto "pug"
 
@@ -313,11 +306,11 @@ mission "Neutrality 3"
 mission "Neutrality 3a"
     invisible
     landing
-    source
-        system Deneb
     to offer
         has "skipped main plot"
         not "Neutrality 3: offered"
+    source
+        system Deneb
     on offer
         conversation
             `This planet was clearly one of the native Pug worlds. The architecture is entirely alien, yet you see people working here. As you land, you see people gesturing towards the sky, perhaps as a way of indicating that you should visit the other inhabited planet in this system.`
@@ -326,11 +319,11 @@ mission "Neutrality 3a"
 mission "Neutrality 3b"
     invisible
     landing
-    source
-        system Deneb
     to offer
         has "Neutrality 3a: declined"
         not "Neutrality 3: offered"
+    source
+        system Deneb
     on offer
         conversation
             `This planet was also clearly one of the native Pug worlds. Once again, architecture is entirely alien, yet you see people working here. As you land, you see more people gesturing towards the sky. Maybe this doesn't have to do with which planet you should visit. You should probably check the spaceport to see what is going on.`
