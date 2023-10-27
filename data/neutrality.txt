@@ -247,7 +247,7 @@ mission "Neutrality 3"
         log "Factions" "Pug" "The Pug invaded human space and cut neighboring hyperlinks, using the same claims about peace and protecting humanity as their justification for their invasion. They were able to defeat a nuclear armed fleet, but a brave Free Worlds captain was able to steal one of their drives and reconnected the hyperspace lanes. When the Free Worlds and the Navy banded together to attack them, they disappeared into a wormhole, which goes to the planet the Pug released you onto. It is possible that the true purpose of their attack was to give human beings a common enemy that would force them to band together and forget their internal struggles."
         log "Factions" "Free Worlds" "During the war with the Pug, the Free Worlds had nuclear weapons. It is likely that this isn't the first time that they used them. After the Pug war, the Free Worlds was granted autonomy by the Republic."
         conversation
-            `You decide to checkout the spaceport anyways, which looks just as alien as the rest of the planet. You approach what appears to be this <origin>'s information kiosk, which looks significantly less alien.`
+            `You decide to checkout the spaceport anyways, which looks just as alien as the rest of the planet. You approach what appears to be <origin>'s information kiosk, which looks significantly less alien.`
                 to display
                     not "Neutrality 3b: declined"
             `Entering the spaceport, which looks just as alien as the rest of the planet, you approach what appears to be <origin>'s information kiosk, which looks significantly less alien.`
@@ -265,12 +265,12 @@ mission "Neutrality 3"
                 `"I was going to ask you the same thing. Why are there people on an alien planet?"`
                 `"I was abducted by aliens who call themselves the Pug."`
                     goto "abducted"
-                `"It's a long story."
+                `"It's a long story."`
 
             `"Does this have something to do with the Pug?"`
             choice
                 `"Actually, it does. They abducted me."`
-                `"How do you know about the pug?"`
+                `"How do you know about the Pug?"`
                     goto "pug"
 
             label "abducted"
@@ -288,11 +288,11 @@ mission "Neutrality 3"
                 goto "pug"
 
             label "humans"
-            `"You don't know? An alien race called the Pug attacked Silver, claiming that they were there to end the war and bring peace. They cut the hyperspace links from the other planets and connected them to this system instead. A few tried to resist, but not even the Free Worlds, with their nuclear weapons, were successful. At least, not at first. A brave captain from <planet> who was a member of the free worlds council stole a jump drive from them, like those that the Quarg use, that let them bypass hyperlanes. With this, they roused the Navy, reconnected the hyperspace lanes, and helped chase the Pug fleet back to this system. But when they got here, the Pug were gone, with only a strange wormhole in its place. Now the Free Worlds and the Republic are no longer at war, with the Free Worlds an autonomous part of the Republic, like the Syndicate. At least, that is what I have been told. Maybe that's what the Pug meant by 'peace.'"
+            `"You don't know? An alien race called the Pug attacked Silver, claiming that they were there to end the war and bring peace. They cut the hyperspace links from the other planets and connected them to this system instead. A few tried to resist, but not even the Free Worlds, with their nuclear weapons, were successful. At least, not at first. A brave captain from <planet> who was a member of the free worlds council stole a jump drive from them, like those that the Quarg use, that let them bypass hyperlanes. With this, they roused the Navy, reconnected the hyperspace lanes, and helped chase the Pug fleet back to this system. But when they got here, the Pug were gone, with only a strange wormhole in its place. Now the Free Worlds and the Republic are no longer at war, with the Free Worlds an autonomous part of the Republic, like the Syndicate. At least, that is what I have been told. Maybe that's what the Pug meant by 'peace.'"`
                 goto "end"
 
             label "pug"
-            `"The Pug attacked Silver, claiming that they were there to end the war and bring peace. They cut the hyperspace links from the other planets and connected them to this system instead. A few tried to resist, but not even the Free Worlds, with their nuclear weapons, were successful. At least, not at first. A brave captain from <planet> who was a member of the free worlds council stole a jump drive from them, like those that the Quarg use, that let them bypass hyperlanes. With this, they roused the Navy, reconnected the hyperspace lanes, and helped chase the Pug fleet back to this system. But when they got here, the Pug were gone, with that wormhole you came from in its place. Now the Free Worlds and the Republic are no longer at war, with the Free Worlds an autonomous part of the Republic, like the Syndicate. At least, that is what I have been told. Maybe that's what the Pug meant by 'peace.'"
+            `"The Pug attacked Silver, claiming that they were there to end the war and bring peace. They cut the hyperspace links from the other planets and connected them to this system instead. A few tried to resist, but not even the Free Worlds, with their nuclear weapons, were successful. At least, not at first. A brave captain from <planet> who was a member of the free worlds council stole a jump drive from them, like those that the Quarg use, that let them bypass hyperlanes. With this, they roused the Navy, reconnected the hyperspace lanes, and helped chase the Pug fleet back to this system. But when they got here, the Pug were gone, with that wormhole you came from in its place. Now the Free Worlds and the Republic are no longer at war, with the Free Worlds an autonomous part of the Republic, like the Syndicate. At least, that is what I have been told. Maybe that's what the Pug meant by 'peace.'"`
             `The receptionist pauses. "I'm not assuming they told you anything."`
             `"Not much," you admit.`
 
