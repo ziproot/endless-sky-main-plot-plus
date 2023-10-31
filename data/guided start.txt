@@ -70,7 +70,7 @@ mission "Guided Start"
 
             label "syndicate"
             branch "crisis in management"
-                has "Syndicate Start"
+                has "installed plugin: endless-sky-syndicate"
             action
                 set "no scs"
             `Sorry, the Syndicate campaign isn't implemented yet. However, there is a plugin called 'Crisis in Management' that adds an alternative start where you can join the Syndicate.`

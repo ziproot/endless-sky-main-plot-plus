@@ -84,6 +84,8 @@ mission "Guided Start: Crisis in Management"
                     decline
             `Granted clearance and marked the location of 'Crossroads' on your map.`
                 accept
+    on fail
+        clear "guided start: scs spaceport reminder"
 
 
 mission "Guided Start: ScS Spaceport Reminder"
@@ -101,13 +103,15 @@ mission "Guided Start: ScS Spaceport Reminder"
             `Do you still want to side with the Syndicate?`
             choice
                 `(Yes)`
+                    goto "reminder"
                 `(No)`
-                    goto "changed mind"
-            `Remember, you must visit the spaceport to side with the Syndicate.`
-                decline
-            label "changed mind"
-                action
-                    set "guided start: changed mind"
-                    fail "Guided Start: Crisis in Management"
+            action
+                set "guided start: changed mind"
+                fail "Guided Start: Crisis in Management"
             `Land on any planet to receive another prompt to select a side.`
                 decline
+
+            label "reminder"
+            `Remember, you must visit the spaceport to side with the Syndicate.`
+                decline
+
