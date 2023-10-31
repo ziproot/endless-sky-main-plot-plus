@@ -116,11 +116,15 @@ mission "Guided Start"
             branch "fully supported"
                 has "installed plugin: Guided Start and Neutrality"
 
+            action
+                set "installed plugin: Guided Start and Neutrality"
             `You are using an older version of the game, which does not support testing if a plugin is installed. Do you have the 'Crisis in Management' plugin installed?`
             choice
                 `(I have the plugin installed.)`
                 `(I do not have the plugin installed.)`
                     goto "no scs"
+            action
+                set "installed plugin: endless-sky-syndicate"
 
             label "fully supported"
             branch "scs repeat"
