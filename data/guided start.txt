@@ -68,14 +68,6 @@ mission "Guided Start"
             `Sorry, the Navy campaign isn't implemented yet. Which side do you want to join instead?`
                 goto "choose remaining sides"
 
-            label "syndicate"
-            branch "crisis in management"
-                has "installed plugin: endless-sky-syndicate"
-            action
-                set "no scs"
-            `Sorry, the Syndicate campaign isn't implemented yet. However, there is a plugin called 'Crisis in Management' that adds an alternative start where you can join the Syndicate.`
-                goto "choose remaining sides"
-
             label "free worlds"
             branch "fw repeat"
                 has "Guided Start: failed"
@@ -113,7 +105,24 @@ mission "Guided Start"
             `You have an active offer to join the Free Worlds. Depart from this planet and land again or reload your save to join.`
                 accept
 
-            label "crisis in management"
+
+            label "syndicate"
+            branch "no scs"
+                and
+                    # Test to make sure installed plugin autocondition works.
+                    has "installed plugin: Guided Start and Neutrality"
+                    not "installed plugin: endless-sky-syndicate"
+
+            branch "fully supported"
+                has "installed plugin: Guided Start and Neutrality"
+
+            `You are using an older version of the game, which does not support testing if a plugin is installed. Do you have the 'Crisis in Management' plugin installed?`
+            choice
+                `(I have the plugin installed.)`
+                `(I do not have the plugin installed.)`
+                    goto "no scs"
+
+            label "fully supported"
             branch "scs repeat"
                 has "Guided Start: failed"
             action
@@ -132,6 +141,12 @@ mission "Guided Start"
             action
                 set "neutral spaceport deadline"
             `Conditions set. Enter this planet's spaceport to side with the Syndicate.`
+
+            label "no scs"
+            action
+                set "no scs"
+            `Sorry, the Syndicate campaign isn't implemented yet. However, there is a plugin called 'Crisis in Management' that adds an alternative start where you can join the Syndicate.`
+                goto "choose remaining sides"
 
             label "not chosen sides"
             action
