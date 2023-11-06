@@ -296,7 +296,7 @@ mission "Neutrality 3"
         set "free worlds checkmate"
         # TO DO: Fix hai reveal missions that assume you fought the Pug.
         set "Hai Reveal: Secret Leaks: offered"
-        # You must discover that the free worlds produced plasma turrets in order to get the "proper" mission, but an updated one will be put in its place if you don't do so
+        # TO DO: Update this mission to describe new weapons, to fix missions like the one below.
         set "Heliarch Containment 5: offered"
 
 
