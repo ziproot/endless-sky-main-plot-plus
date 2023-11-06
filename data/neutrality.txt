@@ -2,7 +2,7 @@ mission "Neutrality 1"
     deadline 0
     invisible
     to offer
-        "year" >= 2023
+        "year" >= 3023
         not "chosen sides"
     source
         government "Republic" "Syndicate" "Free Worlds"
