@@ -1,0 +1,328 @@
+mission "Syndicate Mark II"
+    invisible
+    landing
+    to offer
+        # Syndicate sell their weapons
+        or
+            has "free worlds checkmate"
+            has "ScS plot completed"
+    on offer
+        event "syndicate using mark II ships"
+        fail
+
+event "syndicate using mark II ships"
+    fleet "Small Syndicate"
+        add variant 6
+            "Quicksilver (Mark II)" 3
+        add variant 6
+            "Quicksilver (Proton Mark II)" 3
+        add variant 3
+            "Splinter (Mark II)"
+            "Quicksilver (Mark II)" 2
+        add variant 3
+            "Splinter (Laser Mark II)"
+        add variant 3
+            "Splinter (Proton Mark II)"
+            "Quicksilver (Proton Mark II)" 2
+        add variant 3
+            "Manta (Mark II)"
+        add variant 3
+            "Manta (Proton Mark II)"
+    fleet "Large Syndicate"
+        remove variant
+            "Vanguard"
+        remove variant
+            "Vanguard (Missile)"
+        add variant 6
+            "Splinter (Mark II)"
+            "Quicksilver (Mark II)" 3
+        add variant 6
+            "Splinter (Laser Mark II)"
+            "Quicksilver (Proton Mark II)" 3
+        add variant 6
+            "Splinter (Proton Mark II)"
+            "Quicksilver (Mark II)" 3
+        add variant 3
+            "Splinter (Mark II)" 2
+        add variant 3
+            "Splinter (Mark II)"
+            "Splinter (Laser Mark II)"
+        add variant 3
+            "Splinter (Mark II)"
+            "Splinter (Proton Mark II)"
+        add variant 3
+            "Splinter (Mark II)" 3
+        add variant 3
+            "Splinter (Mark II)"
+            "Splinter (Laser Mark II)" 2
+        add variant 3
+            "Splinter (Mark II)"
+            "Splinter (Proton Mark II)" 2
+        add variant 6
+            "Manta (Mark II)" 2
+        add variant 3
+            "Manta (Proton Mark II)" 2
+        add variant 6
+            "Manta (Mark II)"
+            "Quicksilver (Mark II)" 2
+        add variant 3
+            "Manta (Proton Mark II)"
+            "Quicksilver (Mark II)" 2
+        add variant 6
+            "Quicksilver (Mark II)" 5
+        add variant 3
+            "Quicksilver (Proton Mark II)" 5
+        add variant 3
+            "Protector (Mark II)"
+        add variant 3
+            "Vanguard (Mark II)"
+        add variant 3
+            "Vanguard (Missile Mark II)"
+        add variant 3
+            "Protector (Laser Mark II)"
+        add variant 3
+            "Protector (Proton Mark II)"
+        add variant 3
+            "Protector (Mark II)"
+            "Quicksilver (Mark II)" 2
+        add variant 3
+            "Protector (Laser Mark II)"
+            "Quicksilver (Proton Mark II)" 2
+        add variant 3
+            "Protector (Proton Mark II)"
+            "Quicksilver (Proton Mark II)" 2
+        add variant 3
+            "Vanguard (Particle Mark II)"
+            "Quicksilver (Mark II)" 2
+        add variant 3
+            "Vanguard (Mark II)"
+            "Quicksilver (Proton Mark II)" 2
+        add variant 3
+            "Vanguard (Missile Mark II)"
+            "Quicksilver (Proton Mark II)" 2
+        add variant 3
+            "Protector (Mark II)"
+            "Vanguard (Particle Mark II)"
+        add variant 3
+            "Protector (Proton Mark II)"
+            "Vanguard (Mark II)"
+
+ship "Quicksilver" "Quicksilver (Proton Mark II)"
+    outfits
+        "Proton Gun" 2
+        "Fission Reactor"
+        "LP036a Battery Pack"
+        "S-270 Regenerator"
+        "Cooling Ducts"
+        "Water Coolant System"
+        "A250 Atomic Thruster"
+        "A255 Atomic Steering"
+        "Hyperdrive"
+
+# Improvement over the vanilla design to give it actual batteries
+ship "Splinter" "Splinter (Mark II)"
+    outfits
+        "Particle Cannon" 2
+        "Quad Blaster Turret" 3
+        "Fusion Reactor"
+        "LP036a Battery Pack"
+        "S-970 Regenerator"
+        "Cooling Ducts"
+        "Water Coolant System" 4
+        "Outfits Expansion" 3
+        "Laser Rifle" 3
+        "A250 Atomic Thruster"
+        "A375 Atomic Steering"
+        "Hyperdrive"
+        "Ionic Afterburner"
+
+ship "Splinter" "Splinter (Proton Mark II)"
+    outfits
+        "Proton Gun" 2
+        "Proton Turret" 2
+        "Anti-Missile Turret"
+        "Fusion Reactor"
+        "LP036a Battery Pack"
+        "S-970 Regenerator"
+        "Cooling Ducts"
+        "Water Coolant System" 4
+        "Outfits Expansion" 3
+        "Laser Rifle" 3
+        "A250 Atomic Thruster"
+        "A375 Atomic Steering"
+        "Hyperdrive"
+        "Ionic Afterburner"
+
+ship "Splinter" "Splinter (Laser Mark II)"
+    outfits
+        "Heavy Laser" 2
+        "Heavy Laser Turret" 2
+        "Heavy Anti-Missile Turret"
+        "Fusion Reactor"
+        "LP036a Battery Pack"
+        "S-970 Regenerator"
+        "Water Coolant System" 3
+        "Outfits Expansion" 2
+        "Laser Rifle" 3
+        "A250 Atomic Thruster"
+        "A375 Atomic Steering"
+        "Hyperdrive"
+        "Ionic Afterburner"
+
+ship "Manta" "Manta (Proton Mark II)"
+    outfits
+        "Meteor Missile Launcher" 2
+        "Meteor Missile" 60
+        "Proton Gun" 4
+        "Fission Reactor"
+        "LP072a Battery Pack"
+        "S-270 Regenerator"
+        "Water Coolant System"
+        "Outfits Expansion"
+        "Laser Rifle"
+        "A250 Atomic Thruster"
+        "A375 Atomic Steering"
+        "Hyperdrive"
+        "Ionic Afterburner"
+    gun "Meteor Missile Launcher"
+    gun "Meteor Missile Launcher"
+    gun "Proton Gun"
+    gun "Proton Gun"
+    gun "Proton Gun"
+    gun "Proton Gun"
+
+ship "Protector" "Protector (Mark II)"
+    outfits
+        "Meteor Missile Launcher" 2
+        "Meteor Missile" 60
+        "Quad Blaster Turret" 6
+        "Heavy Anti-Missile Turret"
+        "Anti-Missile Turret"
+        "Fusion Reactor"
+        "RT-I Radiothermal"
+        "LP144a Battery Pack"
+        "LP036a Battery Pack"
+        "S-970 Regenerator"
+        "Liquid Nitrogen Cooler" 2
+        "Outfits Expansion"
+        "Laser Rifle" 6
+        "A250 Atomic Thruster"
+        "A375 Atomic Steering"
+        "Hyperdrive"
+        "Ionic Afterburner"
+
+ship "Protector" "Protector (Laser Mark II)"
+    outfits
+        "Sidewinder Missile Launcher"
+        "Sidewinder Missile" 45
+        "Heavy Laser Turret" 4
+        "Anti-Missile Turret" 2
+        "Fusion Reactor"
+        "RT-I Radiothermal"
+        "LP144a Battery Pack"
+        "S-970 Regenerator" 2
+        "Liquid Nitrogen Cooler" 2
+        "Outfits Expansion" 2
+        "Laser Rifle" 8
+        "A250 Atomic Thruster"
+        "A375 Atomic Steering"
+        "Hyperdrive"
+        "Ionic Afterburner"
+    turret "Heavy Laser Turret"
+    turret "Heavy Laser Turret"
+    turret
+    turret "Anti-Missile Turret"
+    turret "Anti-Missile Turret"
+    turret
+    turret "Heavy Laser Turret"
+    turret "Heavy Laser Turret"
+
+ship "Protector" "Protector (Proton Mark II)"
+    outfits
+        "Sidewinder Missile Launcher"
+        "Sidewinder Missile" 45
+        "Proton Turret" 4
+        "Heavy Anti-Missile Turret" 2
+        "Fusion Reactor"
+        "RT-I Radiothermal"
+        "LP072a Battery Pack"
+        "LP036a Battery Pack"
+        "S-970 Regenerator" 2
+        "Liquid Nitrogen Cooler" 2
+        "Outfits Expansion" 2
+        "Laser Rifle" 4
+        "A250 Atomic Thruster"
+        "A375 Atomic Steering"
+        "Hyperdrive"
+        "Ionic Afterburner"
+    turret "Proton Turret"
+    turret "Proton Turret"
+    turret
+    turret "Heavy Anti-Missile Turret"
+    turret "Heavy Anti-Missile Turret"
+    turret
+    turret "Proton Turret"
+    turret "Proton Turret"
+
+ship "Vanguard" "Vanguard (Mark II)"
+    outfits
+        "Proton Gun" 7
+        "Anti-Missile Turret"
+        "Fusion Reactor"
+        "LP144a Battery Pack"
+        "S-970 Regenerator"
+        "Liquid Nitrogen Cooler" 2
+        "Laser Rifle" 4
+        "A250 Atomic Thruster"
+        "A525 Atomic Steering"
+        "Hyperdrive"
+        "Ionic Afterburner"
+
+ship "Vanguard" "Vanguard (Missile Mark II)"
+    outfits
+        "Sidewinder Missile Launcher" 4
+        "Sidewinder Missile" 226
+        "Sidewinder Missile Rack" 2
+        "Torpedo Launcher" 3
+        "Torpedo" 90
+        "Heavy Anti-Missile Turret"
+        "Fusion Reactor"
+        "LP036a Battery Pack"
+        "S-970 Regenerator" 2
+        "Large Radar Jammer" 2
+        "Cooling Ducts"
+        "Water Coolant System"
+        "Outfits Expansion"
+        "Laser Rifle" 2
+        "A250 Atomic Thruster"
+        "A525 Atomic Steering"
+        "Hyperdrive"
+        "Ionic Afterburner"
+    gun "Torpedo Launcher"
+    gun "Torpedo Launcher"
+    gun "Torpedo Launcher"
+    gun "Sidewinder Missile Launcher"
+    gun "Sidewinder Missile Launcher"
+    gun "Sidewinder Missile Launcher"
+    gun "Sidewinder Missile Launcher"
+
+ship "Vanguard" "Vanguard (Particle Mark II)"
+    outfits
+        "Particle Cannon" 7
+        "Fusion Reactor"
+        "LP144a Battery Pack"
+        "S-970 Regenerator"
+        "Liquid Nitrogen Cooler" 2
+        "Laser Rifle" 6
+        "A250 Atomic Thruster"
+        "A525 Atomic Steering"
+        "Hyperdrive"
+        "Ionic Afterburner"
+    gun "Particle Cannon"
+    gun "Particle Cannon"
+    gun "Particle Cannon"
+    gun "Particle Cannon"
+    gun "Particle Cannon"
+    gun "Particle Cannon"
+    gun "Particle Cannon"
+
