@@ -1,0 +1,29 @@
+event "tribute patch"
+    "tribute: Shiver" /= 300
+    "tribute: Maker" /= 1700
+    "tribute: Furnace" /= 1200
+
+# prevents plugins like "Constellations" from blocking you from leaving, then allows you to return for heliarch expeditions
+event "pug flee (patched)"
+	system "Over the Rainbow"
+		remove object "Pug Wormhole"
+			sprite planet/wormhole
+		add object "Neutrality: Pug Wormhole"
+			sprite planet/wormhole
+	# This is to ensure heliarch expeditions isn't broken
+	system "Deneb"
+		remove object "Pug Wormhole"
+			sprite planet/wormhole
+			distance 2320.29
+			period 1788.27
+		add object "Neutrality: Pug Wormhole"
+			sprite planet/wormhole
+			distance 2320.29
+			period 1788.27
+
+planet "Neutrality: Pug Wormhole"
+	description ``
+
+wormhole "Neutrality: Pug Wormhole"
+	link "Over the Rainbow" "Deneb"
+	link "Deneb" "Over the Rainbow"

@@ -85,7 +85,7 @@ mission "Neutrality 2"
             label "remote landing"
             `Your ship comes to a stop in a remote location.`
             `Shortly after, strange, yellow, alien ships uncloak next to you. But it's what comes out of these ships that's really weird: pale aliens with strange proportions, large heads, and long arms and legs compared to their short, cylindrical torsoes. As they walk towards your ship, their gait appears somewhat similar to that of insects.`
-            `"So you don't want to fight in your war?" asks one of the aliens.`
+            `"So you don't want to fight your war?" asks one of the aliens.`
 
             label "are you neutral"
             choice
@@ -131,7 +131,7 @@ mission "Neutrality 2"
                 `"Who are you?"`
 
             label "pug"
-            `"We call ourselves the Pug. Our goal is to bring peace and prevent your species from inflicting significant harm upon itself."`
+            `"We are Pug. Our goal is to bring peace and prevent your species from inflicting significant harm upon itself."`
 
             label "staff"
             action
@@ -139,27 +139,15 @@ mission "Neutrality 2"
                 clear "neutral: war independent"
 
             `"Your decision to avoid war is honorable, so we shall honor it."`
-            `Without another word, the Pug rushes towards you and hits you with its staff. Everything blacks out.`
+            `Without another word, a Pug rushes towards you and hits you with its staff. Everything blacks out.`
                 accept
 
     on accept
         conversation
-            `You wake up in a featureless room. Shortly after, one of the Pug returns.`
-            `"The war is over. You shall return. Remember our goal: to prevent your species from inflicting excessive harm upon itself."`
-            branch "jump drive"
-                "outfit (all): Jump Drive" > 0
-
-            # As a reward for choosing peace and for consistency, the pug give you a jump drive.
-            action
-                outfit "Jump Drive"
-            `They then release you, and you step outside onto a very strange looking spaceport, which is a ring of landing pads surrounded by water. You find your ship parked nearby, next to the one that has a human-style connector, and when you power it on, you notice that it has something unusual in it. And when you look at your ship's clock, you notice that several years have passed, any time sensitive missions you may have had have been failed, and you have automatically received tribute and paid necessary salaries. It seems like the Pug have been busy, and you have been gone for much longer than you realized...`
-                goto "end"
-
-            # The Pug don't give you a Jump Drive if you already have one. You can go back to human space in a hyperdrive if needed.
-            label "jump drive"
-            `They then release you, and you step outside onto a very strange looking spaceport, which is a ring of landing pads surrounded by water. You find your ship parked nearby, next to the one that has a human-style connector. When you look at your ship's clock, you notice that several years have passed, any time sensitive missions you may have had have been failed, and you have automatically received tribute and paid necessary salaries. It seems like the Pug have been busy, and you have been gone for much longer than you realized...`
-            label "end"
-        log "Interacted with aliens who call themselves the Pug, and met with some of them, then got kidnapped for several years until the 'war' ended. They say that they want to bring peace and protect humanity from excessive self-harm."
+            # Adapted from the Ruin: Landing mission in endless sky, with major parts of the description copied.
+            `You wake up inside of a tank, with an insectoid robot removing the lid. You step out onto an abandoned fueling depot: a ring of landing pads around a cluster of tanks of all different shapes and sizes. Some of them must be cyrogenic, because they are covered in ice. A few other slow-moving insectoid robots are busy clearing off the ice and cleaning the tanks, but they do not appear to be armed and you see no sign of any other creatures or of any defense systems. From the fact that some of the tanks are covered in frost and others are not, you would guess that each one, besides the one you were in, contains a different fuel, as each tank besides yours has dozens of different connectors branching off from it. You find your ship parked nearby, and with surprise, you discover that it is connected to one of the tanks, and the connector is the style used in human space. Other than the robots and the fog swirling in the valley below you, there is no sign of life or motion here, and the air is uncomfortably moist and cold despite the hot steam rising up from a few nearby vents in the ground.`
+            `You power on your ship. When you look at your ship's clock, you notice that several years have passed, any time sensitive missions you may have had have been failed, and you have automatically received tribute and paid necessary salaries. It seems like you have been gone for much longer than you realized...`
+        log "Interacted with aliens who call themselves the Pug, and met with some of them, then got kidnapped for what looks like several years. Was likely placed in a cyrogenic tank. The Pug say that they want to bring peace and protect humanity from excessive self-harm."
         log "Factions" "Pug" `The Pug are aliens with barrel-shaped bodies and spindly legs. They claim their goals are to bring humanity peace and protect humanity from excessive self-harm.`
         # As seen below, a lot of this makes no sense without two PRs being implemented. However, I am keeping this here for later. For now, use your imagination.
         dialog `Parts of this mission are dependent on future content which has not yet been released. To continue the campaign, please head to the planet 'Deneb' which should now be linked to the system you are in. It will assume you came from a wormhole and that a lot of time has passed, which will happen once the future content gets released.`
@@ -175,11 +163,6 @@ mission "Neutrality 2"
         # "year" += 4
 
         set "chosen sides"
-        set "skipped main plot"
-        set "main plot completed"
-        set "free worlds checkmate"
-        # TO DO: Fix hai reveal missions that assume you fought the Pug.
-        set "Hai Reveal: Secret Leaks: offered"
         event "fw zug expansion complete"
         event "oathkeepers founded"
         event "Tarazed neutrality"
@@ -188,6 +171,7 @@ mission "Neutrality 2"
         event "tarazed assistance"
         event "fw dirt belt patrols"
         event "plasma turret available"
+        set "plasma turret available: done"
         event "fw conservatory founded"
         event "Thule becomes independent"
         event "Greenrock recovered"
@@ -217,9 +201,16 @@ mission "Neutrality 2"
         event "fwc defended cebalrai"
         event "fwc capture menkent"
         event "fwc navy retakes cebalrai"
+        event "pug flee"
+        # patch because this plugin depends on the wormhole linking to the pleaides
+        # the 1 is to prevent race conditions by ensuring it happens after 'pug flee'
+        event "pug flee (patched)" 1
         event "fwc pug defeated"
         event "tribute patch"
         event "syndicate tech available"
+
+        # This is merged with this mission so no need to offer it twice.
+        set "Ruin: Landing: offered"
 
     on enter Deneb
         dialog `This appears to be a system in the middle of human space, just one jump away from where you were kidnapped, yet it is now linked to the rest of human space. You should probably land one of the two planets and try to figure out what is going on.`
@@ -243,7 +234,7 @@ mission "Neutrality 3"
             planet "New Boston"
     on offer
         # End part of log entries taken from log entries in free worlds checkmate
-        log "It turns out the Pug invaded human space and cut neighboring hyperlinks, using the same claims about peace and protecting humanity as their justification for their invasion. The Free Worlds had nuclear weapons, which were no match for the Pug. Then, a Free Worlds captain was able to steal one of their jump drive technologies, arouse the Navy, and restore hyperlinks. At least, that's what a receptionist on what used to be one their planets said when asked about it. It is possible that the true purpose of their attack was to give human beings a common enemy that would force them to band together and forget their internal struggles."
+        log "It turns out the Pug invaded human space and cut neighboring hyperlinks, using the same claims about peace and protecting humanity as their justification for their invasion. The Free Worlds had nuclear weapons, which were no match for the Pug. Then, a Free Worlds captain was able to steal one of their 'jump drives', arouse the Navy, and restore hyperlinks. At least, that's what a receptionist on what used to be one their planets said when asked about it. It is possible that the true purpose of the Pug attack was to give human beings a common enemy that would force them to band together and forget their internal struggles."
         log "Factions" "Pug" "The Pug invaded human space and cut neighboring hyperlinks, using the same claims about peace and protecting humanity as their justification for their invasion. They were able to defeat a nuclear armed fleet, but a brave Free Worlds captain was able to steal one of their drives and reconnected the hyperspace lanes. When the Free Worlds and the Navy banded together to attack them, they disappeared into a wormhole, which goes to the planet the Pug released you onto. It is possible that the true purpose of their attack was to give human beings a common enemy that would force them to band together and forget their internal struggles."
         log "Factions" "Free Worlds" "During the war with the Pug, the Free Worlds had nuclear weapons. It is likely that this isn't the first time that they used them. After the Pug war, the Free Worlds was granted autonomy by the Republic."
         conversation
@@ -260,7 +251,7 @@ mission "Neutrality 3"
                     goto "humans"
                 `"Why people were people gesturing towards the sky as I landed?"`
 
-            `"Wait, are you Captain <last>? We had reports of a vessel associated with you coming from the wormhole," they explain, "and your ship appears to have last requested permission to land several years ago. Someone probably spread the word around to look for a ship looking like yours. What's going on?"`
+            `"Wait, are you Captain <last>? We had reports of a vessel associated with you coming from the wormhole," they explain, "and your ship appears to have last requested permission to land on a planet several years ago. Someone probably spread the word around to look for a ship looking like yours. What's going on?"`
             choice
                 `"I was going to ask you the same thing. Why are there people on an alien planet?"`
                 `"I was abducted by aliens who call themselves the Pug."`
@@ -297,8 +288,16 @@ mission "Neutrality 3"
             `"Not much," you admit.`
 
             label "end"
-            `You thank the receptionist and head on your way, knowing a little more about what happened while you were gone.`
+            `You thank the receptionist and head on your way, now knowing at least a little bit about what happened while you were gone.`
                 decline
+    on decline
+        set "skipped main plot"
+        set "main plot completed"
+        set "free worlds checkmate"
+        # TO DO: Fix hai reveal missions that assume you fought the Pug.
+        set "Hai Reveal: Secret Leaks: offered"
+        # You must discover that the free worlds produced plasma turrets in order to get the "proper" mission, but an updated one will be put in its place if you don't do so
+        set "Heliarch Containment 5: offered"
 
 
 # An affectionate parody of FWC Pug 2B: Pugglequat
@@ -328,8 +327,3 @@ mission "Neutrality 3b"
         conversation
             `This planet was also clearly one of the native Pug worlds. Once again, architecture is entirely alien, yet you see people working here. As you land, you see more people gesturing towards the sky. Maybe this doesn't have to do with which planet you should visit. You should probably check the spaceport to see what is going on.`
                 decline
-
-event "tribute patch"
-    "tribute: Shiver" /= 300
-    "tribute: Maker" /= 1700
-    "tribute: Furnace" /= 1200
