@@ -110,14 +110,14 @@ mission "Guided Start"
             branch "no scs"
                 and
                     # Test to make sure installed plugin autocondition works.
-                    has "installed plugin: Guided Start and Neutrality"
+                    has "installed plugin: Main Plot Plus"
                     not "installed plugin: endless-sky-syndicate"
 
             branch "fully supported"
-                has "installed plugin: Guided Start and Neutrality"
+                has "installed plugin: Main Plot Plus"
 
             action
-                set "installed plugin: Guided Start and Neutrality"
+                set "installed plugin: Main Plot Plus"
             `You are using an older version of the game, which does not support testing if a plugin is installed. Do you have the 'Crisis in Management' plugin installed?`
             choice
                 `(I have the plugin installed.)`

@@ -84,6 +84,7 @@ mission "Neutrality 2"
 
             label "remote landing"
             `Your ship comes to a stop in a remote location.`
+            # Paraphrased from descriptions of the Pug in "FWC Pug 2C" from the the "free worlds 3 checkmate.txt" file in endless sky.
             `Shortly after, strange, yellow, alien ships uncloak next to you. But it's what comes out of these ships that's really weird: pale aliens with strange proportions, large heads, and long arms and legs compared to their short, cylindrical torsoes. As they walk towards your ship, their gait appears somewhat similar to that of insects.`
             `"So you don't want to fight your war?" asks one of the aliens.`
 
@@ -110,6 +111,7 @@ mission "Neutrality 2"
             label "neutral"
             action
                 "reputation: Pug" >?= 0
+            # The Pug refer to nukes as "weapons of genocide" in "FWC Pug 2C" from the the "free worlds 3 checkmate.txt" file in endless sky.
             `"We have been monitoring your species closely, as there have been some unsettling developments. We noticed that you had resumed your use of nuclear weapons, weapons of genocide. We are glad that you have chosen the side of peace."`
 
             choice
@@ -233,7 +235,7 @@ mission "Neutrality 3"
         not
             planet "New Boston"
     on offer
-        # End part of log entries taken from log entries in free worlds checkmate
+        # The end part of log entries was taken from log entries in "FWC Pug 6" from the the "free worlds 3 checkmate.txt" file in endless sky.
         log "It turns out the Pug invaded human space and cut neighboring hyperlinks, using the same claims about peace and protecting humanity as their justification for their invasion. The Free Worlds had nuclear weapons, which were no match for the Pug. Then, a Free Worlds captain was able to steal one of their 'jump drives', arouse the Navy, and restore hyperlinks. At least, that's what a receptionist on what used to be one their planets said when asked about it. It is possible that the true purpose of the Pug attack was to give human beings a common enemy that would force them to band together and forget their internal struggles."
         log "Factions" "Pug" "The Pug invaded human space and cut neighboring hyperlinks, using the same claims about peace and protecting humanity as their justification for their invasion. They were able to defeat a nuclear armed fleet, but a brave Free Worlds captain was able to steal one of their drives and reconnected the hyperspace lanes. When the Free Worlds and the Navy banded together to attack them, they disappeared into a wormhole, which goes to the planet the Pug released you onto. It is possible that the true purpose of their attack was to give human beings a common enemy that would force them to band together and forget their internal struggles."
         log "Factions" "Free Worlds" "During the war with the Pug, the Free Worlds had nuclear weapons. It is likely that this isn't the first time that they used them. After the Pug war, the Free Worlds was granted autonomy by the Republic."
@@ -300,7 +302,7 @@ mission "Neutrality 3"
         set "Heliarch Containment 5: offered"
 
 
-# An affectionate parody of FWC Pug 2B: Pugglequat
+# The "Neutrality 3a" and "Neutrality 3b" missions were adapted from "FWC Pug 2B: Pugglequat" from the "free worlds 3 checkmate.txt" file in endless sky.
 
 mission "Neutrality 3a"
     invisible
