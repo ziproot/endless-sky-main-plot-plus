@@ -29,10 +29,6 @@ event "syndicate using mark II ships"
         add variant 3
             "Manta (Proton Mark II)"
     fleet "Large Syndicate"
-        remove variant
-            "Vanguard"
-        remove variant
-            "Vanguard (Missile)"
         add variant 6
             "Splinter (Mark II)"
             "Quicksilver (Mark II)" 3
