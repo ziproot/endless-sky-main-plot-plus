@@ -7,12 +7,11 @@ mission "Guided Start: Free Worlds"
     to offer
         has "guided start: fw"
         not "neutral spaceport deadline"
+        not "Guided Start: Free Worlds: active"
     to complete
         never
     to fail
-        or
-            has "chosen sides"
-            has "FW Commitment: aborted"
+        has "chosen sides"
     source
         near Sol 100
     destination "Bourne"
@@ -31,16 +30,17 @@ mission "Guided Start: Neutrality"
     to offer
         has "guided start: neutral"
         not "neutral spaceport deadline"
+        not "Guided Start: Neutrality: active"
     to complete
         never
     to fail
         or
             has "chosen sides"
-            has "Neutrality 1: declined"
+            has "Neutrality 2: declined"
     source
         near Sol 100
     destination
-        attributes "near pug"
+        system "Zeta Aquilae" "Rasalhague" "Orvala" "Vega" "Altair" "Delta Capricorni" "Alderamin"
     on offer
         conversation
             `Granted clearance and marked the location of '<planet>' on your map.`
@@ -56,12 +56,13 @@ mission "Guided Start: Crisis in Management"
     to offer
         has "guided start: scs"
         not "neutral spaceport deadline"
+        not "Guided Start: Crisis in Management: active"
     to complete
         never
     to fail
         or
             has "chosen sides"
-            has "ScS Catch a Fly 1: declined"
+            has "guided start: changed mind"
     source
             near Sol 100
             not planet "Crossroads"
@@ -94,12 +95,12 @@ mission "Guided Start: ScS Spaceport Reminder"
     repeat
     to offer
         has "guided start: scs spaceport reminder"
-        has "Guided Start: ScS: active"
+        has "Guided Start: Crisis in Management: active"
     source "Crossroads"
     on offer
         conversation
             branch "reminder"
-                "guided start: unsure" = 3
+                "guided start: unsure" == 3
             `Do you still want to side with the Syndicate?`
             choice
                 `(Yes)`

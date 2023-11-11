@@ -1,7 +1,20 @@
-event "tribute patch"
-    "tribute: Shiver" /= 300
-    "tribute: Maker" /= 1700
-    "tribute: Furnace" /= 1200
+# The same event but without unvisiting planets.
+event "fwc navy retakes cebalrai (patched)"
+    system "Cebalrai"
+        government "Republic"
+        fleet "Small Southern Merchants" 1000
+        fleet "Large Southern Merchants" 1500
+        fleet "Small Republic" 500
+        fleet "Large Republic" 600
+        fleet "Large Free Worlds" 5000
+    system "Menkent"
+        government "Republic"
+        fleet "Small Southern Merchants" 700
+        fleet "Large Southern Merchants" 1900
+        fleet "Small Republic" 300
+        fleet "Large Republic" 400
+        fleet "Large Free Worlds" 2000
+        fleet "Human Miners" 2000
 
 # prevents plugins like "Constellations" from blocking you from leaving, then allows you to return for heliarch expeditions
 event "pug flee (patched)"
@@ -22,7 +35,7 @@ event "pug flee (patched)"
             period 1788.27
 
 planet "Neutrality: Pug Wormhole"
-    description ``
+    wormhole "Neutrality: Pug Wormhole"
 
 wormhole "Neutrality: Pug Wormhole"
     link "Over the Rainbow" "Deneb"

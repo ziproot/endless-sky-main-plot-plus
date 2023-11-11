@@ -14,7 +14,7 @@ mission "Guided Start Prompt"
                 decline
 
 mission "Guided Start"
-    deadline 30
+    deadline 90
     invisible
     landing
     repeat
@@ -39,10 +39,10 @@ mission "Guided Start"
             `It has been several years since the bombing of Geminus and Martini. Do you really want to choose a side in the human civil war?`
                 goto "choose to choose"
             label "repeat"
-            `You have rejected the side you previously chose. Do you really still want to choose a side in the human civil war?`
+            `Either you have rejected the side you previously chose, or you have chosen a side and then not joined it for several months. Do you really still want to choose a side in the human civil war?`
             `This is your last attempt to choose a side. If you reject your chosen side again and don't find a way to choose a side the standard way, the war will never be finished.`
                 to display
-                    "guided start: unsure" = 3
+                    "guided start: unsure" == 3
             label "choose to choose"
             choice
                 `(Choose a side)`
@@ -72,8 +72,7 @@ mission "Guided Start"
             branch "fw repeat"
                 has "Guided Start: failed"
             action
-                "assisted free worlds" >?= 3
-                set "FW Katya 7C: done"
+                set "FW Commitment: offered"
                 set "guided start: fw"
             label "fw repeat"
             action
@@ -81,12 +80,9 @@ mission "Guided Start"
                 clear "no scs"
             branch "fw in progress"
                 has "FW Commitment: active"
-            action
-                clear "FW Commitment: offered"
-
             branch "at bourne"
                 has "flagship planet: Bourne"
-            `Conditions set. Head to the planet 'Bourne' to join the Free Worlds. If you aren't sure where this is or need clearance, head over to this planet's spaceport before departing to ping the destination on your map and receive clearance.`
+            `Conditions set. Head to the planet 'Bourne' to join the Free Worlds. If you aren't sure where this is or need clearance, depart and land or reload your save, then head over to this planet's spaceport to ping the destination on your map and receive clearance.`
                 accept
 
             label "at bourne"
@@ -139,12 +135,12 @@ mission "Guided Start"
                 clear "navy campaign when"
             branch "at crossroads"
                 has "flagship planet: Crossroads"
-            `Conditions set. Head to the planet 'Longjump' and enter the spaceport to side with the Syndicate. If you aren't sure where this is or need clearance, head over to this planet's spaceport before departing to ping the destination on your map and receive clearance.`
+            `Conditions set. Head to the planet 'Crossroads' and enter the spaceport to side with the Syndicate. If you aren't sure where this is or need clearance, depart and land or reload your save and head over to this planet's spaceport to ping the destination on your map and receive clearance.`
                 accept
             label "at crossroads"
             action
                 set "neutral spaceport deadline"
-            `Conditions set. Enter this planet's spaceport to side with the Syndicate.`
+            `Conditions set. Depart and land or reload your save, then enter this planet's spaceport to side with the Syndicate.`
 
             label "no scs"
             action
@@ -164,15 +160,19 @@ mission "Guided Start"
             action
                 event "pug notice neutrality"
             label "neutral repeat"
-            `Conditions set. This is your last attempt to choose neutrality. If you reject neutrality and don't find a way to choose a side the standard way, the war will never be finished. To choose neutrality, head to one of the near Earth planets where a system that cannot be navigated to by hyperdrive is included inside the circle that appears on your map around the system you are in. If you need clearance or aren't sure where these are or what this means, head over to this planet's spaceport before departing to ping a suitable destination on your map and receive clearance.`
-                to display
-                        "guided start: unsure" = 3
+            branch "last attempt"
+                "guided start: unsure" == 3
+            `Conditions set. To choose neutrality, head to one of the near Earth planets where a system that cannot be navigated to by hyperdrive is included inside the circle that appears on your map around the system you are in. If you need clearance or aren't sure where these are or what this means, depart and land or reload your save and head over to this planet's spaceport to ping a suitable destination on your map and receive clearance.`
                 accept
-            `Conditions set. To choose neutrality, head to one of the near Earth planets where a system that cannot be navigated to by hyperdrive is included inside the circle that appears on your map around the system you are in. If you need clearance or aren't sure where these are or what this means, head over to this planet's spaceport before departing to ping a suitable destination on your map and receieve clearance.`
+            label "last attempt"
+            `Conditions set. This is your last attempt to choose neutrality. If you reject neutrality and don't find a way to choose a side the standard way, the war will never be finished. To choose neutrality, head to one of the near Earth planets where a system that cannot be navigated to by hyperdrive is included inside the circle that appears on your map around the system you are in. If you need clearance or aren't sure where these are or what this means, depart and land or reload your save and head over to this planet's spaceport to ping a suitable destination on your map and receive clearance.`
                 accept
 
     on enter
+    on enter
         set "neutral spaceport deadline"
+    to complete
+        never
 
 mission "Guided Start: Changed Mind"
     invisible
@@ -182,13 +182,11 @@ mission "Guided Start: Changed Mind"
         not "chosen sides"
         or
             has "FW Commitment: aborted"
-            has "ScS Catch a Fly 1: declined"
-            has "Neutrality 1: declined"
+            has "Neutrality 2: declined"
             has "guided start: changed mind"
     on offer
         clear "FW Commitment: aborted"
-        clear "ScS Catch a Fly 1: declined"
         clear "guided start: changed mind"
-        clear "Neutrality 1: declined"
+        clear "Neutrality 2: declined"
         "guided start: unsure" ++
         fail "Guided Start"

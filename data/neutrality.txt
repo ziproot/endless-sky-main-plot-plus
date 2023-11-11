@@ -63,16 +63,18 @@ event "pug notice neutrality"
 mission "Neutrality 2"
     invisible
     landing
-    infiltrating
+    clearance "For some reason, the spaceport controller lets you land."
     to offer
         has "event: pug notice neutrality"
         or
             has "pug reputation override"
             not "reputation: Pug" < 0
     source
-        attributes "near pug"
+        system "Zeta Aquilae" "Rasalhague" "Orvala" "Vega" "Altair" "Delta Capricorni" "Alderamin"
+    destination "Pugglequat"
+    to complete
+        never
     on offer
-        clear "pug reputation override"
         conversation
             `As you try to land on <origin>, your ship throws a strange error message and starts moving away from the spaceport.`
             choice
@@ -104,6 +106,8 @@ mission "Neutrality 2"
                 goto "are you neutral"
 
             label "changed mind"
+            action
+                set "not neutral"
             `"That's not what it seemed like to us. If that is really the case, we have no use here."`
             `The aliens depart. Your ship stops throwing the error message and also lets you depart.`
                 flee
@@ -144,15 +148,33 @@ mission "Neutrality 2"
             `Without another word, a Pug rushes towards you and hits you with its staff. Everything blacks out.`
                 accept
 
-    on accept
+
+mission "Neutrality 2b"
+    invisible
+    landing
+    clearance "For some reason, the spaceport controller lets you land."
+    to offer
+        has "event: pug notice neutrality"
+        or
+            has "pug reputation override"
+            not "reputation: Pug" < 0
+    to accept
+        not "not neutral"
+    source
+        system "Zeta Aquilae" "Rasalhague" "Orvala" "Vega" "Altair" "Delta Capricorni" "Alderamin"
+    destination "Pugglemug"
+    to complete
+        never
+    on offer
+        clear "pug reputation override"
         conversation
             # Adapted from the Ruin: Landing mission in endless sky, with major parts of the description copied.
             `You wake up inside of a tank, with an insectoid robot removing the lid. You step out onto an abandoned fueling depot: a ring of landing pads around a cluster of tanks of all different shapes and sizes. Some of them must be cyrogenic, because they are covered in ice. A few other slow-moving insectoid robots are busy clearing off the ice and cleaning the tanks, but they do not appear to be armed and you see no sign of any other creatures or of any defense systems. From the fact that some of the tanks are covered in frost and others are not, you would guess that each one, besides the one you were in, contains a different fuel, as each tank besides yours has dozens of different connectors branching off from it. You find your ship parked nearby, and with surprise, you discover that it is connected to one of the tanks, and the connector is the style used in human space. Other than the robots and the fog swirling in the valley below you, there is no sign of life or motion here, and the air is uncomfortably moist and cold despite the hot steam rising up from a few nearby vents in the ground.`
             `You power on your ship. When you look at your ship's clock, you notice that several years have passed, any time sensitive missions you may have had have been failed, and you have automatically received tribute and paid necessary salaries. It seems like you have been gone for much longer than you realized...`
+                accept
+    on accept
         log "Interacted with aliens who call themselves the Pug, and met with some of them, then got kidnapped for what looks like several years. Was likely placed in a cyrogenic tank. The Pug say that they want to bring peace and protect humanity from excessive self-harm."
         log "Factions" "Pug" `The Pug are aliens with barrel-shaped bodies and spindly legs. They claim their goals are to bring humanity peace and protect humanity from excessive self-harm.`
-        # As seen below, a lot of this makes no sense without two PRs being implemented. However, I am keeping this here for later. For now, use your imagination.
-        dialog `Parts of this mission are dependent on future content which has not yet been released. To continue the campaign, please head to the planet 'Deneb' which should now be linked to the system you are in. It will assume you came from a wormhole and that a lot of time has passed, which will happen once the future content gets released.`
         # Requires relocate mission PR
         # relocate
         #     "flagship only"
@@ -165,6 +187,7 @@ mission "Neutrality 2"
         # "year" += 4
 
         set "chosen sides"
+        event "recapture of Kornephoros"
         event "fw zug expansion complete"
         event "oathkeepers founded"
         event "Tarazed neutrality"
@@ -202,22 +225,43 @@ mission "Neutrality 2"
         # no nukes, you didn't fight for the free worlds
         event "fwc defended cebalrai"
         event "fwc capture menkent"
-        event "fwc navy retakes cebalrai"
+        event "fwc navy retakes cebalrai (patched)"
+        event "fwc pug invasion"
+        event "fwc battle for rasalhague"
+        event "fwc liberation of rasalhague"
+        event "fwc reconnect ascella"
+        event "fwc reconnect zeta aquilae"
+        event "fwc liberation of vega"
+        event "fwc reconnect vega"
+        event "fwc link restoration 1"
+        event "fwc link restoration 2"
+        event "fwc link restoration 3"
         event "pug flee"
         # patch because this plugin depends on the wormhole linking to the pleaides
         # the 1 is to prevent race conditions by ensuring it happens after 'pug flee'
         event "pug flee (patched)" 1
         event "fwc pug defeated"
-        event "tribute patch"
         event "syndicate tech available"
 
         # This is merged with this mission so no need to offer it twice.
         set "Ruin: Landing: offered"
 
+        # Missions in FW campaign based on the events
+        set "FW Southern Break Ends: offered"
+        set "FW Diplomacy 1: offered"
+        set "FW Death of Nguyen: offered"
+        set "plasma turret available: offered"
+        set "FW Flamethrower 1: offered"
+        set "FW Stack Core 1C: offered"
+
+        # Missions in Crisis in Managemtn based on the events
+        set "oathkeepers founded (non-FW): offered"
+        set "event: Kornephoros (non-FW): offered"
+    on enter
+        # As seen above/below, a lot of this makes no sense without two PRs being implemented. However, I am keeping this here for later. For now, use your imagination.
+        dialog `Parts of this mission are dependent on future content which has not yet been released. To continue the campaign, please head to the planet 'Deneb' which should now be linked to the system you are in. It will assume you came from a wormhole and that a lot of time has passed, which will happen once the future content gets released.`
     on enter Deneb
         dialog `This appears to be a system in the middle of human space, just one jump away from where you were kidnapped, yet it is now linked to the rest of human space. You should probably land one of the two planets and try to figure out what is going on.`
-        fail
-
 
 
 mission "Neutrality 3"
@@ -225,7 +269,7 @@ mission "Neutrality 3"
     # alt first last's home planet isn't dependent on what planets will let you land
     ignore clearance
     to offer
-        has "skipped main plot"
+        has "Neutrality 2b: active"
     source
         system Deneb
     # For alt first last's home planet
@@ -245,15 +289,17 @@ mission "Neutrality 3"
                     not "Neutrality 3b: declined"
             `Entering the spaceport, which looks just as alien as the rest of the planet, you approach what appears to be <origin>'s information kiosk, which looks significantly less alien.`
                 to display
-                    not "Neutrality 3b: declined"
+                    has "Neutrality 3b: declined"
             `"How can I help you?" asks the receptionist.`
             label "help"
             choice
                 `"Why are there humans on an alien planet?"`
                     goto "humans"
-                `"Why people were people gesturing towards the sky as I landed?"`
+                `"Why were people gesturing towards the sky as I landed?"`
+                `"Why did the spaceport controller let me land?"`
 
-            `"Wait, are you Captain <last>? We had reports of a vessel associated with you coming from the wormhole," they explain, "and your ship appears to have last requested permission to land on a planet several years ago. Someone probably spread the word around to look for a ship looking like yours. What's going on?"`
+
+            `"Wait, are you Captain <last>? We had reports of a vessel associated with you coming from the wormhole," they explain, "and for several years, your ship appears to have not requested to land on any planet. Someone probably spread the word around to look for a ship looking like yours. What's going on?"`
             choice
                 `"I was going to ask you the same thing. Why are there people on an alien planet?"`
                 `"I was abducted by aliens who call themselves the Pug."`
@@ -293,6 +339,8 @@ mission "Neutrality 3"
             `You thank the receptionist and head on your way, now knowing at least a little bit about what happened while you were gone.`
                 decline
     on decline
+        fail "Neutrality 2"
+        fail "Neutrality 2b"
         set "skipped main plot"
         set "main plot completed"
         set "free worlds checkmate"
@@ -308,12 +356,22 @@ mission "Neutrality 3a"
     invisible
     landing
     to offer
-        has "skipped main plot"
+        has "Neutrality 2b: active"
         not "Neutrality 3: offered"
     source
         system Deneb
     on offer
         conversation
+            branch "pugglequat"
+                has "flagship planet: Pugglequat"
+            action
+                set "neutrality: pugglemug first"
+            branch "end"
+                has "flagship planet: Pugglemug"
+            label "pugglequat"
+            action
+                set "neutrality: pugglequat first"
+            label "end"
             `This planet was clearly one of the native Pug worlds. The architecture is entirely alien, yet you see people working here. As you land, you see people gesturing towards the sky, perhaps as a way of indicating that you should visit the other inhabited planet in this system.`
                 decline
 
@@ -323,6 +381,13 @@ mission "Neutrality 3b"
     to offer
         has "Neutrality 3a: declined"
         not "Neutrality 3: offered"
+        or
+            and
+                has "flagship planet: Pugglemug"
+                not "neutrality: pugglemug first"
+            and
+                has "flagship planet: Pugglequat"
+                not "neutrality: pugglequat first"
     source
         system Deneb
     on offer
