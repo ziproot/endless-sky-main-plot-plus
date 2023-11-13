@@ -148,23 +148,3 @@ mission "Syndicate target practice [3b]"
     on complete
         payment 400000
         dialog "You transmit the scan results to a team of eager engineers and collect your payment of <payment>."
-
-ship "Berserker" "Berserker Test Dummy"
-    add attributes
-        "automaton" 1
-        "self destruct" 1
-
-ship "Quicksilver" "Quicksilver Test Dummy"
-    add attributes
-        "automaton" 1
-        "self destruct" 1
-
-ship "Splinter" "Splinter Test Dummy"
-    add attributes
-        "automaton" 1
-        "self destruct" 1
-
-ship "Vanguard" "Vanguard Test Dummy"
-    add attributes
-        "automaton" 1
-        "self destruct" 1
