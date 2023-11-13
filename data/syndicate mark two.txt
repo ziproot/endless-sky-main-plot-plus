@@ -29,7 +29,7 @@ fleet "Syndicate Nuclear"
         names "syndicate fighter"
     cargo 2
     personality
-        heroic frugal
+        heroic
     variant 1
         "Manta (Nuclear)" 2
 
