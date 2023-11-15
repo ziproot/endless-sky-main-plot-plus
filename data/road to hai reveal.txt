@@ -1,5 +1,5 @@
 disable mission "War Reactions: Asteroid Miners"
-disable mission "War Reactions: Navy and Free Worlds Captain"
+disable mission "War Reactions: Navy and Free Worlds Captains"
 disable mission "War Reactions: Syndicate Orphan"
 
 mission "oathkeepers (neutrality)"
