@@ -58,6 +58,7 @@ mission "Syndicate Using Nukes (Pre-War)"
         "year" < 3014
     on offer
         event "syndicate using nukes (pre-war)"
+        fail
 
 mission "Syndicate Cease Using Nukes"
     invisible
@@ -86,6 +87,7 @@ mission "Syndicate Mark II (Nuclear)"
         has "free worlds checkmate"
     on offer
         event "syndicate using augmented nukes"
+        fail
 
 event "syndicate using nukes (pre-war)"
     system "Alpha Hydri"

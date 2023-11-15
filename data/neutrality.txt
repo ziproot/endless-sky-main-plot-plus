@@ -1,3 +1,10 @@
+mission "Visited Rust Outfitter"
+    invisible
+    outfitter
+    source Rust
+    on offer
+        fail
+
 mission "Neutrality 1"
     deadline 0
     invisible
@@ -246,15 +253,12 @@ mission "Neutrality 2b"
         event "pug flee (patched)" 1
         event "fwc pug defeated"
         event "syndicate tech available"
-        # Nukes require the militia license so you can't actually get them
-        event "fwc solace has augmented nukes"
-        event "fwc navy occupies alcyone"
-        event "fwc navy done with alcyone" 50
 
         # This is merged with this mission so no need to offer it twice.
         set "Ruin: Landing: offered"
 
-        # Missions in FW campaign based on the events
+        # Missions in the FW campaign based on the events
+        set "oathkeepers founded: offered"
         set "FW Southern Break Ends: offered"
         set "FW Diplomacy 1: offered"
         set "FW Death of Nguyen: offered"
@@ -262,7 +266,7 @@ mission "Neutrality 2b"
         set "FW Flamethrower 1: offered"
         set "FW Stack Core 1C: offered"
 
-        # Missions in Crisis in Managemtn based on the events
+        # Missions in Crisis in Management based on the events
         set "oathkeepers founded (non-FW): offered"
         set "event: Kornephoros (non-FW): offered"
     on enter
@@ -302,10 +306,8 @@ mission "Neutrality 3"
             label "help"
             choice
                 `"Why are there humans on an alien planet?"`
-                    goto "humans"
                 `"Why were people gesturing towards the sky as I landed?"`
                 `"Why did the spaceport controller let me land?"`
-
 
             `"Wait, are you Captain <last>? We had reports of a vessel associated with you coming from the wormhole," they explain, "and for several years, your ship appears to have not requested to land on any planet. Someone probably spread the word around to look for a ship looking like yours. What's going on?"`
             choice
@@ -332,31 +334,17 @@ mission "Neutrality 3"
 
             label "peace"
             `"That's what they said when they annexed Silver."`
-                goto "pug"
-
-            label "humans"
-            `"You don't know? An alien race called the Pug attacked Silver, claiming that they were there to end the war and bring peace. They cut the hyperspace links from the other planets and connected them to this system instead. A few tried to resist, but not even the Free Worlds, with their nuclear weapons, were successful. At least, not at first. A brave captain from <planet> who was a member of the free worlds council stole a jump drive from them, like those that the Quarg use, that let them bypass hyperlanes. With this, they roused the Navy, reconnected the hyperspace lanes, and helped chase the Pug fleet back to this system. But when they got here, the Pug were gone, with only a strange wormhole in its place. Now the Free Worlds and the Republic are no longer at war, with the Free Worlds an autonomous part of the Republic, like the Syndicate. At least, that is what I have been told. Maybe that's what the Pug meant by 'peace.'"`
-                goto "end"
 
             label "pug"
-            `"The Pug attacked Silver, claiming that they were there to end the war and bring peace. They cut the hyperspace links from the other planets and connected them to this system instead. A few tried to resist, but not even the Free Worlds, with their nuclear weapons, were successful. At least, not at first. A brave captain from <planet> who was a member of the free worlds council stole a jump drive from them, like those that the Quarg use, that let them bypass hyperlanes. With this, they roused the Navy, reconnected the hyperspace lanes, and helped chase the Pug fleet back to this system. But when they got here, the Pug were gone, with that wormhole you came from in its place. Now the Free Worlds and the Republic are no longer at war, with the Free Worlds an autonomous part of the Republic, like the Syndicate. At least, that is what I have been told. Maybe that's what the Pug meant by 'peace.'"`
+            `"The Pug attacked Silver, claiming that they were there to end the war and bring peace. They cut the hyperspace links from the other planets and connected them to this system instead. A few tried to resist, but not even the Free Worlds, with their nuclear weapons, were successful. At least, not at first. <last> <first>, a brave captain from <planet>, who was a member of the Free Worlds council, stole a jump drive from them, like those that the Quarg use, that let them bypass hyperlanes. With this, they roused the Navy, reconnected the hyperspace lanes, and helped chase the Pug fleet back to this system!  But when they got here, the Pug were gone, with that wormhole you came from in its place. Now the Free Worlds and the Republic are no longer at war, with the Free Worlds an autonomous part of the Republic, like the Syndicate. At least, that is what I have been told. Maybe that's what the Pug meant by 'peace.'"`
             `The receptionist pauses. "I'm not assuming they told you anything."`
             `"Not much," you admit.`
-
-            label "end"
-            `You thank the receptionist and head on your way, now knowing at least a little bit about what happened while you were gone.`
+            `"By the way, considering you didn't know about the Pug invasion, you might also not know about the new technology humanity has developed during the war. If so, you should probably speak to officials at the main outposts of Deep Sky Technology, Kraz Cybernetics, and Syndicated Systems for more information. They can be found on the planets Asgard in the Naos system, Rust in the Kraz system, and Hephaestus in the Markab system, respectively."`
+            `You thank the receptionist and head on your way, now knowing at least a little bit about what happened while you were gone, and preparing to learn a little more.`
                 decline
     on decline
         fail "Neutrality 2"
         fail "Neutrality 2b"
-        set "skipped main plot"
-        set "main plot completed"
-        set "free worlds checkmate"
-        # TO DO: Fix hai reveal missions that assume you fought the Pug.
-        set "Hai Reveal: Secret Leaks: offered"
-        set "Hai Reveal: Secret Leaks: Hai: offered"
-        # TO DO: Update this mission to describe new weapons, to fix missions like the one below.
-        set "Heliarch Containment 5: offered"
 
 
 # The "Neutrality 3a" and "Neutrality 3b" missions were adapted from "FWC Pug 2B: Pugglequat" from the "free worlds 3 checkmate.txt" file in endless sky.
@@ -403,3 +391,162 @@ mission "Neutrality 3b"
         conversation
             `This planet was also clearly one of the native Pug worlds. Once again, architecture is entirely alien, yet you see people working here. As you land, you see more people gesturing towards the sky. Maybe this doesn't have to do with which planet you should visit. You should probably check the spaceport to see what is going on.`
                 decline
+
+mission "Neutrality 4"
+    invisible
+    to offer
+        has "Neutrality 2b: active"
+    to fail
+        has "Neutrality 4: Free Worlds: done"
+        has "Neutrality 4: Syndicate: done"
+        has "Neutrality 4: Deep: done"
+    source
+        system Deneb
+    on fail
+        # Nukes require the militia license so you can't actually get them
+        event "fwc solace has augmented nukes"
+        event "fwc navy occupies alcyone"
+        event "fwc navy done with alcyone" 50
+
+        set "skipped main plot"
+        set "main plot completed"
+        set "free worlds checkmate"
+
+        # Disable Hai Reveal, for now, as it's broken when not siding with the free worlds anyways.
+        set "Hai Reveal: Secret Leaks: offered"
+        set "Hai Reveal: Secret Leaks: Hai: offered"
+
+        # Disable Wanderers Truce Check, for now, as I have no clue how to fix the Danforth problem.
+        set "Wanderers: Truce Check: offered"
+        set "Wanderers: Jump Drive Source: offered"
+
+mission "Neutrality 4: Free Worlds"
+    name "Visit Kraz Cybernetics"
+    description "Visit the main Kraz Cybernetics outfitter at <destination> to learn about new technology developed by the Free Worlds."
+    to offer
+        has "Neutrality 2b: active"
+    to complete
+        never
+    to fail
+        has "Neutrality 4b: Free Worlds: declined"
+    source
+        system Deneb
+    destination Rust
+
+mission "Neutrality 4b: Free Worlds"
+    invisible
+    outfitter
+    to offer
+        has "Neutrality 4: Free Worlds: active"
+    source Rust
+    on offer
+        log "Factions" "Free Worlds" "During the civil war, the Free Worlds produced two new heat related weapons. The first is a plasma turret, which is simply a plasma cannon mounted on a turret. The second is a flamethrower, which can quickly overheat a ship, but requires hyperspace fuel and works best when directly on top of it."
+        conversation
+            `The main outfitter of Kraz Cybernetics, instead of having employees, only consists of a row of computers.`
+            `You approach an unoccupied computer. On the screen it says, "Please scan your pilot's license."`
+            choice
+                `(Scan your pilot's license)`
+            `Scanning your pilot's license involves holding it up to a camera above the computer. Upon scanning your pilot's license, you see a panel of outfits next to a box that says "nothing selected."`
+            # Literally a screenshot of the Kraz outfitter in the game
+            scene "scene/outfitter"
+            `Reading through the outfit descriptions, two of them catch your eye.`
+            # Taken from the actual outfit descriptions of the plasma turret and flamethrower, with additions describing history
+            scene "outfit/plasma turret"
+            `"The Plasma Turret is a pair of Plasma Cannons mounted on a turret so that they can fire in any direction. It is a fearsome weapon, but only the largest of ships have the space and the energy that it requires. It was developed by Kraz Cybernetics during the civil war."`
+            scene "outfit/flamethrower"
+            `"A crude but impressive-looking weapon, the Flamethrower ignites your hyperspace fuel and directs a stream of it towards your adversaries. The damage it does is relatively minor, but it can be useful for causing a target that is already operating near its thermal capacity to overheat, temporarily taking it out of the fight. It was developed by Kraz Cybernetics during the civil war."`
+
+            `Searching through the rest of the outfitter's catalog, you don't notice any other similar outfits.`
+                decline
+
+
+mission "Neutrality 4: Syndicate"
+    name "Visit Syndicated Systems"
+    description "Visit the main Syndicated Systems outfitter at <destination> to learn about new technology developed by the Syndicate."
+    landing
+    to offer
+        has "Neutrality 2b: active"
+    to complete
+        never
+    to fail
+        has "Neutrality 4b: Syndicate: declined"
+    source
+        system Deneb
+    destination Hephaestus
+
+mission "Neutrality 4b: Syndicate"
+    invisible
+    outfitter
+    to offer
+        has "Neutrality 4: Syndicate: active"
+    source Hephaestus
+    on offer
+        log "Factions" "Syndicate" "During the civil war, the Syndicate produced a new S line of regenerators, which save outfit space but require additional power and cooling to compensate. They also produced ionic afterburners, which like regular afterburners, but are much more fuel and space efficient."
+        conversation
+            `The Syndicated Systems help desk consists of a long row of booths in front of an even longer line of people, above a sign saying "Quality Assurance." As you near the front of the line, you overhear a fight break out between one of the customers and a quality assurance agent.`
+            `"This Protector is a piece of junk!"`
+            `"We don't sell the Protector. That's Syndicated Shipyards."`
+            `"When I went to Syndicated Shipyards, they said it was an 'engine problem' and said to speak to you!"`
+            `"I'm sorry. If you have problems with Syndicated Shipyards, you have to speak to their quality assurance, not us."`
+            `"Argh!"`
+            `You can't hear more, because a Syndicate employee ushers you to one of the booths. Behind it is a somewhat exasperated looking employee.`
+            `"How can I help you?"`
+            choice
+                `"I want to learn more about Syndicated Systems' new outfits."`
+                `"I heard that Syndicated Systems has developed new technology, and I want to learn more about it."`
+                `"Can you talk to me about the new outfits developed by Syndicated Systems?"`
+            `After taking a few deep breath, the Quality Assurance agent then proceeds to recite what sounds like a scripted message.`
+            `"During the war, Syndicated Systems has specialized in creating compact outfits, allowing you to fit more on your ship than ever before."`
+            scene "outfit/large regenerator"
+            `"Have you ever found your ship's shield regenerator bulky? Well, worry no more. Syndicated Systems' has developed a novel approach to regeneration technology through our exclusive S line of regenerators. Not only does it save outfit space, but it also repairs your hull as well. Its power needs are somewhat intensive, however, an RT-I Radiothermal can more than handle it, and the combined outfit space is less than what would be needed to achieve comparable shield regeneration with Deep Sky's D line."`
+            scene "outfit/ionic afterburner"
+            `"Have you ever wanted to fit that big steering engine on your ship, but didn't have the space for it and a thruster as well? Well, with our new Ionic Afterburner, that steering engine is yours. It was designed with fuel in mind, so it is over four times more fuel efficient than the leading competitor."`
+            `"Many pilots like to combine outfits from all over the galaxy, however, you will notice how our more heat intensive S line of regenerators and RT-I Radiothermal generators nicely complement our more heat efficient ionic afterburners and X line of ion engines."`
+            `You politely thank the quality assurance agent and head out on your way.`
+                decline
+
+
+mission "Neutrality 4: Deep"
+    name "Visit Deep Sky"
+    description "Visit the main Deep Sky outfitter at <destination> to learn about new technology developed by the Deep."
+    to offer
+        has "Neutrality 2b: active"
+    to complete
+        never
+    to fail
+        has "Neutrality 4b: Deep: declined"
+    source
+        system Deneb
+    destination Asgard
+
+mission "Neutrality 4b: Deep"
+    invisible
+    outfitter
+    to offer
+        has "Neutrality 4: Deep: active"
+    source Asgard
+    on offer
+        log "Factions" "Deep" "During the civil war, the Deep mainly produced upgrades over their pre-existing technology. The electron beam is an enhanced heavy laser, the typhoon launcher is an enhanced torpedo launcher, and the catalytic ramscoop is an enhanced ramscoop."
+        conversation
+            `Deep Sky's customer service is in a separate section from the main outfitter. You enter a very clean, white waiting room. You give your name to the receptionist and have a seat.`
+            `After waiting for several minutes, you are called back, and are brought into another clean, white room.`
+            `"Hello, welcome to Deep Sky. At Deep Sky, our customers' confidentiality is important to us. How may I help you?"`
+            choice
+                `"Can you tell me about the Deep's new outfits?"`
+                `"I would like to learn more about the Deep's new outfits."`
+            `"We would love to talk to you about our outfits!"`
+            scene "outfit/electron beam"
+            `"First, we have the electron beam, an upgraded form of our broadly popular heavy laser. While the heavy laser is still useful for smaller ships, for those that have the room, the electron beam will allow you to do more damage while still keeping the advantage of stopping as soon as you stop firing. Of course, it has a turret version as well."`
+            scene "outfit/typhoon launcher"
+            `"Next, is the typhoon launcher. This is an upgraded form of the torpedo launcher. It can shoot three typhoon torpedos at a time, and typhoon torpedos do even more damage than their predecessors."`
+            scene "outfit/catalytic ramscoop"
+            `"Finally, we've turned to upgrading our ramscoop technology. If you don't know, ramscoops allow you to collect hyperspace fuel from a system's star, allowing you to regain fuel if you run out. This catalytic ramscoop is simply a more space efficient version of our old regular ramscoop. We haven't needed ramscoops in a long time, however, with the supply chain disruptions caused by the Free Worlds rebellion, we decided that our ramscoops just weren't good enough anymore."`
+            `"While none of this is novel technology, we wanted to keep our Deep Sky quality while still offering improvements over our pre-existing designs."`
+            `"Anything else?"`
+            choice
+                `"That's it. Thank you."`
+                `"No, that's all I wanted to know. Thanks."`
+            `"You're welcome. Come back any time. Remember, here at the Deep, we offer you Peace, Prosperity, and Progress."`
+            `You are led back out into the main outfitter.`
+                decline
+
