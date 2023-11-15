@@ -1,0 +1,75 @@
+outfit "Cargo Scanner"
+    "cargo scan efficiency" 500
+
+outfit "Outfit Scanner"
+    "outfit scan efficiency" 1500
+
+outfit "Surveillance Pod"
+    "cargo scan efficiency" 1000
+    "outfit scan efficiency" 2000
+
+outfit "Value Detector"
+    "cargo scan efficiency" 1000
+
+outfit "Scanning Module"
+    "cargo scan efficiency" 1800
+    "outfit scan efficiency" 1800
+
+outfit "Research Laboratory"
+    "cargo scan efficiency" 600
+
+outfit "Salvage Scanner"
+    "outfit scan efficiency" 1200
+
+ship "Albatross"
+    "outfit scan efficiency" 2400
+
+ship "Modified Dromedary"
+    "outfit scan efficiency" 4800
+
+ship "Gull"
+    "outfit scan efficiency" 2000
+
+ship "Heron"
+    attributes
+        "outfit scan efficiency" 12000
+
+ship "Ibis"
+    attributes
+        "outfit scan efficiency" 2000
+
+ship "Merganser"
+    attributes
+        "outfit scan efficiency" 1200
+
+ship "Pelican"
+    attributes
+        "outfit scan efficiency" 1200
+
+ship "Penguin"
+    attributes
+        "outfit scan efficiency" 3600
+
+ship "Peregrine"
+    attributes
+        "outfit scan efficiency" 2200
+
+ship "Petrel"
+    attributes
+        "outfit scan efficiency" 1400
+
+ship "Puffin"
+    attributes
+        "outfit scan efficiency" 2800
+
+ship "Smew"
+    attributes
+        "outfit scan efficiency" 2000
+
+ship "Starling"
+    attributes
+        "outfit scan efficiency" 2000
+
+ship "Tern"
+    attributes
+        "outfit scan efficiency" 1200
