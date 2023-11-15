@@ -22,13 +22,16 @@ outfit "Salvage Scanner"
     "outfit scan efficiency" 1200
 
 ship "Albatross"
-    "outfit scan efficiency" 2400
+    attributes
+        "outfit scan efficiency" 2400
 
 ship "Modified Dromedary"
-    "outfit scan efficiency" 4800
+    attributes
+        "outfit scan efficiency" 4800
 
 ship "Gull"
-    "outfit scan efficiency" 2000
+    attributes
+        "outfit scan efficiency" 2000
 
 ship "Heron"
     attributes
