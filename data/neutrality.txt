@@ -354,6 +354,7 @@ mission "Neutrality 3"
         set "free worlds checkmate"
         # TO DO: Fix hai reveal missions that assume you fought the Pug.
         set "Hai Reveal: Secret Leaks: offered"
+        set "Hai Reveal: Secret Leaks: Hai: offered"
         # TO DO: Update this mission to describe new weapons, to fix missions like the one below.
         set "Heliarch Containment 5: offered"
 
