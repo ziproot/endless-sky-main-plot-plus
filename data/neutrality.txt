@@ -433,7 +433,7 @@ mission "Neutrality 4b: Free Worlds"
         has "Neutrality 4: Free Worlds: active"
     source Rust
     on offer
-        log "Factions" "Free Worlds" "During the civil war, the Free Worlds produced two new heat related weapons. The first is a plasma turret, which is simply a plasma cannon mounted on a turret. The second is a flamethrower, which can quickly overheat a ship, but requires hyperspace fuel and works best when directly on top of it."
+        log "Factions" "Free Worlds" "During the civil war, the Free Worlds produced two new heat related weapons. The first is the Plasma Turret, which is simply a Plasma Cannon mounted on a turret. The second is the Flamethrower, which can quickly overheat a ship, but requires hyperspace fuel and works best when directly on top of it."
         conversation
             `The main outfitter of Kraz Cybernetics, instead of having employees, only consists of a row of computers.`
             `You approach an unoccupied computer. On the screen it says, "Please scan your pilot's license."`
@@ -491,10 +491,10 @@ mission "Neutrality 4b: Syndicate"
             `After taking a few deep breaths, the Quality Assurance agent then proceeds to recite what sounds like a scripted message.`
             `"During the war, Syndicated Systems has specialized in creating compact outfits, allowing you to fit more on your ship than ever before."`
             scene "outfit/large regenerator"
-            `"Have you ever found your ship's shield regenerator bulky? Well, worry no more. Syndicated Systems' has developed a novel approach to regeneration technology through our exclusive S line of regenerators. Not only does it save outfit space, but it also repairs your hull as well. Its power needs are somewhat intensive, however, an RT-I Radiothermal can more than handle it, and the combined outfit space is less than what would be needed to achieve comparable shield regeneration with Deep Sky's D line."`
+            `"Have you ever found your ship's shield regenerator bulky? Well, worry no more. Syndicated Systems has developed a novel approach to regeneration technology with the exclusive S line of regenerators. Not only does it save outfit space, but it also repairs your hull as well. Its power needs are somewhat intensive, however, an RT-I Radiothermal can more than handle it, and the combined outfit space is less than what would be needed to achieve comparable shield regeneration with Deep Sky's D line."`
             scene "outfit/ionic afterburner"
             `"Have you ever wanted to fit that big steering engine on your ship, but didn't have the space for it and a thruster as well? Well, with our new Ionic Afterburner, that steering engine is yours. It was designed with fuel in mind, so it is over four times more fuel efficient than the leading competitor."`
-            `"Many pilots like to combine outfits from all over the galaxy, however, you will notice how our more heat intensive S line of regenerators and RT-I Radiothermal generators nicely complement our more heat efficient ionic afterburners and X line of ion engines."`
+            `"Many pilots like to combine outfits from all over the galaxy, however, you will notice how our more heat intensive S line of regenerators and RT-I Radiothermal generators nicely complement our more heat efficient Ionic Afterburners and X line of ion engines."`
             `You politely thank the quality assurance agent and head out on your way.`
                 decline
 
@@ -519,7 +519,7 @@ mission "Neutrality 4b: Deep"
         has "Neutrality 4: Deep: active"
     source Asgard
     on offer
-        log "Factions" "Deep" "During the civil war, the Deep mainly produced upgrades over their pre-existing technology. The electron beam is an enhanced heavy laser, the typhoon launcher is an enhanced torpedo launcher, and the catalytic ramscoop is an enhanced ramscoop."
+        log "Factions" "Deep" "During the civil war, the Deep mainly produced upgrades over their pre-existing technology. The Electron Beam is an enhanced Heavy Laser, the Typhoon Launcher is an enhanced torpedo launcher, and the Catalytic Ramscoop is an enhanced ramscoop."
         conversation
             `Deep Sky's customer service is in a separate section from the main outfitter. You enter a very clean, white waiting room. You give your name to the receptionist and have a seat.`
             `After waiting for several minutes, you are called back, and are brought into another clean, white room.`
@@ -529,11 +529,11 @@ mission "Neutrality 4b: Deep"
                 `"I would like to learn more about the Deep's new outfits."`
             `"We would love to talk to you about our outfits!"`
             scene "outfit/electron beam"
-            `"First, we have the electron beam, an upgraded form of our broadly popular heavy laser. While the heavy laser is still useful for smaller ships, for those that have the room, the electron beam will allow you to do more damage while still keeping the advantage of stopping as soon as you stop firing. Of course, it has a turret version as well."`
+            `"First, we have the Electron Beam, an upgraded form of our broadly popular Heavy Laser. While the Heavy Laser is still useful for smaller ships, for those that have the room, the Electron Beam will allow you to do more damage while still keeping the advantage of stopping as soon as you stop firing. Of course, it has a turret version as well."`
             scene "outfit/typhoon launcher"
-            `"Next, is the typhoon launcher. This is an upgraded form of the torpedo launcher. It can shoot three typhoon torpedos at a time, and typhoon torpedos do even more damage than their predecessors."`
+            `"Next is the Typhoon Launcher. This is an upgraded form of the torpedo launcher. It can shoot three Typhoon Torpedos at a time, and Typhoon Torpedos do even more damage than their predecessors."`
             scene "outfit/catalytic ramscoop"
-            `"Finally, we've turned to upgrading our ramscoop technology. If you don't know, ramscoops allow you to collect hyperspace fuel from a system's star, allowing you to regain fuel if you run out. This catalytic ramscoop is simply a more space efficient version of our old regular ramscoop. We haven't needed ramscoops in a long time, however, with the supply chain disruptions caused by the Free Worlds rebellion, we decided that our ramscoops just weren't good enough anymore."`
+            `"Finally, we've turned to upgrading our ramscoop technology. If you don't know, ramscoops allow you to collect hyperspace fuel from a system's star, allowing you to regain fuel if you run out. This Catalytic Ramscoop is simply a more space efficient version of our old regular ramscoop. We haven't needed ramscoops in a long time, however, with the supply chain disruptions caused by the Free Worlds rebellion, we decided that our ramscoops just weren't good enough anymore."`
             `"While none of this is novel technology, we wanted to keep our Deep Sky quality while still offering improvements over our pre-existing designs."`
             `"Anything else?"`
             choice
