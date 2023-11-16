@@ -488,7 +488,7 @@ mission "Neutrality 4b: Syndicate"
                 `"I want to learn more about Syndicated Systems' new outfits."`
                 `"I heard that Syndicated Systems has developed new technology, and I want to learn more about it."`
                 `"Can you talk to me about the new outfits developed by Syndicated Systems?"`
-            `After taking a few deep breath, the Quality Assurance agent then proceeds to recite what sounds like a scripted message.`
+            `After taking a few deep breaths, the Quality Assurance agent then proceeds to recite what sounds like a scripted message.`
             `"During the war, Syndicated Systems has specialized in creating compact outfits, allowing you to fit more on your ship than ever before."`
             scene "outfit/large regenerator"
             `"Have you ever found your ship's shield regenerator bulky? Well, worry no more. Syndicated Systems' has developed a novel approach to regeneration technology through our exclusive S line of regenerators. Not only does it save outfit space, but it also repairs your hull as well. Its power needs are somewhat intensive, however, an RT-I Radiothermal can more than handle it, and the combined outfit space is less than what would be needed to achieve comparable shield regeneration with Deep Sky's D line."`
