@@ -1,3 +1,5 @@
+# Credit goes to Hondolor for compiling Storm Crow's "Le Troll" plugin, implenting Amazinite's person ship, to GitHub: https://github.com/Hondolor/The-Heroes-ES-Pluggin
+
 government "Amazinite"
     display name "Author"
     swizzle 2
