@@ -9,7 +9,7 @@ government "Amazinite"
 
 person "Le Troll"
     government "Amazinite"
-    frequency 1000
+    frequency 10000
     personality
         heroic marked unconstrained
     phrase
