@@ -254,6 +254,7 @@ mission "War Reactions: Syndicate Orphan (patched)"
             `    As you start walking, he answers. "No, I'm an orphan." He sees your confusion and explains. "The Syndicate lets some of us orphans work in industry. In return they give us better schooling, nicer housing, and doctor's visits." He puffs himself up. "Only the cleverest of us get to do it. All of the jobs for orphans are safe too; we don't use big dangerous equipment. Just ordinary stuff, like hammers, soldering irons, or sewing machines.`
             `    "Wait a minute!" He suddenly looks at you with wide eyes. "You're a captain, right? Were you in the big fights? I was on Maker when I saw some Pug ships fighting our ships on our school's big edu-screen."`
             branch "didn't fight"
+                has "skipped main plot"
             choice
                 `   "No, but I did help catch an Alpha."`
                     to display

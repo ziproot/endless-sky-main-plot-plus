@@ -1,0 +1,54 @@
+government "Amazinite"
+    display name "Author"
+    swizzle 2
+    color 0 0 0
+
+    "player reputation" -500000
+
+person "Le Troll"
+    government "Amazinite"
+    frequency 10000
+    personality
+        plunders
+    phrase
+        word
+            "I'm on my villain arc"
+    ship "Star Barge" "Amazinite Star Barge"
+        "never disabled"
+        attributes
+            category "Light Freighter"
+            "cost" 210000
+            "shields" 600
+            "hull" 1000
+            "required crew" 1
+            "bunks" 3
+            "mass" 70
+            "drag" 2.4
+            "heat dissipation" .7
+            "fuel capacity" 300
+            "cargo space" 50
+            "outfit space" 130
+            "weapon capacity" 20
+            "engine capacity" 40
+            weapon
+                "blast radius" 16
+                "shield damage" 160
+                "hull damage" 80
+                "hit force" 240
+        outfits
+            "Nuclear Missile (Augmented)"
+
+            "nGVF-BB Fuel Cell"
+            "LP036a Battery Pack"
+            "D14-RN Shield Generator"
+
+            "Chipmunk Plasma Thruster"
+            "Chipmunk Plasma Steering"
+            "Hyperdrive"
+
+        engine -9 38
+        engine 9 38
+        gun 0 0 "Nuclear Missile (Augmented)"
+        turret 0 -8
+        explode "tiny explosion" 10
+        explode "small explosion" 10
