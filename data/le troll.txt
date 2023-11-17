@@ -1,7 +1,7 @@
 # Credit goes to Hondolor for compiling Storm Crow's "Le Troll" plugin, implenting Amazinite's person ship, to GitHub: https://github.com/Hondolor/The-Heroes-ES-Pluggin
 
 government "Amazinite"
-    display name "Author"
+    "display name" "Author"
     swizzle 2
     color 0 0 0
 
@@ -9,9 +9,9 @@ government "Amazinite"
 
 person "Le Troll"
     government "Amazinite"
-    frequency 10000
+    frequency 1000
     personality
-        plunders
+        heroic marked unconstrained
     phrase
         word
             "I'm on my villain arc"
