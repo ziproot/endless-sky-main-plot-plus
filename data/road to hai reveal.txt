@@ -317,3 +317,9 @@ mission "War Reactions: Syndicate Orphan (patched)"
             `    Calvin lets him out of the hold and says to you, "Thank you for saving my brother. He's the only family I have left, and I hope," he pinches him, "he'll stop risking his life out of curiosity." He looks at Gus kindly. "Come on, let's get you to the medic."`
             `    Calvin waves goodbye as he walks his brother in.`
                 decline
+
+# "Road to Hai Reveal: Danforth" clears the secret leaks mission offers and unlocks wanderers, prerequisites: war reactions, oathkeepers missions
+# Then add an Alondo patch mission for those who have not met him
+# Then add a better "media retraction" mission that unlocks scar's legion (set symbol identification offered) and clears secret leaks
+# As the event isn't set as done scar's legion will be the only thing that completes
+# Then finally add a patch mission for the first turner mission

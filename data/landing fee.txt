@@ -1,0 +1,3323 @@
+# Daily Tax: 10,000 credits
+# Group A: 9,000 credits
+# Group B: 8,000 credits
+# Group C: 7,000 credits
+# Group D: 6,000 credits
+# Group E: 5,000 credits
+# Group F: 4,000 credits
+# Group G: 3,000 credits
+# Group H: 2,000 credits
+# Group I: 1,000 credits
+# Group Alpha: 10,000 credits
+# Group Beta: 15,000 credits
+
+# Note: The Republic and the Free Worlds charge the same fees.
+
+mission "Daily Tax"
+    invisible
+    landing
+    to offer
+        has "event: initial deployment 3"
+    to complete
+        never
+    on offer
+        conversation
+            `As you land, you notice a crowd of people huddled around the spaceport news.`
+            `"In response to the bombing of Geminus and Martini, the Republic has passed a bill charging all spaceship captains 10,000 credits in taxes per day, and charging fees of up to 9,000 credits in order to land. Shortly after, the Free Worlds Senate passed a similar bill charging landing fees of up to 5,000 credits."`
+            `A Syndicate ad then plays advertising how all Syndicate planets will "only" charge 4,000 credits per day to land, saying how this is the "cheapest price to land within one jump of Earth."`
+                accept
+    on daily
+        payment -10000
+
+mission "Landing Fee A"
+    invisible
+    repeat
+    landing
+    "apparent payment" 9000
+    to offer
+        has "event: initial deployment 3"
+        or
+            not "flagship planet: Earth"
+            ( "planet number beta" % 2 ) == 0
+        or
+            not "flagship planet: I.S.S."
+            ( ( "planet number beta" - ( "planet number beta" % 2 ) ) % 4 ) == 0
+        or
+            not "flagship planet: Luna"
+            ( ( "planet number beta" - ( "planet number beta" % 2 ) - ( "planet number beta" % 4 ) ) % 8 ) == 0
+            "planet number beta" < 4
+        or
+            not "flagship planet: Mars"
+            ( ( "planet number beta" - ( "planet number beta" % 2 ) - ( "planet number beta" % 4 ) - ( "planet number beta" % 8 ) ) % 16 ) == 0
+            "planet number beta" < 8
+        or
+            not "flagship planet: Chiron"
+            ( ( "planet number beta" - ( "planet number beta" % 2 ) - ( "planet number beta" % 4 ) - ( "planet number beta" % 8 ) - ( "planet number beta" % 16 ) ) % 32 ) == 0
+            "planet number beta" < 16
+        or
+            has "flagship planet: Earth"
+            has "flagship planet: I.S.S."
+            has "flagship planet: Luna"
+            has "flagship planet: Mars"
+            has "flagship planet: Chiron"
+    to complete
+        never
+    on offer
+        conversation
+            branch "not earth"
+                not "flagship planet: Earth"
+            action
+                "planet number a" += 1
+            label "not earth"
+            branch "not i.s.s."
+                not "flagship planet: I.S.S."
+            action
+                "planet number a" += 2
+            label "not i.s.s."
+            branch "not luna"
+                not "flagship planet: Luna"
+            action
+                "planet number a" += 4
+            label "not luna"
+            branch "not mars"
+                not "flagship planet: Mars"
+            action
+                "planet number a" += 8
+            label "not mars"
+            branch "not chiron"
+                not "flagship planet: Chiron"
+            action
+                "planet number a" += 16
+            label "not chiron"
+            branch "tribute"
+                or
+                    and
+                        has "flagship planet: Earth"
+                        has "tribute: Earth"
+                    and
+                        has "flagship planet: I.S.S."
+                        has "tribute: I.S.S."
+                    and
+                        has "flagship planet: Luna"
+                        has "tribute: Luna"
+                    and
+                        has "flagship planet: Mars"
+                        has "tribute: Mars"
+                    and
+                        has "flagship planet: Chiron"
+                        has "tribute: Chiron"
+            action
+                payment -9000
+            `The authorities on <origin> charge you a landing fee of <payment>.`
+                accept
+            label "tribute"
+            action
+                payment 9000
+            `The authorities on <origin> pay you <payment> in tribute.`
+                accept
+    on visit
+        conversation
+            branch "tribute"
+                or
+                    and
+                        has "flagship planet: Earth"
+                        has "tribute: Earth"
+                    and
+                        has "flagship planet: I.S.S."
+                        has "tribute: I.S.S."
+                    and
+                        has "flagship planet: Luna"
+                        has "tribute: Luna"
+                    and
+                        has "flagship planet: Mars"
+                        has "tribute: Mars"
+                    and
+                        has "flagship planet: Chiron"
+                        has "tribute: Chiron"
+            action
+                payment -9000
+            `The authorities on <origin> charge you a landing fee of <payment>.`
+                decline
+            label "tribute"
+            action
+                payment 9000
+            `The authorities on <origin> pay you <payment> in tribute.`
+
+mission "Landing Fee B"
+    invisible
+    repeat
+    landing
+    "apparent payment" 8000
+    to offer
+        has "event: initial deployment 3"
+        or
+            not "flagship planet: Geyser"
+            ( "planet number b" % 2 ) == 0
+        or
+            not "flagship planet: New China"
+            ( ( "planet number b" - ( "planet number b" % 2 ) ) % 4 ) == 0
+        or
+            not "flagship planet: New Switzerland"
+            ( ( "planet number b" - ( "planet number b" % 2 ) - ( "planet number b" % 4 ) ) % 8 ) == 0
+            "planet number b" < 4
+        or
+            not "flagship planet: Relic"
+            ( ( "planet number b" - ( "planet number b" % 2 ) - ( "planet number b" % 4 ) - ( "planet number b" % 8 ) ) % 16 ) == 0
+            "planet number b" < 8
+        or
+            not "flagship planet: Shiver"
+            ( ( "planet number b" - ( "planet number b" % 2 ) - ( "planet number b" % 4 ) - ( "planet number b" % 8 ) - ( "planet number b" % 16 ) ) % 32 ) == 0
+            "planet number b" < 16
+        or
+            not "flagship planet: Silver"
+            ( ( "planet number b" - ( "planet number b" % 2 ) - ( "planet number b" % 4 ) - ( "planet number b" % 8 ) - ( "planet number b" % 16 ) - ( "planet number b" % 32 ) ) % 64 ) == 0
+            "planet number b" < 32
+        or
+            has "flagship planet: Geyser"
+            has "flagship planet: New China"
+            has "flagship planet: New Switzerland"
+            has "flagship planet: Relic"
+            has "flagship planet: Shiver"
+            has "flagship planet: Silver"
+    to complete
+        never
+    on offer
+        conversation
+            branch "not geyser"
+                not "flagship planet: Geyser"
+            action
+                "planet number b" += 1
+            label "not geyser"
+            branch "not new china"
+                not "flagship planet: New China"
+            action
+                "planet number b" += 2
+            label "not new china"
+            branch "not new switzerland"
+                not "flagship planet: New Switzerland"
+            action
+                "planet number b" += 4
+            label "not new switzerland"
+            branch "not relic"
+                not "flagship planet: Relic"
+            action
+                "planet number b" += 8
+            label "not relic"
+            branch "not shiver"
+                not "flagship planet: Shiver"
+            action
+                "planet number b" += 16
+            label "not shiver"
+            branch "not silver"
+                not "flagship planet: Silver"
+            action
+                "planet number b" += 32
+            label "not silver"
+            branch "tribute"
+                or
+                    and
+                        has "flagship planet: Geyser"
+                        has "tribute: Geyser"
+                    and
+                        has "flagship planet: New China"
+                        has "tribute: New China"
+                    and
+                        has "flagship planet: New Switzerland"
+                        has "tribute: New Switzerland"
+                    and
+                        has "flagship planet: Relic"
+                        has "tribute: Relic"
+                    and
+                        has "flagship planet: Shiver"
+                        has "tribute: Shiver"
+                    and
+                        has "flagship planet: Silver"
+                        has "tribute: Silver"
+            action
+                payment -8000
+            `The authorities on <origin> charge you a landing fee of <payment>`
+                accept
+            label "tribute"
+            action
+                payment 8000
+            `The authorities on <origin> pay you <payment> in tribute.`
+                accept
+    on visit
+        payment -8000
+        conversation
+            branch "tribute"
+                or
+                    and
+                        has "flagship planet: Geyser"
+                        has "tribute: Geyser"
+                    and
+                        has "flagship planet: New China"
+                        has "tribute: New China"
+                    and
+                        has "flagship planet: New Switzerland"
+                        has "tribute: New Switzerland"
+                    and
+                        has "flagship planet: Relic"
+                        has "tribute: Relic"
+                    and
+                        has "flagship planet: Shiver"
+                        has "tribute: Shiver"
+                    and
+                        has "flagship planet: Silver"
+                        has "tribute: Silver"
+            action
+                payment -8000
+            `The authorities on <origin> charge you a landing fee of <payment>.`
+                decline
+            label "tribute"
+            action
+                payment 8000
+            `The authorities on <origin> pay you <payment> in tribute.`
+
+
+mission "Landing Fee C"
+    invisible
+    repeat
+    landing
+    "apparent payment" 7000
+    to offer
+        has "event: initial deployment 3"
+        or
+            not "flagship planet: Ada"
+            ( "planet number c" % 2 ) == 0
+        or
+            not "flagship planet: Calda"
+            ( ( "planet number c" - ( "planet number c" % 2 ) ) % 4 ) == 0
+        or
+            not "flagship planet: Farseer"
+            ( ( "planet number c" - ( "planet number c" % 2 ) - ( "planet number c" % 4 ) ) % 8 ) == 0
+            "planet number c" < 4
+        or
+            not "flagship planet: Follower"
+            ( ( "planet number c" - ( "planet number c" % 2 ) - ( "planet number c" % 4 ) - ( "planet number c" % 8 ) ) % 16 ) == 0
+            "planet number c" < 8
+        or
+            not "flagship planet: Geminus"
+            ( ( "planet number c" - ( "planet number c" % 2 ) - ( "planet number c" % 4 ) - ( "planet number c" % 8 ) - ( "planet number c" % 16 ) ) % 32 ) == 0
+            "planet number c" < 16
+        or
+            not "flagship planet: Glory"
+            ( ( "planet number c" - ( "planet number c" % 2 ) - ( "planet number c" % 4 ) - ( "planet number c" % 8 ) - ( "planet number c" % 16 ) - ( "planet number c" % 32 ) ) % 64 ) == 0
+            "planet number c" < 32
+        or
+            not "flagship planet: Hermes"
+            ( ( "planet number c" - ( "planet number c" % 2 ) - ( "planet number c" % 4 ) - ( "planet number c" % 8 ) - ( "planet number c" % 16 ) - ( "planet number c" % 32 ) - ( "planet number c" % 64 ) ) % 128 ) == 0
+            "planet number c" < 64
+        or
+            not "flagship planet: Hestia"
+            ( ( "planet number c" - ( "planet number c" % 2 ) - ( "planet number c" % 4 ) - ( "planet number c" % 8 ) - ( "planet number c" % 16 ) - ( "planet number c" % 32 ) - ( "planet number c" % 64 ) - ( "planet number c" % 128 ) ) % 256 ) == 0
+            "planet number c" < 128
+        or
+            not "flagship planet: Mainsail"
+            ( ( "planet number c" - ( "planet number c" % 2 ) - ( "planet number c" % 4 ) - ( "planet number c" % 8 ) - ( "planet number c" % 16 ) - ( "planet number c" % 32 ) - ( "planet number c" % 64 ) - ( "planet number c" % 128 ) - ( "planet number c" % 256 ) ) % 512 ) == 0
+            "planet number c" < 256
+        or
+            not "flagship planet: Martini"
+            ( ( "planet number c" - ( "planet number c" % 2 ) - ( "planet number c" % 4 ) - ( "planet number c" % 8 ) - ( "planet number c" % 16 ) - ( "planet number c" % 32 ) - ( "planet number c" % 64 ) - ( "planet number c" % 128 ) - ( "planet number c" % 256 ) - ( "planet number c" % 512 ) ) % 1024 ) == 0
+            "planet number c" < 512
+        or
+            not "flagship planet: Pearl"
+            ( ( "planet number c" - ( "planet number c" % 2 ) - ( "planet number c" % 4 ) - ( "planet number c" % 8 ) - ( "planet number c" % 16 ) - ( "planet number c" % 32 ) - ( "planet number c" % 64 ) - ( "planet number c" % 128 ) - ( "planet number c" % 256 ) - ( "planet number c" % 512 ) - ( "planet number c" % 1024 ) ) % 2048 ) == 0
+            "planet number c" < 1024
+        or
+            not "flagship planet: Thrall"
+            ( ( "planet number c" - ( "planet number c" % 2 ) - ( "planet number c" % 4 ) - ( "planet number c" % 8 ) - ( "planet number c" % 16 ) - ( "planet number c" % 32 ) - ( "planet number c" % 64 ) - ( "planet number c" % 128 ) - ( "planet number c" % 256 ) - ( "planet number c" % 512 ) - ( "planet number c" % 1024 ) - ( "planet number c" % 2048 ) ) % 4096 ) == 0
+            "planet number c" < 2048
+        or
+            not "flagship planet: Vail"
+            ( ( "planet number c" - ( "planet number c" % 2 ) - ( "planet number c" % 4 ) - ( "planet number c" % 8 ) - ( "planet number c" % 16 ) - ( "planet number c" % 32 ) - ( "planet number c" % 64 ) - ( "planet number c" % 128 ) - ( "planet number c" % 256 ) - ( "planet number c" % 512 ) - ( "planet number c" % 1024 ) - ( "planet number c" % 2048 ) - ( "planet number c" % 4096 ) ) % 8192 ) == 0
+            "planet number c" < 4096
+        or
+            not "flagship planet: Vinci"
+            ( ( "planet number c" - ( "planet number c" % 2 ) - ( "planet number c" % 4 ) - ( "planet number c" % 8 ) - ( "planet number c" % 16 ) - ( "planet number c" % 32 ) - ( "planet number c" % 64 ) - ( "planet number c" % 128 ) - ( "planet number c" % 256 ) - ( "planet number c" % 512 ) - ( "planet number c" % 1024 ) - ( "planet number c" % 2048 ) - ( "planet number c" % 4096 ) - ( "planet number c" % 8192 ) ) % 16384 ) == 0
+            "planet number c" < 8192
+        or
+            has "flagship planet: Ada"
+            has "flagship planet: Calda"
+            has "flagship planet: Farseer"
+            has "flagship planet: Follower"
+            has "flagship planet: Geminus"
+            has "flagship planet: Glory"
+            has "flagship planet: Hermes"
+            has "flagship planet: Hestia"
+            has "flagship planet: Mainsail"
+            has "flagship planet: Martini"
+            has "flagship planet: Pearl"
+            has "flagship planet: Thrall"
+            has "flagship planet: Vail"
+            has "flagship planet: Vinci"
+    to complete
+        never
+    on offer
+        conversation
+            branch "not ada"
+                not "flagship planet: Ada"
+            action
+                "planet number c" += 1
+            label "not ada"
+            branch "not calda"
+                not "flagship planet: Calda"
+            action
+                "planet number c" += 2
+            label "not calda"
+            branch "not farseer"
+                not "flagship planet: Farseer"
+            action
+                "planet number c" += 4
+            label "not farseer"
+            branch "not follower"
+                not "flagship planet: Follower"
+            action
+                "planet number c" += 8
+            label "not follower"
+            branch "not geminus"
+                not "flagship planet: Geminus"
+            action
+                "planet number c" += 16
+            label "not geminus"
+            branch "not glory"
+                not "flagship planet: Glory"
+            action
+                "planet number c" += 32
+            label "not glory"
+            branch "not hermes"
+                not "flagship planet: Hermes"
+            action
+                "planet number c" += 64
+            label "not hermes"
+            branch "not hestia"
+                not "flagship planet: Hestia"
+            action
+                "planet number c" += 128
+            label "not hestia"
+            branch "not mainsail"
+                not "flagship planet: Mainsail"
+            action
+                "planet number c" += 256
+            label "not mainsail"
+            branch "not martini"
+                not "flagship planet: Martini"
+            action
+                "planet number c" += 512
+            label "not martini"
+            branch "not pearl"
+                not "flagship planet: Pearl"
+            action
+                "planet number c" += 1024
+            label "not pearl"
+            branch "not thrall"
+                not "flagship planet: Thrall"
+            action
+                "planet number c" += 2048
+            label "not thrall"
+            branch "not vail"
+                not "flagship planet: Vail"
+            action
+                "planet number c" += 4096
+            label "not vail"
+            branch "not vinci"
+                not "flagship planet: Vinci"
+            action
+                "planet number c" += 8192
+            label "not vinci"
+            branch "tribute"
+                or
+                    and
+                        has "flagship planet: Ada"
+                        has "tribute: Ada"
+                    and
+                        has "flagship planet: Calda"
+                        has "tribute: Calda"
+                    and
+                        has "flagship planet: Farseer"
+                        has "tribute: Farseer"
+                    and
+                        has "flagship planet: Follower"
+                        has "tribute: Follower"
+                    and
+                        has "flagship planet: Geminus"
+                        has "tribute: Geminus"
+                    and
+                        has "flagship planet: Glory"
+                        has "tribute: Glory"
+                    and
+                        has "flagship planet: Hermes"
+                        has "tribute: Hermes"
+                    and
+                        has "flagship planet: Hestia"
+                        has "tribute: Hestia"
+                    and
+                        has "flagship planet: Mainsail"
+                        has "tribute: Mainsail"
+                    and
+                        has "flagship planet: Martini"
+                        has "tribute: Martini"
+                    and
+                        has "flagship planet: Pearl"
+                        has "tribute: Pearl"
+                    and
+                        has "flagship planet: Thrall"
+                        has "tribute: Thrall"
+                    and
+                        has "flagship planet: Vail"
+                        has "tribute: Vail"
+                    and
+                        has "flagship planet: Vinci"
+                        has "tribute: Vinci"
+            action
+                payment -7000
+            `The authorities on <origin> charge you a landing fee of <payment>.`
+                accept
+            label "tribute"
+            action
+                payment 7000
+            `The authorities on <origin> pay you <payment> in tribute.`
+                accept
+    on visit
+        conversation
+            branch "tribute"
+                or
+                    and
+                        has "flagship planet: Ada"
+                        has "tribute: Ada"
+                    and
+                        has "flagship planet: Calda"
+                        has "tribute: Calda"
+                    and
+                        has "flagship planet: Farseer"
+                        has "tribute: Farseer"
+                    and
+                        has "flagship planet: Follower"
+                        has "tribute: Follower"
+                    and
+                        has "flagship planet: Geminus"
+                        has "tribute: Geminus"
+                    and
+                        has "flagship planet: Glory"
+                        has "tribute: Glory"
+                    and
+                        has "flagship planet: Hermes"
+                        has "tribute: Hermes"
+                    and
+                        has "flagship planet: Hestia"
+                        has "tribute: Hestia"
+                    and
+                        has "flagship planet: Mainsail"
+                        has "tribute: Mainsail"
+                    and
+                        has "flagship planet: Martini"
+                        has "tribute: Martini"
+                    and
+                        has "flagship planet: Pearl"
+                        has "tribute: Pearl"
+                    and
+                        has "flagship planet: Thrall"
+                        has "tribute: Thrall"
+                    and
+                        has "flagship planet: Vail"
+                        has "tribute: Vail"
+                    and
+                        has "flagship planet: Vinci"
+                        has "tribute: Vinci"
+            action
+                payment -7000
+            `The authorities on <origin> charge you a landing fee of <payment>.`
+                decline
+            label "tribute"
+            action
+                payment 7000
+            `The authorities on <origin> pay you <payment> in tribute.`
+                decline
+
+mission "Landing Fee D"
+    invisible
+    repeat
+    landing
+    "apparent payment" 6000
+    to offer
+        has "event: initial deployment 3"
+        or
+            not "flagship planet: Alexandria"
+            ( "planet number d" % 2 ) == 0
+        or
+            not "flagship planet: Alfheim"
+            ( ( "planet number d" - ( "planet number d" % 2 ) ) % 4 ) == 0
+        or
+            not "flagship planet: Asgard"
+            ( ( "planet number d" - ( "planet number d" % 2 ) - ( "planet number d" % 4 ) ) % 8 ) == 0
+            "planet number d" < 4
+        or
+            not "flagship planet: Bivrost"
+            ( ( "planet number d" - ( "planet number d" % 2 ) - ( "planet number d" % 4 ) - ( "planet number d" % 8 ) ) % 16 ) == 0
+            "planet number d" < 8
+        or
+            not "flagship planet: Fenrir Station"
+            ( ( "planet number d" - ( "planet number d" % 2 ) - ( "planet number d" % 4 ) - ( "planet number d" % 8 ) - ( "planet number d" % 16 ) ) % 32 ) == 0
+            "planet number d" < 16
+        or
+            not "flagship planet: Haze"
+            ( ( "planet number d" - ( "planet number d" % 2 ) - ( "planet number d" % 4 ) - ( "planet number d" % 8 ) - ( "planet number d" % 16 ) - ( "planet number d" % 32 ) ) % 64 ) == 0
+            "planet number d" < 32
+        or
+            not "flagship planet: Helheim"
+            ( ( "planet number d" - ( "planet number d" % 2 ) - ( "planet number d" % 4 ) - ( "planet number d" % 8 ) - ( "planet number d" % 16 ) - ( "planet number d" % 32 ) - ( "planet number d" % 64 ) ) % 128 ) == 0
+            "planet number d" < 64
+        or
+            not "flagship planet: Huginn Station"
+            ( ( "planet number d" - ( "planet number d" % 2 ) - ( "planet number d" % 4 ) - ( "planet number d" % 8 ) - ( "planet number d" % 16 ) - ( "planet number d" % 32 ) - ( "planet number d" % 64 ) - ( "planet number d" % 128 ) ) % 256 ) == 0
+            "planet number d" < 128
+        or
+            not "flagship planet: Leviathan Station"
+            ( ( "planet number d" - ( "planet number d" % 2 ) - ( "planet number d" % 4 ) - ( "planet number d" % 8 ) - ( "planet number d" % 16 ) - ( "planet number d" % 32 ) - ( "planet number d" % 64 ) - ( "planet number d" % 128 ) - ( "planet number d" % 256 ) ) % 512 ) == 0
+            "planet number d" < 256
+        or
+            not "flagship planet: Mani"
+            ( ( "planet number d" - ( "planet number d" % 2 ) - ( "planet number d" % 4 ) - ( "planet number d" % 8 ) - ( "planet number d" % 16 ) - ( "planet number d" % 32 ) - ( "planet number d" % 64 ) - ( "planet number d" % 128 ) - ( "planet number d" % 256 ) - ( "planet number d" % 512 ) ) % 1024 ) == 0
+            "planet number d" < 512
+        or
+            not "flagship planet: Memory"
+            ( ( "planet number d" - ( "planet number d" % 2 ) - ( "planet number d" % 4 ) - ( "planet number d" % 8 ) - ( "planet number d" % 16 ) - ( "planet number d" % 32 ) - ( "planet number d" % 64 ) - ( "planet number d" % 128 ) - ( "planet number d" % 256 ) - ( "planet number d" % 512 ) - ( "planet number d" % 1024 ) ) % 2048 ) == 0
+            "planet number d" < 1024
+        or
+            not "flagship planet: Midgard"
+            ( ( "planet number d" - ( "planet number d" % 2 ) - ( "planet number d" % 4 ) - ( "planet number d" % 8 ) - ( "planet number d" % 16 ) - ( "planet number d" % 32 ) - ( "planet number d" % 64 ) - ( "planet number d" % 128 ) - ( "planet number d" % 256 ) - ( "planet number d" % 512 ) - ( "planet number d" % 1024 ) - ( "planet number d" % 2048 ) ) % 4096 ) == 0
+            "planet number d" < 2048
+        or
+            not "flagship planet: Muninn Station"
+            ( ( "planet number d" - ( "planet number d" % 2 ) - ( "planet number d" % 4 ) - ( "planet number d" % 8 ) - ( "planet number d" % 16 ) - ( "planet number d" % 32 ) - ( "planet number d" % 64 ) - ( "planet number d" % 128 ) - ( "planet number d" % 256 ) - ( "planet number d" % 512 ) - ( "planet number d" % 1024 ) - ( "planet number d" % 2048 ) - ( "planet number d" % 4096 ) ) % 8192 ) == 0
+            "planet number d" < 4096
+        or
+            not "flagship planet: Muspel"
+            ( ( "planet number d" - ( "planet number d" % 2 ) - ( "planet number d" % 4 ) - ( "planet number d" % 8 ) - ( "planet number d" % 16 ) - ( "planet number d" % 32 ) - ( "planet number d" % 64 ) - ( "planet number d" % 128 ) - ( "planet number d" % 256 ) - ( "planet number d" % 512 ) - ( "planet number d" % 1024 ) - ( "planet number d" % 2048 ) - ( "planet number d" % 4096 ) - ( "planet number d" % 8192 ) ) % 16384 ) == 0
+            "planet number d" < 8192
+        or
+            not "flagship planet: Nifel"
+            ( ( "planet number d" - ( "planet number d" % 2 ) - ( "planet number d" % 4 ) - ( "planet number d" % 8 ) - ( "planet number d" % 16 ) - ( "planet number d" % 32 ) - ( "planet number d" % 64 ) - ( "planet number d" % 128 ) - ( "planet number d" % 256 ) - ( "planet number d" % 512 ) - ( "planet number d" % 1024 ) - ( "planet number d" % 2048 ) - ( "planet number d" % 4096 ) - ( "planet number d" % 8192 ) - ( "planet number d" % 16384 ) ) % 32768 ) == 0
+            "planet number d" < 16384
+        or
+            not "flagship planet: Norn"
+            ( ( "planet number d" - ( "planet number d" % 2 ) - ( "planet number d" % 4 ) - ( "planet number d" % 8 ) - ( "planet number d" % 16 ) - ( "planet number d" % 32 ) - ( "planet number d" % 64 ) - ( "planet number d" % 128 ) - ( "planet number d" % 256 ) - ( "planet number d" % 512 ) - ( "planet number d" % 1024 ) - ( "planet number d" % 2048 ) - ( "planet number d" % 4096 ) - ( "planet number d" % 8192 ) - ( "planet number d" % 16384 ) - ( "planet number d" % 32768 ) ) % 65536 ) == 0
+            "planet number d" < 32768
+        or
+            not "flagship planet: Phoenix Station"
+            ( ( "planet number d" - ( "planet number d" % 2 ) - ( "planet number d" % 4 ) - ( "planet number d" % 8 ) - ( "planet number d" % 16 ) - ( "planet number d" % 32 ) - ( "planet number d" % 64 ) - ( "planet number d" % 128 ) - ( "planet number d" % 256 ) - ( "planet number d" % 512 ) - ( "planet number d" % 1024 ) - ( "planet number d" % 2048 ) - ( "planet number d" % 4096 ) - ( "planet number d" % 8192 ) - ( "planet number d" % 16384 ) - ( "planet number d" % 32768 ) - ( "planet number d" % 65536 ) ) % 131072 ) == 0
+            "planet number d" < 65536
+        or
+            not "flagship planet: Valhalla"
+            ( ( "planet number d" - ( "planet number d" % 2 ) - ( "planet number d" % 4 ) - ( "planet number d" % 8 ) - ( "planet number d" % 16 ) - ( "planet number d" % 32 ) - ( "planet number d" % 64 ) - ( "planet number d" % 128 ) - ( "planet number d" % 256 ) - ( "planet number d" % 512 ) - ( "planet number d" % 1024 ) - ( "planet number d" % 2048 ) - ( "planet number d" % 4096 ) - ( "planet number d" % 8192 ) - ( "planet number d" % 16384 ) - ( "planet number d" % 32768 ) - ( "planet number d" % 65536 ) - ( "planet number d" % 131072 ) ) % 262144 ) == 0
+            "planet number d" < 131072
+        or
+            not "flagship planet: Windblain"
+            ( ( "planet number d" - ( "planet number d" % 2 ) - ( "planet number d" % 4 ) - ( "planet number d" % 8 ) - ( "planet number d" % 16 ) - ( "planet number d" % 32 ) - ( "planet number d" % 64 ) - ( "planet number d" % 128 ) - ( "planet number d" % 256 ) - ( "planet number d" % 512 ) - ( "planet number d" % 1024 ) - ( "planet number d" % 2048 ) - ( "planet number d" % 4096 ) - ( "planet number d" % 8192 ) - ( "planet number d" % 16384 ) - ( "planet number d" % 32768 ) - ( "planet number d" % 65536 ) - ( "planet number d" % 131072 ) - ( "planet number d" % 262144 ) ) % 524288 ) == 0
+            "planet number d" < 262144
+        or
+            has "flagship planet: Alexandria"
+            has "flagship planet: Alfheim"
+            has "flagship planet: Asgard"
+            has "flagship planet: Bivrost"
+            has "flagship planet: Fenrir Station"
+            has "flagship planet: Haze"
+            has "flagship planet: Helheim"
+            has "flagship planet: Huginn Station"
+            has "flagship planet: Leviathan Station"
+            has "flagship planet: Mani"
+            has "flagship planet: Memory"
+            has "flagship planet: Midgard"
+            has "flagship planet: Muninn Station"
+            has "flagship planet: Muspel"
+            has "flagship planet: Nifel"
+            has "flagship planet: Norn"
+            has "flagship planet: Phoenix Station"
+            has "flagship planet: Valhalla"
+            has "flagship planet: Windblain"
+    to complete
+        never
+    on offer
+        conversation
+            branch "not alexandria"
+                not "flagship planet: Alexandria"
+            action
+                "planet number d" += 1
+            label "not alexandria"
+            branch "not alfheim"
+                not "flagship planet: Alfheim"
+            action
+                "planet number d" += 2
+            label "not alfheim"
+            branch "not asgard"
+                not "flagship planet: Asgard"
+            action
+                "planet number d" += 4
+            label "not asgard"
+            branch "not bivrost"
+                not "flagship planet: Bivrost"
+            action
+                "planet number d" += 8
+            label "not bivrost"
+            branch "not fenrir station"
+                not "flagship planet: Fenrir Station"
+            action
+                "planet number d" += 16
+            label "not fenrir station"
+            branch "not haze"
+                not "flagship planet: Haze"
+            action
+                "planet number d" += 32
+            label "not haze"
+            branch "not helheim"
+                not "flagship planet: Helheim"
+            action
+                "planet number d" += 64
+            label "not helheim"
+            branch "not huginn station"
+                not "flagship planet: Huginn Station"
+            action
+                "planet number d" += 128
+            label "not huginn station"
+            branch "not leviathan station"
+                not "flagship planet: Leviathan Station"
+            action
+                "planet number d" += 256
+            label "not leviathan station"
+            branch "not mani"
+                not "flagship planet: Mani"
+            action
+                "planet number d" += 512
+            label "not mani"
+            branch "not memory"
+                not "flagship planet: Memory"
+            action
+                "planet number d" += 1024
+            label "not memory"
+            branch "not midgard"
+                not "flagship planet: Midgard"
+            action
+                "planet number d" += 2048
+            label "not midgard"
+            branch "not muninn station"
+                not "flagship planet: Muninn Station"
+            action
+                "planet number d" += 4096
+            label "not muninn station"
+            branch "not muspel"
+                not "flagship planet: Muspel"
+            action
+                "planet number d" += 8192
+            label "not muspel"
+            branch "not nifel"
+                not "flagship planet: Nifel"
+            action
+                "planet number d" += 16384
+            label "not nifel"
+            branch "not norn"
+                not "flagship planet: Norn"
+            action
+                "planet number d" += 32768
+            label "not norn"
+            branch "not phoenix station"
+                not "flagship planet: Phoenix Station"
+            action
+                "planet number d" += 65536
+            label "not phoenix station"
+            branch "not valhalla"
+                not "flagship planet: Valhalla"
+            action
+                "planet number d" += 131072
+            label "not valhalla"
+            branch "not windblain"
+                not "flagship planet: Windblain"
+            action
+                "planet number d" += 262144
+            label "not windblain"
+            branch "tribute"
+                or
+                    and
+                        has "flagship planet: Alexandria"
+                        has "tribute: Alexandria"
+                    and
+                        has "flagship planet: Alfheim"
+                        has "tribute: Alfheim"
+                    and
+                        has "flagship planet: Asgard"
+                        has "tribute: Asgard"
+                    and
+                        has "flagship planet: Bivrost"
+                        has "tribute: Bivrost"
+                    and
+                        has "flagship planet: Fenrir Station"
+                        has "tribute: Fenrir Station"
+                    and
+                        has "flagship planet: Haze"
+                        has "tribute: Haze"
+                    and
+                        has "flagship planet: Helheim"
+                        has "tribute: Helheim"
+                    and
+                        has "flagship planet: Huginn Station"
+                        has "tribute: Huginn Station"
+                    and
+                        has "flagship planet: Leviathan Station"
+                        has "tribute: Leviathan Station"
+                    and
+                        has "flagship planet: Mani"
+                        has "tribute: Mani"
+                    and
+                        has "flagship planet: Memory"
+                        has "tribute: Memory"
+                    and
+                        has "flagship planet: Midgard"
+                        has "tribute: Midgard"
+                    and
+                        has "flagship planet: Muninn Station"
+                        has "tribute: Muninn Station"
+                    and
+                        has "flagship planet: Muspel"
+                        has "tribute: Muspel"
+                    and
+                        has "flagship planet: Nifel"
+                        has "tribute: Nifel"
+                    and
+                        has "flagship planet: Norn"
+                        has "tribute: Norn"
+                    and
+                        has "flagship planet: Phoenix Station"
+                        has "tribute: Phoenix Station"
+                    and
+                        has "flagship planet: Valhalla"
+                        has "tribute: Valhalla"
+                    and
+                        has "flagship planet: Windblain"
+                        has "tribute: Windbalin"
+            action
+                payment -6000
+            `The authorities on <origin> charge you a landing fee of <payment>.`
+                accept
+            label "tribute"
+            action
+                payment 6000
+            `The authorities on <origin> pay you <payment> in tribute.`
+                accept
+    on visit
+        conversation
+            branch "tribute"
+                or
+                    and
+                        has "flagship planet: Alexandria"
+                        has "tribute: Alexandria"
+                    and
+                        has "flagship planet: Alfheim"
+                        has "tribute: Alfheim"
+                    and
+                        has "flagship planet: Asgard"
+                        has "tribute: Asgard"
+                    and
+                        has "flagship planet: Bivrost"
+                        has "tribute: Bivrost"
+                    and
+                        has "flagship planet: Fenrir Station"
+                        has "tribute: Fenrir Station"
+                    and
+                        has "flagship planet: Haze"
+                        has "tribute: Haze"
+                    and
+                        has "flagship planet: Helheim"
+                        has "tribute: Helheim"
+                    and
+                        has "flagship planet: Huginn Station"
+                        has "tribute: Huginn Station"
+                    and
+                        has "flagship planet: Leviathan Station"
+                        has "tribute: Leviathan Station"
+                    and
+                        has "flagship planet: Mani"
+                        has "tribute: Mani"
+                    and
+                        has "flagship planet: Memory"
+                        has "tribute: Memory"
+                    and
+                        has "flagship planet: Midgard"
+                        has "tribute: Midgard"
+                    and
+                        has "flagship planet: Muninn Station"
+                        has "tribute: Muninn Station"
+                    and
+                        has "flagship planet: Muspel"
+                        has "tribute: Muspel"
+                    and
+                        has "flagship planet: Nifel"
+                        has "tribute: Nifel"
+                    and
+                        has "flagship planet: Norn"
+                        has "tribute: Norn"
+                    and
+                        has "flagship planet: Phoenix Station"
+                        has "tribute: Phoenix Station"
+                    and
+                        has "flagship planet: Valhalla"
+                        has "tribute: Valhalla"
+                    and
+                        has "flagship planet: Windblain"
+                        has "tribute: Windblain"
+            action
+                payment -6000
+            `The authorities on <origin> charge you a landing fee of <payment>.`
+                decline
+            label "tribute"
+            action
+                payment 6000
+            `The authorities on <origin> pay you <payment> in tribute.`
+
+mission "Landing Fee E"
+    invisible
+    repeat
+    landing
+    "apparent payment" 5000
+    to offer
+        has "event: initial deployment 3"
+        or
+            not "flagship planet: Bourne"
+            ( "planet number e" % 2 ) == 0
+        or
+            not "flagship planet: Dune"
+            ( ( "planet number e" - ( "planet number e" % 2 ) ) % 4 ) == 0
+        or
+            not "flagship planet: Flood"
+            ( ( "planet number e" - ( "planet number e" % 2 ) - ( "planet number e" % 4 ) ) % 8 ) == 0
+            "planet number e" < 4
+        or
+            not "flagship planet: Longjump"
+            ( ( "planet number e" - ( "planet number e" % 2 ) - ( "planet number e" % 4 ) - ( "planet number e" % 8 ) ) % 16 ) == 0
+            "planet number e" < 8
+        or
+            not "flagship planet: Mere"
+            ( ( "planet number e" - ( "planet number e" % 2 ) - ( "planet number e" % 4 ) - ( "planet number e" % 8 ) - ( "planet number e" % 16 ) ) % 32 ) == 0
+            "planet number e" < 16
+        or
+            not "flagship planet: Oasis"
+            ( ( "planet number e" - ( "planet number e" % 2 ) - ( "planet number e" % 4 ) - ( "planet number e" % 8 ) - ( "planet number e" % 16 ) - ( "planet number e" % 32 ) ) % 64 ) == 0
+            "planet number e" < 32
+        or
+            not "flagship planet: Poseidos"
+            ( ( "planet number e" - ( "planet number e" % 2 ) - ( "planet number e" % 4 ) - ( "planet number e" % 8 ) - ( "planet number e" % 16 ) - ( "planet number e" % 32 ) - ( "planet number e" % 64 ) ) % 128 ) == 0
+            "planet number e" < 64
+        or
+            not "flagship planet: Rust"
+            ( ( "planet number e" - ( "planet number e" % 2 ) - ( "planet number e" % 4 ) - ( "planet number e" % 8 ) - ( "planet number e" % 16 ) - ( "planet number e" % 32 ) - ( "planet number e" % 64 ) - ( "planet number e" % 128 ) ) % 256 ) == 0
+            "planet number e" < 128
+        or
+            not "flagship planet: Shorebreak"
+            ( ( "planet number e" - ( "planet number e" % 2 ) - ( "planet number e" % 4 ) - ( "planet number e" % 8 ) - ( "planet number e" % 16 ) - ( "planet number e" % 32 ) - ( "planet number e" % 64 ) - ( "planet number e" % 128 ) - ( "planet number e" % 256 ) ) % 512 ) == 0
+            "planet number e" < 256
+        or
+            not "flagship planet: Skymoot"
+            ( ( "planet number e" - ( "planet number e" % 2 ) - ( "planet number e" % 4 ) - ( "planet number e" % 8 ) - ( "planet number e" % 16 ) - ( "planet number e" % 32 ) - ( "planet number e" % 64 ) - ( "planet number e" % 128 ) - ( "planet number e" % 256 ) - ( "planet number e" % 512 ) ) % 1024 ) == 0
+            "planet number e" < 512
+        or
+            not "flagship planet: Starcross"
+            ( ( "planet number e" - ( "planet number e" % 2 ) - ( "planet number e" % 4 ) - ( "planet number e" % 8 ) - ( "planet number e" % 16 ) - ( "planet number e" % 32 ) - ( "planet number e" % 64 ) - ( "planet number e" % 128 ) - ( "planet number e" % 256 ) - ( "planet number e" % 512 ) - ( "planet number e" % 1024 ) ) % 2048 ) == 0
+            "planet number e" < 1024
+        or
+            not "flagship planet: Thunder"
+            ( ( "planet number e" - ( "planet number e" % 2 ) - ( "planet number e" % 4 ) - ( "planet number e" % 8 ) - ( "planet number e" % 16 ) - ( "planet number e" % 32 ) - ( "planet number e" % 64 ) - ( "planet number e" % 128 ) - ( "planet number e" % 256 ) - ( "planet number e" % 512 ) - ( "planet number e" % 1024 ) - ( "planet number e" % 2048 ) ) % 4096 ) == 0
+            "planet number e" < 2048
+        or
+            not "flagship planet: Typhon Station"
+            ( ( "planet number e" - ( "planet number e" % 2 ) - ( "planet number e" % 4 ) - ( "planet number e" % 8 ) - ( "planet number e" % 16 ) - ( "planet number e" % 32 ) - ( "planet number e" % 64 ) - ( "planet number e" % 128 ) - ( "planet number e" % 256 ) - ( "planet number e" % 512 ) - ( "planet number e" % 1024 ) - ( "planet number e" % 2048 ) - ( "planet number e" % 4096 ) ) % 8192 ) == 0
+            "planet number e" < 4096
+        or
+            not "flagship planet: Wyvern Station"
+            ( ( "planet number e" - ( "planet number e" % 2 ) - ( "planet number e" % 4 ) - ( "planet number e" % 8 ) - ( "planet number e" % 16 ) - ( "planet number e" % 32 ) - ( "planet number e" % 64 ) - ( "planet number e" % 128 ) - ( "planet number e" % 256 ) - ( "planet number e" % 512 ) - ( "planet number e" % 1024 ) - ( "planet number e" % 2048 ) - ( "planet number e" % 4096 ) - ( "planet number e" % 8192 ) ) % 16384 ) == 0
+            "planet number e" < 8192
+        or
+            not "flagship planet: Zug"
+            ( ( "planet number e" - ( "planet number e" % 2 ) - ( "planet number e" % 4 ) - ( "planet number e" % 8 ) - ( "planet number e" % 16 ) - ( "planet number e" % 32 ) - ( "planet number e" % 64 ) - ( "planet number e" % 128 ) - ( "planet number e" % 256 ) - ( "planet number e" % 512 ) - ( "planet number e" % 1024 ) - ( "planet number e" % 2048 ) - ( "planet number e" % 4096 ) - ( "planet number e" % 8192 ) - ( "planet number e" % 16384 ) ) % 32768 ) == 0
+            "planet number e" < 16384
+        or
+            not "flagship planet: Arachne Station"
+            ( ( "planet number e" - ( "planet number e" % 2 ) - ( "planet number e" % 4 ) - ( "planet number e" % 8 ) - ( "planet number e" % 16 ) - ( "planet number e" % 32 ) - ( "planet number e" % 64 ) - ( "planet number e" % 128 ) - ( "planet number e" % 256 ) - ( "planet number e" % 512 ) - ( "planet number e" % 1024 ) - ( "planet number e" % 2048 ) - ( "planet number e" % 4096 ) - ( "planet number e" % 8192 ) - ( "planet number e" % 16384 ) - ( "planet number e" % 32768 ) ) % 65536 ) == 0
+            "planet number e" < 32768
+        or
+            not "flagship planet: New Britain"
+            ( ( "planet number e" - ( "planet number e" % 2 ) - ( "planet number e" % 4 ) - ( "planet number e" % 8 ) - ( "planet number e" % 16 ) - ( "planet number e" % 32 ) - ( "planet number e" % 64 ) - ( "planet number e" % 128 ) - ( "planet number e" % 256 ) - ( "planet number e" % 512 ) - ( "planet number e" % 1024 ) - ( "planet number e" % 2048 ) - ( "planet number e" % 4096 ) - ( "planet number e" % 8192 ) - ( "planet number e" % 16384 ) - ( "planet number e" % 32768 ) - ( "planet number e" % 65536 ) ) % 131072 ) == 0
+            "planet number e" < 65536
+        or
+            not "flagship planet: Sinter"
+            ( ( "planet number e" - ( "planet number e" % 2 ) - ( "planet number e" % 4 ) - ( "planet number e" % 8 ) - ( "planet number e" % 16 ) - ( "planet number e" % 32 ) - ( "planet number e" % 64 ) - ( "planet number e" % 128 ) - ( "planet number e" % 256 ) - ( "planet number e" % 512 ) - ( "planet number e" % 1024 ) - ( "planet number e" % 2048 ) - ( "planet number e" % 4096 ) - ( "planet number e" % 8192 ) - ( "planet number e" % 16384 ) - ( "planet number e" % 32768 ) - ( "planet number e" % 65536 ) - ( "planet number e" % 131072 ) ) % 262144 ) == 0
+            "planet number e" < 131072
+        or
+            not "flagship planet: Wayfarer"
+            ( ( "planet number e" - ( "planet number e" % 2 ) - ( "planet number e" % 4 ) - ( "planet number e" % 8 ) - ( "planet number e" % 16 ) - ( "planet number e" % 32 ) - ( "planet number e" % 64 ) - ( "planet number e" % 128 ) - ( "planet number e" % 256 ) - ( "planet number e" % 512 ) - ( "planet number e" % 1024 ) - ( "planet number e" % 2048 ) - ( "planet number e" % 4096 ) - ( "planet number e" % 8192 ) - ( "planet number e" % 16384 ) - ( "planet number e" % 32768 ) - ( "planet number e" % 65536 ) - ( "planet number e" % 131072 ) - ( "planet number e" % 262144 ) ) % 524288 ) == 0
+            "planet number e" < 262144
+        or
+            not "flagship planet: Humanika"
+            ( ( "planet number e" - ( "planet number e" % 2 ) - ( "planet number e" % 4 ) - ( "planet number e" % 8 ) - ( "planet number e" % 16 ) - ( "planet number e" % 32 ) - ( "planet number e" % 64 ) - ( "planet number e" % 128 ) - ( "planet number e" % 256 ) - ( "planet number e" % 512 ) - ( "planet number e" % 1024 ) - ( "planet number e" % 2048 ) - ( "planet number e" % 4096 ) - ( "planet number e" % 8192 ) - ( "planet number e" % 16384 ) - ( "planet number e" % 32768 ) - ( "planet number e" % 65536 ) - ( "planet number e" % 131072 ) - ( "planet number e" % 262144 ) - ( "planet number e" % 524288 ) ) % 1048576 ) == 0
+            "planet number e" < 524288
+        or
+            not "flagship planet: Pugglemug"
+            ( ( "planet number e" - ( "planet number e" % 2 ) - ( "planet number e" % 4 ) - ( "planet number e" % 8 ) - ( "planet number e" % 16 ) - ( "planet number e" % 32 ) - ( "planet number e" % 64 ) - ( "planet number e" % 128 ) - ( "planet number e" % 256 ) - ( "planet number e" % 512 ) - ( "planet number e" % 1024 ) - ( "planet number e" % 2048 ) - ( "planet number e" % 4096 ) - ( "planet number e" % 8192 ) - ( "planet number e" % 16384 ) - ( "planet number e" % 32768 ) - ( "planet number e" % 65536 ) - ( "planet number e" % 131072 ) - ( "planet number e" % 262144 ) - ( "planet number e" % 524288 ) - ( "planet number e" % 1048576 ) ) % 2097152 ) == 0
+            "planet number e" < 1048576
+        or
+            not "flagship planet: Pugglequat"
+            ( ( "planet number e" - ( "planet number e" % 2 ) - ( "planet number e" % 4 ) - ( "planet number e" % 8 ) - ( "planet number e" % 16 ) - ( "planet number e" % 32 ) - ( "planet number e" % 64 ) - ( "planet number e" % 128 ) - ( "planet number e" % 256 ) - ( "planet number e" % 512 ) - ( "planet number e" % 1024 ) - ( "planet number e" % 2048 ) - ( "planet number e" % 4096 ) - ( "planet number e" % 8192 ) - ( "planet number e" % 16384 ) - ( "planet number e" % 32768 ) - ( "planet number e" % 65536 ) - ( "planet number e" % 131072 ) - ( "planet number e" % 262144 ) - ( "planet number e" % 524288 ) - ( "planet number e" % 1048576 ) - ( "planet number e" % 2097152 ) ) % 4194304 ) == 0
+            "planet number e" < 2097152
+        or
+            has "flagship planet: Bourne"
+            has "flagship planet: Dune"
+            has "flagship planet: Flood"
+            has "flagship planet: Longjump"
+            has "flagship planet: Mere"
+            has "flagship planet: Oasis"
+            has "flagship planet: Poseidos"
+            has "flagship planet: Rust"
+            has "flagship planet: Shorebreak"
+            has "flagship planet: Skymoot"
+            has "flagship planet: Starcross"
+            has "flagship planet: Thunder"
+            has "flagship planet: Typhon Station"
+            has "flagship planet: Wyvern Station"
+            has "flagship planet: Zug"
+            has "flagship planet: Arachne Station"
+            has "flagship planet: New Britain"
+            has "flagship planet: Sinter"
+            has "flagship planet: Wayfarer"
+            has "flagship planet: Humanika"
+            has "flagship planet: Pugglemug"
+            has "flagship planet: Pugglequat"
+    to complete
+        never
+    source
+        government "Republic" "Neutral" "Free Worlds" "Quarg"
+        not attributes "uninhabited"
+    on offer
+        payment -5000
+        conversation
+            branch "not bourne"
+                not "flagship planet: Bourne"
+            action
+                "planet number e" += 1
+            label "not bourne"
+            branch "not dune"
+                not "flagship planet: Dune"
+            action
+                "planet number e" += 2
+            label "not dune"
+            branch "not flood"
+                not "flagship planet: Flood"
+            action
+                "planet number e" += 4
+            label "not flood"
+            branch "not longjump"
+                not "flagship planet: Longjump"
+            action
+                "planet number e" += 8
+            label "not longjump"
+            branch "not mere"
+                not "flagship planet: Mere"
+            action
+                "planet number e" += 16
+            label "not mere"
+            branch "not oasis"
+                not "flagship planet: Oasis"
+            action
+                "planet number e" += 32
+            label "not oasis"
+            branch "not poseidos"
+                not "flagship planet: Poseidos"
+            action
+                "planet number e" += 64
+            label "not poseidos"
+            branch "not rust"
+                not "flagship planet: Rust"
+            action
+                "planet number e" += 128
+            label "not rust"
+            branch "not shorebreak"
+                not "flagship planet: Shorebreak"
+            action
+                "planet number e" += 256
+            label "not shorebreak"
+            branch "not skymoot"
+                not "flagship planet: Skymoot"
+            action
+                "planet number e" += 512
+            label "not skymoot"
+            branch "not starcross"
+                not "flagship planet: Starcross"
+            action
+                "planet number e" += 1024
+            label "not starcross"
+            branch "not thunder"
+                not "flagship planet: Thunder"
+            action
+                "planet number e" += 2048
+            label "not thunder"
+            branch "not typhon station"
+                not "flagship planet: Typhon Station"
+            action
+                "planet number e" += 4096
+            label "not typhon station"
+            branch "not wyvern station"
+                not "flagship planet: Wyvern Station"
+            action
+                "planet number e" += 8192
+            label "not wyvern station"
+            branch "not zug"
+                not "flagship planet: Zug"
+            action
+                "planet number e" += 16384
+            label "not zug"
+            branch "not arachne station"
+                not "flagship planet: Arachne Station"
+            action
+                "planet number e" += 32768
+            label "not arachne station"
+            branch "not new britain"
+                not "flagship planet: New Britain"
+            action
+                "planet number e" += 65536
+            label "not new britain"
+            branch "not sinter"
+                not "flagship planet: Sinter"
+            action
+                "planet number e" += 131072
+            label "not sinter"
+            branch "not wayfarer"
+                not "flagship planet: Wayfarer"
+            action
+                "planet number e" += 262144
+            label "not wayfarer"
+            branch "not humanika"
+                not "flagship planet: Humanika"
+            action
+                "planet number e" += 524288
+            label "not humanika"
+            branch "not pugglemug"
+                not "flagship planet: Pugglemug"
+            action
+                "planet number e" += 1048576
+            label "not pugglemug"
+            branch "not pugglequat"
+                not "flagship planet: Pugglequat"
+            action
+                "planet number e" += 2097152
+            label "not pugglequat"
+            branch "tribute"
+                or
+                    and
+                        has "flagship planet: Bourne"
+                        has "tribute: Bourne"
+                    and
+                        has "flagship planet: Dune"
+                        has "tribute: Dune"
+                    and
+                        has "flagship planet: Flood"
+                        has "tribute: Flood"
+                    and
+                        has "flagship planet: Longjump"
+                        has "tribute: Longjump"
+                    and
+                        has "flagship planet: Mere"
+                        has "tribute: Mere"
+                    and
+                        has "flagship planet: Oasis"
+                        has "tribute: Oasis"
+                    and
+                        has "flagship planet: Poseidos"
+                        has "tribute: Poseidos"
+                    and
+                        has "flagship planet: Rust"
+                        has "tribute: Rust"
+                    and
+                        has "flagship planet: Shorebreak"
+                        has "tribute: Shorebreak"
+                    and
+                        has "flagship planet: Skymoot"
+                        has "tribute: Skymoot"
+                    and
+                        has "flagship planet: Starcross"
+                        has "tribute: Starcross"
+                    and
+                        has "flagship planet: Thunder"
+                        has "tribute: Thunder"
+                    and
+                        has "flagship planet: Typhon Station"
+                        has "tribute: Typhon Station"
+                    and
+                        has "flagship planet: Wyvern Station"
+                        has "tribute: Wyvern Station"
+                    and
+                        has "flagship planet: Zug"
+                        has "tribute: Zug"
+                    and
+                        has "flagship planet: Arachne Station"
+                        has "tribute: Arachne Station"
+                    and
+                        has "flagship planet: New Britain"
+                        has "tribute: New Britain"
+                    and
+                        has "flagship planet: Sinter"
+                        has "tribute: Sinter"
+                    and
+                        has "flagship planet: Wayfarer"
+                        has "tribute: Wayfarer"
+                    and
+                        has "flagship planet: Humanika"
+                        has "tribute: Humanika"
+                    and
+                        has "flagship planet: Pugglemug"
+                        has "tribute: Pugglemug"
+                    and
+                        has "flagship planet: Pugglequat"
+                        has "tribute: Pugglequat"
+            action
+                payment -5000
+
+            `The authorities on <origin> charge you a landing fee of <payment>.`
+                accept
+            label "tribute"
+            action
+                payment 5000
+            `The authorities on <origin> pay you <payment> in tribute.`
+                accept
+    on visit
+        conversation
+             branch "tribute"
+                or
+                    and
+                        has "flagship planet: Bourne"
+                        has "tribute: Bourne"
+                    and
+                        has "flagship planet: Dune"
+                        has "tribute: Dune"
+                    and
+                        has "flagship planet: Flood"
+                        has "tribute: Flood"
+                    and
+                        has "flagship planet: Longjump"
+                        has "tribute: Longjump"
+                    and
+                        has "flagship planet: Mere"
+                        has "tribute: Mere"
+                    and
+                        has "flagship planet: Oasis"
+                        has "tribute: Oasis"
+                    and
+                        has "flagship planet: Poseidos"
+                        has "tribute: Poseidos"
+                    and
+                        has "flagship planet: Rust"
+                        has "tribute: Rust"
+                    and
+                        has "flagship planet: Shorebreak"
+                        has "tribute: Shorebreak"
+                    and
+                        has "flagship planet: Skymoot"
+                        has "tribute: Skymoot"
+                    and
+                        has "flagship planet: Starcross"
+                        has "tribute: Starcross"
+                    and
+                        has "flagship planet: Thunder"
+                        has "tribute: Thunder"
+                    and
+                        has "flagship planet: Typhon Station"
+                        has "tribute: Typhon Station"
+                    and
+                        has "flagship planet: Wyvern Station"
+                        has "tribute: Wyvern Station"
+                    and
+                        has "flagship planet: Zug"
+                        has "tribute: Zug"
+                    and
+                        has "flagship planet: Arachne Station"
+                        has "tribute: Arachne Station"
+                    and
+                        has "flagship planet: New Britain"
+                        has "tribute: New Britain"
+                    and
+                        has "flagship planet: Sinter"
+                        has "tribute: Sinter"
+                    and
+                        has "flagship planet: Wayfarer"
+                        has "tribute: Wayfarer"
+                    and
+                        has "flagship planet: Humanika"
+                        has "tribute: Humanika"
+                    and
+                        has "flagship planet: Pugglemug"
+                        has "tribute: Pugglemug"
+                    and
+                        has "flagship planet: Pugglequat"
+                        has "tribute: Pugglequat"
+            action
+                payment -5000
+            `The authorities on <origin> charge you a landing fee of <payment>.`
+                decline
+            label "tribute"
+            action
+                payment 5000
+            `The authorities on <origin> pay you <payment> in tribute.`
+
+mission "Landing Fee F"
+    invisible
+    repeat
+    landing
+    "apparent payment" 4000
+    to offer
+        has "event: initial deployment 3"
+        or
+            not "flagship planet: Amazon"
+            ( "planet number f" % 2 ) == 0
+        or
+            not "flagship planet: Antipode"
+            ( ( "planet number f" - ( "planet number f" % 2 ) ) % 4 ) == 0
+        or
+            not "flagship planet: Bluestone"
+            ( ( "planet number f" - ( "planet number f" % 2 ) - ( "planet number f" % 4 ) ) % 8 ) == 0
+            "planet number f" < 4
+        or
+            not "flagship planet: Burthen"
+            ( ( "planet number f" - ( "planet number f" % 2 ) - ( "planet number f" % 4 ) - ( "planet number f" % 8 ) ) % 16 ) == 0
+            "planet number f" < 8
+        or
+            not "flagship planet: Canyon"
+            ( ( "planet number f" - ( "planet number f" % 2 ) - ( "planet number f" % 4 ) - ( "planet number f" % 8 ) - ( "planet number f" % 16 ) ) % 32 ) == 0
+            "planet number f" < 16
+        or
+            not "flagship planet: Charybdis Station"
+            ( ( "planet number f" - ( "planet number f" % 2 ) - ( "planet number f" % 4 ) - ( "planet number f" % 8 ) - ( "planet number f" % 16 ) - ( "planet number f" % 32 ) ) % 64 ) == 0
+            "planet number f" < 32
+        or
+            not "flagship planet: Crossroads"
+            ( ( "planet number f" - ( "planet number f" % 2 ) - ( "planet number f" % 4 ) - ( "planet number f" % 8 ) - ( "planet number f" % 16 ) - ( "planet number f" % 32 ) - ( "planet number f" % 64 ) ) % 128 ) == 0
+            "planet number f" < 64
+        or
+            not "flagship planet: Delve"
+            ( ( "planet number f" - ( "planet number f" % 2 ) - ( "planet number f" % 4 ) - ( "planet number f" % 8 ) - ( "planet number f" % 16 ) - ( "planet number f" % 32 ) - ( "planet number f" % 64 ) - ( "planet number f" % 128 ) ) % 256 ) == 0
+            "planet number f" < 128
+        or
+            not "flagship planet: Foundry"
+            ( ( "planet number f" - ( "planet number f" % 2 ) - ( "planet number f" % 4 ) - ( "planet number f" % 8 ) - ( "planet number f" % 16 ) - ( "planet number f" % 32 ) - ( "planet number f" % 64 ) - ( "planet number f" % 128 ) - ( "planet number f" % 256 ) ) % 512 ) == 0
+            "planet number f" < 256
+        or
+            not "flagship planet: Furnace"
+            ( ( "planet number f" - ( "planet number f" % 2 ) - ( "planet number f" % 4 ) - ( "planet number f" % 8 ) - ( "planet number f" % 16 ) - ( "planet number f" % 32 ) - ( "planet number f" % 64 ) - ( "planet number f" % 128 ) - ( "planet number f" % 256 ) - ( "planet number f" % 512 ) ) % 1024 ) == 0
+            "planet number f" < 512
+        or
+            not "flagship planet: Hephaestus"
+            ( ( "planet number f" - ( "planet number f" % 2 ) - ( "planet number f" % 4 ) - ( "planet number f" % 8 ) - ( "planet number f" % 16 ) - ( "planet number f" % 32 ) - ( "planet number f" % 64 ) - ( "planet number f" % 128 ) - ( "planet number f" % 256 ) - ( "planet number f" % 512 ) - ( "planet number f" % 1024 ) ) % 2048 ) == 0
+            "planet number f" < 1024
+        or
+            not "flagship planet: Hippocrates"
+            ( ( "planet number f" - ( "planet number f" % 2 ) - ( "planet number f" % 4 ) - ( "planet number f" % 8 ) - ( "planet number f" % 16 ) - ( "planet number f" % 32 ) - ( "planet number f" % 64 ) - ( "planet number f" % 128 ) - ( "planet number f" % 256 ) - ( "planet number f" % 512 ) - ( "planet number f" % 1024 ) - ( "planet number f" % 2048 ) ) % 4096 ) == 0
+            "planet number f" < 2048
+        or
+            not "flagship planet: Icefall"
+            ( ( "planet number f" - ( "planet number f" % 2 ) - ( "planet number f" % 4 ) - ( "planet number f" % 8 ) - ( "planet number f" % 16 ) - ( "planet number f" % 32 ) - ( "planet number f" % 64 ) - ( "planet number f" % 128 ) - ( "planet number f" % 256 ) - ( "planet number f" % 512 ) - ( "planet number f" % 1024 ) - ( "planet number f" % 2048 ) - ( "planet number f" % 4096 ) ) % 8192 ) == 0
+            "planet number f" < 4096
+        or
+            not "flagship planet: Kraken Station"
+            ( ( "planet number f" - ( "planet number f" % 2 ) - ( "planet number f" % 4 ) - ( "planet number f" % 8 ) - ( "planet number f" % 16 ) - ( "planet number f" % 32 ) - ( "planet number f" % 64 ) - ( "planet number f" % 128 ) - ( "planet number f" % 256 ) - ( "planet number f" % 512 ) - ( "planet number f" % 1024 ) - ( "planet number f" % 2048 ) - ( "planet number f" % 4096 ) - ( "planet number f" % 8192 ) ) % 16384 ) == 0
+            "planet number f" < 8192
+        or
+            not "flagship planet: Lodestone"
+            ( ( "planet number f" - ( "planet number f" % 2 ) - ( "planet number f" % 4 ) - ( "planet number f" % 8 ) - ( "planet number f" % 16 ) - ( "planet number f" % 32 ) - ( "planet number f" % 64 ) - ( "planet number f" % 128 ) - ( "planet number f" % 256 ) - ( "planet number f" % 512 ) - ( "planet number f" % 1024 ) - ( "planet number f" % 2048 ) - ( "planet number f" % 4096 ) - ( "planet number f" % 8192 ) - ( "planet number f" % 16384 ) ) % 32768 ) == 0
+            "planet number f" < 16384
+        or
+            not "flagship planet: Maker"
+            ( ( "planet number f" - ( "planet number f" % 2 ) - ( "planet number f" % 4 ) - ( "planet number f" % 8 ) - ( "planet number f" % 16 ) - ( "planet number f" % 32 ) - ( "planet number f" % 64 ) - ( "planet number f" % 128 ) - ( "planet number f" % 256 ) - ( "planet number f" % 512 ) - ( "planet number f" % 1024 ) - ( "planet number f" % 2048 ) - ( "planet number f" % 4096 ) - ( "planet number f" % 8192 ) - ( "planet number f" % 16384 ) - ( "planet number f" % 32768 ) ) % 65536 ) == 0
+            "planet number f" < 32768
+        or
+            not "flagship planet: Millrace"
+            ( ( "planet number f" - ( "planet number f" % 2 ) - ( "planet number f" % 4 ) - ( "planet number f" % 8 ) - ( "planet number f" % 16 ) - ( "planet number f" % 32 ) - ( "planet number f" % 64 ) - ( "planet number f" % 128 ) - ( "planet number f" % 256 ) - ( "planet number f" % 512 ) - ( "planet number f" % 1024 ) - ( "planet number f" % 2048 ) - ( "planet number f" % 4096 ) - ( "planet number f" % 8192 ) - ( "planet number f" % 16384 ) - ( "planet number f" % 32768 ) - ( "planet number f" % 65536 ) ) % 131072 ) == 0
+            "planet number f" < 65536
+        or
+            not "flagship planet: Moonshake"
+            ( ( "planet number f" - ( "planet number f" % 2 ) - ( "planet number f" % 4 ) - ( "planet number f" % 8 ) - ( "planet number f" % 16 ) - ( "planet number f" % 32 ) - ( "planet number f" % 64 ) - ( "planet number f" % 128 ) - ( "planet number f" % 256 ) - ( "planet number f" % 512 ) - ( "planet number f" % 1024 ) - ( "planet number f" % 2048 ) - ( "planet number f" % 4096 ) - ( "planet number f" % 8192 ) - ( "planet number f" % 16384 ) - ( "planet number f" % 32768 ) - ( "planet number f" % 65536 ) - ( "planet number f" % 131072 ) ) % 262144 ) == 0
+            "planet number f" < 131072
+        or
+            not "flagship planet: Nimbus"
+            ( ( "planet number f" - ( "planet number f" % 2 ) - ( "planet number f" % 4 ) - ( "planet number f" % 8 ) - ( "planet number f" % 16 ) - ( "planet number f" % 32 ) - ( "planet number f" % 64 ) - ( "planet number f" % 128 ) - ( "planet number f" % 256 ) - ( "planet number f" % 512 ) - ( "planet number f" % 1024 ) - ( "planet number f" % 2048 ) - ( "planet number f" % 4096 ) - ( "planet number f" % 8192 ) - ( "planet number f" % 16384 ) - ( "planet number f" % 32768 ) - ( "planet number f" % 65536 ) - ( "planet number f" % 131072 ) - ( "planet number f" % 262144 ) ) % 524288 ) == 0
+            "planet number f" < 262144
+        or
+            not "flagship planet: Oberon Station"
+            ( ( "planet number f" - ( "planet number f" % 2 ) - ( "planet number f" % 4 ) - ( "planet number f" % 8 ) - ( "planet number f" % 16 ) - ( "planet number f" % 32 ) - ( "planet number f" % 64 ) - ( "planet number f" % 128 ) - ( "planet number f" % 256 ) - ( "planet number f" % 512 ) - ( "planet number f" % 1024 ) - ( "planet number f" % 2048 ) - ( "planet number f" % 4096 ) - ( "planet number f" % 8192 ) - ( "planet number f" % 16384 ) - ( "planet number f" % 32768 ) - ( "planet number f" % 65536 ) - ( "planet number f" % 131072 ) - ( "planet number f" % 262144 ) - ( "planet number f" % 524288 ) ) % 1048576 ) == 0
+            "planet number f" < 524288
+        or
+            not "flagship planet: Placer"
+            ( ( "planet number f" - ( "planet number f" % 2 ) - ( "planet number f" % 4 ) - ( "planet number f" % 8 ) - ( "planet number f" % 16 ) - ( "planet number f" % 32 ) - ( "planet number f" % 64 ) - ( "planet number f" % 128 ) - ( "planet number f" % 256 ) - ( "planet number f" % 512 ) - ( "planet number f" % 1024 ) - ( "planet number f" % 2048 ) - ( "planet number f" % 4096 ) - ( "planet number f" % 8192 ) - ( "planet number f" % 16384 ) - ( "planet number f" % 32768 ) - ( "planet number f" % 65536 ) - ( "planet number f" % 131072 ) - ( "planet number f" % 262144 ) - ( "planet number f" % 524288 ) - ( "planet number f" % 1048576 ) ) % 2097152 ) == 0
+            "planet number f" < 1048576
+        or
+            not "flagship planet: Quicksilver"
+            ( ( "planet number f" - ( "planet number f" % 2 ) - ( "planet number f" % 4 ) - ( "planet number f" % 8 ) - ( "planet number f" % 16 ) - ( "planet number f" % 32 ) - ( "planet number f" % 64 ) - ( "planet number f" % 128 ) - ( "planet number f" % 256 ) - ( "planet number f" % 512 ) - ( "planet number f" % 1024 ) - ( "planet number f" % 2048 ) - ( "planet number f" % 4096 ) - ( "planet number f" % 8192 ) - ( "planet number f" % 16384 ) - ( "planet number f" % 32768 ) - ( "planet number f" % 65536 ) - ( "planet number f" % 131072 ) - ( "planet number f" % 262144 ) - ( "planet number f" % 524288 ) - ( "planet number f" % 1048576 ) - ( "planet number f" % 2097152 ) ) % 4194304 ) == 0
+            "planet number f" < 2097152
+        or
+            not "flagship planet: Reunion"
+            ( ( "planet number f" - ( "planet number f" % 2 ) - ( "planet number f" % 4 ) - ( "planet number f" % 8 ) - ( "planet number f" % 16 ) - ( "planet number f" % 32 ) - ( "planet number f" % 64 ) - ( "planet number f" % 128 ) - ( "planet number f" % 256 ) - ( "planet number f" % 512 ) - ( "planet number f" % 1024 ) - ( "planet number f" % 2048 ) - ( "planet number f" % 4096 ) - ( "planet number f" % 8192 ) - ( "planet number f" % 16384 ) - ( "planet number f" % 32768 ) - ( "planet number f" % 65536 ) - ( "planet number f" % 131072 ) - ( "planet number f" % 262144 ) - ( "planet number f" % 524288 ) - ( "planet number f" % 1048576 ) - ( "planet number f" % 2097152 ) - ( "planet number f" % 4194304 ) ) % 8388608 ) == 0
+            "planet number f" < 4194304
+        or
+            not "flagship planet: Shangri-La"
+            ( ( "planet number f" - ( "planet number f" % 2 ) - ( "planet number f" % 4 ) - ( "planet number f" % 8 ) - ( "planet number f" % 16 ) - ( "planet number f" % 32 ) - ( "planet number f" % 64 ) - ( "planet number f" % 128 ) - ( "planet number f" % 256 ) - ( "planet number f" % 512 ) - ( "planet number f" % 1024 ) - ( "planet number f" % 2048 ) - ( "planet number f" % 4096 ) - ( "planet number f" % 8192 ) - ( "planet number f" % 16384 ) - ( "planet number f" % 32768 ) - ( "planet number f" % 65536 ) - ( "planet number f" % 131072 ) - ( "planet number f" % 262144 ) - ( "planet number f" % 524288 ) - ( "planet number f" % 1048576 ) - ( "planet number f" % 2097152 ) - ( "planet number f" % 4194304 ) - ( "planet number f" % 8388608 ) ) % 16777216 ) == 0
+            "planet number f" < 8388608
+        or
+            not "flagship planet: Sundive"
+            ( ( "planet number f" - ( "planet number f" % 2 ) - ( "planet number f" % 4 ) - ( "planet number f" % 8 ) - ( "planet number f" % 16 ) - ( "planet number f" % 32 ) - ( "planet number f" % 64 ) - ( "planet number f" % 128 ) - ( "planet number f" % 256 ) - ( "planet number f" % 512 ) - ( "planet number f" % 1024 ) - ( "planet number f" % 2048 ) - ( "planet number f" % 4096 ) - ( "planet number f" % 8192 ) - ( "planet number f" % 16384 ) - ( "planet number f" % 32768 ) - ( "planet number f" % 65536 ) - ( "planet number f" % 131072 ) - ( "planet number f" % 262144 ) - ( "planet number f" % 524288 ) - ( "planet number f" % 1048576 ) - ( "planet number f" % 2097152 ) - ( "planet number f" % 4194304 ) - ( "planet number f" % 8388608 ) - ( "planet number f" % 16777216 ) ) % 33554432 ) == 0
+            "planet number f" < 16777216
+        or
+            not "flagship planet: Sunracer"
+            ( ( "planet number f" - ( "planet number f" % 2 ) - ( "planet number f" % 4 ) - ( "planet number f" % 8 ) - ( "planet number f" % 16 ) - ( "planet number f" % 32 ) - ( "planet number f" % 64 ) - ( "planet number f" % 128 ) - ( "planet number f" % 256 ) - ( "planet number f" % 512 ) - ( "planet number f" % 1024 ) - ( "planet number f" % 2048 ) - ( "planet number f" % 4096 ) - ( "planet number f" % 8192 ) - ( "planet number f" % 16384 ) - ( "planet number f" % 32768 ) - ( "planet number f" % 65536 ) - ( "planet number f" % 131072 ) - ( "planet number f" % 262144 ) - ( "planet number f" % 524288 ) - ( "planet number f" % 1048576 ) - ( "planet number f" % 2097152 ) - ( "planet number f" % 4194304 ) - ( "planet number f" % 8388608 ) - ( "planet number f" % 16777216 ) - ( "planet number f" % 33554432 ) ) % 67108864 ) == 0
+            "planet number f" < 33554432
+        or
+            not "flagship planet: Tinker"
+            ( ( "planet number f" - ( "planet number f" % 2 ) - ( "planet number f" % 4 ) - ( "planet number f" % 8 ) - ( "planet number f" % 16 ) - ( "planet number f" % 32 ) - ( "planet number f" % 64 ) - ( "planet number f" % 128 ) - ( "planet number f" % 256 ) - ( "planet number f" % 512 ) - ( "planet number f" % 1024 ) - ( "planet number f" % 2048 ) - ( "planet number f" % 4096 ) - ( "planet number f" % 8192 ) - ( "planet number f" % 16384 ) - ( "planet number f" % 32768 ) - ( "planet number f" % 65536 ) - ( "planet number f" % 131072 ) - ( "planet number f" % 262144 ) - ( "planet number f" % 524288 ) - ( "planet number f" % 1048576 ) - ( "planet number f" % 2097152 ) - ( "planet number f" % 4194304 ) - ( "planet number f" % 8388608 ) - ( "planet number f" % 16777216 ) - ( "planet number f" % 33554432 ) - ( "planet number f" % 67108864 ) ) % 134217728 ) == 0
+            "planet number f" < 67108864
+        or
+            not "flagship planet: Trove"
+            ( ( "planet number f" - ( "planet number f" % 2 ) - ( "planet number f" % 4 ) - ( "planet number f" % 8 ) - ( "planet number f" % 16 ) - ( "planet number f" % 32 ) - ( "planet number f" % 64 ) - ( "planet number f" % 128 ) - ( "planet number f" % 256 ) - ( "planet number f" % 512 ) - ( "planet number f" % 1024 ) - ( "planet number f" % 2048 ) - ( "planet number f" % 4096 ) - ( "planet number f" % 8192 ) - ( "planet number f" % 16384 ) - ( "planet number f" % 32768 ) - ( "planet number f" % 65536 ) - ( "planet number f" % 131072 ) - ( "planet number f" % 262144 ) - ( "planet number f" % 524288 ) - ( "planet number f" % 1048576 ) - ( "planet number f" % 2097152 ) - ( "planet number f" % 4194304 ) - ( "planet number f" % 8388608 ) - ( "planet number f" % 16777216 ) - ( "planet number f" % 33554432 ) - ( "planet number f" % 67108864 ) - ( "planet number f" % 134217728 ) ) % 268435456 ) == 0
+            "planet number f" < 134217728
+
+        or
+            has "flagship planet: Amazon"
+            has "flagship planet: Antipode"
+            has "flagship planet: Bluestone"
+            has "flagship planet: Burthen"
+            has "flagship planet: Canyon"
+            has "flagship planet: Charybdis Station"
+            has "flagship planet: Crossroads"
+            has "flagship planet: Delve"
+            has "flagship planet: Foundry"
+            has "flagship planet: Furnace"
+            has "flagship planet: Hephaestus"
+            has "flagship planet: Hippocrates"
+            has "flagship planet: Icefall"
+            has "flagship planet: Kraken Station"
+            has "flagship planet: Lodestone"
+            has "flagship planet: Maker"
+            has "flagship planet: Millrace"
+            has "flagship planet: Moonshake"
+            has "flagship planet: Nimbus"
+            has "flagship planet: Oberon Station"
+            has "flagship planet: Placer"
+            has "flagship planet: Quicksilver"
+            has "flagship planet: Reunion"
+            has "flagship planet: Shangri-La"
+            has "flagship planet: Sundive"
+            has "flagship planet: Sunracer"
+            has "flagship planet: Tinker"
+            has "flagship planet: Trove"
+    to complete
+        never
+    on offer
+        conversation
+            branch "not amazon"
+                not "flagship planet: Amazon"
+            action
+                "planet number f" += 1
+            label "not amazon"
+            branch "not antipode"
+                not "flagship planet: Antipode"
+            action
+                "planet number f" += 2
+            label "not antipode"
+            branch "not bluestone"
+                not "flagship planet: Bluestone"
+            action
+                "planet number f" += 4
+            label "not bluestone"
+            branch "not burthen"
+                not "flagship planet: Burthen"
+            action
+                "planet number f" += 8
+            label "not burthen"
+            branch "not canyon"
+                not "flagship planet: Canyon"
+            action
+                "planet number f" += 16
+            label "not canyon"
+            branch "not charybdis station"
+                not "flagship planet: Charybdis Station"
+            action
+                "planet number f" += 32
+            label "not charybdis station"
+            branch "not crossroads"
+                not "flagship planet: Crossroads"
+            action
+                "planet number f" += 64
+            label "not crossroads"
+            branch "not delve"
+                not "flagship planet: Delve"
+            action
+                "planet number f" += 128
+            label "not delve"
+            branch "not foundry"
+                not "flagship planet: Foundry"
+            action
+                "planet number f" += 256
+            label "not foundry"
+            branch "not furnace"
+                not "flagship planet: Furnace"
+            action
+                "planet number f" += 512
+            label "not furnace"
+            branch "not hephaestus"
+                not "flagship planet: Hephaestus"
+            action
+                "planet number f" += 1024
+            label "not hephaestus"
+            branch "not hippocrates"
+                not "flagship planet: Hippocrates"
+            action
+                "planet number f" += 2048
+            label "not hippocrates"
+            branch "not icefall"
+                not "flagship planet: Icefall"
+            action
+                "planet number f" += 4096
+            label "not icefall"
+            branch "not kraken station"
+                not "flagship planet: Kraken Station"
+            action
+                "planet number f" += 8192
+            label "not kraken station"
+            branch "not lodestone"
+                not "flagship planet: Lodestone"
+            action
+                "planet number f" += 16384
+            label "not lodestone"
+            branch "not maker"
+                not "flagship planet: Maker"
+            action
+                "planet number f" += 32768
+            label "not maker"
+            branch "not millrace"
+                not "flagship planet: Millrace"
+            action
+                "planet number f" += 65536
+            label "not millrace"
+            branch "not moonshake"
+                not "flagship planet: Moonshake"
+            action
+                "planet number f" += 131072
+            label "not moonshake"
+            branch "not nimbus"
+                not "flagship planet: Nimbus"
+            action
+                "planet number f" += 262144
+            label "not nimbus"
+            branch "not oberon station"
+                not "flagship planet: Oberon Station"
+            action
+                "planet number f" += 524288
+            label "not oberon station"
+            branch "not placer"
+                not "flagship planet: Placer"
+            action
+                "planet number f" += 1048576
+            label "not placer"
+            branch "not quicksilver"
+                not "flagship planet: Quicksilver"
+            action
+                "planet number f" += 2097152
+            label "not quicksilver"
+            branch "not reunion"
+                not "flagship planet: Reunion"
+            action
+                "planet number f" += 4194304
+            label "not reunion"
+            branch "not shangri-la"
+                not "flagship planet: Shangri-La"
+            action
+                "planet number f" += 8388608
+            label "not shangri-la"
+            branch "not sundive"
+                not "flagship planet: Sundive"
+            action
+                "planet number f" += 16777216
+            label "not sundive"
+            branch "not sunracer"
+                not "flagship planet: Sunracer"
+            action
+                "planet number f" += 33554432
+            label "not sunracer"
+            branch "not trinket"
+                not "flagship planet: Trinket"
+            action
+                "planet number f" += 67108864
+            label "not trinket"
+            branch "not trove"
+                not "flagship planet: Trove"
+            action
+                "planet number f" += 134217728
+            label "not trove"
+            branch "tribute"
+                or
+                    and
+                        has "flagship planet: Amazon"
+                        has "tribute: Amazon"
+                    and
+                        has "flagship planet: Antipode"
+                        has "tribute: Antipode"
+                    and
+                        has "flagship planet: Bluestone"
+                        has "tribute: Bluestone"
+                    and
+                        has "flagship planet: Burthen"
+                        has "tribute: Burthen"
+                    and
+                        has "flagship planet: Canyon"
+                        has "tribute: Canyon"
+                    and
+                        has "flagship planet: Charybdis Station"
+                        has "tribute: Charybdis Station"
+                    and
+                        has "flagship planet: Crossroads"
+                        has "tribute: Crossroads"
+                    and
+                        has "flagship planet: Delve"
+                        has "tribute: Delve"
+                    and
+                        has "flagship planet: Foundry"
+                        has "tribute: Foundry"
+                    and
+                        has "flagship planet: Furnace"
+                        has "tribute: Furnace"
+                    and
+                        has "flagship planet: Hephaestus"
+                        has "tribute: Hephaestus"
+                    and
+                        has "flagship planet: Hippocrates"
+                        has "tribute: Hippocrates"
+                    and
+                        has "flagship planet: Icefall"
+                        has "tribute: Icefall"
+                    and
+                        has "flagship planet: Kraken Station"
+                        has "tribute: Kraken Station"
+                    and
+                        has "flagship planet: Lodestone"
+                        has "tribute: Lodestone"
+                    and
+                        has "flagship planet: Maker"
+                        has "tribute: Maker"
+                    and
+                        has "flagship planet: Millrace"
+                        has "tribute: Millrace"
+                    and
+                        has "flagship planet: Moonshake"
+                        has "tribute: Moonshake"
+                    and
+                        has "flagship planet: Nimbus"
+                        has "tribute: Nimbus"
+                    and
+                        has "flagship planet: Oberon Station"
+                        has "tribute: Oberon Station"
+                    and
+                        has "flagship planet: Placer"
+                        has "tribute: Placer"
+                    and
+                        has "flagship planet: Quicksilver"
+                        has "tribute: Quicksilver"
+                    and
+                        has "flagship planet: Reunion"
+                        has "tribute: Reunion"
+                    and
+                        has "flagship planet: Shangri-La"
+                        has "tribute: Shangri-La"
+                    and
+                        has "flagship planet: Sundive"
+                        has "tribute: Sundive"
+                    and
+                        has "flagship planet: Sunracer"
+                        has "tribute: Sunracer"
+                    and
+                        has "flagship planet: Trinket"
+                        has "tribute: Trinket"
+                    and
+                        has "flagship planet: Trove"
+                        has "tribute: Trove"
+            action
+                payment -4000
+            `The authorities on <origin> charge you a landing fee of <payment>.`
+                accept
+            label "tribute"
+            action
+                payment 4000
+            `The authorities on <origin> pay you <payment> in tribute.`
+                accept
+    on visit
+        conversation
+            branch "tribute"
+                or
+                    and
+                        has "flagship planet: Amazon"
+                        has "tribute: Amazon"
+                    and
+                        has "flagship planet: Antipode"
+                        has "tribute: Antipode"
+                    and
+                        has "flagship planet: Bluestone"
+                        has "tribute: Bluestone"
+                    and
+                        has "flagship planet: Burthen"
+                        has "tribute: Burthen"
+                    and
+                        has "flagship planet: Canyon"
+                        has "tribute: Canyon"
+                    and
+                        has "flagship planet: Charybdis Station"
+                        has "tribute: Charybdis Station"
+                    and
+                        has "flagship planet: Crossroads"
+                        has "tribute: Crossroads"
+                    and
+                        has "flagship planet: Delve"
+                        has "tribute: Delve"
+                    and
+                        has "flagship planet: Foundry"
+                        has "tribute: Foundry"
+                    and
+                        has "flagship planet: Furnace"
+                        has "tribute: Furnace"
+                    and
+                        has "flagship planet: Hephaestus"
+                        has "tribute: Hephaestus"
+                    and
+                        has "flagship planet: Hippocrates"
+                        has "tribute: Hippocrates"
+                    and
+                        has "flagship planet: Icefall"
+                        has "tribute: Icefall"
+                    and
+                        has "flagship planet: Kraken Station"
+                        has "tribute: Kraken Station"
+                    and
+                        has "flagship planet: Lodestone"
+                        has "tribute: Lodestone"
+                    and
+                        has "flagship planet: Maker"
+                        has "tribute: Maker"
+                    and
+                        has "flagship planet: Millrace"
+                        has "tribute: Millrace"
+                    and
+                        has "flagship planet: Moonshake"
+                        has "tribute: Moonshake"
+                    and
+                        has "flagship planet: Nimbus"
+                        has "tribute: Nimbus"
+                    and
+                        has "flagship planet: Oberon Station"
+                        has "tribute: Oberon Station"
+                    and
+                        has "flagship planet: Placer"
+                        has "tribute: Placer"
+                    and
+                        has "flagship planet: Reunion"
+                        has "tribute: Reunion"
+                    and
+                        has "flagship planet: Quicksilver"
+                        has "tribute: Quicksilver"
+                    and
+                        has "flagship planet: Shangri-La"
+                        has "tribute: Shangri-La"
+                    and
+                        has "flagship planet: Sundive"
+                        has "tribute: Sundive"
+                    and
+                        has "flagship planet: Sunracer"
+                        has "tribute: Sunracer"
+                    and
+                        has "flagship planet: Trinket"
+                        has "tribute: Trinket"
+                    and
+                        has "flagship planet: Trove"
+                        has "tribute: Trove"
+            action
+                payment -4000
+            `The authorities on <origin> charge you a landing fee of <payment>.`
+                decline
+            label "tribute"
+            action
+                payment 4000
+            `The authorities on <origin> pay you <payment> in tribute.`
+
+mission "Landing Fee G1"
+    invisible
+    repeat
+    landing
+    "apparent payment" 3000
+    to offer
+        has "event: initial deployment 3"
+        or
+            not "flagship planet: Carbuncle Station"
+            ( "planet number g" % 2 ) == 0
+        or
+            not "flagship planet: Farpoint"
+            ( ( "planet number g" - ( "planet number g" % 2 ) ) % 4 ) == 0
+        or
+            not "flagship planet: Featherweight"
+            ( ( "planet number g" - ( "planet number g" % 2 ) - ( "planet number g" % 4 ) ) % 8 ) == 0
+            "planet number g" < 4
+        or
+            not "flagship planet: Maelstrom"
+            ( ( "planet number g" - ( "planet number g" % 2 ) - ( "planet number g" % 4 ) - ( "planet number g" % 8 ) ) % 16 ) == 0
+            "planet number g" < 8
+        or
+            not "flagship planet: Pilot"
+            ( ( "planet number g" - ( "planet number g" % 2 ) - ( "planet number g" % 4 ) - ( "planet number g" % 8 ) - ( "planet number g" % 16 ) ) % 32 ) == 0
+            "planet number g" < 16
+        or
+            not "flagship planet: Poisonwood"
+            ( ( "planet number g" - ( "planet number g" % 2 ) - ( "planet number g" % 4 ) - ( "planet number g" % 8 ) - ( "planet number g" % 16 ) - ( "planet number g" % 32 ) ) % 64 ) == 0
+            "planet number g" < 32
+        or
+            not "flagship planet: Prime"
+            ( ( "planet number g" - ( "planet number g" % 2 ) - ( "planet number g" % 4 ) - ( "planet number g" % 8 ) - ( "planet number g" % 16 ) - ( "planet number g" % 32 ) - ( "planet number g" % 64 ) ) % 128 ) == 0
+            "planet number g" < 64
+        or
+            not "flagship planet: Serpens"
+            ( ( "planet number g" - ( "planet number g" % 2 ) - ( "planet number g" % 4 ) - ( "planet number g" % 8 ) - ( "planet number g" % 16 ) - ( "planet number g" % 32 ) - ( "planet number g" % 64 ) - ( "planet number g" % 128 ) ) % 256 ) == 0
+            "planet number g" < 128
+        or
+            not "flagship planet: Shroud"
+            ( ( "planet number g" - ( "planet number g" % 2 ) - ( "planet number g" % 4 ) - ( "planet number g" % 8 ) - ( "planet number g" % 16 ) - ( "planet number g" % 32 ) - ( "planet number g" % 64 ) - ( "planet number g" % 128 ) - ( "planet number g" % 256 ) ) % 512 ) == 0
+            "planet number g" < 256
+        or
+            not "flagship planet: Skillet"
+            ( ( "planet number g" - ( "planet number g" % 2 ) - ( "planet number g" % 4 ) - ( "planet number g" % 8 ) - ( "planet number g" % 16 ) - ( "planet number g" % 32 ) - ( "planet number g" % 64 ) - ( "planet number g" % 128 ) - ( "planet number g" % 256 ) - ( "planet number g" % 512 ) ) % 1024 ) == 0
+            "planet number g" < 512
+        or
+            not "flagship planet: Splashdown"
+            ( ( "planet number g" - ( "planet number g" % 2 ) - ( "planet number g" % 4 ) - ( "planet number g" % 8 ) - ( "planet number g" % 16 ) - ( "planet number g" % 32 ) - ( "planet number g" % 64 ) - ( "planet number g" % 128 ) - ( "planet number g" % 256 ) - ( "planet number g" % 512 ) - ( "planet number g" % 1024 ) ) % 2048 ) == 0
+            "planet number g" < 1024
+        or
+            not "flagship planet: Triton Station"
+            ( ( "planet number g" - ( "planet number g" % 2 ) - ( "planet number g" % 4 ) - ( "planet number g" % 8 ) - ( "planet number g" % 16 ) - ( "planet number g" % 32 ) - ( "planet number g" % 64 ) - ( "planet number g" % 128 ) - ( "planet number g" % 256 ) - ( "planet number g" % 512 ) - ( "planet number g" % 1024 ) - ( "planet number g" % 2048 ) ) % 4096 ) == 0
+            "planet number g" < 2048
+        or
+            has "flagship planet: Carbuncle Station"
+            has "flagship planet: Farpoint"
+            has "flagship planet: Featherweight"
+            has "flagship planet: Maelstrom"
+            has "flagship planet: Pilot"
+            has "flagship planet: Poisonwood"
+            has "flagship planet: Prime"
+            has "flagship planet: Serpens"
+            has "flagship planet: Shroud"
+            has "flagship planet: Skillet"
+            has "flagship planet: Splashdown"
+            has "flagship planet: Triton Station"
+    to complete
+        never
+    on offer
+        conversation
+            branch "not carbuncle station"
+                not "flagship planet: Carbuncle Station"
+            action
+                "planet number g" += 1
+            label "not carbuncle station"
+            branch "not farpoint"
+                not "flagship planet: Farpoint"
+            action
+                "planet number g" += 2
+            label "not farpoint"
+            branch "not featherweight"
+                not "flagship planet: Featherweight"
+            action
+                "planet number g" += 4
+            label "not featherweight"
+            branch "not maelstrom"
+                not "flagship planet: Maelstrom"
+            action
+                "planet number g" += 8
+            label "not maelstrom"
+            branch "not pilot"
+                not "flagship planet: Pilot"
+            action
+                "planet number g" += 16
+            label "not pilot"
+            branch "not prime"
+                not "flagship planet: Prime"
+            action
+                "planet number g" += 32
+            label "not prime"
+            branch "not poisonwood"
+                not "flagship planet: Poisonwood"
+            action
+                "planet number g" += 64
+            label "not poisonwood"
+            branch "not serpens"
+                not "flagship planet: Serpens"
+            action
+                "planet number g" += 128
+            label "not serpens"
+            branch "not shroud"
+                not "flagship planet: Shroud"
+            action
+                "planet number g" += 256
+            label "not shroud"
+            branch "not skillet"
+                not "flagship planet: Skillet"
+            action
+                "planet number g" += 512
+            label "not skillet"
+            branch "not splashdown"
+                not "flagship planet: Splashdown"
+            action
+                "planet number g" += 1024
+            label "not splashdown"
+            branch "not triton station"
+                not "flagship planet: Triton Station"
+            action
+                "planet number g" += 2048
+            label "not triton station"
+            branch "tribute"
+                or
+                    and
+                        has "flagship planet: Carbuncle Station"
+                        has "tribute: Carbuncle Station"
+                    and
+                        has "flagship planet: Farpoint"
+                        has "tribute: Farpoint"
+                    and
+                        has "flagship planet: Featherweight"
+                        has "tribute: Featherweight"
+                    and
+                        has "flagship planet: Maelstrom"
+                        has "tribute: Maelstrom"
+                    and
+                        has "flagship planet: Pilot"
+                        has "tribute: Pilot"
+                    and
+                        has "flagship planet: Poisonwood"
+                        has "tribute: Poisonwood"
+                    and
+                        has "flagship planet: Prime"
+                        has "tribute: Prime"
+                    and
+                        has "flagship planet: Serpens"
+                        has "tribute: Serpens"
+                    and
+                        has "flagship planet: Shroud"
+                        has "tribute: Shroud"
+                    and
+                        has "flagship planet: Skillet"
+                        has "tribute: Skillet"
+                    and
+                        has "flagship planet: Splashdown"
+                        has "tribute: Splashdown"
+                    and
+                        has "flagship planet: Triton Station"
+                        has "tribute: Triton Station"
+            action
+                payment -3000
+            `The authorities on <origin> charge you a landing fee of <payment>.`
+                accept
+            label "tribute"
+            action
+                payment 3000
+            `The authorities on <origin> pay you <payment> in tribute.`
+                accept
+    on visit
+        conversation
+            branch "tribute"
+                or
+                    and
+                        has "flagship planet: Carbuncle Station"
+                        has "tribute: Carbuncle Station"
+                    and
+                        has "flagship planet: Farpoint"
+                        has "tribute: Farpoint"
+                    and
+                        has "flagship planet: Featherweight"
+                        has "tribute: Featherweight"
+                    and
+                        has "flagship planet: Maelstrom"
+                        has "tribute: Maelstrom"
+                    and
+                        has "flagship planet: Pilot"
+                        has "tribute: Pilot"
+                    and
+                        has "flagship planet: Poisonwood"
+                        has "tribute: Poisonwood"
+                    and
+                        has "flagship planet: Prime"
+                        has "tribute: Prime"
+                    and
+                        has "flagship planet: Serpens"
+                        has "tribute: Serpens"
+                    and
+                        has "flagship planet: Shroud"
+                        has "tribute: Shroud"
+                    and
+                        has "flagship planet: Skillet"
+                        has "tribute: Skillet"
+                    and
+                        has "flagship planet: Splashdown"
+                        has "tribute: Splashdown"
+                    and
+                        has "flagship planet: Triton Station"
+                        has "tribute: Triton Station"
+            action
+                payment -3000
+            `The authorities on <origin> charge you a landing fee of <payment>.`
+                decline
+            label "tribute"
+            action
+                payment 3000
+            `The authorities on <origin> pay you <payment> in tribute.`
+
+# You won't get missions on occupied planets. In this case the occupation is temporary.
+mission "Landing Fee G2"
+    invisible
+    repeat
+    landing
+    "apparent payment" 3000
+    to offer
+        has "event: initial deployment 3"
+    source
+        planet "Buccaneer Bay" "Covert" "Deadman's Cove" "New Tortuga" "Stormhold"
+        government "Republic"
+    on offer
+        conversation
+            branch "tribute"
+                or
+                    and
+                        has "flagship planet: Buccaneer Bay"
+                        has "tribute: Buccaneer Bay"
+                    and
+                        has "flagship planet: Covert"
+                        has "tribute: Covert"
+                    and
+                        has "flagship planet: Deadman's Cove"
+                        has "tribute: Deadman's Cove"
+                    and
+                        has "flagship planet: New Tortuga"
+                        has "tribute: New Tortuga"
+                    and
+                        has "flagship planet: Stormhold"
+                        has "tribute: Stormhold"
+            action
+                payment -3000
+            `The authorities on <origin> charge you a landing fee of <payment>.`
+                decline
+            label "tribute"
+            action
+                payment 3000
+            `The authorities on <origin> pay you <payment> in tribute.`
+                decline
+
+mission "Landing Fee H1"
+    invisible
+    repeat
+    landing
+    "apparent payment" 2000
+    to offer
+        has "event: initial deployment 3"
+        or
+            not "flagship planet: Albatross"
+            ( "planet number h" % 2 ) == 0
+        or
+            not "flagship planet: Bloodsea"
+            ( ( "planet number h" - ( "planet number h" % 2 ) ) % 4 ) == 0
+        or
+            not "flagship planet: Charon Station"
+            ( ( "planet number h" - ( "planet number h" % 2 ) - ( "planet number h" % 4 ) ) % 8 ) == 0
+            "planet number h" < 4
+        or
+            not "flagship planet: Clink"
+            ( ( "planet number h" - ( "planet number h" % 2 ) - ( "planet number h" % 4 ) - ( "planet number h" % 8 ) ) % 16 ) == 0
+            "planet number h" < 8
+        or
+            not "flagship planet: Cornucopia"
+            ( ( "planet number h" - ( "planet number h" % 2 ) - ( "planet number h" % 4 ) - ( "planet number h" % 8 ) - ( "planet number h" % 16 ) ) % 32 ) == 0
+            "planet number h" < 16
+        or
+            not "flagship planet: Dancer"
+            ( ( "planet number h" - ( "planet number h" % 2 ) - ( "planet number h" % 4 ) - ( "planet number h" % 8 ) - ( "planet number h" % 16 ) - ( "planet number h" % 32 ) ) % 64 ) == 0
+            "planet number h" < 32
+        or
+            not "flagship planet: Darkstone"
+            ( ( "planet number h" - ( "planet number h" % 2 ) - ( "planet number h" % 4 ) - ( "planet number h" % 8 ) - ( "planet number h" % 16 ) - ( "planet number h" % 32 ) - ( "planet number h" % 64 ) ) % 128 ) == 0
+            "planet number h" < 64
+        or
+            not "flagship planet: Deep"
+            ( ( "planet number h" - ( "planet number h" % 2 ) - ( "planet number h" % 4 ) - ( "planet number h" % 8 ) - ( "planet number h" % 16 ) - ( "planet number h" % 32 ) - ( "planet number h" % 64 ) - ( "planet number h" % 128 ) ) % 256 ) == 0
+            "planet number h" < 128
+        or
+            not "flagship planet: Glaze"
+            ( ( "planet number h" - ( "planet number h" % 2 ) - ( "planet number h" % 4 ) - ( "planet number h" % 8 ) - ( "planet number h" % 16 ) - ( "planet number h" % 32 ) - ( "planet number h" % 64 ) - ( "planet number h" % 128 ) - ( "planet number h" % 256 ) ) % 512 ) == 0
+            "planet number h" < 256
+        or
+            not "flagship planet: Harmony"
+            ( ( "planet number h" - ( "planet number h" % 2 ) - ( "planet number h" % 4 ) - ( "planet number h" % 8 ) - ( "planet number h" % 16 ) - ( "planet number h" % 32 ) - ( "planet number h" % 64 ) - ( "planet number h" % 128 ) - ( "planet number h" % 256 ) - ( "planet number h" % 512 ) ) % 1024 ) == 0
+            "planet number h" < 512
+        or
+            not "flagship planet: Lichen"
+            ( ( "planet number h" - ( "planet number h" % 2 ) - ( "planet number h" % 4 ) - ( "planet number h" % 8 ) - ( "planet number h" % 16 ) - ( "planet number h" % 32 ) - ( "planet number h" % 64 ) - ( "planet number h" % 128 ) - ( "planet number h" % 256 ) - ( "planet number h" % 512 ) - ( "planet number h" % 1024 ) ) % 2048 ) == 0
+            "planet number h" < 1024
+        or
+            not "flagship planet: Solace"
+            ( ( "planet number h" - ( "planet number h" % 2 ) - ( "planet number h" % 4 ) - ( "planet number h" % 8 ) - ( "planet number h" % 16 ) - ( "planet number h" % 32 ) - ( "planet number h" % 64 ) - ( "planet number h" % 128 ) - ( "planet number h" % 256 ) - ( "planet number h" % 512 ) - ( "planet number h" % 1024 ) - ( "planet number h" % 2048 ) ) % 4096 ) == 0
+            "planet number h" < 2048
+        or
+            not "flagship planet: Sundrinker"
+            ( ( "planet number h" - ( "planet number h" % 2 ) - ( "planet number h" % 4 ) - ( "planet number h" % 8 ) - ( "planet number h" % 16 ) - ( "planet number h" % 32 ) - ( "planet number h" % 64 ) - ( "planet number h" % 128 ) - ( "planet number h" % 256 ) - ( "planet number h" % 512 ) - ( "planet number h" % 1024 ) - ( "planet number h" % 2048 ) - ( "planet number h" % 4096 ) ) % 8192 ) == 0
+            "planet number h" < 4096
+        or
+            not "flagship planet: Trinket"
+            ( ( "planet number h" - ( "planet number h" % 2 ) - ( "planet number h" % 4 ) - ( "planet number h" % 8 ) - ( "planet number h" % 16 ) - ( "planet number h" % 32 ) - ( "planet number h" % 64 ) - ( "planet number h" % 128 ) - ( "planet number h" % 256 ) - ( "planet number h" % 512 ) - ( "planet number h" % 1024 ) - ( "planet number h" % 2048 ) - ( "planet number h" % 4096 ) - ( "planet number h" % 8192 ) ) % 16384 ) == 0
+            "planet number h" < 8192
+        or
+            not "flagship planet: Twinstar"
+            ( ( "planet number h" - ( "planet number h" % 2 ) - ( "planet number h" % 4 ) - ( "planet number h" % 8 ) - ( "planet number h" % 16 ) - ( "planet number h" % 32 ) - ( "planet number h" % 64 ) - ( "planet number h" % 128 ) - ( "planet number h" % 256 ) - ( "planet number h" % 512 ) - ( "planet number h" % 1024 ) - ( "planet number h" % 2048 ) - ( "planet number h" % 4096 ) - ( "planet number h" % 8192 ) - ( "planet number h" % 16384 ) ) % 32768 ) == 0
+            "planet number h" < 16384
+        or
+            not "flagship planet: Winter"
+            ( ( "planet number h" - ( "planet number h" % 2 ) - ( "planet number h" % 4 ) - ( "planet number h" % 8 ) - ( "planet number h" % 16 ) - ( "planet number h" % 32 ) - ( "planet number h" % 64 ) - ( "planet number h" % 128 ) - ( "planet number h" % 256 ) - ( "planet number h" % 512 ) - ( "planet number h" % 1024 ) - ( "planet number h" % 2048 ) - ( "planet number h" % 4096 ) - ( "planet number h" % 8192 ) - ( "planet number h" % 16384 ) - ( "planet number h" % 32768 ) ) % 65536 ) == 0
+            "planet number h" < 32768
+
+        or
+            has "flagship planet: Albatross"
+            has "flagship planet: Bloodsea"
+            has "flagship planet: Charon Station"
+            has "flagship planet: Clink"
+            has "flagship planet: Cornucopia"
+            has "flagship planet: Dancer"
+            has "flagship planet: Darkstone"
+            has "flagship planet: Deep"
+            has "flagship planet: Glaze"
+            has "flagship planet: Harmony"
+            has "flagship planet: Lichen"
+            has "flagship planet: Solace"
+            has "flagship planet: Sundrinker"
+            has "flagship planet: Trinket"
+            has "flagship planet: Twinstar"
+            has "flagship planet: Winter"
+    to complete
+        never
+    source
+        government "Free Worlds" "Neutral" "Republic"
+    on offer
+        conversation
+            branch "not albatross"
+                not "flagship planet: Albatross"
+            action
+                "planet number h" += 1
+            label "not albatross"
+            branch "not bloodsea"
+                not "flagship planet: Bloodsea"
+            action
+                "planet number h" += 2
+            label "not bloodsea"
+            branch "not charon station"
+                not "flagship planet: Charon Station"
+            action
+                "planet number h" += 4
+            label "not charon station"
+            branch "not clink"
+                not "flagship planet: Clink"
+            action
+                "planet number h" += 8
+            label "not clink"
+            branch "not cornucopia"
+                not "flagship planet: Cornucopia"
+            action
+                "planet number h" += 16
+            label "not cornucopia"
+            branch "not dancer"
+                not "flagship planet: Dancer"
+            action
+                "planet number h" += 32
+            label "not dancer"
+            branch "not darkstone"
+                not "flagship planet: Darkstone"
+            action
+                "planet number h" += 64
+            label "not darkstone"
+            branch "not deep"
+                not "flagship planet: Deep"
+            action
+                "planet number h" += 128
+            label "not deep"
+            branch "not glaze"
+                not "flagship planet: Glaze"
+            action
+                "planet number h" += 256
+            label "not glaze"
+            branch "not harmony"
+                not "flagship planet: Harmony"
+            action
+                "planet number h" += 512
+            label "not harmony"
+            branch "not lichen"
+                not "flagship planet: Lichen"
+            action
+                "planet number h" += 1024
+            label "not lichen"
+            branch "not solace"
+                not "flagship planet: Solace"
+            action
+                "planet number h" += 2048
+            label "not solace"
+            branch "not sundrinker"
+                not "flagship planet: Sundrinker"
+            action
+                "planet number h" += 4096
+            label "not sundrinker"
+            branch "not trinket"
+                not "flagship planet: Trinket"
+            action
+                "planet number h" += 8192
+            label "not trinket"
+            branch "not twinstar"
+                not "flagship planet: Twinstar"
+            action
+                "planet number h" += 16384
+            label "not twinstar"
+            branch "not winter"
+                not "flagship planet: Winter"
+            action
+                "planet number h" += 32768
+            label "not winter"
+            branch "tribute"
+                or
+                    and
+                        has "flagship planet: Albatross"
+                        has "tribute: Albatross"
+                    and
+                        has "flagship planet: Bloodsea"
+                        has "tribute: Bloodsea"
+                    and
+                        has "flagship planet: Charon Station"
+                        has "tribute: Charon Station"
+                    and
+                        has "flagship planet: Clink"
+                        has "tribute: Clink"
+                    and
+                        has "flagship planet: Cornucopia"
+                        has "tribute: Cornucopia"
+                    and
+                        has "flagship planet: Dancer"
+                        has "tribute: Dancer"
+                    and
+                        has "flagship planet: Darkstone"
+                        has "tribute: Darkstone"
+                    and
+                        has "flagship planet: Deep"
+                        has "tribute: Deep"
+                    and
+                        has "flagship planet: Glaze"
+                        has "tribute: Glaze"
+                    and
+                        has "flagship planet: Harmony"
+                        has "tribute: Harmony"
+                    and
+                        has "flagship planet: Lichen"
+                        has "tribute: Lichen"
+                    and
+                        has "flagship planet: Solace"
+                        has "tribute: Solace"
+                    and
+                        has "flagship planet: Sundrinker"
+                        has "tribute: Sundrinker"
+                    and
+                        has "flagship planet: Trinket"
+                        has "tribute: Trinket"
+                    and
+                        has "flagship planet: Twinstar"
+                        has "tribute: Twinstar"
+                    and
+                        has "flagship planet: Winter"
+                        has "tribute: Winter"
+            action
+                payment -2000
+            `The authorities on <origin> charge you a landing fee of <payment>.`
+                accept
+            label "tribute"
+            action
+                payment 2000
+            `The authorities on <origin> pay you <payment> in tribute.`
+                accept
+    on visit
+        conversation
+            branch "tribute"
+                or
+                    and
+                        has "flagship planet: Albatross"
+                        has "tribute: Albatross"
+                    and
+                        has "flagship planet: Bloodsea"
+                        has "tribute: Bloodsea"
+                    and
+                        has "flagship planet: Charon Station"
+                        has "tribute: Charon Station"
+                    and
+                        has "flagship planet: Clink"
+                        has "tribute: Clink"
+                    and
+                        has "flagship planet: Cornucopia"
+                        has "tribute: Cornucopia"
+                    and
+                        has "flagship planet: Dancer"
+                        has "tribute: Dancer"
+                    and
+                        has "flagship planet: Darkstone"
+                        has "tribute: Darkstone"
+                    and
+                        has "flagship planet: Deep"
+                        has "tribute: Deep"
+                    and
+                        has "flagship planet: Glaze"
+                        has "tribute: Glaze"
+                    and
+                        has "flagship planet: Harmony"
+                        has "tribute: Harmony"
+                    and
+                        has "flagship planet: Lichen"
+                        has "tribute: Lichen"
+                    and
+                        has "flagship planet: Solace"
+                        has "tribute: Solace"
+                    and
+                        has "flagship planet: Sundrinker"
+                        has "tribute: Sundrinker"
+                    and
+                        has "flagship planet: Trinket"
+                        has "tribute: Trinket"
+                    and
+                        has "flagship planet: Twinstar"
+                        has "tribute: Twinstar"
+                    and
+                        has "flagship planet: Winter"
+                        has "tribute: Winter"
+            action
+                payment -2000
+            `The authorities on <origin> charge you a landing fee of <payment>.`
+                decline
+            label "tribute"
+            action
+                payment 2000
+            `The authorities on <origin> pay you <payment> in tribute.`
+
+mission "Landing Fee H2"
+    invisible
+    repeat
+    landing
+    "apparent payment" 2000
+    to offer
+        has "event: initial deployment 3"
+    source
+        planet "Greenrock" "Smuggler's Den" "Thule"
+        government "Free Worlds"
+    on offer
+        conversation
+            branch "tribute"
+                or
+                    and
+                        has "flagship planet: Greenrock"
+                        has "tribute: Greenrock"
+                    and
+                        has "flagship planet: Smuggler's Den"
+                        has "tribute: Smuggler's Den"
+                    and
+                        has "flagship planet: Thule"
+                        has "tribute: Thule"
+            action
+                payment -2000
+            `The authorities on <origin> charge you a landing fee of <payment>.`
+                decline
+            label "tribute"
+            action
+                payment 2000
+            `The authorities on <origin> pay you <payment> in tribute.`
+                decline
+
+mission "Landing Fee I"
+    invisible
+    repeat
+    landing
+    "apparent payment" 1000
+    to offer
+        has "event: initial deployment 3"
+        or
+            not "flagship planet: Arabia"
+            ( "planet number i" % 2 ) == 0
+        or
+            not "flagship planet: Big Sky"
+            ( ( "planet number i" - ( "planet number i" % 2 ) ) % 4 ) == 0
+        or
+            not "flagship planet: Bounty"
+            ( ( "planet number i" - ( "planet number i" % 2 ) - ( "planet number i" % 4 ) ) % 8 ) == 0
+            "planet number i" < 4
+        or
+            not "flagship planet: Clark"
+            ( ( "planet number i" - ( "planet number i" % 2 ) - ( "planet number i" % 4 ) - ( "planet number i" % 8 ) ) % 16 ) == 0
+            "planet number i" < 8
+        or
+            not "flagship planet: Gemstone"
+            ( ( "planet number i" - ( "planet number i" % 2 ) - ( "planet number i" % 4 ) - ( "planet number i" % 8 ) - ( "planet number i" % 16 ) ) % 32 ) == 0
+            "planet number i" < 16
+        or
+            not "flagship planet: Heartland"
+            ( ( "planet number i" - ( "planet number i" % 2 ) - ( "planet number i" % 4 ) - ( "planet number i" % 8 ) - ( "planet number i" % 16 ) - ( "planet number i" % 32 ) ) % 64 ) == 0
+            "planet number i" < 32
+        or
+            not "flagship planet: Hopper"
+            ( ( "planet number i" - ( "planet number i" % 2 ) - ( "planet number i" % 4 ) - ( "planet number i" % 8 ) - ( "planet number i" % 16 ) - ( "planet number i" % 32 ) - ( "planet number i" % 64 ) ) % 128 ) == 0
+            "planet number i" < 64
+        or
+            not "flagship planet: Hydra Station"
+            ( ( "planet number i" - ( "planet number i" % 2 ) - ( "planet number i" % 4 ) - ( "planet number i" % 8 ) - ( "planet number i" % 16 ) - ( "planet number i" % 32 ) - ( "planet number i" % 64 ) - ( "planet number i" % 128 ) ) % 256 ) == 0
+            "planet number i" < 128
+        or
+            not "flagship planet: Ingot"
+            ( ( "planet number i" - ( "planet number i" % 2 ) - ( "planet number i" % 4 ) - ( "planet number i" % 8 ) - ( "planet number i" % 16 ) - ( "planet number i" % 32 ) - ( "planet number i" % 64 ) - ( "planet number i" % 128 ) - ( "planet number i" % 256 ) ) % 512 ) == 0
+            "planet number i" < 256
+        or
+            not "flagship planet: New Argentina"
+            ( ( "planet number i" - ( "planet number i" % 2 ) - ( "planet number i" % 4 ) - ( "planet number i" % 8 ) - ( "planet number i" % 16 ) - ( "planet number i" % 32 ) - ( "planet number i" % 64 ) - ( "planet number i" % 128 ) - ( "planet number i" % 256 ) - ( "planet number i" % 512 ) ) % 1024 ) == 0
+            "planet number i" < 512
+        or
+            not "flagship planet: New Austria"
+            ( ( "planet number i" - ( "planet number i" % 2 ) - ( "planet number i" % 4 ) - ( "planet number i" % 8 ) - ( "planet number i" % 16 ) - ( "planet number i" % 32 ) - ( "planet number i" % 64 ) - ( "planet number i" % 128 ) - ( "planet number i" % 256 ) - ( "planet number i" % 512 ) - ( "planet number i" % 1024 ) ) % 2048 ) == 0
+            "planet number i" < 1024
+        or
+            not "flagship planet: New Boston"
+            ( ( "planet number i" - ( "planet number i" % 2 ) - ( "planet number i" % 4 ) - ( "planet number i" % 8 ) - ( "planet number i" % 16 ) - ( "planet number i" % 32 ) - ( "planet number i" % 64 ) - ( "planet number i" % 128 ) - ( "planet number i" % 256 ) - ( "planet number i" % 512 ) - ( "planet number i" % 1024 ) - ( "planet number i" % 2048 ) ) % 4096 ) == 0
+            "planet number i" < 2048
+        or
+            not "flagship planet: New Greenland"
+            ( ( "planet number i" - ( "planet number i" % 2 ) - ( "planet number i" % 4 ) - ( "planet number i" % 8 ) - ( "planet number i" % 16 ) - ( "planet number i" % 32 ) - ( "planet number i" % 64 ) - ( "planet number i" % 128 ) - ( "planet number i" % 256 ) - ( "planet number i" % 512 ) - ( "planet number i" % 1024 ) - ( "planet number i" % 2048 ) - ( "planet number i" % 4096 ) ) % 8192 ) == 0
+            "planet number i" < 4096
+        or
+            not "flagship planet: New Holland"
+            ( ( "planet number i" - ( "planet number i" % 2 ) - ( "planet number i" % 4 ) - ( "planet number i" % 8 ) - ( "planet number i" % 16 ) - ( "planet number i" % 32 ) - ( "planet number i" % 64 ) - ( "planet number i" % 128 ) - ( "planet number i" % 256 ) - ( "planet number i" % 512 ) - ( "planet number i" % 1024 ) - ( "planet number i" % 2048 ) - ( "planet number i" % 4096 ) - ( "planet number i" % 8192 ) ) % 16384 ) == 0
+            "planet number i" < 8192
+        or
+            not "flagship planet: New Iceland"
+            ( ( "planet number i" - ( "planet number i" % 2 ) - ( "planet number i" % 4 ) - ( "planet number i" % 8 ) - ( "planet number i" % 16 ) - ( "planet number i" % 32 ) - ( "planet number i" % 64 ) - ( "planet number i" % 128 ) - ( "planet number i" % 256 ) - ( "planet number i" % 512 ) - ( "planet number i" % 1024 ) - ( "planet number i" % 2048 ) - ( "planet number i" % 4096 ) - ( "planet number i" % 8192 ) - ( "planet number i" % 16384 ) ) % 32768 ) == 0
+            "planet number i" < 16834
+        or
+            not "flagship planet: New India"
+            ( ( "planet number i" - ( "planet number i" % 2 ) - ( "planet number i" % 4 ) - ( "planet number i" % 8 ) - ( "planet number i" % 16 ) - ( "planet number i" % 32 ) - ( "planet number i" % 64 ) - ( "planet number i" % 128 ) - ( "planet number i" % 256 ) - ( "planet number i" % 512 ) - ( "planet number i" % 1024 ) - ( "planet number i" % 2048 ) - ( "planet number i" % 4096 ) - ( "planet number i" % 8192 ) - ( "planet number i" % 16384 ) - ( "planet number i" % 32768 ) ) % 65536 ) == 0
+            "planet number i" < 32768
+        or
+            not "flagship planet: New Kansas"
+            ( ( "planet number i" - ( "planet number i" % 2 ) - ( "planet number i" % 4 ) - ( "planet number i" % 8 ) - ( "planet number i" % 16 ) - ( "planet number i" % 32 ) - ( "planet number i" % 64 ) - ( "planet number i" % 128 ) - ( "planet number i" % 256 ) - ( "planet number i" % 512 ) - ( "planet number i" % 1024 ) - ( "planet number i" % 2048 ) - ( "planet number i" % 4096 ) - ( "planet number i" % 8192 ) - ( "planet number i" % 16384 ) - ( "planet number i" % 32768 ) - ( "planet number i" % 65536 ) ) % 131072 ) == 0
+            "planet number i" < 65536
+        or
+            not "flagship planet: New Portland"
+            ( ( "planet number i" - ( "planet number i" % 2 ) - ( "planet number i" % 4 ) - ( "planet number i" % 8 ) - ( "planet number i" % 16 ) - ( "planet number i" % 32 ) - ( "planet number i" % 64 ) - ( "planet number i" % 128 ) - ( "planet number i" % 256 ) - ( "planet number i" % 512 ) - ( "planet number i" % 1024 ) - ( "planet number i" % 2048 ) - ( "planet number i" % 4096 ) - ( "planet number i" % 8192 ) - ( "planet number i" % 16384 ) - ( "planet number i" % 32768 ) - ( "planet number i" % 65536 ) - ( "planet number i" % 131072 ) ) % 262144 ) == 0
+            "planet number i" < 131072
+        or
+            not "flagship planet: New Sahara"
+            ( ( "planet number i" - ( "planet number i" % 2 ) - ( "planet number i" % 4 ) - ( "planet number i" % 8 ) - ( "planet number i" % 16 ) - ( "planet number i" % 32 ) - ( "planet number i" % 64 ) - ( "planet number i" % 128 ) - ( "planet number i" % 256 ) - ( "planet number i" % 512 ) - ( "planet number i" % 1024 ) - ( "planet number i" % 2048 ) - ( "planet number i" % 4096 ) - ( "planet number i" % 8192 ) - ( "planet number i" % 16384 ) - ( "planet number i" % 32768 ) - ( "planet number i" % 65536 ) - ( "planet number i" % 131072 ) - ( "planet number i" % 262144 ) ) % 524288 ) == 0
+            "planet number i" < 262144
+        or
+            not "flagship planet: New Tibet"
+            ( ( "planet number i" - ( "planet number i" % 2 ) - ( "planet number i" % 4 ) - ( "planet number i" % 8 ) - ( "planet number i" % 16 ) - ( "planet number i" % 32 ) - ( "planet number i" % 64 ) - ( "planet number i" % 128 ) - ( "planet number i" % 256 ) - ( "planet number i" % 512 ) - ( "planet number i" % 1024 ) - ( "planet number i" % 2048 ) - ( "planet number i" % 4096 ) - ( "planet number i" % 8192 ) - ( "planet number i" % 16384 ) - ( "planet number i" % 32768 ) - ( "planet number i" % 65536 ) - ( "planet number i" % 131072 ) - ( "planet number i" % 262144 ) - ( "planet number i" % 524288 ) ) % 1048576 ) == 0
+            "planet number i" < 524288
+        or
+            not "flagship planet: New Wales"
+            ( ( "planet number i" - ( "planet number i" % 2 ) - ( "planet number i" % 4 ) - ( "planet number i" % 8 ) - ( "planet number i" % 16 ) - ( "planet number i" % 32 ) - ( "planet number i" % 64 ) - ( "planet number i" % 128 ) - ( "planet number i" % 256 ) - ( "planet number i" % 512 ) - ( "planet number i" % 1024 ) - ( "planet number i" % 2048 ) - ( "planet number i" % 4096 ) - ( "planet number i" % 8192 ) - ( "planet number i" % 16384 ) - ( "planet number i" % 32768 ) - ( "planet number i" % 65536 ) - ( "planet number i" % 131072 ) - ( "planet number i" % 262144 ) - ( "planet number i" % 524288 ) - ( "planet number i" % 1048576 ) ) % 2097152 ) == 0
+            "planet number i" < 1048576
+        or
+            not "flagship planet: New Washington"
+            ( ( "planet number i" - ( "planet number i" % 2 ) - ( "planet number i" % 4 ) - ( "planet number i" % 8 ) - ( "planet number i" % 16 ) - ( "planet number i" % 32 ) - ( "planet number i" % 64 ) - ( "planet number i" % 128 ) - ( "planet number i" % 256 ) - ( "planet number i" % 512 ) - ( "planet number i" % 1024 ) - ( "planet number i" % 2048 ) - ( "planet number i" % 4096 ) - ( "planet number i" % 8192 ) - ( "planet number i" % 16384 ) - ( "planet number i" % 32768 ) - ( "planet number i" % 65536 ) - ( "planet number i" % 131072 ) - ( "planet number i" % 262144 ) - ( "planet number i" % 524288 ) - ( "planet number i" % 1048576 ) - ( "planet number i" % 2097152 ) ) % 4194304 ) == 0
+            "planet number i" < 2097152
+        or
+            not "flagship planet: Oblivion"
+            ( ( "planet number i" - ( "planet number i" % 2 ) - ( "planet number i" % 4 ) - ( "planet number i" % 8 ) - ( "planet number i" % 16 ) - ( "planet number i" % 32 ) - ( "planet number i" % 64 ) - ( "planet number i" % 128 ) - ( "planet number i" % 256 ) - ( "planet number i" % 512 ) - ( "planet number i" % 1024 ) - ( "planet number i" % 2048 ) - ( "planet number i" % 4096 ) - ( "planet number i" % 8192 ) - ( "planet number i" % 16384 ) - ( "planet number i" % 32768 ) - ( "planet number i" % 65536 ) - ( "planet number i" % 131072 ) - ( "planet number i" % 262144 ) - ( "planet number i" % 524288 ) - ( "planet number i" % 1048576 ) - ( "planet number i" % 2097152 ) - ( "planet number i" % 4194304 ) ) % 8388608 ) == 0
+            "planet number i" < 4194304
+        or
+            not "flagship planet: Rand"
+            ( ( "planet number i" - ( "planet number i" % 2 ) - ( "planet number i" % 4 ) - ( "planet number i" % 8 ) - ( "planet number i" % 16 ) - ( "planet number i" % 32 ) - ( "planet number i" % 64 ) - ( "planet number i" % 128 ) - ( "planet number i" % 256 ) - ( "planet number i" % 512 ) - ( "planet number i" % 1024 ) - ( "planet number i" % 2048 ) - ( "planet number i" % 4096 ) - ( "planet number i" % 8192 ) - ( "planet number i" % 16384 ) - ( "planet number i" % 32768 ) - ( "planet number i" % 65536 ) - ( "planet number i" % 131072 ) - ( "planet number i" % 262144 ) - ( "planet number i" % 524288 ) - ( "planet number i" % 1048576 ) - ( "planet number i" % 2097152 ) - ( "planet number i" % 4194304 ) - ( "planet number i" % 8388608 ) ) % 16777216 ) == 0
+            "planet number i" < 8388608
+        or
+            not "flagship planet: Tundra"
+            ( ( "planet number i" - ( "planet number i" % 2 ) - ( "planet number i" % 4 ) - ( "planet number i" % 8 ) - ( "planet number i" % 16 ) - ( "planet number i" % 32 ) - ( "planet number i" % 64 ) - ( "planet number i" % 128 ) - ( "planet number i" % 256 ) - ( "planet number i" % 512 ) - ( "planet number i" % 1024 ) - ( "planet number i" % 2048 ) - ( "planet number i" % 4096 ) - ( "planet number i" % 8192 ) - ( "planet number i" % 16384 ) - ( "planet number i" % 32768 ) - ( "planet number i" % 65536 ) - ( "planet number i" % 131072 ) - ( "planet number i" % 262144 ) - ( "planet number i" % 524288 ) - ( "planet number i" % 1048576 ) - ( "planet number i" % 2097152 ) - ( "planet number i" % 4194304 ) - ( "planet number i" % 8388608 ) - ( "planet number i" % 16777216 ) ) % 33554432 ) == 0
+            "planet number i" < 16777216
+
+        or
+            has "flagship planet: Arabia"
+            has "flagship planet: Big Sky"
+            has "flagship planet: Bounty"
+            has "flagship planet: Clark"
+            has "flagship planet: Gemstone"
+            has "flagship planet: Heartland"
+            has "flagship planet: Hopper"
+            has "flagship planet: Hydra Station"
+            has "flagship planet: Ingot"
+            has "flagship planet: New Argentina"
+            has "flagship planet: New Austria"
+            has "flagship planet: New Boston"
+            has "flagship planet: New Greenland"
+            has "flagship planet: New Holland"
+            has "flagship planet: New Iceland"
+            has "flagship planet: New India"
+            has "flagship planet: New Kansas"
+            has "flagship planet: New Portland"
+            has "flagship planet: New Sahara"
+            has "flagship planet: New Tibet"
+            has "flagship planet: New Wales"
+            has "flagship planet: New Washington"
+            has "flagship planet: Oblivion"
+            has "flagship planet: Rand"
+            has "flagship planet: Tundra"
+    to complete
+        never
+    on offer
+        conversation
+            branch "not arabia"
+                not "flagship planet: Arabia"
+            action
+                "planet number i" += 1
+            label "not arabia"
+            branch "not big sky"
+                not "flagship planet: Big Sky"
+            action
+                "planet number i" += 2
+            label "not big sky"
+            branch "not bounty"
+                not "flagship planet: Bounty"
+            action
+                "planet number i" += 4
+            label "not bounty"
+            branch "not clark"
+                not "flagship planet: Clark"
+            action
+                "planet number i" += 8
+            label "not clark"
+            branch "not gemstone"
+                not "flagship planet: Gemstone"
+            action
+                "planet number i" += 16
+            label "not gemstone"
+            branch "not heartland"
+                not "flagship planet: Heartland"
+            action
+                "planet number i" += 32
+            label "not heartland"
+            branch "not hopper"
+                not "flagship planet: Hopper"
+            action
+                "planet number i" += 64
+            label "not hopper"
+            branch "not hydra station"
+                not "flagship planet: Hydra Station"
+            action
+                "planet number i" += 128
+            label "not hydra station"
+            branch "not ingot"
+                not "flagship planet: Ingot"
+            action
+                "planet number i" += 256
+            label "not ingot"
+            branch "not new argentina"
+                not "flagship planet: New Argentina"
+            action
+                "planet number i" += 512
+            label "not new argentina"
+            branch "not new austria"
+                not "flagship planet: New Austria"
+            action
+                "planet number i" += 1024
+            label "not new austria"
+            branch "not new boston"
+                not "flagship planet: New Boston"
+            action
+                "planet number i" += 2048
+            label "not new boston"
+            branch "not new greenland"
+                not "flagship planet: New Greenland"
+            action
+                "planet number i" += 4096
+            label "not new greenland"
+            branch "not new holland"
+                not "flagship planet: New Holland"
+            action
+                "planet number i" += 8192
+            label "not new holland"
+            branch "not new iceland"
+                not "flagship planet: New Iceland"
+            action
+                "planet number i" += 16384
+            label "not new iceland"
+            branch "not new india"
+                not "flagship planet: New India"
+            action
+                "planet number i" += 32768
+            label "not new india"
+            branch "not new kansas"
+                not "flagship planet: New Kansas"
+            action
+                "planet number i" += 65536
+            label "not new kansas"
+            branch "not new portland"
+                not "flagship planet: New Portland"
+            action
+                "planet number i" += 131072
+            label "not new portland"
+            branch "not new sahara"
+                not "flagship planet: New Sahara"
+            action
+                "planet number i" += 262144
+            label "not new sahara"
+            branch "not new tibet"
+                not "flagship planet: New Tibet"
+            action
+                "planet number i" += 524288
+            label "not new tibet"
+            branch "not new wales"
+                not "flagship planet: New Wales"
+            action
+                "planet number i" += 1048576
+            label "not new wales"
+            branch "not new washington"
+                not "flagship planet: New Washington"
+            action
+                "planet number i" += 2097152
+            label "not new washington"
+            branch "not oblivion"
+                not "flagship planet: Oblivion"
+            action
+                "planet number i" += 4194304
+            label "not oblivion"
+            branch "not rand"
+                not "flagship planet: Rand"
+            action
+                "planet number i" += 8388608
+            label "not rand"
+            branch "not tundra"
+                not "flagship planet: Tundra"
+            action
+                "planet number i" += 16777216
+            label "not tundra"
+            branch "tribute"
+                or
+                    and
+                        has "flagship planet: Arabia"
+                        has "tribute: Arabia"
+                    and
+                        has "flagship planet: Big Sky"
+                        has "tribute: Big Sky"
+                    and
+                        has "flagship planet: Bounty"
+                        has "tribute: Bounty"
+                    and
+                        has "flagship planet: Clark"
+                        has "tribute: Clark"
+                    and
+                        has "flagship planet: Gemstone"
+                        has "tribute: Gemstone"
+                    and
+                        has "flagship planet: Heartland"
+                        has "tribute: Heartland"
+                    and
+                        has "flagship planet: Hopper"
+                        has "tribute: Hopper"
+                    and
+                        has "flagship planet: Hydra Station"
+                        has "tribute: Hydra Station"
+                    and
+                        has "flagship planet: Ingot"
+                        has "tribute: Ingot"
+                    and
+                        has "flagship planet: New Argentina"
+                        has "tribute: New Argentina"
+                    and
+                        has "flagship planet: New Austria"
+                        has "tribute: New Austria"
+                    and
+                        has "flagship planet: New Boston"
+                        has "tribute: New Boston"
+                    and
+                        has "flagship planet: New Greenland"
+                        has "tribute: New Greenland"
+                    and
+                        has "flagship planet: New Holland"
+                        has "tribute: New Holland"
+                    and
+                        has "flagship planet: New Iceland"
+                        has "tribute: New Iceland"
+                    and
+                        has "flagship planet: New India"
+                        has "tribute: New India"
+                    and
+                        has "flagship planet: New Kansas"
+                        has "tribute: New Kansas"
+                    and
+                        has "flagship planet: New Portland"
+                        has "tribute: New Portland"
+                    and
+                        has "flagship planet: New Sahara"
+                        has "tribute: New Sahara"
+                    and
+                        has "flagship planet: New Tibet"
+                        has "tribute: New Tibet"
+                    and
+                        has "flagship planet: New Wales"
+                        has "tribute: New Wales"
+                    and
+                        has "flagship planet: New Washington"
+                        has "tribute: New Washington"
+                    and
+                        has "flagship planet: Oblivion"
+                        has "tribute: Oblivion"
+                    and
+                        has "flagship planet: Rand"
+                        has "tribute: Rand"
+                    and
+                        has "flagship planet: Tundra"
+                        has "tribute: Tundra"
+            action
+                payment -1000
+            `The authorities on <origin> charge you a landing fee of <payment>.`
+                accept
+            label "tribute"
+            action
+                payment 1000
+            `The authorities on <origin> pay you <payment> in tribute.`
+                accept
+    on visit
+        conversation
+            branch "tribute"
+                or
+                    and
+                        has "flagship planet: Arabia"
+                        has "tribute: Arabia"
+                    and
+                        has "flagship planet: Big Sky"
+                        has "tribute: Big Sky"
+                    and
+                        has "flagship planet: Bounty"
+                        has "tribute: Bounty"
+                    and
+                        has "flagship planet: Clark"
+                        has "tribute: Clark"
+                    and
+                        has "flagship planet: Gemstone"
+                        has "tribute: Gemstone"
+                    and
+                        has "flagship planet: Heartland"
+                        has "tribute: Heartland"
+                    and
+                        has "flagship planet: Hopper"
+                        has "tribute: Hopper"
+                    and
+                        has "flagship planet: Hydra Station"
+                        has "tribute: Hydra Station"
+                    and
+                        has "flagship planet: Ingot"
+                        has "tribute: Ingot"
+                    and
+                        has "flagship planet: New Argentina"
+                        has "tribute: New Argentina"
+                    and
+                        has "flagship planet: New Austria"
+                        has "tribute: New Austria"
+                    and
+                        has "flagship planet: New Boston"
+                        has "tribute: New Boston"
+                    and
+                        has "flagship planet: New Greenland"
+                        has "tribute: New Greenland"
+                    and
+                        has "flagship planet: New Holland"
+                        has "tribute: New Holland"
+                    and
+                        has "flagship planet: New Iceland"
+                        has "tribute: New Iceland"
+                    and
+                        has "flagship planet: New India"
+                        has "tribute: New India"
+                    and
+                        has "flagship planet: New Kansas"
+                        has "tribute: New Kansas"
+                    and
+                        has "flagship planet: New Portland"
+                        has "tribute: New Portland"
+                    and
+                        has "flagship planet: New Sahara"
+                        has "tribute: New Sahara"
+                    and
+                        has "flagship planet: New Tibet"
+                        has "tribute: New Tibet"
+                    and
+                        has "flagship planet: New Wales"
+                        has "tribute: New Wales"
+                    and
+                        has "flagship planet: New Washington"
+                        has "tribute: New Washington"
+                    and
+                        has "flagship planet: Oblivion"
+                        has "tribute: Oblivion"
+                    and
+                        has "flagship planet: Rand"
+                        has "tribute: Rand"
+                    and
+                        has "flagship planet: Tundra"
+                        has "tribute: Tundra"
+            action
+                payment -1000
+            `The authorities on <origin> charge you a landing fee of <payment>.`
+                decline
+            label "tribute"
+            action
+                payment 1000
+            `The authorities on <origin> pay you <payment> in tribute.`
+
+mission "Landing Fee Alpha"
+    invisible
+    repeat
+    landing
+    "apparent payment" 10000
+    to offer
+        has "event: hr: secret leaks"
+        or
+            not "flagship planet: Allhome"
+            ( "planet number alpha" % 2 ) == 0
+        or
+            not "flagship planet: Cloudfire"
+            ( ( "planet number alpha" - ( "planet number alpha" % 2 ) ) % 4 ) == 0
+        or
+            not "flagship planet: Darkcloak"
+            ( ( "planet number alpha" - ( "planet number alpha" % 2 ) - ( "planet number alpha" % 4 ) ) % 8 ) == 0
+            "planet number alpha" < 4
+        or
+            not "flagship planet: Darkmetal"
+            ( ( "planet number alpha" - ( "planet number alpha" % 2 ) - ( "planet number alpha" % 4 ) - ( "planet number alpha" % 8 ) ) % 16 ) == 0
+            "planet number alpha" < 8
+        or
+            not "flagship planet: Dustmaker"
+            ( ( "planet number alpha" - ( "planet number alpha" % 2 ) - ( "planet number alpha" % 4 ) - ( "planet number alpha" % 8 ) - ( "planet number alpha" % 16 ) ) % 32 ) == 0
+            "planet number alpha" < 16
+        or
+            not "flagship planet: Everhope"
+            ( ( "planet number alpha" - ( "planet number alpha" % 2 ) - ( "planet number alpha" % 4 ) - ( "planet number alpha" % 8 ) - ( "planet number alpha" % 16 ) - ( "planet number alpha" % 32 ) ) % 64 ) == 0
+            "planet number alpha" < 32
+        or
+            not "flagship planet: Farwater"
+            ( ( "planet number alpha" - ( "planet number alpha" % 2 ) - ( "planet number alpha" % 4 ) - ( "planet number alpha" % 8 ) - ( "planet number alpha" % 16 ) - ( "planet number alpha" % 32 ) - ( "planet number alpha" % 64 ) ) % 128 ) == 0
+            "planet number alpha" < 64
+        or
+            not "flagship planet: Firelode"
+            ( ( "planet number alpha" - ( "planet number alpha" % 2 ) - ( "planet number alpha" % 4 ) - ( "planet number alpha" % 8 ) - ( "planet number alpha" % 16 ) - ( "planet number alpha" % 32 ) - ( "planet number alpha" % 64 ) - ( "planet number alpha" % 128 ) ) % 256 ) == 0
+            "planet number alpha" < 128
+        or
+            not "flagship planet: Frostmark"
+            ( ( "planet number alpha" - ( "planet number alpha" % 2 ) - ( "planet number alpha" % 4 ) - ( "planet number alpha" % 8 ) - ( "planet number alpha" % 16 ) - ( "planet number alpha" % 32 ) - ( "planet number alpha" % 64 ) - ( "planet number alpha" % 128 ) - ( "planet number alpha" % 256 ) ) % 512 ) == 0
+            "planet number alpha" < 256
+        or
+            not "flagship planet: Giverstone"
+            ( ( "planet number alpha" - ( "planet number alpha" % 2 ) - ( "planet number alpha" % 4 ) - ( "planet number alpha" % 8 ) - ( "planet number alpha" % 16 ) - ( "planet number alpha" % 32 ) - ( "planet number alpha" % 64 ) - ( "planet number alpha" % 128 ) - ( "planet number alpha" % 256 ) - ( "planet number alpha" % 512 ) ) % 1024 ) == 0
+            "planet number alpha" < 512
+        or
+            not "flagship planet: Greenbloom"
+            ( ( "planet number alpha" - ( "planet number alpha" % 2 ) - ( "planet number alpha" % 4 ) - ( "planet number alpha" % 8 ) - ( "planet number alpha" % 16 ) - ( "planet number alpha" % 32 ) - ( "planet number alpha" % 64 ) - ( "planet number alpha" % 128 ) - ( "planet number alpha" % 256 ) - ( "planet number alpha" % 512 ) - ( "planet number alpha" % 1024 ) ) % 2048 ) == 0
+            "planet number alpha" < 1024
+        or
+            not "flagship planet: Greenview"
+            ( ( "planet number alpha" - ( "planet number alpha" % 2 ) - ( "planet number alpha" % 4 ) - ( "planet number alpha" % 8 ) - ( "planet number alpha" % 16 ) - ( "planet number alpha" % 32 ) - ( "planet number alpha" % 64 ) - ( "planet number alpha" % 128 ) - ( "planet number alpha" % 256 ) - ( "planet number alpha" % 512 ) - ( "planet number alpha" % 1024 ) - ( "planet number alpha" % 2048 ) ) % 4096 ) == 0
+            "planet number alpha" < 2048
+        or
+            not "flagship planet: Greenwater"
+            ( ( "planet number alpha" - ( "planet number alpha" % 2 ) - ( "planet number alpha" % 4 ) - ( "planet number alpha" % 8 ) - ( "planet number alpha" % 16 ) - ( "planet number alpha" % 32 ) - ( "planet number alpha" % 64 ) - ( "planet number alpha" % 128 ) - ( "planet number alpha" % 256 ) - ( "planet number alpha" % 512 ) - ( "planet number alpha" % 1024 ) - ( "planet number alpha" % 2048 ) - ( "planet number alpha" % 4096 ) ) % 8192 ) == 0
+            "planet number alpha" < 4096
+        or
+            not "flagship planet: Greymoon"
+            ( ( "planet number alpha" - ( "planet number alpha" % 2 ) - ( "planet number alpha" % 4 ) - ( "planet number alpha" % 8 ) - ( "planet number alpha" % 16 ) - ( "planet number alpha" % 32 ) - ( "planet number alpha" % 64 ) - ( "planet number alpha" % 128 ) - ( "planet number alpha" % 256 ) - ( "planet number alpha" % 512 ) - ( "planet number alpha" % 1024 ) - ( "planet number alpha" % 2048 ) - ( "planet number alpha" % 4096 ) - ( "planet number alpha" % 8192 ) ) % 16384 ) == 0
+            "planet number alpha" < 8192
+        or
+            not "flagship planet: Hai-home"
+            ( ( "planet number alpha" - ( "planet number alpha" % 2 ) - ( "planet number alpha" % 4 ) - ( "planet number alpha" % 8 ) - ( "planet number alpha" % 16 ) - ( "planet number alpha" % 32 ) - ( "planet number alpha" % 64 ) - ( "planet number alpha" % 128 ) - ( "planet number alpha" % 256 ) - ( "planet number alpha" % 512 ) - ( "planet number alpha" % 1024 ) - ( "planet number alpha" % 2048 ) - ( "planet number alpha" % 4096 ) - ( "planet number alpha" % 8192 ) - ( "planet number alpha" % 16384 ) ) % 32768 ) == 0
+            "planet number alpha" < 16384
+        or
+            not "flagship planet: Heartvalley"
+            ( ( "planet number alpha" - ( "planet number alpha" % 2 ) - ( "planet number alpha" % 4 ) - ( "planet number alpha" % 8 ) - ( "planet number alpha" % 16 ) - ( "planet number alpha" % 32 ) - ( "planet number alpha" % 64 ) - ( "planet number alpha" % 128 ) - ( "planet number alpha" % 256 ) - ( "planet number alpha" % 512 ) - ( "planet number alpha" % 1024 ) - ( "planet number alpha" % 2048 ) - ( "planet number alpha" % 4096 ) - ( "planet number alpha" % 8192 ) - ( "planet number alpha" % 16384 ) - ( "planet number alpha" % 32768 ) ) % 65536 ) == 0
+            "planet number alpha" < 32768
+        or
+            not "flagship planet: Icelake"
+            ( ( "planet number alpha" - ( "planet number alpha" % 2 ) - ( "planet number alpha" % 4 ) - ( "planet number alpha" % 8 ) - ( "planet number alpha" % 16 ) - ( "planet number alpha" % 32 ) - ( "planet number alpha" % 64 ) - ( "planet number alpha" % 128 ) - ( "planet number alpha" % 256 ) - ( "planet number alpha" % 512 ) - ( "planet number alpha" % 1024 ) - ( "planet number alpha" % 2048 ) - ( "planet number alpha" % 4096 ) - ( "planet number alpha" % 8192 ) - ( "planet number alpha" % 16384 ) - ( "planet number alpha" % 32768 ) - ( "planet number alpha" % 65536 ) ) % 131072 ) == 0
+            "planet number alpha" < 65536
+        or
+            not "flagship planet: Makerplace"
+            ( ( "planet number alpha" - ( "planet number alpha" % 2 ) - ( "planet number alpha" % 4 ) - ( "planet number alpha" % 8 ) - ( "planet number alpha" % 16 ) - ( "planet number alpha" % 32 ) - ( "planet number alpha" % 64 ) - ( "planet number alpha" % 128 ) - ( "planet number alpha" % 256 ) - ( "planet number alpha" % 512 ) - ( "planet number alpha" % 1024 ) - ( "planet number alpha" % 2048 ) - ( "planet number alpha" % 4096 ) - ( "planet number alpha" % 8192 ) - ( "planet number alpha" % 16384 ) - ( "planet number alpha" % 32768 ) - ( "planet number alpha" % 65536 ) - ( "planet number alpha" % 131072 ) ) % 262144 ) == 0
+            "planet number alpha" < 131072
+        or
+            not "flagship planet: Mirrorlake"
+            ( ( "planet number alpha" - ( "planet number alpha" % 2 ) - ( "planet number alpha" % 4 ) - ( "planet number alpha" % 8 ) - ( "planet number alpha" % 16 ) - ( "planet number alpha" % 32 ) - ( "planet number alpha" % 64 ) - ( "planet number alpha" % 128 ) - ( "planet number alpha" % 256 ) - ( "planet number alpha" % 512 ) - ( "planet number alpha" % 1024 ) - ( "planet number alpha" % 2048 ) - ( "planet number alpha" % 4096 ) - ( "planet number alpha" % 8192 ) - ( "planet number alpha" % 16384 ) - ( "planet number alpha" % 32768 ) - ( "planet number alpha" % 65536 ) - ( "planet number alpha" % 131072 ) - ( "planet number alpha" % 262144 ) ) % 524288 ) == 0
+            "planet number alpha" < 262144
+        or
+            not "flagship planet: Newhome"
+            ( ( "planet number alpha" - ( "planet number alpha" % 2 ) - ( "planet number alpha" % 4 ) - ( "planet number alpha" % 8 ) - ( "planet number alpha" % 16 ) - ( "planet number alpha" % 32 ) - ( "planet number alpha" % 64 ) - ( "planet number alpha" % 128 ) - ( "planet number alpha" % 256 ) - ( "planet number alpha" % 512 ) - ( "planet number alpha" % 1024 ) - ( "planet number alpha" % 2048 ) - ( "planet number alpha" % 4096 ) - ( "planet number alpha" % 8192 ) - ( "planet number alpha" % 16384 ) - ( "planet number alpha" % 32768 ) - ( "planet number alpha" % 65536 ) - ( "planet number alpha" % 131072 ) - ( "planet number alpha" % 262144 ) - ( "planet number alpha" % 524288 ) ) % 1048576 ) == 0
+            "planet number alpha" < 524288
+        or
+            not "flagship planet: Ochrescoop"
+            ( ( "planet number alpha" - ( "planet number alpha" % 2 ) - ( "planet number alpha" % 4 ) - ( "planet number alpha" % 8 ) - ( "planet number alpha" % 16 ) - ( "planet number alpha" % 32 ) - ( "planet number alpha" % 64 ) - ( "planet number alpha" % 128 ) - ( "planet number alpha" % 256 ) - ( "planet number alpha" % 512 ) - ( "planet number alpha" % 1024 ) - ( "planet number alpha" % 2048 ) - ( "planet number alpha" % 4096 ) - ( "planet number alpha" % 8192 ) - ( "planet number alpha" % 16384 ) - ( "planet number alpha" % 32768 ) - ( "planet number alpha" % 65536 ) - ( "planet number alpha" % 131072 ) - ( "planet number alpha" % 262144 ) - ( "planet number alpha" % 524288 ) - ( "planet number alpha" % 1048576 ) ) % 2097152 ) == 0
+            "planet number alpha" < 1048576
+        or
+            not "flagship planet: Skyfarm"
+            ( ( "planet number alpha" - ( "planet number alpha" % 2 ) - ( "planet number alpha" % 4 ) - ( "planet number alpha" % 8 ) - ( "planet number alpha" % 16 ) - ( "planet number alpha" % 32 ) - ( "planet number alpha" % 64 ) - ( "planet number alpha" % 128 ) - ( "planet number alpha" % 256 ) - ( "planet number alpha" % 512 ) - ( "planet number alpha" % 1024 ) - ( "planet number alpha" % 2048 ) - ( "planet number alpha" % 4096 ) - ( "planet number alpha" % 8192 ) - ( "planet number alpha" % 16384 ) - ( "planet number alpha" % 32768 ) - ( "planet number alpha" % 65536 ) - ( "planet number alpha" % 131072 ) - ( "planet number alpha" % 262144 ) - ( "planet number alpha" % 524288 ) - ( "planet number alpha" % 1048576 ) - ( "planet number alpha" % 2097152 ) ) % 4194304 ) == 0
+            "planet number alpha" < 2097152
+        or
+            not "flagship planet: Snowfeather"
+            ( ( "planet number alpha" - ( "planet number alpha" % 2 ) - ( "planet number alpha" % 4 ) - ( "planet number alpha" % 8 ) - ( "planet number alpha" % 16 ) - ( "planet number alpha" % 32 ) - ( "planet number alpha" % 64 ) - ( "planet number alpha" % 128 ) - ( "planet number alpha" % 256 ) - ( "planet number alpha" % 512 ) - ( "planet number alpha" % 1024 ) - ( "planet number alpha" % 2048 ) - ( "planet number alpha" % 4096 ) - ( "planet number alpha" % 8192 ) - ( "planet number alpha" % 16384 ) - ( "planet number alpha" % 32768 ) - ( "planet number alpha" % 65536 ) - ( "planet number alpha" % 131072 ) - ( "planet number alpha" % 262144 ) - ( "planet number alpha" % 524288 ) - ( "planet number alpha" % 1048576 ) - ( "planet number alpha" % 2097152 ) - ( "planet number alpha" % 4194304 ) ) % 8388608 ) == 0
+            "planet number alpha" < 4194304
+        or
+            not "flagship planet: Stonebreak"
+            ( ( "planet number alpha" - ( "planet number alpha" % 2 ) - ( "planet number alpha" % 4 ) - ( "planet number alpha" % 8 ) - ( "planet number alpha" % 16 ) - ( "planet number alpha" % 32 ) - ( "planet number alpha" % 64 ) - ( "planet number alpha" % 128 ) - ( "planet number alpha" % 256 ) - ( "planet number alpha" % 512 ) - ( "planet number alpha" % 1024 ) - ( "planet number alpha" % 2048 ) - ( "planet number alpha" % 4096 ) - ( "planet number alpha" % 8192 ) - ( "planet number alpha" % 16384 ) - ( "planet number alpha" % 32768 ) - ( "planet number alpha" % 65536 ) - ( "planet number alpha" % 131072 ) - ( "planet number alpha" % 262144 ) - ( "planet number alpha" % 524288 ) - ( "planet number alpha" % 1048576 ) - ( "planet number alpha" % 2097152 ) - ( "planet number alpha" % 4194304 ) - ( "planet number alpha" % 8388608 ) ) % 16777216 ) == 0
+            "planet number alpha" < 8388608
+        or
+            not "flagship planet: Swiftsong"
+            ( ( "planet number alpha" - ( "planet number alpha" % 2 ) - ( "planet number alpha" % 4 ) - ( "planet number alpha" % 8 ) - ( "planet number alpha" % 16 ) - ( "planet number alpha" % 32 ) - ( "planet number alpha" % 64 ) - ( "planet number alpha" % 128 ) - ( "planet number alpha" % 256 ) - ( "planet number alpha" % 512 ) - ( "planet number alpha" % 1024 ) - ( "planet number alpha" % 2048 ) - ( "planet number alpha" % 4096 ) - ( "planet number alpha" % 8192 ) - ( "planet number alpha" % 16384 ) - ( "planet number alpha" % 32768 ) - ( "planet number alpha" % 65536 ) - ( "planet number alpha" % 131072 ) - ( "planet number alpha" % 262144 ) - ( "planet number alpha" % 524288 ) - ( "planet number alpha" % 1048576 ) - ( "planet number alpha" % 2097152 ) - ( "planet number alpha" % 4194304 ) - ( "planet number alpha" % 8388608 ) - ( "planet number alpha" % 16777216 ) ) % 33554432 ) == 0
+            "planet number alpha" < 16777216
+        or
+            not "flagship planet: Warfeed"
+            ( ( "planet number alpha" - ( "planet number alpha" % 2 ) - ( "planet number alpha" % 4 ) - ( "planet number alpha" % 8 ) - ( "planet number alpha" % 16 ) - ( "planet number alpha" % 32 ) - ( "planet number alpha" % 64 ) - ( "planet number alpha" % 128 ) - ( "planet number alpha" % 256 ) - ( "planet number alpha" % 512 ) - ( "planet number alpha" % 1024 ) - ( "planet number alpha" % 2048 ) - ( "planet number alpha" % 4096 ) - ( "planet number alpha" % 8192 ) - ( "planet number alpha" % 16384 ) - ( "planet number alpha" % 32768 ) - ( "planet number alpha" % 65536 ) - ( "planet number alpha" % 131072 ) - ( "planet number alpha" % 262144 ) - ( "planet number alpha" % 524288 ) - ( "planet number alpha" % 1048576 ) - ( "planet number alpha" % 2097152 ) - ( "planet number alpha" % 4194304 ) - ( "planet number alpha" % 8388608 ) - ( "planet number alpha" % 16777216 ) - ( "planet number alpha" % 33554432 ) ) % 67108864 ) == 0
+            "planet number alpha" < 33554432
+
+        or
+            has "flagship planet: Allhome"
+            has "flagship planet: Cloudfire"
+            has "flagship planet: Darkcloak"
+            has "flagship planet: Darkmetal"
+            has "flagship planet: Dustmaker"
+            has "flagship planet: Everhope"
+            has "flagship planet: Farwater"
+            has "flagship planet: Firelode"
+            has "flagship planet: Frostmark"
+            has "flagship planet: Giverstone"
+            has "flagship planet: Greenbloom"
+            has "flagship planet: Greenview"
+            has "flagship planet: Greenwater"
+            has "flagship planet: Greymoon"
+            has "flagship planet: Hai-home"
+            has "flagship planet: Heartvalley"
+            has "flagship planet: Icelake"
+            has "flagship planet: Makerplace"
+            has "flagship planet: Mirrorlake"
+            has "flagship planet: Newhome"
+            has "flagship planet: Ochrescoop"
+            has "flagship planet: Skyfarm"
+            has "flagship planet: Snowfeather"
+            has "flagship planet: Stonebreak"
+            has "flagship planet: Swiftsong"
+            has "flagship planet: Warfeed"
+    to complete
+        never
+    on offer
+        conversation
+            branch "not allhome"
+                not "flagship planet: Allhome"
+            action
+                "planet number alpha" += 1
+            label "not allhome"
+            branch "not cloudfire"
+                not "flagship planet: Cloudfire"
+            action
+                "planet number alpha" += 2
+            label "not cloudfire"
+            branch "not darkcloak"
+                not "flagship planet: Darkcloak"
+            action
+                "planet number alpha" += 4
+            label "not darkcloak"
+            branch "not darkmetal"
+                not "flagship planet: Darkmetal"
+            action
+                "planet number alpha" += 8
+            label "not darkmetal"
+            branch "not dustmaker"
+                not "flagship planet: Dustmaker"
+            action
+                "planet number alpha" += 16
+            label "not dustmaker"
+            branch "not everhope"
+                not "flagship planet: Everhope"
+            action
+                "planet number alpha" += 32
+            label "not everhope"
+            branch "not farwater"
+                not "flagship planet: Farwater"
+            action
+                "planet number alpha" += 64
+            label "not farwater"
+            branch "not firelode"
+                not "flagship planet: Firelode"
+            action
+                "planet number alpha" += 128
+            label "not firelode"
+            branch "not frostmark"
+                not "flagship planet: Frostmark"
+            action
+                "planet number alpha" += 256
+            label "not frostmark"
+            branch "not giverstone"
+                not "flagship planet: Giverstone"
+            action
+                "planet number alpha" += 512
+            label "not giverstone"
+            branch "not greenbloom"
+                not "flagship planet: Greenbloom"
+            action
+                "planet number alpha" += 1024
+            label "not greenbloom"
+            branch "not greenview"
+                not "flagship planet: Greenview"
+            action
+                "planet number alpha" += 2048
+            label "not greenview"
+            branch "not greenwater"
+                not "flagship planet: Greenwater"
+            action
+                "planet number alpha" += 4096
+            label "not greenwater"
+            branch "not greymoon"
+                not "flagship planet: Greymoon"
+            action
+                "planet number alpha" += 8192
+            label "not greymoon"
+            branch "not hai-home"
+                not "flagship planet: Hai-home"
+            action
+                "planet number alpha" += 16384
+            label "not hai-home"
+            branch "not heartvalley"
+                not "flagship planet: Heartvalley"
+            action
+                "planet number alpha" += 32768
+            label "not heartvalley"
+            branch "not icelake"
+                not "flagship planet: Icelake"
+            action
+                "planet number alpha" += 65536
+            label "not icelake"
+            branch "not makerplace"
+                not "flagship planet: Makerplace"
+            action
+                "planet number alpha" += 131072
+            label "not makerplace"
+            branch "not mirrorlake"
+                not "flagship planet: Mirrorlake"
+            action
+                "planet number alpha" += 262144
+            label "not mirrorlake"
+            branch "not newhome"
+                not "flagship planet: Newhome"
+            action
+                "planet number alpha" += 524288
+            label "not newhome"
+            branch "not ochrescoop"
+                not "flagship planet: Ochrescoop"
+            action
+                "planet number alpha" += 1048576
+            label "not ochrescoop"
+            branch "not skyfarm"
+                not "flagship planet: Skyfarm"
+            action
+                "planet number alpha" += 2097152
+            label "not skyfarm"
+            branch "not snowfeather"
+                not "flagship planet: Snowfeather"
+            action
+                "planet number alpha" += 4194304
+            label "not snowfeather"
+            branch "not stonebreak"
+                not "flagship planet: Stonebreak"
+            action
+                "planet number alpha" += 8388608
+            label "not stonebreak"
+            branch "not swiftsong"
+                not "flagship planet: Swiftsong"
+            action
+                "planet number alpha" += 16777216
+            label "not swiftsong"
+            branch "not warfeed"
+                not "flagship planet: Warfeed"
+            action
+                "planet number alpha" += 33554432
+            label "not warfeed"
+            branch "tribute"
+                or
+                    and
+                        has "flagship planet: Allhome"
+                        has "tribute: Allhome"
+                    and
+                        has "flagship planet: Cloudfire"
+                        has "tribute: Cloudfire"
+                    and
+                        has "flagship planet: Darkcloak"
+                        has "tribute: Darkcloak"
+                    and
+                        has "flagship planet: Darkmetal"
+                        has "tribute: Darkmetal"
+                    and
+                        has "flagship planet: Dustmaker"
+                        has "tribute: Dustmaker"
+                    and
+                        has "flagship planet: Everhope"
+                        has "tribute: Everhope"
+                    and
+                        has "flagship planet: Farwater"
+                        has "tribute: Farwater"
+                    and
+                        has "flagship planet: Firelode"
+                        has "tribute: Firelode"
+                    and
+                        has "flagship planet: Frostmark"
+                        has "tribute: Frostmark"
+                    and
+                        has "flagship planet: Giverstone"
+                        has "tribute: Giverstone"
+                    and
+                        has "flagship planet: Greenbloom"
+                        has "tribute: Greenbloom"
+                    and
+                        has "flagship planet: Greenview"
+                        has "tribute: Greenview"
+                    and
+                        has "flagship planet: Greenwater"
+                        has "tribute: Greenwater"
+                    and
+                        has "flagship planet: Greymoon"
+                        has "tribute: Greymoon"
+                    and
+                        has "flagship planet: Hai-home"
+                        has "tribute: Hai-home"
+                    and
+                        has "flagship planet: Heartvalley"
+                        has "tribute: Heartvalley"
+                    and
+                        has "flagship planet: Icelake"
+                        has "tribute: Icelake"
+                    and
+                        has "flagship planet: Makerplace"
+                        has "tribute: Makerplace"
+                    and
+                        has "flagship planet: Mirrorlake"
+                        has "tribute: Mirrorlake"
+                    and
+                        has "flagship planet: Newhome"
+                        has "tribute: Newhome"
+                    and
+                        has "flagship planet: Ochrescoop"
+                        has "tribute: Ochrescoop"
+                    and
+                        has "flagship planet: Skyfarm"
+                        has "tribute: Skyfarm"
+                    and
+                        has "flagship planet: Snowfeather"
+                        has "tribute: Snowfeather"
+                    and
+                        has "flagship planet: Stonebreak"
+                        has "tribute: Stonebreak"
+                    and
+                        has "flagship planet: Swiftsong"
+                        has "tribute: Swiftsong"
+                    and
+                        has "flagship planet: Warfeed"
+                        has "tribute: Warfeed"
+            action
+                payment -10000
+            `The authorities on <origin> charge you a landing fee of <payment>.`
+                accept
+            label "tribute"
+            action
+                payment 10000
+            `The authorities on <origin> pay you <payment> in tribute.`
+                accept
+    on visit
+        conversation
+            branch "tribute"
+                or
+                    and
+                        has "flagship planet: Allhome"
+                        has "tribute: Allhome"
+                    and
+                        has "flagship planet: Cloudfire"
+                        has "tribute: Cloudfire"
+                    and
+                        has "flagship planet: Darkcloak"
+                        has "tribute: Darkcloak"
+                    and
+                        has "flagship planet: Darkmetal"
+                        has "tribute: Darkmetal"
+                    and
+                        has "flagship planet: Dustmaker"
+                        has "tribute: Dustmaker"
+                    and
+                        has "flagship planet: Everhope"
+                        has "tribute: Everhope"
+                    and
+                        has "flagship planet: Farwater"
+                        has "tribute: Farwater"
+                    and
+                        has "flagship planet: Firelode"
+                        has "tribute: Firelode"
+                    and
+                        has "flagship planet: Frostmark"
+                        has "tribute: Frostmark"
+                    and
+                        has "flagship planet: Giverstone"
+                        has "tribute: Giverstone"
+                    and
+                        has "flagship planet: Greenbloom"
+                        has "tribute: Greenbloom"
+                    and
+                        has "flagship planet: Greenview"
+                        has "tribute: Greenview"
+                    and
+                        has "flagship planet: Greenwater"
+                        has "tribute: Greenwater"
+                    and
+                        has "flagship planet: Greymoon"
+                        has "tribute: Greymoon"
+                    and
+                        has "flagship planet: Hai-home"
+                        has "tribute: Hai-home"
+                    and
+                        has "flagship planet: Heartvalley"
+                        has "tribute: Heartvalley"
+                    and
+                        has "flagship planet: Icelake"
+                        has "tribute: Icelake"
+                    and
+                        has "flagship planet: Makerplace"
+                        has "tribute: Makerplace"
+                    and
+                        has "flagship planet: Mirrorlake"
+                        has "tribute: Mirrorlake"
+                    and
+                        has "flagship planet: Newhome"
+                        has "tribute: Newhome"
+                    and
+                        has "flagship planet: Ochrescoop"
+                        has "tribute: Ochrescoop"
+                    and
+                        has "flagship planet: Skyfarm"
+                        has "tribute: Skyfarm"
+                    and
+                        has "flagship planet: Snowfeather"
+                        has "tribute: Snowfeather"
+                    and
+                        has "flagship planet: Stonebreak"
+                        has "tribute: Stonebreak"
+                    and
+                        has "flagship planet: Swiftsong"
+                        has "tribute: Swiftsong"
+                    and
+                        has "flagship planet: Warfeed"
+                        has "tribute: Warfeed"
+            action
+                payment -10000
+            `The authorities on <origin> charge you a landing fee of <payment>.`
+                decline
+            label "tribute"
+            action
+                payment 10000
+            `The authorities on <origin> pay you <payment> in tribute.`
+
+mission "Landing Fee Beta"
+    invisible
+    repeat
+    landing
+    "apparent payment" 15000
+    to offer
+        or
+            not "flagship planet: Karek Fornati"
+            ( "planet number beta" % 2 ) == 0
+        or
+            not "flagship planet: Korati Efreti"
+            ( ( "planet number beta" - ( "planet number beta" % 2 ) ) % 4 ) == 0
+        or
+            not "flagship planet: Laki Nemparu"
+            ( ( "planet number beta" - ( "planet number beta" % 2 ) - ( "planet number beta" % 4 ) ) % 8 ) == 0
+            "planet number beta" < 4
+        or
+            not "flagship planet: Setar Fort"
+            ( ( "planet number beta" - ( "planet number beta" % 2 ) - ( "planet number beta" % 4 ) - ( "planet number beta" % 8 ) ) % 16 ) == 0
+            "planet number beta" < 8
+        or
+            has "flagship planet: Karek Fornati"
+            has "flagship planet: Korati Efreti"
+            has "flagship planet: Laki Nemparu"
+            has "flagship planet: Setar Fort"
+    to complete
+        never
+    on offer
+        conversation
+            branch "not karek fornati"
+                not "flagship planet: Karek Fornati"
+            action
+                "planet number beta" += 1
+            label "not karek fornati"
+            branch "not korati efreti"
+                not "flagship planet: Korati Efreti"
+            action
+                "planet number beta" += 2
+            label "not korati efreti"
+            branch "not laki nemparu"
+                not "flagship planet: Laki Nemparu"
+            action
+                "planet number beta" += 4
+            label "not laki nemparu"
+            branch "not setar fort"
+                not "flagship planet: Setar Fort"
+            action
+                "planet number beta" += 8
+            label "not setar fort"
+            branch "tribute"
+                or
+                    and
+                        has "flagship planet: Karek Fornati"
+                        has "tribute: Karek Fornati"
+                    and
+                        has "flagship planet: Korati Efreti"
+                        has "tribute: Korati Efreti"
+                    and
+                        has "flagship planet: Laki Nemparu"
+                        has "tribute: Laki Nemparu"
+                    and
+                        has "flagship planet: Setar Fort"
+                        has "tribute: Setar Fort"
+            action
+                payment -15000
+            `The authorities on <origin> charge you a landing fee of <payment>.`
+                accept
+            label "tribute"
+            action
+                payment 15000
+            `The authorities on <origin> pay you <payment> in tribute.`
+                accept
+    on visit
+        conversation
+            branch "tribute"
+                or
+                    and
+                        has "flagship planet: Karek Fornati"
+                        has "tribute: Karek Fornati"
+                    and
+                        has "flagship planet: Korati Efreti"
+                        has "tribute: Korati Efreti"
+                    and
+                        has "flagship planet: Laki Nemparu"
+                        has "tribute: Laki Nemparu"
+                    and
+                        has "flagship planet: Setar Fort"
+                        has "tribute: Setar Fort"
+            action
+                payment -15000
+            `The authorities on <origin> charge you a landing fee of <payment>.`
+                decline
+            label "tribute"
+            action
+                payment 15000
+            `The authorities on <origin> pay you <payment> in tribute.`
+
