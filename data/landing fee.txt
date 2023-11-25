@@ -28,6 +28,7 @@ mission "Daily Tax"
                 accept
     on daily
         payment -10000
+
 mission "Landing Fee A"
     invisible
     repeat
