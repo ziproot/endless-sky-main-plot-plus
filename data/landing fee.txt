@@ -28,7 +28,6 @@ mission "Daily Tax"
                 accept
     on daily
         payment -10000
-
 mission "Landing Fee A"
     invisible
     repeat
@@ -38,22 +37,19 @@ mission "Landing Fee A"
         has "event: initial deployment 3"
         or
             not "flagship planet: Earth"
-            ( "planet number beta" % 2 ) == 0
+            ( "planet number a" % 2 ) == 0
         or
             not "flagship planet: I.S.S."
-            ( ( "planet number beta" - ( "planet number beta" % 2 ) ) % 4 ) == 0
+            ( ( "planet number a" - ( "planet number a" % 2 ) ) % 4 ) == 0
         or
             not "flagship planet: Luna"
-            ( ( "planet number beta" - ( "planet number beta" % 2 ) - ( "planet number beta" % 4 ) ) % 8 ) == 0
-            "planet number beta" < 4
+            ( ( "planet number a" - ( "planet number a" % 4 ) ) % 8 ) == 0
         or
             not "flagship planet: Mars"
-            ( ( "planet number beta" - ( "planet number beta" % 2 ) - ( "planet number beta" % 4 ) - ( "planet number beta" % 8 ) ) % 16 ) == 0
-            "planet number beta" < 8
+            ( ( "planet number a" - ( "planet number a" % 8 ) ) % 16 ) == 0
         or
             not "flagship planet: Chiron"
-            ( ( "planet number beta" - ( "planet number beta" % 2 ) - ( "planet number beta" % 4 ) - ( "planet number beta" % 8 ) - ( "planet number beta" % 16 ) ) % 32 ) == 0
-            "planet number beta" < 16
+            ( ( "planet number a" - ( "planet number a" % 16 ) ) % 32 ) == 0
         or
             has "flagship planet: Earth"
             has "flagship planet: I.S.S."
@@ -158,20 +154,16 @@ mission "Landing Fee B"
             ( ( "planet number b" - ( "planet number b" % 2 ) ) % 4 ) == 0
         or
             not "flagship planet: New Switzerland"
-            ( ( "planet number b" - ( "planet number b" % 2 ) - ( "planet number b" % 4 ) ) % 8 ) == 0
-            "planet number b" < 4
+            ( ( "planet number b" - ( "planet number b" % 4 ) ) % 8 ) == 0
         or
             not "flagship planet: Relic"
-            ( ( "planet number b" - ( "planet number b" % 2 ) - ( "planet number b" % 4 ) - ( "planet number b" % 8 ) ) % 16 ) == 0
-            "planet number b" < 8
+            ( ( "planet number b" - ( "planet number b" % 8 ) ) % 16 ) == 0
         or
             not "flagship planet: Shiver"
-            ( ( "planet number b" - ( "planet number b" % 2 ) - ( "planet number b" % 4 ) - ( "planet number b" % 8 ) - ( "planet number b" % 16 ) ) % 32 ) == 0
-            "planet number b" < 16
+            ( ( "planet number b" - ( "planet number b" % 16 ) ) % 32 ) == 0
         or
             not "flagship planet: Silver"
-            ( ( "planet number b" - ( "planet number b" % 2 ) - ( "planet number b" % 4 ) - ( "planet number b" % 8 ) - ( "planet number b" % 16 ) - ( "planet number b" % 32 ) ) % 64 ) == 0
-            "planet number b" < 32
+            ( ( "planet number b" - ( "planet number b" % 32 ) ) % 64 ) == 0
         or
             has "flagship planet: Geyser"
             has "flagship planet: New China"
@@ -290,52 +282,40 @@ mission "Landing Fee C"
             ( ( "planet number c" - ( "planet number c" % 2 ) ) % 4 ) == 0
         or
             not "flagship planet: Farseer"
-            ( ( "planet number c" - ( "planet number c" % 2 ) - ( "planet number c" % 4 ) ) % 8 ) == 0
-            "planet number c" < 4
+            ( ( "planet number c" - ( "planet number c" % 4 ) ) % 8 ) == 0
         or
             not "flagship planet: Follower"
-            ( ( "planet number c" - ( "planet number c" % 2 ) - ( "planet number c" % 4 ) - ( "planet number c" % 8 ) ) % 16 ) == 0
-            "planet number c" < 8
+            ( ( "planet number c" - ( "planet number c" % 8 ) ) % 16 ) == 0
         or
             not "flagship planet: Geminus"
-            ( ( "planet number c" - ( "planet number c" % 2 ) - ( "planet number c" % 4 ) - ( "planet number c" % 8 ) - ( "planet number c" % 16 ) ) % 32 ) == 0
-            "planet number c" < 16
+            ( ( "planet number c" - ( "planet number c" % 16 ) ) % 32 ) == 0
         or
             not "flagship planet: Glory"
-            ( ( "planet number c" - ( "planet number c" % 2 ) - ( "planet number c" % 4 ) - ( "planet number c" % 8 ) - ( "planet number c" % 16 ) - ( "planet number c" % 32 ) ) % 64 ) == 0
-            "planet number c" < 32
+            ( ( "planet number c" - ( "planet number c" % 32 ) ) % 64 ) == 0
         or
             not "flagship planet: Hermes"
-            ( ( "planet number c" - ( "planet number c" % 2 ) - ( "planet number c" % 4 ) - ( "planet number c" % 8 ) - ( "planet number c" % 16 ) - ( "planet number c" % 32 ) - ( "planet number c" % 64 ) ) % 128 ) == 0
-            "planet number c" < 64
+            ( ( "planet number c" - ( "planet number c" % 64 ) ) % 128 ) == 0
         or
             not "flagship planet: Hestia"
-            ( ( "planet number c" - ( "planet number c" % 2 ) - ( "planet number c" % 4 ) - ( "planet number c" % 8 ) - ( "planet number c" % 16 ) - ( "planet number c" % 32 ) - ( "planet number c" % 64 ) - ( "planet number c" % 128 ) ) % 256 ) == 0
-            "planet number c" < 128
+            ( ( "planet number c" - ( "planet number c" % 128 ) ) % 256 ) == 0
         or
             not "flagship planet: Mainsail"
-            ( ( "planet number c" - ( "planet number c" % 2 ) - ( "planet number c" % 4 ) - ( "planet number c" % 8 ) - ( "planet number c" % 16 ) - ( "planet number c" % 32 ) - ( "planet number c" % 64 ) - ( "planet number c" % 128 ) - ( "planet number c" % 256 ) ) % 512 ) == 0
-            "planet number c" < 256
+            ( ( "planet number c" - ( "planet number c" % 256 ) ) % 512 ) == 0
         or
             not "flagship planet: Martini"
-            ( ( "planet number c" - ( "planet number c" % 2 ) - ( "planet number c" % 4 ) - ( "planet number c" % 8 ) - ( "planet number c" % 16 ) - ( "planet number c" % 32 ) - ( "planet number c" % 64 ) - ( "planet number c" % 128 ) - ( "planet number c" % 256 ) - ( "planet number c" % 512 ) ) % 1024 ) == 0
-            "planet number c" < 512
+            ( ( "planet number c" - ( "planet number c" % 512 ) ) % 1024 ) == 0
         or
             not "flagship planet: Pearl"
-            ( ( "planet number c" - ( "planet number c" % 2 ) - ( "planet number c" % 4 ) - ( "planet number c" % 8 ) - ( "planet number c" % 16 ) - ( "planet number c" % 32 ) - ( "planet number c" % 64 ) - ( "planet number c" % 128 ) - ( "planet number c" % 256 ) - ( "planet number c" % 512 ) - ( "planet number c" % 1024 ) ) % 2048 ) == 0
-            "planet number c" < 1024
+            ( ( "planet number c" - ( "planet number c" % 1024 ) ) % 2048 ) == 0
         or
             not "flagship planet: Thrall"
-            ( ( "planet number c" - ( "planet number c" % 2 ) - ( "planet number c" % 4 ) - ( "planet number c" % 8 ) - ( "planet number c" % 16 ) - ( "planet number c" % 32 ) - ( "planet number c" % 64 ) - ( "planet number c" % 128 ) - ( "planet number c" % 256 ) - ( "planet number c" % 512 ) - ( "planet number c" % 1024 ) - ( "planet number c" % 2048 ) ) % 4096 ) == 0
-            "planet number c" < 2048
+            ( ( "planet number c" - ( "planet number c" % 2048 ) ) % 4096 ) == 0
         or
             not "flagship planet: Vail"
-            ( ( "planet number c" - ( "planet number c" % 2 ) - ( "planet number c" % 4 ) - ( "planet number c" % 8 ) - ( "planet number c" % 16 ) - ( "planet number c" % 32 ) - ( "planet number c" % 64 ) - ( "planet number c" % 128 ) - ( "planet number c" % 256 ) - ( "planet number c" % 512 ) - ( "planet number c" % 1024 ) - ( "planet number c" % 2048 ) - ( "planet number c" % 4096 ) ) % 8192 ) == 0
-            "planet number c" < 4096
+            ( ( "planet number c" - ( "planet number c" % 4096 ) ) % 8192 ) == 0
         or
             not "flagship planet: Vinci"
-            ( ( "planet number c" - ( "planet number c" % 2 ) - ( "planet number c" % 4 ) - ( "planet number c" % 8 ) - ( "planet number c" % 16 ) - ( "planet number c" % 32 ) - ( "planet number c" % 64 ) - ( "planet number c" % 128 ) - ( "planet number c" % 256 ) - ( "planet number c" % 512 ) - ( "planet number c" % 1024 ) - ( "planet number c" % 2048 ) - ( "planet number c" % 4096 ) - ( "planet number c" % 8192 ) ) % 16384 ) == 0
-            "planet number c" < 8192
+            ( ( "planet number c" - ( "planet number c" % 8192 ) ) % 16384 ) == 0
         or
             has "flagship planet: Ada"
             has "flagship planet: Calda"
@@ -549,72 +529,55 @@ mission "Landing Fee D"
             ( ( "planet number d" - ( "planet number d" % 2 ) ) % 4 ) == 0
         or
             not "flagship planet: Asgard"
-            ( ( "planet number d" - ( "planet number d" % 2 ) - ( "planet number d" % 4 ) ) % 8 ) == 0
-            "planet number d" < 4
+            ( ( "planet number d" - ( "planet number d" % 4 ) ) % 8 ) == 0
         or
             not "flagship planet: Bivrost"
-            ( ( "planet number d" - ( "planet number d" % 2 ) - ( "planet number d" % 4 ) - ( "planet number d" % 8 ) ) % 16 ) == 0
-            "planet number d" < 8
+            ( ( "planet number d" - ( "planet number d" % 8 ) ) % 16 ) == 0
         or
             not "flagship planet: Fenrir Station"
-            ( ( "planet number d" - ( "planet number d" % 2 ) - ( "planet number d" % 4 ) - ( "planet number d" % 8 ) - ( "planet number d" % 16 ) ) % 32 ) == 0
-            "planet number d" < 16
+            ( ( "planet number d" - ( "planet number d" % 16 ) ) % 32 ) == 0
         or
             not "flagship planet: Haze"
-            ( ( "planet number d" - ( "planet number d" % 2 ) - ( "planet number d" % 4 ) - ( "planet number d" % 8 ) - ( "planet number d" % 16 ) - ( "planet number d" % 32 ) ) % 64 ) == 0
-            "planet number d" < 32
+            ( ( "planet number d" - ( "planet number d" % 32 ) ) % 64 ) == 0
         or
             not "flagship planet: Helheim"
-            ( ( "planet number d" - ( "planet number d" % 2 ) - ( "planet number d" % 4 ) - ( "planet number d" % 8 ) - ( "planet number d" % 16 ) - ( "planet number d" % 32 ) - ( "planet number d" % 64 ) ) % 128 ) == 0
-            "planet number d" < 64
+            ( ( "planet number d" - ( "planet number d" % 64 ) ) % 128 ) == 0
         or
             not "flagship planet: Huginn Station"
-            ( ( "planet number d" - ( "planet number d" % 2 ) - ( "planet number d" % 4 ) - ( "planet number d" % 8 ) - ( "planet number d" % 16 ) - ( "planet number d" % 32 ) - ( "planet number d" % 64 ) - ( "planet number d" % 128 ) ) % 256 ) == 0
-            "planet number d" < 128
+            ( ( "planet number d" - ( "planet number d" % 128 ) ) % 256 ) == 0
         or
             not "flagship planet: Leviathan Station"
-            ( ( "planet number d" - ( "planet number d" % 2 ) - ( "planet number d" % 4 ) - ( "planet number d" % 8 ) - ( "planet number d" % 16 ) - ( "planet number d" % 32 ) - ( "planet number d" % 64 ) - ( "planet number d" % 128 ) - ( "planet number d" % 256 ) ) % 512 ) == 0
-            "planet number d" < 256
+            ( ( "planet number d" - ( "planet number d" % 256 ) ) % 512 ) == 0
         or
             not "flagship planet: Mani"
-            ( ( "planet number d" - ( "planet number d" % 2 ) - ( "planet number d" % 4 ) - ( "planet number d" % 8 ) - ( "planet number d" % 16 ) - ( "planet number d" % 32 ) - ( "planet number d" % 64 ) - ( "planet number d" % 128 ) - ( "planet number d" % 256 ) - ( "planet number d" % 512 ) ) % 1024 ) == 0
-            "planet number d" < 512
+            ( ( "planet number d" - ( "planet number d" % 512 ) ) % 1024 ) == 0
         or
             not "flagship planet: Memory"
-            ( ( "planet number d" - ( "planet number d" % 2 ) - ( "planet number d" % 4 ) - ( "planet number d" % 8 ) - ( "planet number d" % 16 ) - ( "planet number d" % 32 ) - ( "planet number d" % 64 ) - ( "planet number d" % 128 ) - ( "planet number d" % 256 ) - ( "planet number d" % 512 ) - ( "planet number d" % 1024 ) ) % 2048 ) == 0
-            "planet number d" < 1024
+            ( ( "planet number d" - ( "planet number d" % 1024 ) ) % 2048 ) == 0
         or
             not "flagship planet: Midgard"
-            ( ( "planet number d" - ( "planet number d" % 2 ) - ( "planet number d" % 4 ) - ( "planet number d" % 8 ) - ( "planet number d" % 16 ) - ( "planet number d" % 32 ) - ( "planet number d" % 64 ) - ( "planet number d" % 128 ) - ( "planet number d" % 256 ) - ( "planet number d" % 512 ) - ( "planet number d" % 1024 ) - ( "planet number d" % 2048 ) ) % 4096 ) == 0
-            "planet number d" < 2048
+            ( ( "planet number d" - ( "planet number d" % 2048 ) ) % 4096 ) == 0
         or
             not "flagship planet: Muninn Station"
-            ( ( "planet number d" - ( "planet number d" % 2 ) - ( "planet number d" % 4 ) - ( "planet number d" % 8 ) - ( "planet number d" % 16 ) - ( "planet number d" % 32 ) - ( "planet number d" % 64 ) - ( "planet number d" % 128 ) - ( "planet number d" % 256 ) - ( "planet number d" % 512 ) - ( "planet number d" % 1024 ) - ( "planet number d" % 2048 ) - ( "planet number d" % 4096 ) ) % 8192 ) == 0
-            "planet number d" < 4096
+            ( ( "planet number d" - ( "planet number d" % 4096 ) ) % 8192 ) == 0
         or
             not "flagship planet: Muspel"
-            ( ( "planet number d" - ( "planet number d" % 2 ) - ( "planet number d" % 4 ) - ( "planet number d" % 8 ) - ( "planet number d" % 16 ) - ( "planet number d" % 32 ) - ( "planet number d" % 64 ) - ( "planet number d" % 128 ) - ( "planet number d" % 256 ) - ( "planet number d" % 512 ) - ( "planet number d" % 1024 ) - ( "planet number d" % 2048 ) - ( "planet number d" % 4096 ) - ( "planet number d" % 8192 ) ) % 16384 ) == 0
-            "planet number d" < 8192
+            ( ( "planet number d" - ( "planet number d" % 8192 ) ) % 16384 ) == 0
         or
             not "flagship planet: Nifel"
-            ( ( "planet number d" - ( "planet number d" % 2 ) - ( "planet number d" % 4 ) - ( "planet number d" % 8 ) - ( "planet number d" % 16 ) - ( "planet number d" % 32 ) - ( "planet number d" % 64 ) - ( "planet number d" % 128 ) - ( "planet number d" % 256 ) - ( "planet number d" % 512 ) - ( "planet number d" % 1024 ) - ( "planet number d" % 2048 ) - ( "planet number d" % 4096 ) - ( "planet number d" % 8192 ) - ( "planet number d" % 16384 ) ) % 32768 ) == 0
-            "planet number d" < 16384
+            ( ( "planet number d" - ( "planet number d" % 16384 ) ) % 32768 ) == 0
         or
             not "flagship planet: Norn"
-            ( ( "planet number d" - ( "planet number d" % 2 ) - ( "planet number d" % 4 ) - ( "planet number d" % 8 ) - ( "planet number d" % 16 ) - ( "planet number d" % 32 ) - ( "planet number d" % 64 ) - ( "planet number d" % 128 ) - ( "planet number d" % 256 ) - ( "planet number d" % 512 ) - ( "planet number d" % 1024 ) - ( "planet number d" % 2048 ) - ( "planet number d" % 4096 ) - ( "planet number d" % 8192 ) - ( "planet number d" % 16384 ) - ( "planet number d" % 32768 ) ) % 65536 ) == 0
-            "planet number d" < 32768
+            ( ( "planet number d" - ( "planet number d" % 32768 ) ) % 65536 ) == 0
         or
             not "flagship planet: Phoenix Station"
-            ( ( "planet number d" - ( "planet number d" % 2 ) - ( "planet number d" % 4 ) - ( "planet number d" % 8 ) - ( "planet number d" % 16 ) - ( "planet number d" % 32 ) - ( "planet number d" % 64 ) - ( "planet number d" % 128 ) - ( "planet number d" % 256 ) - ( "planet number d" % 512 ) - ( "planet number d" % 1024 ) - ( "planet number d" % 2048 ) - ( "planet number d" % 4096 ) - ( "planet number d" % 8192 ) - ( "planet number d" % 16384 ) - ( "planet number d" % 32768 ) - ( "planet number d" % 65536 ) ) % 131072 ) == 0
-            "planet number d" < 65536
+            ( ( "planet number d" - ( "planet number d" % 65536 ) ) % 131072 ) == 0
         or
             not "flagship planet: Valhalla"
-            ( ( "planet number d" - ( "planet number d" % 2 ) - ( "planet number d" % 4 ) - ( "planet number d" % 8 ) - ( "planet number d" % 16 ) - ( "planet number d" % 32 ) - ( "planet number d" % 64 ) - ( "planet number d" % 128 ) - ( "planet number d" % 256 ) - ( "planet number d" % 512 ) - ( "planet number d" % 1024 ) - ( "planet number d" % 2048 ) - ( "planet number d" % 4096 ) - ( "planet number d" % 8192 ) - ( "planet number d" % 16384 ) - ( "planet number d" % 32768 ) - ( "planet number d" % 65536 ) - ( "planet number d" % 131072 ) ) % 262144 ) == 0
-            "planet number d" < 131072
+            ( ( "planet number d" - ( "planet number d" % 131072 ) ) % 262144 ) == 0
         or
             not "flagship planet: Windblain"
-            ( ( "planet number d" - ( "planet number d" % 2 ) - ( "planet number d" % 4 ) - ( "planet number d" % 8 ) - ( "planet number d" % 16 ) - ( "planet number d" % 32 ) - ( "planet number d" % 64 ) - ( "planet number d" % 128 ) - ( "planet number d" % 256 ) - ( "planet number d" % 512 ) - ( "planet number d" % 1024 ) - ( "planet number d" % 2048 ) - ( "planet number d" % 4096 ) - ( "planet number d" % 8192 ) - ( "planet number d" % 16384 ) - ( "planet number d" % 32768 ) - ( "planet number d" % 65536 ) - ( "planet number d" % 131072 ) - ( "planet number d" % 262144 ) ) % 524288 ) == 0
-            "planet number d" < 262144
+            ( ( "planet number d" - ( "planet number d" % 262144 ) ) % 524288 ) == 0
         or
             has "flagship planet: Alexandria"
             has "flagship planet: Alfheim"
@@ -887,84 +850,64 @@ mission "Landing Fee E"
             ( ( "planet number e" - ( "planet number e" % 2 ) ) % 4 ) == 0
         or
             not "flagship planet: Flood"
-            ( ( "planet number e" - ( "planet number e" % 2 ) - ( "planet number e" % 4 ) ) % 8 ) == 0
-            "planet number e" < 4
+            ( ( "planet number e" - ( "planet number e" % 4 ) ) % 8 ) == 0
         or
             not "flagship planet: Longjump"
-            ( ( "planet number e" - ( "planet number e" % 2 ) - ( "planet number e" % 4 ) - ( "planet number e" % 8 ) ) % 16 ) == 0
-            "planet number e" < 8
+            ( ( "planet number e" - ( "planet number e" % 8 ) ) % 16 ) == 0
         or
             not "flagship planet: Mere"
-            ( ( "planet number e" - ( "planet number e" % 2 ) - ( "planet number e" % 4 ) - ( "planet number e" % 8 ) - ( "planet number e" % 16 ) ) % 32 ) == 0
-            "planet number e" < 16
+            ( ( "planet number e" - ( "planet number e" % 16 ) ) % 32 ) == 0
         or
             not "flagship planet: Oasis"
-            ( ( "planet number e" - ( "planet number e" % 2 ) - ( "planet number e" % 4 ) - ( "planet number e" % 8 ) - ( "planet number e" % 16 ) - ( "planet number e" % 32 ) ) % 64 ) == 0
-            "planet number e" < 32
+            ( ( "planet number e" - ( "planet number e" % 32 ) ) % 64 ) == 0
         or
             not "flagship planet: Poseidos"
-            ( ( "planet number e" - ( "planet number e" % 2 ) - ( "planet number e" % 4 ) - ( "planet number e" % 8 ) - ( "planet number e" % 16 ) - ( "planet number e" % 32 ) - ( "planet number e" % 64 ) ) % 128 ) == 0
-            "planet number e" < 64
+            ( ( "planet number e" - ( "planet number e" % 64 ) ) % 128 ) == 0
         or
             not "flagship planet: Rust"
-            ( ( "planet number e" - ( "planet number e" % 2 ) - ( "planet number e" % 4 ) - ( "planet number e" % 8 ) - ( "planet number e" % 16 ) - ( "planet number e" % 32 ) - ( "planet number e" % 64 ) - ( "planet number e" % 128 ) ) % 256 ) == 0
-            "planet number e" < 128
+            ( ( "planet number e" - ( "planet number e" % 128 ) ) % 256 ) == 0
         or
             not "flagship planet: Shorebreak"
-            ( ( "planet number e" - ( "planet number e" % 2 ) - ( "planet number e" % 4 ) - ( "planet number e" % 8 ) - ( "planet number e" % 16 ) - ( "planet number e" % 32 ) - ( "planet number e" % 64 ) - ( "planet number e" % 128 ) - ( "planet number e" % 256 ) ) % 512 ) == 0
-            "planet number e" < 256
+            ( ( "planet number e" - ( "planet number e" % 256 ) ) % 512 ) == 0
         or
             not "flagship planet: Skymoot"
-            ( ( "planet number e" - ( "planet number e" % 2 ) - ( "planet number e" % 4 ) - ( "planet number e" % 8 ) - ( "planet number e" % 16 ) - ( "planet number e" % 32 ) - ( "planet number e" % 64 ) - ( "planet number e" % 128 ) - ( "planet number e" % 256 ) - ( "planet number e" % 512 ) ) % 1024 ) == 0
-            "planet number e" < 512
+            ( ( "planet number e" - ( "planet number e" % 512 ) ) % 1024 ) == 0
         or
             not "flagship planet: Starcross"
-            ( ( "planet number e" - ( "planet number e" % 2 ) - ( "planet number e" % 4 ) - ( "planet number e" % 8 ) - ( "planet number e" % 16 ) - ( "planet number e" % 32 ) - ( "planet number e" % 64 ) - ( "planet number e" % 128 ) - ( "planet number e" % 256 ) - ( "planet number e" % 512 ) - ( "planet number e" % 1024 ) ) % 2048 ) == 0
-            "planet number e" < 1024
+            ( ( "planet number e" - ( "planet number e" % 1024 ) ) % 2048 ) == 0
         or
             not "flagship planet: Thunder"
-            ( ( "planet number e" - ( "planet number e" % 2 ) - ( "planet number e" % 4 ) - ( "planet number e" % 8 ) - ( "planet number e" % 16 ) - ( "planet number e" % 32 ) - ( "planet number e" % 64 ) - ( "planet number e" % 128 ) - ( "planet number e" % 256 ) - ( "planet number e" % 512 ) - ( "planet number e" % 1024 ) - ( "planet number e" % 2048 ) ) % 4096 ) == 0
-            "planet number e" < 2048
+            ( ( "planet number e" - ( "planet number e" % 2048 ) ) % 4096 ) == 0
         or
             not "flagship planet: Typhon Station"
-            ( ( "planet number e" - ( "planet number e" % 2 ) - ( "planet number e" % 4 ) - ( "planet number e" % 8 ) - ( "planet number e" % 16 ) - ( "planet number e" % 32 ) - ( "planet number e" % 64 ) - ( "planet number e" % 128 ) - ( "planet number e" % 256 ) - ( "planet number e" % 512 ) - ( "planet number e" % 1024 ) - ( "planet number e" % 2048 ) - ( "planet number e" % 4096 ) ) % 8192 ) == 0
-            "planet number e" < 4096
+            ( ( "planet number e" - ( "planet number e" % 4096 ) ) % 8192 ) == 0
         or
             not "flagship planet: Wyvern Station"
-            ( ( "planet number e" - ( "planet number e" % 2 ) - ( "planet number e" % 4 ) - ( "planet number e" % 8 ) - ( "planet number e" % 16 ) - ( "planet number e" % 32 ) - ( "planet number e" % 64 ) - ( "planet number e" % 128 ) - ( "planet number e" % 256 ) - ( "planet number e" % 512 ) - ( "planet number e" % 1024 ) - ( "planet number e" % 2048 ) - ( "planet number e" % 4096 ) - ( "planet number e" % 8192 ) ) % 16384 ) == 0
-            "planet number e" < 8192
+            ( ( "planet number e" - ( "planet number e" % 8192 ) ) % 16384 ) == 0
         or
             not "flagship planet: Zug"
-            ( ( "planet number e" - ( "planet number e" % 2 ) - ( "planet number e" % 4 ) - ( "planet number e" % 8 ) - ( "planet number e" % 16 ) - ( "planet number e" % 32 ) - ( "planet number e" % 64 ) - ( "planet number e" % 128 ) - ( "planet number e" % 256 ) - ( "planet number e" % 512 ) - ( "planet number e" % 1024 ) - ( "planet number e" % 2048 ) - ( "planet number e" % 4096 ) - ( "planet number e" % 8192 ) - ( "planet number e" % 16384 ) ) % 32768 ) == 0
-            "planet number e" < 16384
+            ( ( "planet number e" - ( "planet number e" % 16384 ) ) % 32768 ) == 0
         or
             not "flagship planet: Arachne Station"
-            ( ( "planet number e" - ( "planet number e" % 2 ) - ( "planet number e" % 4 ) - ( "planet number e" % 8 ) - ( "planet number e" % 16 ) - ( "planet number e" % 32 ) - ( "planet number e" % 64 ) - ( "planet number e" % 128 ) - ( "planet number e" % 256 ) - ( "planet number e" % 512 ) - ( "planet number e" % 1024 ) - ( "planet number e" % 2048 ) - ( "planet number e" % 4096 ) - ( "planet number e" % 8192 ) - ( "planet number e" % 16384 ) - ( "planet number e" % 32768 ) ) % 65536 ) == 0
-            "planet number e" < 32768
+            ( ( "planet number e" - ( "planet number e" % 32768 ) ) % 65536 ) == 0
         or
             not "flagship planet: New Britain"
-            ( ( "planet number e" - ( "planet number e" % 2 ) - ( "planet number e" % 4 ) - ( "planet number e" % 8 ) - ( "planet number e" % 16 ) - ( "planet number e" % 32 ) - ( "planet number e" % 64 ) - ( "planet number e" % 128 ) - ( "planet number e" % 256 ) - ( "planet number e" % 512 ) - ( "planet number e" % 1024 ) - ( "planet number e" % 2048 ) - ( "planet number e" % 4096 ) - ( "planet number e" % 8192 ) - ( "planet number e" % 16384 ) - ( "planet number e" % 32768 ) - ( "planet number e" % 65536 ) ) % 131072 ) == 0
-            "planet number e" < 65536
+            ( ( "planet number e" - ( "planet number e" % 65536 ) ) % 131072 ) == 0
         or
             not "flagship planet: Sinter"
-            ( ( "planet number e" - ( "planet number e" % 2 ) - ( "planet number e" % 4 ) - ( "planet number e" % 8 ) - ( "planet number e" % 16 ) - ( "planet number e" % 32 ) - ( "planet number e" % 64 ) - ( "planet number e" % 128 ) - ( "planet number e" % 256 ) - ( "planet number e" % 512 ) - ( "planet number e" % 1024 ) - ( "planet number e" % 2048 ) - ( "planet number e" % 4096 ) - ( "planet number e" % 8192 ) - ( "planet number e" % 16384 ) - ( "planet number e" % 32768 ) - ( "planet number e" % 65536 ) - ( "planet number e" % 131072 ) ) % 262144 ) == 0
-            "planet number e" < 131072
+            ( ( "planet number e" - ( "planet number e" % 131072 ) ) % 262144 ) == 0
         or
             not "flagship planet: Wayfarer"
-            ( ( "planet number e" - ( "planet number e" % 2 ) - ( "planet number e" % 4 ) - ( "planet number e" % 8 ) - ( "planet number e" % 16 ) - ( "planet number e" % 32 ) - ( "planet number e" % 64 ) - ( "planet number e" % 128 ) - ( "planet number e" % 256 ) - ( "planet number e" % 512 ) - ( "planet number e" % 1024 ) - ( "planet number e" % 2048 ) - ( "planet number e" % 4096 ) - ( "planet number e" % 8192 ) - ( "planet number e" % 16384 ) - ( "planet number e" % 32768 ) - ( "planet number e" % 65536 ) - ( "planet number e" % 131072 ) - ( "planet number e" % 262144 ) ) % 524288 ) == 0
-            "planet number e" < 262144
+            ( ( "planet number e" - ( "planet number e" % 262144 ) ) % 524288 ) == 0
         or
             not "flagship planet: Humanika"
-            ( ( "planet number e" - ( "planet number e" % 2 ) - ( "planet number e" % 4 ) - ( "planet number e" % 8 ) - ( "planet number e" % 16 ) - ( "planet number e" % 32 ) - ( "planet number e" % 64 ) - ( "planet number e" % 128 ) - ( "planet number e" % 256 ) - ( "planet number e" % 512 ) - ( "planet number e" % 1024 ) - ( "planet number e" % 2048 ) - ( "planet number e" % 4096 ) - ( "planet number e" % 8192 ) - ( "planet number e" % 16384 ) - ( "planet number e" % 32768 ) - ( "planet number e" % 65536 ) - ( "planet number e" % 131072 ) - ( "planet number e" % 262144 ) - ( "planet number e" % 524288 ) ) % 1048576 ) == 0
-            "planet number e" < 524288
+            ( ( "planet number e" - ( "planet number e" % 524288 ) ) % 1048576 ) == 0
         or
             not "flagship planet: Pugglemug"
-            ( ( "planet number e" - ( "planet number e" % 2 ) - ( "planet number e" % 4 ) - ( "planet number e" % 8 ) - ( "planet number e" % 16 ) - ( "planet number e" % 32 ) - ( "planet number e" % 64 ) - ( "planet number e" % 128 ) - ( "planet number e" % 256 ) - ( "planet number e" % 512 ) - ( "planet number e" % 1024 ) - ( "planet number e" % 2048 ) - ( "planet number e" % 4096 ) - ( "planet number e" % 8192 ) - ( "planet number e" % 16384 ) - ( "planet number e" % 32768 ) - ( "planet number e" % 65536 ) - ( "planet number e" % 131072 ) - ( "planet number e" % 262144 ) - ( "planet number e" % 524288 ) - ( "planet number e" % 1048576 ) ) % 2097152 ) == 0
-            "planet number e" < 1048576
+            ( ( "planet number e" - ( "planet number e" % 1048576 ) ) % 2097152 ) == 0
         or
             not "flagship planet: Pugglequat"
-            ( ( "planet number e" - ( "planet number e" % 2 ) - ( "planet number e" % 4 ) - ( "planet number e" % 8 ) - ( "planet number e" % 16 ) - ( "planet number e" % 32 ) - ( "planet number e" % 64 ) - ( "planet number e" % 128 ) - ( "planet number e" % 256 ) - ( "planet number e" % 512 ) - ( "planet number e" % 1024 ) - ( "planet number e" % 2048 ) - ( "planet number e" % 4096 ) - ( "planet number e" % 8192 ) - ( "planet number e" % 16384 ) - ( "planet number e" % 32768 ) - ( "planet number e" % 65536 ) - ( "planet number e" % 131072 ) - ( "planet number e" % 262144 ) - ( "planet number e" % 524288 ) - ( "planet number e" % 1048576 ) - ( "planet number e" % 2097152 ) ) % 4194304 ) == 0
-            "planet number e" < 2097152
+            ( ( "planet number e" - ( "planet number e" % 2097152 ) ) % 4194304 ) == 0
         or
             has "flagship planet: Bourne"
             has "flagship planet: Dune"
@@ -1176,7 +1119,6 @@ mission "Landing Fee E"
                         has "tribute: Pugglequat"
             action
                 payment -5000
-
             `The authorities on <origin> charge you a landing fee of <payment>.`
                 accept
             label "tribute"
@@ -1278,108 +1220,82 @@ mission "Landing Fee F"
             ( ( "planet number f" - ( "planet number f" % 2 ) ) % 4 ) == 0
         or
             not "flagship planet: Bluestone"
-            ( ( "planet number f" - ( "planet number f" % 2 ) - ( "planet number f" % 4 ) ) % 8 ) == 0
-            "planet number f" < 4
+            ( ( "planet number f" - ( "planet number f" % 4 ) ) % 8 ) == 0
         or
             not "flagship planet: Burthen"
-            ( ( "planet number f" - ( "planet number f" % 2 ) - ( "planet number f" % 4 ) - ( "planet number f" % 8 ) ) % 16 ) == 0
-            "planet number f" < 8
+            ( ( "planet number f" - ( "planet number f" % 8 ) ) % 16 ) == 0
         or
             not "flagship planet: Canyon"
-            ( ( "planet number f" - ( "planet number f" % 2 ) - ( "planet number f" % 4 ) - ( "planet number f" % 8 ) - ( "planet number f" % 16 ) ) % 32 ) == 0
-            "planet number f" < 16
+            ( ( "planet number f" - ( "planet number f" % 16 ) ) % 32 ) == 0
         or
             not "flagship planet: Charybdis Station"
-            ( ( "planet number f" - ( "planet number f" % 2 ) - ( "planet number f" % 4 ) - ( "planet number f" % 8 ) - ( "planet number f" % 16 ) - ( "planet number f" % 32 ) ) % 64 ) == 0
-            "planet number f" < 32
+            ( ( "planet number f" - ( "planet number f" % 32 ) ) % 64 ) == 0
         or
             not "flagship planet: Crossroads"
-            ( ( "planet number f" - ( "planet number f" % 2 ) - ( "planet number f" % 4 ) - ( "planet number f" % 8 ) - ( "planet number f" % 16 ) - ( "planet number f" % 32 ) - ( "planet number f" % 64 ) ) % 128 ) == 0
-            "planet number f" < 64
+            ( ( "planet number f" - ( "planet number f" % 64 ) ) % 128 ) == 0
         or
             not "flagship planet: Delve"
-            ( ( "planet number f" - ( "planet number f" % 2 ) - ( "planet number f" % 4 ) - ( "planet number f" % 8 ) - ( "planet number f" % 16 ) - ( "planet number f" % 32 ) - ( "planet number f" % 64 ) - ( "planet number f" % 128 ) ) % 256 ) == 0
-            "planet number f" < 128
+            ( ( "planet number f" - ( "planet number f" % 128 ) ) % 256 ) == 0
         or
             not "flagship planet: Foundry"
-            ( ( "planet number f" - ( "planet number f" % 2 ) - ( "planet number f" % 4 ) - ( "planet number f" % 8 ) - ( "planet number f" % 16 ) - ( "planet number f" % 32 ) - ( "planet number f" % 64 ) - ( "planet number f" % 128 ) - ( "planet number f" % 256 ) ) % 512 ) == 0
-            "planet number f" < 256
+            ( ( "planet number f" - ( "planet number f" % 256 ) ) % 512 ) == 0
         or
             not "flagship planet: Furnace"
-            ( ( "planet number f" - ( "planet number f" % 2 ) - ( "planet number f" % 4 ) - ( "planet number f" % 8 ) - ( "planet number f" % 16 ) - ( "planet number f" % 32 ) - ( "planet number f" % 64 ) - ( "planet number f" % 128 ) - ( "planet number f" % 256 ) - ( "planet number f" % 512 ) ) % 1024 ) == 0
-            "planet number f" < 512
+            ( ( "planet number f" - ( "planet number f" % 512 ) ) % 1024 ) == 0
         or
             not "flagship planet: Hephaestus"
-            ( ( "planet number f" - ( "planet number f" % 2 ) - ( "planet number f" % 4 ) - ( "planet number f" % 8 ) - ( "planet number f" % 16 ) - ( "planet number f" % 32 ) - ( "planet number f" % 64 ) - ( "planet number f" % 128 ) - ( "planet number f" % 256 ) - ( "planet number f" % 512 ) - ( "planet number f" % 1024 ) ) % 2048 ) == 0
-            "planet number f" < 1024
+            ( ( "planet number f" - ( "planet number f" % 1024 ) ) % 2048 ) == 0
         or
             not "flagship planet: Hippocrates"
-            ( ( "planet number f" - ( "planet number f" % 2 ) - ( "planet number f" % 4 ) - ( "planet number f" % 8 ) - ( "planet number f" % 16 ) - ( "planet number f" % 32 ) - ( "planet number f" % 64 ) - ( "planet number f" % 128 ) - ( "planet number f" % 256 ) - ( "planet number f" % 512 ) - ( "planet number f" % 1024 ) - ( "planet number f" % 2048 ) ) % 4096 ) == 0
-            "planet number f" < 2048
+            ( ( "planet number f" - ( "planet number f" % 2048 ) ) % 4096 ) == 0
         or
             not "flagship planet: Icefall"
-            ( ( "planet number f" - ( "planet number f" % 2 ) - ( "planet number f" % 4 ) - ( "planet number f" % 8 ) - ( "planet number f" % 16 ) - ( "planet number f" % 32 ) - ( "planet number f" % 64 ) - ( "planet number f" % 128 ) - ( "planet number f" % 256 ) - ( "planet number f" % 512 ) - ( "planet number f" % 1024 ) - ( "planet number f" % 2048 ) - ( "planet number f" % 4096 ) ) % 8192 ) == 0
-            "planet number f" < 4096
+            ( ( "planet number f" - ( "planet number f" % 4096 ) ) % 8192 ) == 0
         or
             not "flagship planet: Kraken Station"
-            ( ( "planet number f" - ( "planet number f" % 2 ) - ( "planet number f" % 4 ) - ( "planet number f" % 8 ) - ( "planet number f" % 16 ) - ( "planet number f" % 32 ) - ( "planet number f" % 64 ) - ( "planet number f" % 128 ) - ( "planet number f" % 256 ) - ( "planet number f" % 512 ) - ( "planet number f" % 1024 ) - ( "planet number f" % 2048 ) - ( "planet number f" % 4096 ) - ( "planet number f" % 8192 ) ) % 16384 ) == 0
-            "planet number f" < 8192
+            ( ( "planet number f" - ( "planet number f" % 8192 ) ) % 16384 ) == 0
         or
             not "flagship planet: Lodestone"
-            ( ( "planet number f" - ( "planet number f" % 2 ) - ( "planet number f" % 4 ) - ( "planet number f" % 8 ) - ( "planet number f" % 16 ) - ( "planet number f" % 32 ) - ( "planet number f" % 64 ) - ( "planet number f" % 128 ) - ( "planet number f" % 256 ) - ( "planet number f" % 512 ) - ( "planet number f" % 1024 ) - ( "planet number f" % 2048 ) - ( "planet number f" % 4096 ) - ( "planet number f" % 8192 ) - ( "planet number f" % 16384 ) ) % 32768 ) == 0
-            "planet number f" < 16384
+            ( ( "planet number f" - ( "planet number f" % 16384 ) ) % 32768 ) == 0
         or
             not "flagship planet: Maker"
-            ( ( "planet number f" - ( "planet number f" % 2 ) - ( "planet number f" % 4 ) - ( "planet number f" % 8 ) - ( "planet number f" % 16 ) - ( "planet number f" % 32 ) - ( "planet number f" % 64 ) - ( "planet number f" % 128 ) - ( "planet number f" % 256 ) - ( "planet number f" % 512 ) - ( "planet number f" % 1024 ) - ( "planet number f" % 2048 ) - ( "planet number f" % 4096 ) - ( "planet number f" % 8192 ) - ( "planet number f" % 16384 ) - ( "planet number f" % 32768 ) ) % 65536 ) == 0
-            "planet number f" < 32768
+            ( ( "planet number f" - ( "planet number f" % 32768 ) ) % 65536 ) == 0
         or
             not "flagship planet: Millrace"
-            ( ( "planet number f" - ( "planet number f" % 2 ) - ( "planet number f" % 4 ) - ( "planet number f" % 8 ) - ( "planet number f" % 16 ) - ( "planet number f" % 32 ) - ( "planet number f" % 64 ) - ( "planet number f" % 128 ) - ( "planet number f" % 256 ) - ( "planet number f" % 512 ) - ( "planet number f" % 1024 ) - ( "planet number f" % 2048 ) - ( "planet number f" % 4096 ) - ( "planet number f" % 8192 ) - ( "planet number f" % 16384 ) - ( "planet number f" % 32768 ) - ( "planet number f" % 65536 ) ) % 131072 ) == 0
-            "planet number f" < 65536
+            ( ( "planet number f" - ( "planet number f" % 65536 ) ) % 131072 ) == 0
         or
             not "flagship planet: Moonshake"
-            ( ( "planet number f" - ( "planet number f" % 2 ) - ( "planet number f" % 4 ) - ( "planet number f" % 8 ) - ( "planet number f" % 16 ) - ( "planet number f" % 32 ) - ( "planet number f" % 64 ) - ( "planet number f" % 128 ) - ( "planet number f" % 256 ) - ( "planet number f" % 512 ) - ( "planet number f" % 1024 ) - ( "planet number f" % 2048 ) - ( "planet number f" % 4096 ) - ( "planet number f" % 8192 ) - ( "planet number f" % 16384 ) - ( "planet number f" % 32768 ) - ( "planet number f" % 65536 ) - ( "planet number f" % 131072 ) ) % 262144 ) == 0
-            "planet number f" < 131072
+            ( ( "planet number f" - ( "planet number f" % 131072 ) ) % 262144 ) == 0
         or
             not "flagship planet: Nimbus"
-            ( ( "planet number f" - ( "planet number f" % 2 ) - ( "planet number f" % 4 ) - ( "planet number f" % 8 ) - ( "planet number f" % 16 ) - ( "planet number f" % 32 ) - ( "planet number f" % 64 ) - ( "planet number f" % 128 ) - ( "planet number f" % 256 ) - ( "planet number f" % 512 ) - ( "planet number f" % 1024 ) - ( "planet number f" % 2048 ) - ( "planet number f" % 4096 ) - ( "planet number f" % 8192 ) - ( "planet number f" % 16384 ) - ( "planet number f" % 32768 ) - ( "planet number f" % 65536 ) - ( "planet number f" % 131072 ) - ( "planet number f" % 262144 ) ) % 524288 ) == 0
-            "planet number f" < 262144
+            ( ( "planet number f" - ( "planet number f" % 262144 ) ) % 524288 ) == 0
         or
             not "flagship planet: Oberon Station"
-            ( ( "planet number f" - ( "planet number f" % 2 ) - ( "planet number f" % 4 ) - ( "planet number f" % 8 ) - ( "planet number f" % 16 ) - ( "planet number f" % 32 ) - ( "planet number f" % 64 ) - ( "planet number f" % 128 ) - ( "planet number f" % 256 ) - ( "planet number f" % 512 ) - ( "planet number f" % 1024 ) - ( "planet number f" % 2048 ) - ( "planet number f" % 4096 ) - ( "planet number f" % 8192 ) - ( "planet number f" % 16384 ) - ( "planet number f" % 32768 ) - ( "planet number f" % 65536 ) - ( "planet number f" % 131072 ) - ( "planet number f" % 262144 ) - ( "planet number f" % 524288 ) ) % 1048576 ) == 0
-            "planet number f" < 524288
+            ( ( "planet number f" - ( "planet number f" % 524288 ) ) % 1048576 ) == 0
         or
             not "flagship planet: Placer"
-            ( ( "planet number f" - ( "planet number f" % 2 ) - ( "planet number f" % 4 ) - ( "planet number f" % 8 ) - ( "planet number f" % 16 ) - ( "planet number f" % 32 ) - ( "planet number f" % 64 ) - ( "planet number f" % 128 ) - ( "planet number f" % 256 ) - ( "planet number f" % 512 ) - ( "planet number f" % 1024 ) - ( "planet number f" % 2048 ) - ( "planet number f" % 4096 ) - ( "planet number f" % 8192 ) - ( "planet number f" % 16384 ) - ( "planet number f" % 32768 ) - ( "planet number f" % 65536 ) - ( "planet number f" % 131072 ) - ( "planet number f" % 262144 ) - ( "planet number f" % 524288 ) - ( "planet number f" % 1048576 ) ) % 2097152 ) == 0
-            "planet number f" < 1048576
+            ( ( "planet number f" - ( "planet number f" % 1048576 ) ) % 2097152 ) == 0
         or
             not "flagship planet: Quicksilver"
-            ( ( "planet number f" - ( "planet number f" % 2 ) - ( "planet number f" % 4 ) - ( "planet number f" % 8 ) - ( "planet number f" % 16 ) - ( "planet number f" % 32 ) - ( "planet number f" % 64 ) - ( "planet number f" % 128 ) - ( "planet number f" % 256 ) - ( "planet number f" % 512 ) - ( "planet number f" % 1024 ) - ( "planet number f" % 2048 ) - ( "planet number f" % 4096 ) - ( "planet number f" % 8192 ) - ( "planet number f" % 16384 ) - ( "planet number f" % 32768 ) - ( "planet number f" % 65536 ) - ( "planet number f" % 131072 ) - ( "planet number f" % 262144 ) - ( "planet number f" % 524288 ) - ( "planet number f" % 1048576 ) - ( "planet number f" % 2097152 ) ) % 4194304 ) == 0
-            "planet number f" < 2097152
+            ( ( "planet number f" - ( "planet number f" % 2097152 ) ) % 4194304 ) == 0
         or
             not "flagship planet: Reunion"
-            ( ( "planet number f" - ( "planet number f" % 2 ) - ( "planet number f" % 4 ) - ( "planet number f" % 8 ) - ( "planet number f" % 16 ) - ( "planet number f" % 32 ) - ( "planet number f" % 64 ) - ( "planet number f" % 128 ) - ( "planet number f" % 256 ) - ( "planet number f" % 512 ) - ( "planet number f" % 1024 ) - ( "planet number f" % 2048 ) - ( "planet number f" % 4096 ) - ( "planet number f" % 8192 ) - ( "planet number f" % 16384 ) - ( "planet number f" % 32768 ) - ( "planet number f" % 65536 ) - ( "planet number f" % 131072 ) - ( "planet number f" % 262144 ) - ( "planet number f" % 524288 ) - ( "planet number f" % 1048576 ) - ( "planet number f" % 2097152 ) - ( "planet number f" % 4194304 ) ) % 8388608 ) == 0
-            "planet number f" < 4194304
+            ( ( "planet number f" - ( "planet number f" % 4194304 ) ) % 8388608 ) == 0
         or
             not "flagship planet: Shangri-La"
-            ( ( "planet number f" - ( "planet number f" % 2 ) - ( "planet number f" % 4 ) - ( "planet number f" % 8 ) - ( "planet number f" % 16 ) - ( "planet number f" % 32 ) - ( "planet number f" % 64 ) - ( "planet number f" % 128 ) - ( "planet number f" % 256 ) - ( "planet number f" % 512 ) - ( "planet number f" % 1024 ) - ( "planet number f" % 2048 ) - ( "planet number f" % 4096 ) - ( "planet number f" % 8192 ) - ( "planet number f" % 16384 ) - ( "planet number f" % 32768 ) - ( "planet number f" % 65536 ) - ( "planet number f" % 131072 ) - ( "planet number f" % 262144 ) - ( "planet number f" % 524288 ) - ( "planet number f" % 1048576 ) - ( "planet number f" % 2097152 ) - ( "planet number f" % 4194304 ) - ( "planet number f" % 8388608 ) ) % 16777216 ) == 0
-            "planet number f" < 8388608
+            ( ( "planet number f" - ( "planet number f" % 8388608 ) ) % 16777216 ) == 0
         or
             not "flagship planet: Sundive"
-            ( ( "planet number f" - ( "planet number f" % 2 ) - ( "planet number f" % 4 ) - ( "planet number f" % 8 ) - ( "planet number f" % 16 ) - ( "planet number f" % 32 ) - ( "planet number f" % 64 ) - ( "planet number f" % 128 ) - ( "planet number f" % 256 ) - ( "planet number f" % 512 ) - ( "planet number f" % 1024 ) - ( "planet number f" % 2048 ) - ( "planet number f" % 4096 ) - ( "planet number f" % 8192 ) - ( "planet number f" % 16384 ) - ( "planet number f" % 32768 ) - ( "planet number f" % 65536 ) - ( "planet number f" % 131072 ) - ( "planet number f" % 262144 ) - ( "planet number f" % 524288 ) - ( "planet number f" % 1048576 ) - ( "planet number f" % 2097152 ) - ( "planet number f" % 4194304 ) - ( "planet number f" % 8388608 ) - ( "planet number f" % 16777216 ) ) % 33554432 ) == 0
-            "planet number f" < 16777216
+            ( ( "planet number f" - ( "planet number f" % 16777216 ) ) % 33554432 ) == 0
         or
             not "flagship planet: Sunracer"
-            ( ( "planet number f" - ( "planet number f" % 2 ) - ( "planet number f" % 4 ) - ( "planet number f" % 8 ) - ( "planet number f" % 16 ) - ( "planet number f" % 32 ) - ( "planet number f" % 64 ) - ( "planet number f" % 128 ) - ( "planet number f" % 256 ) - ( "planet number f" % 512 ) - ( "planet number f" % 1024 ) - ( "planet number f" % 2048 ) - ( "planet number f" % 4096 ) - ( "planet number f" % 8192 ) - ( "planet number f" % 16384 ) - ( "planet number f" % 32768 ) - ( "planet number f" % 65536 ) - ( "planet number f" % 131072 ) - ( "planet number f" % 262144 ) - ( "planet number f" % 524288 ) - ( "planet number f" % 1048576 ) - ( "planet number f" % 2097152 ) - ( "planet number f" % 4194304 ) - ( "planet number f" % 8388608 ) - ( "planet number f" % 16777216 ) - ( "planet number f" % 33554432 ) ) % 67108864 ) == 0
-            "planet number f" < 33554432
+            ( ( "planet number f" - ( "planet number f" % 33554432 ) ) % 67108864 ) == 0
         or
             not "flagship planet: Tinker"
-            ( ( "planet number f" - ( "planet number f" % 2 ) - ( "planet number f" % 4 ) - ( "planet number f" % 8 ) - ( "planet number f" % 16 ) - ( "planet number f" % 32 ) - ( "planet number f" % 64 ) - ( "planet number f" % 128 ) - ( "planet number f" % 256 ) - ( "planet number f" % 512 ) - ( "planet number f" % 1024 ) - ( "planet number f" % 2048 ) - ( "planet number f" % 4096 ) - ( "planet number f" % 8192 ) - ( "planet number f" % 16384 ) - ( "planet number f" % 32768 ) - ( "planet number f" % 65536 ) - ( "planet number f" % 131072 ) - ( "planet number f" % 262144 ) - ( "planet number f" % 524288 ) - ( "planet number f" % 1048576 ) - ( "planet number f" % 2097152 ) - ( "planet number f" % 4194304 ) - ( "planet number f" % 8388608 ) - ( "planet number f" % 16777216 ) - ( "planet number f" % 33554432 ) - ( "planet number f" % 67108864 ) ) % 134217728 ) == 0
-            "planet number f" < 67108864
+            ( ( "planet number f" - ( "planet number f" % 67108864 ) ) % 134217728 ) == 0
         or
             not "flagship planet: Trove"
-            ( ( "planet number f" - ( "planet number f" % 2 ) - ( "planet number f" % 4 ) - ( "planet number f" % 8 ) - ( "planet number f" % 16 ) - ( "planet number f" % 32 ) - ( "planet number f" % 64 ) - ( "planet number f" % 128 ) - ( "planet number f" % 256 ) - ( "planet number f" % 512 ) - ( "planet number f" % 1024 ) - ( "planet number f" % 2048 ) - ( "planet number f" % 4096 ) - ( "planet number f" % 8192 ) - ( "planet number f" % 16384 ) - ( "planet number f" % 32768 ) - ( "planet number f" % 65536 ) - ( "planet number f" % 131072 ) - ( "planet number f" % 262144 ) - ( "planet number f" % 524288 ) - ( "planet number f" % 1048576 ) - ( "planet number f" % 2097152 ) - ( "planet number f" % 4194304 ) - ( "planet number f" % 8388608 ) - ( "planet number f" % 16777216 ) - ( "planet number f" % 33554432 ) - ( "planet number f" % 67108864 ) - ( "planet number f" % 134217728 ) ) % 268435456 ) == 0
-            "planet number f" < 134217728
+            ( ( "planet number f" - ( "planet number f" % 134217728 ) ) % 268435456 ) == 0
 
         or
             has "flagship planet: Amazon"
@@ -1761,44 +1677,34 @@ mission "Landing Fee G1"
             ( ( "planet number g" - ( "planet number g" % 2 ) ) % 4 ) == 0
         or
             not "flagship planet: Featherweight"
-            ( ( "planet number g" - ( "planet number g" % 2 ) - ( "planet number g" % 4 ) ) % 8 ) == 0
-            "planet number g" < 4
+            ( ( "planet number g" - ( "planet number g" % 4 ) ) % 8 ) == 0
         or
             not "flagship planet: Maelstrom"
-            ( ( "planet number g" - ( "planet number g" % 2 ) - ( "planet number g" % 4 ) - ( "planet number g" % 8 ) ) % 16 ) == 0
-            "planet number g" < 8
+            ( ( "planet number g" - ( "planet number g" % 8 ) ) % 16 ) == 0
         or
             not "flagship planet: Pilot"
-            ( ( "planet number g" - ( "planet number g" % 2 ) - ( "planet number g" % 4 ) - ( "planet number g" % 8 ) - ( "planet number g" % 16 ) ) % 32 ) == 0
-            "planet number g" < 16
+            ( ( "planet number g" - ( "planet number g" % 16 ) ) % 32 ) == 0
         or
             not "flagship planet: Poisonwood"
-            ( ( "planet number g" - ( "planet number g" % 2 ) - ( "planet number g" % 4 ) - ( "planet number g" % 8 ) - ( "planet number g" % 16 ) - ( "planet number g" % 32 ) ) % 64 ) == 0
-            "planet number g" < 32
+            ( ( "planet number g" - ( "planet number g" % 32 ) ) % 64 ) == 0
         or
             not "flagship planet: Prime"
-            ( ( "planet number g" - ( "planet number g" % 2 ) - ( "planet number g" % 4 ) - ( "planet number g" % 8 ) - ( "planet number g" % 16 ) - ( "planet number g" % 32 ) - ( "planet number g" % 64 ) ) % 128 ) == 0
-            "planet number g" < 64
+            ( ( "planet number g" - ( "planet number g" % 64 ) ) % 128 ) == 0
         or
             not "flagship planet: Serpens"
-            ( ( "planet number g" - ( "planet number g" % 2 ) - ( "planet number g" % 4 ) - ( "planet number g" % 8 ) - ( "planet number g" % 16 ) - ( "planet number g" % 32 ) - ( "planet number g" % 64 ) - ( "planet number g" % 128 ) ) % 256 ) == 0
-            "planet number g" < 128
+            ( ( "planet number g" - ( "planet number g" % 128 ) ) % 256 ) == 0
         or
             not "flagship planet: Shroud"
-            ( ( "planet number g" - ( "planet number g" % 2 ) - ( "planet number g" % 4 ) - ( "planet number g" % 8 ) - ( "planet number g" % 16 ) - ( "planet number g" % 32 ) - ( "planet number g" % 64 ) - ( "planet number g" % 128 ) - ( "planet number g" % 256 ) ) % 512 ) == 0
-            "planet number g" < 256
+            ( ( "planet number g" - ( "planet number g" % 256 ) ) % 512 ) == 0
         or
             not "flagship planet: Skillet"
-            ( ( "planet number g" - ( "planet number g" % 2 ) - ( "planet number g" % 4 ) - ( "planet number g" % 8 ) - ( "planet number g" % 16 ) - ( "planet number g" % 32 ) - ( "planet number g" % 64 ) - ( "planet number g" % 128 ) - ( "planet number g" % 256 ) - ( "planet number g" % 512 ) ) % 1024 ) == 0
-            "planet number g" < 512
+            ( ( "planet number g" - ( "planet number g" % 512 ) ) % 1024 ) == 0
         or
             not "flagship planet: Splashdown"
-            ( ( "planet number g" - ( "planet number g" % 2 ) - ( "planet number g" % 4 ) - ( "planet number g" % 8 ) - ( "planet number g" % 16 ) - ( "planet number g" % 32 ) - ( "planet number g" % 64 ) - ( "planet number g" % 128 ) - ( "planet number g" % 256 ) - ( "planet number g" % 512 ) - ( "planet number g" % 1024 ) ) % 2048 ) == 0
-            "planet number g" < 1024
+            ( ( "planet number g" - ( "planet number g" % 1024 ) ) % 2048 ) == 0
         or
             not "flagship planet: Triton Station"
-            ( ( "planet number g" - ( "planet number g" % 2 ) - ( "planet number g" % 4 ) - ( "planet number g" % 8 ) - ( "planet number g" % 16 ) - ( "planet number g" % 32 ) - ( "planet number g" % 64 ) - ( "planet number g" % 128 ) - ( "planet number g" % 256 ) - ( "planet number g" % 512 ) - ( "planet number g" % 1024 ) - ( "planet number g" % 2048 ) ) % 4096 ) == 0
-            "planet number g" < 2048
+            ( ( "planet number g" - ( "planet number g" % 2048 ) ) % 4096 ) == 0
         or
             has "flagship planet: Carbuncle Station"
             has "flagship planet: Farpoint"
@@ -2027,60 +1933,46 @@ mission "Landing Fee H1"
             ( ( "planet number h" - ( "planet number h" % 2 ) ) % 4 ) == 0
         or
             not "flagship planet: Charon Station"
-            ( ( "planet number h" - ( "planet number h" % 2 ) - ( "planet number h" % 4 ) ) % 8 ) == 0
-            "planet number h" < 4
+            ( ( "planet number h" - ( "planet number h" % 4 ) ) % 8 ) == 0
         or
             not "flagship planet: Clink"
-            ( ( "planet number h" - ( "planet number h" % 2 ) - ( "planet number h" % 4 ) - ( "planet number h" % 8 ) ) % 16 ) == 0
-            "planet number h" < 8
+            ( ( "planet number h" - ( "planet number h" % 8 ) ) % 16 ) == 0
         or
             not "flagship planet: Cornucopia"
-            ( ( "planet number h" - ( "planet number h" % 2 ) - ( "planet number h" % 4 ) - ( "planet number h" % 8 ) - ( "planet number h" % 16 ) ) % 32 ) == 0
-            "planet number h" < 16
+            ( ( "planet number h" - ( "planet number h" % 16 ) ) % 32 ) == 0
         or
             not "flagship planet: Dancer"
-            ( ( "planet number h" - ( "planet number h" % 2 ) - ( "planet number h" % 4 ) - ( "planet number h" % 8 ) - ( "planet number h" % 16 ) - ( "planet number h" % 32 ) ) % 64 ) == 0
-            "planet number h" < 32
+            ( ( "planet number h" - ( "planet number h" % 32 ) ) % 64 ) == 0
         or
             not "flagship planet: Darkstone"
-            ( ( "planet number h" - ( "planet number h" % 2 ) - ( "planet number h" % 4 ) - ( "planet number h" % 8 ) - ( "planet number h" % 16 ) - ( "planet number h" % 32 ) - ( "planet number h" % 64 ) ) % 128 ) == 0
-            "planet number h" < 64
+            ( ( "planet number h" - ( "planet number h" % 64 ) ) % 128 ) == 0
         or
             not "flagship planet: Deep"
-            ( ( "planet number h" - ( "planet number h" % 2 ) - ( "planet number h" % 4 ) - ( "planet number h" % 8 ) - ( "planet number h" % 16 ) - ( "planet number h" % 32 ) - ( "planet number h" % 64 ) - ( "planet number h" % 128 ) ) % 256 ) == 0
-            "planet number h" < 128
+            ( ( "planet number h" - ( "planet number h" % 128 ) ) % 256 ) == 0
         or
             not "flagship planet: Glaze"
-            ( ( "planet number h" - ( "planet number h" % 2 ) - ( "planet number h" % 4 ) - ( "planet number h" % 8 ) - ( "planet number h" % 16 ) - ( "planet number h" % 32 ) - ( "planet number h" % 64 ) - ( "planet number h" % 128 ) - ( "planet number h" % 256 ) ) % 512 ) == 0
-            "planet number h" < 256
+            ( ( "planet number h" - ( "planet number h" % 256 ) ) % 512 ) == 0
         or
             not "flagship planet: Harmony"
-            ( ( "planet number h" - ( "planet number h" % 2 ) - ( "planet number h" % 4 ) - ( "planet number h" % 8 ) - ( "planet number h" % 16 ) - ( "planet number h" % 32 ) - ( "planet number h" % 64 ) - ( "planet number h" % 128 ) - ( "planet number h" % 256 ) - ( "planet number h" % 512 ) ) % 1024 ) == 0
-            "planet number h" < 512
+            ( ( "planet number h" - ( "planet number h" % 512 ) ) % 1024 ) == 0
         or
             not "flagship planet: Lichen"
-            ( ( "planet number h" - ( "planet number h" % 2 ) - ( "planet number h" % 4 ) - ( "planet number h" % 8 ) - ( "planet number h" % 16 ) - ( "planet number h" % 32 ) - ( "planet number h" % 64 ) - ( "planet number h" % 128 ) - ( "planet number h" % 256 ) - ( "planet number h" % 512 ) - ( "planet number h" % 1024 ) ) % 2048 ) == 0
-            "planet number h" < 1024
+            ( ( "planet number h" - ( "planet number h" % 1024 ) ) % 2048 ) == 0
         or
             not "flagship planet: Solace"
-            ( ( "planet number h" - ( "planet number h" % 2 ) - ( "planet number h" % 4 ) - ( "planet number h" % 8 ) - ( "planet number h" % 16 ) - ( "planet number h" % 32 ) - ( "planet number h" % 64 ) - ( "planet number h" % 128 ) - ( "planet number h" % 256 ) - ( "planet number h" % 512 ) - ( "planet number h" % 1024 ) - ( "planet number h" % 2048 ) ) % 4096 ) == 0
-            "planet number h" < 2048
+            ( ( "planet number h" - ( "planet number h" % 2048 ) ) % 4096 ) == 0
         or
             not "flagship planet: Sundrinker"
-            ( ( "planet number h" - ( "planet number h" % 2 ) - ( "planet number h" % 4 ) - ( "planet number h" % 8 ) - ( "planet number h" % 16 ) - ( "planet number h" % 32 ) - ( "planet number h" % 64 ) - ( "planet number h" % 128 ) - ( "planet number h" % 256 ) - ( "planet number h" % 512 ) - ( "planet number h" % 1024 ) - ( "planet number h" % 2048 ) - ( "planet number h" % 4096 ) ) % 8192 ) == 0
-            "planet number h" < 4096
+            ( ( "planet number h" - ( "planet number h" % 4096 ) ) % 8192 ) == 0
         or
             not "flagship planet: Trinket"
-            ( ( "planet number h" - ( "planet number h" % 2 ) - ( "planet number h" % 4 ) - ( "planet number h" % 8 ) - ( "planet number h" % 16 ) - ( "planet number h" % 32 ) - ( "planet number h" % 64 ) - ( "planet number h" % 128 ) - ( "planet number h" % 256 ) - ( "planet number h" % 512 ) - ( "planet number h" % 1024 ) - ( "planet number h" % 2048 ) - ( "planet number h" % 4096 ) - ( "planet number h" % 8192 ) ) % 16384 ) == 0
-            "planet number h" < 8192
+            ( ( "planet number h" - ( "planet number h" % 8192 ) ) % 16384 ) == 0
         or
             not "flagship planet: Twinstar"
-            ( ( "planet number h" - ( "planet number h" % 2 ) - ( "planet number h" % 4 ) - ( "planet number h" % 8 ) - ( "planet number h" % 16 ) - ( "planet number h" % 32 ) - ( "planet number h" % 64 ) - ( "planet number h" % 128 ) - ( "planet number h" % 256 ) - ( "planet number h" % 512 ) - ( "planet number h" % 1024 ) - ( "planet number h" % 2048 ) - ( "planet number h" % 4096 ) - ( "planet number h" % 8192 ) - ( "planet number h" % 16384 ) ) % 32768 ) == 0
-            "planet number h" < 16384
+            ( ( "planet number h" - ( "planet number h" % 16384 ) ) % 32768 ) == 0
         or
             not "flagship planet: Winter"
-            ( ( "planet number h" - ( "planet number h" % 2 ) - ( "planet number h" % 4 ) - ( "planet number h" % 8 ) - ( "planet number h" % 16 ) - ( "planet number h" % 32 ) - ( "planet number h" % 64 ) - ( "planet number h" % 128 ) - ( "planet number h" % 256 ) - ( "planet number h" % 512 ) - ( "planet number h" % 1024 ) - ( "planet number h" % 2048 ) - ( "planet number h" % 4096 ) - ( "planet number h" % 8192 ) - ( "planet number h" % 16384 ) - ( "planet number h" % 32768 ) ) % 65536 ) == 0
-            "planet number h" < 32768
+            ( ( "planet number h" - ( "planet number h" % 32768 ) ) % 65536 ) == 0
 
         or
             has "flagship planet: Albatross"
@@ -2353,96 +2245,73 @@ mission "Landing Fee I"
             ( ( "planet number i" - ( "planet number i" % 2 ) ) % 4 ) == 0
         or
             not "flagship planet: Bounty"
-            ( ( "planet number i" - ( "planet number i" % 2 ) - ( "planet number i" % 4 ) ) % 8 ) == 0
-            "planet number i" < 4
+            ( ( "planet number i" - ( "planet number i" % 4 ) ) % 8 ) == 0
         or
             not "flagship planet: Clark"
-            ( ( "planet number i" - ( "planet number i" % 2 ) - ( "planet number i" % 4 ) - ( "planet number i" % 8 ) ) % 16 ) == 0
-            "planet number i" < 8
+            ( ( "planet number i" - ( "planet number i" % 8 ) ) % 16 ) == 0
         or
             not "flagship planet: Gemstone"
-            ( ( "planet number i" - ( "planet number i" % 2 ) - ( "planet number i" % 4 ) - ( "planet number i" % 8 ) - ( "planet number i" % 16 ) ) % 32 ) == 0
-            "planet number i" < 16
+            ( ( "planet number i" - ( "planet number i" % 16 ) ) % 32 ) == 0
         or
             not "flagship planet: Heartland"
-            ( ( "planet number i" - ( "planet number i" % 2 ) - ( "planet number i" % 4 ) - ( "planet number i" % 8 ) - ( "planet number i" % 16 ) - ( "planet number i" % 32 ) ) % 64 ) == 0
-            "planet number i" < 32
+            ( ( "planet number i" - ( "planet number i" % 32 ) ) % 64 ) == 0
         or
             not "flagship planet: Hopper"
-            ( ( "planet number i" - ( "planet number i" % 2 ) - ( "planet number i" % 4 ) - ( "planet number i" % 8 ) - ( "planet number i" % 16 ) - ( "planet number i" % 32 ) - ( "planet number i" % 64 ) ) % 128 ) == 0
-            "planet number i" < 64
+            ( ( "planet number i" - ( "planet number i" % 64 ) ) % 128 ) == 0
         or
             not "flagship planet: Hydra Station"
-            ( ( "planet number i" - ( "planet number i" % 2 ) - ( "planet number i" % 4 ) - ( "planet number i" % 8 ) - ( "planet number i" % 16 ) - ( "planet number i" % 32 ) - ( "planet number i" % 64 ) - ( "planet number i" % 128 ) ) % 256 ) == 0
-            "planet number i" < 128
+            ( ( "planet number i" - ( "planet number i" % 128 ) ) % 256 ) == 0
         or
             not "flagship planet: Ingot"
-            ( ( "planet number i" - ( "planet number i" % 2 ) - ( "planet number i" % 4 ) - ( "planet number i" % 8 ) - ( "planet number i" % 16 ) - ( "planet number i" % 32 ) - ( "planet number i" % 64 ) - ( "planet number i" % 128 ) - ( "planet number i" % 256 ) ) % 512 ) == 0
-            "planet number i" < 256
+            ( ( "planet number i" - ( "planet number i" % 256 ) ) % 512 ) == 0
         or
             not "flagship planet: New Argentina"
-            ( ( "planet number i" - ( "planet number i" % 2 ) - ( "planet number i" % 4 ) - ( "planet number i" % 8 ) - ( "planet number i" % 16 ) - ( "planet number i" % 32 ) - ( "planet number i" % 64 ) - ( "planet number i" % 128 ) - ( "planet number i" % 256 ) - ( "planet number i" % 512 ) ) % 1024 ) == 0
-            "planet number i" < 512
+            ( ( "planet number i" - ( "planet number i" % 512 ) ) % 1024 ) == 0
         or
             not "flagship planet: New Austria"
-            ( ( "planet number i" - ( "planet number i" % 2 ) - ( "planet number i" % 4 ) - ( "planet number i" % 8 ) - ( "planet number i" % 16 ) - ( "planet number i" % 32 ) - ( "planet number i" % 64 ) - ( "planet number i" % 128 ) - ( "planet number i" % 256 ) - ( "planet number i" % 512 ) - ( "planet number i" % 1024 ) ) % 2048 ) == 0
-            "planet number i" < 1024
+            ( ( "planet number i" - ( "planet number i" % 1024 ) ) % 2048 ) == 0
         or
             not "flagship planet: New Boston"
-            ( ( "planet number i" - ( "planet number i" % 2 ) - ( "planet number i" % 4 ) - ( "planet number i" % 8 ) - ( "planet number i" % 16 ) - ( "planet number i" % 32 ) - ( "planet number i" % 64 ) - ( "planet number i" % 128 ) - ( "planet number i" % 256 ) - ( "planet number i" % 512 ) - ( "planet number i" % 1024 ) - ( "planet number i" % 2048 ) ) % 4096 ) == 0
-            "planet number i" < 2048
+            ( ( "planet number i" - ( "planet number i" % 2048 ) ) % 4096 ) == 0
         or
             not "flagship planet: New Greenland"
-            ( ( "planet number i" - ( "planet number i" % 2 ) - ( "planet number i" % 4 ) - ( "planet number i" % 8 ) - ( "planet number i" % 16 ) - ( "planet number i" % 32 ) - ( "planet number i" % 64 ) - ( "planet number i" % 128 ) - ( "planet number i" % 256 ) - ( "planet number i" % 512 ) - ( "planet number i" % 1024 ) - ( "planet number i" % 2048 ) - ( "planet number i" % 4096 ) ) % 8192 ) == 0
-            "planet number i" < 4096
+            ( ( "planet number i" - ( "planet number i" % 4096 ) ) % 8192 ) == 0
         or
             not "flagship planet: New Holland"
-            ( ( "planet number i" - ( "planet number i" % 2 ) - ( "planet number i" % 4 ) - ( "planet number i" % 8 ) - ( "planet number i" % 16 ) - ( "planet number i" % 32 ) - ( "planet number i" % 64 ) - ( "planet number i" % 128 ) - ( "planet number i" % 256 ) - ( "planet number i" % 512 ) - ( "planet number i" % 1024 ) - ( "planet number i" % 2048 ) - ( "planet number i" % 4096 ) - ( "planet number i" % 8192 ) ) % 16384 ) == 0
-            "planet number i" < 8192
+            ( ( "planet number i" - ( "planet number i" % 8192 ) ) % 16384 ) == 0
         or
             not "flagship planet: New Iceland"
-            ( ( "planet number i" - ( "planet number i" % 2 ) - ( "planet number i" % 4 ) - ( "planet number i" % 8 ) - ( "planet number i" % 16 ) - ( "planet number i" % 32 ) - ( "planet number i" % 64 ) - ( "planet number i" % 128 ) - ( "planet number i" % 256 ) - ( "planet number i" % 512 ) - ( "planet number i" % 1024 ) - ( "planet number i" % 2048 ) - ( "planet number i" % 4096 ) - ( "planet number i" % 8192 ) - ( "planet number i" % 16384 ) ) % 32768 ) == 0
-            "planet number i" < 16834
+            ( ( "planet number i" - ( "planet number i" % 16384 ) ) % 32768 ) == 0
         or
             not "flagship planet: New India"
-            ( ( "planet number i" - ( "planet number i" % 2 ) - ( "planet number i" % 4 ) - ( "planet number i" % 8 ) - ( "planet number i" % 16 ) - ( "planet number i" % 32 ) - ( "planet number i" % 64 ) - ( "planet number i" % 128 ) - ( "planet number i" % 256 ) - ( "planet number i" % 512 ) - ( "planet number i" % 1024 ) - ( "planet number i" % 2048 ) - ( "planet number i" % 4096 ) - ( "planet number i" % 8192 ) - ( "planet number i" % 16384 ) - ( "planet number i" % 32768 ) ) % 65536 ) == 0
-            "planet number i" < 32768
+            ( ( "planet number i" - ( "planet number i" % 32768 ) ) % 65536 ) == 0
         or
             not "flagship planet: New Kansas"
-            ( ( "planet number i" - ( "planet number i" % 2 ) - ( "planet number i" % 4 ) - ( "planet number i" % 8 ) - ( "planet number i" % 16 ) - ( "planet number i" % 32 ) - ( "planet number i" % 64 ) - ( "planet number i" % 128 ) - ( "planet number i" % 256 ) - ( "planet number i" % 512 ) - ( "planet number i" % 1024 ) - ( "planet number i" % 2048 ) - ( "planet number i" % 4096 ) - ( "planet number i" % 8192 ) - ( "planet number i" % 16384 ) - ( "planet number i" % 32768 ) - ( "planet number i" % 65536 ) ) % 131072 ) == 0
-            "planet number i" < 65536
+            ( ( "planet number i" - ( "planet number i" % 65536 ) ) % 131072 ) == 0
         or
             not "flagship planet: New Portland"
-            ( ( "planet number i" - ( "planet number i" % 2 ) - ( "planet number i" % 4 ) - ( "planet number i" % 8 ) - ( "planet number i" % 16 ) - ( "planet number i" % 32 ) - ( "planet number i" % 64 ) - ( "planet number i" % 128 ) - ( "planet number i" % 256 ) - ( "planet number i" % 512 ) - ( "planet number i" % 1024 ) - ( "planet number i" % 2048 ) - ( "planet number i" % 4096 ) - ( "planet number i" % 8192 ) - ( "planet number i" % 16384 ) - ( "planet number i" % 32768 ) - ( "planet number i" % 65536 ) - ( "planet number i" % 131072 ) ) % 262144 ) == 0
-            "planet number i" < 131072
+            ( ( "planet number i" - ( "planet number i" % 131072 ) ) % 262144 ) == 0
         or
             not "flagship planet: New Sahara"
-            ( ( "planet number i" - ( "planet number i" % 2 ) - ( "planet number i" % 4 ) - ( "planet number i" % 8 ) - ( "planet number i" % 16 ) - ( "planet number i" % 32 ) - ( "planet number i" % 64 ) - ( "planet number i" % 128 ) - ( "planet number i" % 256 ) - ( "planet number i" % 512 ) - ( "planet number i" % 1024 ) - ( "planet number i" % 2048 ) - ( "planet number i" % 4096 ) - ( "planet number i" % 8192 ) - ( "planet number i" % 16384 ) - ( "planet number i" % 32768 ) - ( "planet number i" % 65536 ) - ( "planet number i" % 131072 ) - ( "planet number i" % 262144 ) ) % 524288 ) == 0
-            "planet number i" < 262144
+            ( ( "planet number i" - ( "planet number i" % 262144 ) ) % 524288 ) == 0
         or
             not "flagship planet: New Tibet"
-            ( ( "planet number i" - ( "planet number i" % 2 ) - ( "planet number i" % 4 ) - ( "planet number i" % 8 ) - ( "planet number i" % 16 ) - ( "planet number i" % 32 ) - ( "planet number i" % 64 ) - ( "planet number i" % 128 ) - ( "planet number i" % 256 ) - ( "planet number i" % 512 ) - ( "planet number i" % 1024 ) - ( "planet number i" % 2048 ) - ( "planet number i" % 4096 ) - ( "planet number i" % 8192 ) - ( "planet number i" % 16384 ) - ( "planet number i" % 32768 ) - ( "planet number i" % 65536 ) - ( "planet number i" % 131072 ) - ( "planet number i" % 262144 ) - ( "planet number i" % 524288 ) ) % 1048576 ) == 0
-            "planet number i" < 524288
+            ( ( "planet number i" - ( "planet number i" % 524288 ) ) % 1048576 ) == 0
         or
             not "flagship planet: New Wales"
-            ( ( "planet number i" - ( "planet number i" % 2 ) - ( "planet number i" % 4 ) - ( "planet number i" % 8 ) - ( "planet number i" % 16 ) - ( "planet number i" % 32 ) - ( "planet number i" % 64 ) - ( "planet number i" % 128 ) - ( "planet number i" % 256 ) - ( "planet number i" % 512 ) - ( "planet number i" % 1024 ) - ( "planet number i" % 2048 ) - ( "planet number i" % 4096 ) - ( "planet number i" % 8192 ) - ( "planet number i" % 16384 ) - ( "planet number i" % 32768 ) - ( "planet number i" % 65536 ) - ( "planet number i" % 131072 ) - ( "planet number i" % 262144 ) - ( "planet number i" % 524288 ) - ( "planet number i" % 1048576 ) ) % 2097152 ) == 0
-            "planet number i" < 1048576
+            ( ( "planet number i" - ( "planet number i" % 1048576 ) ) % 2097152 ) == 0
         or
             not "flagship planet: New Washington"
-            ( ( "planet number i" - ( "planet number i" % 2 ) - ( "planet number i" % 4 ) - ( "planet number i" % 8 ) - ( "planet number i" % 16 ) - ( "planet number i" % 32 ) - ( "planet number i" % 64 ) - ( "planet number i" % 128 ) - ( "planet number i" % 256 ) - ( "planet number i" % 512 ) - ( "planet number i" % 1024 ) - ( "planet number i" % 2048 ) - ( "planet number i" % 4096 ) - ( "planet number i" % 8192 ) - ( "planet number i" % 16384 ) - ( "planet number i" % 32768 ) - ( "planet number i" % 65536 ) - ( "planet number i" % 131072 ) - ( "planet number i" % 262144 ) - ( "planet number i" % 524288 ) - ( "planet number i" % 1048576 ) - ( "planet number i" % 2097152 ) ) % 4194304 ) == 0
-            "planet number i" < 2097152
+            ( ( "planet number i" - ( "planet number i" % 2097152 ) ) % 4194304 ) == 0
         or
             not "flagship planet: Oblivion"
-            ( ( "planet number i" - ( "planet number i" % 2 ) - ( "planet number i" % 4 ) - ( "planet number i" % 8 ) - ( "planet number i" % 16 ) - ( "planet number i" % 32 ) - ( "planet number i" % 64 ) - ( "planet number i" % 128 ) - ( "planet number i" % 256 ) - ( "planet number i" % 512 ) - ( "planet number i" % 1024 ) - ( "planet number i" % 2048 ) - ( "planet number i" % 4096 ) - ( "planet number i" % 8192 ) - ( "planet number i" % 16384 ) - ( "planet number i" % 32768 ) - ( "planet number i" % 65536 ) - ( "planet number i" % 131072 ) - ( "planet number i" % 262144 ) - ( "planet number i" % 524288 ) - ( "planet number i" % 1048576 ) - ( "planet number i" % 2097152 ) - ( "planet number i" % 4194304 ) ) % 8388608 ) == 0
-            "planet number i" < 4194304
+            ( ( "planet number i" - ( "planet number i" % 4194304 ) ) % 8388608 ) == 0
         or
             not "flagship planet: Rand"
-            ( ( "planet number i" - ( "planet number i" % 2 ) - ( "planet number i" % 4 ) - ( "planet number i" % 8 ) - ( "planet number i" % 16 ) - ( "planet number i" % 32 ) - ( "planet number i" % 64 ) - ( "planet number i" % 128 ) - ( "planet number i" % 256 ) - ( "planet number i" % 512 ) - ( "planet number i" % 1024 ) - ( "planet number i" % 2048 ) - ( "planet number i" % 4096 ) - ( "planet number i" % 8192 ) - ( "planet number i" % 16384 ) - ( "planet number i" % 32768 ) - ( "planet number i" % 65536 ) - ( "planet number i" % 131072 ) - ( "planet number i" % 262144 ) - ( "planet number i" % 524288 ) - ( "planet number i" % 1048576 ) - ( "planet number i" % 2097152 ) - ( "planet number i" % 4194304 ) - ( "planet number i" % 8388608 ) ) % 16777216 ) == 0
-            "planet number i" < 8388608
+            ( ( "planet number i" - ( "planet number i" % 8388608 ) ) % 16777216 ) == 0
         or
             not "flagship planet: Tundra"
-            ( ( "planet number i" - ( "planet number i" % 2 ) - ( "planet number i" % 4 ) - ( "planet number i" % 8 ) - ( "planet number i" % 16 ) - ( "planet number i" % 32 ) - ( "planet number i" % 64 ) - ( "planet number i" % 128 ) - ( "planet number i" % 256 ) - ( "planet number i" % 512 ) - ( "planet number i" % 1024 ) - ( "planet number i" % 2048 ) - ( "planet number i" % 4096 ) - ( "planet number i" % 8192 ) - ( "planet number i" % 16384 ) - ( "planet number i" % 32768 ) - ( "planet number i" % 65536 ) - ( "planet number i" % 131072 ) - ( "planet number i" % 262144 ) - ( "planet number i" % 524288 ) - ( "planet number i" % 1048576 ) - ( "planet number i" % 2097152 ) - ( "planet number i" % 4194304 ) - ( "planet number i" % 8388608 ) - ( "planet number i" % 16777216 ) ) % 33554432 ) == 0
-            "planet number i" < 16777216
+            ( ( "planet number i" - ( "planet number i" % 16777216 ) ) % 33554432 ) == 0
 
         or
             has "flagship planet: Arabia"
@@ -2788,100 +2657,76 @@ mission "Landing Fee Alpha"
             ( ( "planet number alpha" - ( "planet number alpha" % 2 ) ) % 4 ) == 0
         or
             not "flagship planet: Darkcloak"
-            ( ( "planet number alpha" - ( "planet number alpha" % 2 ) - ( "planet number alpha" % 4 ) ) % 8 ) == 0
-            "planet number alpha" < 4
+            ( ( "planet number alpha" - ( "planet number alpha" % 4 ) ) % 8 ) == 0
         or
             not "flagship planet: Darkmetal"
-            ( ( "planet number alpha" - ( "planet number alpha" % 2 ) - ( "planet number alpha" % 4 ) - ( "planet number alpha" % 8 ) ) % 16 ) == 0
-            "planet number alpha" < 8
+            ( ( "planet number alpha" - ( "planet number alpha" % 8 ) ) % 16 ) == 0
         or
             not "flagship planet: Dustmaker"
-            ( ( "planet number alpha" - ( "planet number alpha" % 2 ) - ( "planet number alpha" % 4 ) - ( "planet number alpha" % 8 ) - ( "planet number alpha" % 16 ) ) % 32 ) == 0
-            "planet number alpha" < 16
+            ( ( "planet number alpha" - ( "planet number alpha" % 16 ) ) % 32 ) == 0
         or
             not "flagship planet: Everhope"
-            ( ( "planet number alpha" - ( "planet number alpha" % 2 ) - ( "planet number alpha" % 4 ) - ( "planet number alpha" % 8 ) - ( "planet number alpha" % 16 ) - ( "planet number alpha" % 32 ) ) % 64 ) == 0
-            "planet number alpha" < 32
+            ( ( "planet number alpha" - ( "planet number alpha" % 32 ) ) % 64 ) == 0
         or
             not "flagship planet: Farwater"
-            ( ( "planet number alpha" - ( "planet number alpha" % 2 ) - ( "planet number alpha" % 4 ) - ( "planet number alpha" % 8 ) - ( "planet number alpha" % 16 ) - ( "planet number alpha" % 32 ) - ( "planet number alpha" % 64 ) ) % 128 ) == 0
-            "planet number alpha" < 64
+            ( ( "planet number alpha" - ( "planet number alpha" % 64 ) ) % 128 ) == 0
         or
             not "flagship planet: Firelode"
-            ( ( "planet number alpha" - ( "planet number alpha" % 2 ) - ( "planet number alpha" % 4 ) - ( "planet number alpha" % 8 ) - ( "planet number alpha" % 16 ) - ( "planet number alpha" % 32 ) - ( "planet number alpha" % 64 ) - ( "planet number alpha" % 128 ) ) % 256 ) == 0
-            "planet number alpha" < 128
+            ( ( "planet number alpha" - ( "planet number alpha" % 128 ) ) % 256 ) == 0
         or
             not "flagship planet: Frostmark"
-            ( ( "planet number alpha" - ( "planet number alpha" % 2 ) - ( "planet number alpha" % 4 ) - ( "planet number alpha" % 8 ) - ( "planet number alpha" % 16 ) - ( "planet number alpha" % 32 ) - ( "planet number alpha" % 64 ) - ( "planet number alpha" % 128 ) - ( "planet number alpha" % 256 ) ) % 512 ) == 0
-            "planet number alpha" < 256
+            ( ( "planet number alpha" - ( "planet number alpha" % 256 ) ) % 512 ) == 0
         or
             not "flagship planet: Giverstone"
-            ( ( "planet number alpha" - ( "planet number alpha" % 2 ) - ( "planet number alpha" % 4 ) - ( "planet number alpha" % 8 ) - ( "planet number alpha" % 16 ) - ( "planet number alpha" % 32 ) - ( "planet number alpha" % 64 ) - ( "planet number alpha" % 128 ) - ( "planet number alpha" % 256 ) - ( "planet number alpha" % 512 ) ) % 1024 ) == 0
-            "planet number alpha" < 512
+            ( ( "planet number alpha" - ( "planet number alpha" % 512 ) ) % 1024 ) == 0
         or
             not "flagship planet: Greenbloom"
-            ( ( "planet number alpha" - ( "planet number alpha" % 2 ) - ( "planet number alpha" % 4 ) - ( "planet number alpha" % 8 ) - ( "planet number alpha" % 16 ) - ( "planet number alpha" % 32 ) - ( "planet number alpha" % 64 ) - ( "planet number alpha" % 128 ) - ( "planet number alpha" % 256 ) - ( "planet number alpha" % 512 ) - ( "planet number alpha" % 1024 ) ) % 2048 ) == 0
-            "planet number alpha" < 1024
+            ( ( "planet number alpha" - ( "planet number alpha" % 1024 ) ) % 2048 ) == 0
         or
             not "flagship planet: Greenview"
-            ( ( "planet number alpha" - ( "planet number alpha" % 2 ) - ( "planet number alpha" % 4 ) - ( "planet number alpha" % 8 ) - ( "planet number alpha" % 16 ) - ( "planet number alpha" % 32 ) - ( "planet number alpha" % 64 ) - ( "planet number alpha" % 128 ) - ( "planet number alpha" % 256 ) - ( "planet number alpha" % 512 ) - ( "planet number alpha" % 1024 ) - ( "planet number alpha" % 2048 ) ) % 4096 ) == 0
-            "planet number alpha" < 2048
+            ( ( "planet number alpha" - ( "planet number alpha" % 2048 ) ) % 4096 ) == 0
         or
             not "flagship planet: Greenwater"
-            ( ( "planet number alpha" - ( "planet number alpha" % 2 ) - ( "planet number alpha" % 4 ) - ( "planet number alpha" % 8 ) - ( "planet number alpha" % 16 ) - ( "planet number alpha" % 32 ) - ( "planet number alpha" % 64 ) - ( "planet number alpha" % 128 ) - ( "planet number alpha" % 256 ) - ( "planet number alpha" % 512 ) - ( "planet number alpha" % 1024 ) - ( "planet number alpha" % 2048 ) - ( "planet number alpha" % 4096 ) ) % 8192 ) == 0
-            "planet number alpha" < 4096
+            ( ( "planet number alpha" - ( "planet number alpha" % 4096 ) ) % 8192 ) == 0
         or
             not "flagship planet: Greymoon"
-            ( ( "planet number alpha" - ( "planet number alpha" % 2 ) - ( "planet number alpha" % 4 ) - ( "planet number alpha" % 8 ) - ( "planet number alpha" % 16 ) - ( "planet number alpha" % 32 ) - ( "planet number alpha" % 64 ) - ( "planet number alpha" % 128 ) - ( "planet number alpha" % 256 ) - ( "planet number alpha" % 512 ) - ( "planet number alpha" % 1024 ) - ( "planet number alpha" % 2048 ) - ( "planet number alpha" % 4096 ) - ( "planet number alpha" % 8192 ) ) % 16384 ) == 0
-            "planet number alpha" < 8192
+            ( ( "planet number alpha" - ( "planet number alpha" % 8192 ) ) % 16384 ) == 0
         or
             not "flagship planet: Hai-home"
-            ( ( "planet number alpha" - ( "planet number alpha" % 2 ) - ( "planet number alpha" % 4 ) - ( "planet number alpha" % 8 ) - ( "planet number alpha" % 16 ) - ( "planet number alpha" % 32 ) - ( "planet number alpha" % 64 ) - ( "planet number alpha" % 128 ) - ( "planet number alpha" % 256 ) - ( "planet number alpha" % 512 ) - ( "planet number alpha" % 1024 ) - ( "planet number alpha" % 2048 ) - ( "planet number alpha" % 4096 ) - ( "planet number alpha" % 8192 ) - ( "planet number alpha" % 16384 ) ) % 32768 ) == 0
-            "planet number alpha" < 16384
+            ( ( "planet number alpha" - ( "planet number alpha" % 16384 ) ) % 32768 ) == 0
         or
             not "flagship planet: Heartvalley"
-            ( ( "planet number alpha" - ( "planet number alpha" % 2 ) - ( "planet number alpha" % 4 ) - ( "planet number alpha" % 8 ) - ( "planet number alpha" % 16 ) - ( "planet number alpha" % 32 ) - ( "planet number alpha" % 64 ) - ( "planet number alpha" % 128 ) - ( "planet number alpha" % 256 ) - ( "planet number alpha" % 512 ) - ( "planet number alpha" % 1024 ) - ( "planet number alpha" % 2048 ) - ( "planet number alpha" % 4096 ) - ( "planet number alpha" % 8192 ) - ( "planet number alpha" % 16384 ) - ( "planet number alpha" % 32768 ) ) % 65536 ) == 0
-            "planet number alpha" < 32768
+            ( ( "planet number alpha" - ( "planet number alpha" % 32768 ) ) % 65536 ) == 0
         or
             not "flagship planet: Icelake"
-            ( ( "planet number alpha" - ( "planet number alpha" % 2 ) - ( "planet number alpha" % 4 ) - ( "planet number alpha" % 8 ) - ( "planet number alpha" % 16 ) - ( "planet number alpha" % 32 ) - ( "planet number alpha" % 64 ) - ( "planet number alpha" % 128 ) - ( "planet number alpha" % 256 ) - ( "planet number alpha" % 512 ) - ( "planet number alpha" % 1024 ) - ( "planet number alpha" % 2048 ) - ( "planet number alpha" % 4096 ) - ( "planet number alpha" % 8192 ) - ( "planet number alpha" % 16384 ) - ( "planet number alpha" % 32768 ) - ( "planet number alpha" % 65536 ) ) % 131072 ) == 0
-            "planet number alpha" < 65536
+            ( ( "planet number alpha" - ( "planet number alpha" % 65536 ) ) % 131072 ) == 0
         or
             not "flagship planet: Makerplace"
-            ( ( "planet number alpha" - ( "planet number alpha" % 2 ) - ( "planet number alpha" % 4 ) - ( "planet number alpha" % 8 ) - ( "planet number alpha" % 16 ) - ( "planet number alpha" % 32 ) - ( "planet number alpha" % 64 ) - ( "planet number alpha" % 128 ) - ( "planet number alpha" % 256 ) - ( "planet number alpha" % 512 ) - ( "planet number alpha" % 1024 ) - ( "planet number alpha" % 2048 ) - ( "planet number alpha" % 4096 ) - ( "planet number alpha" % 8192 ) - ( "planet number alpha" % 16384 ) - ( "planet number alpha" % 32768 ) - ( "planet number alpha" % 65536 ) - ( "planet number alpha" % 131072 ) ) % 262144 ) == 0
-            "planet number alpha" < 131072
+            ( ( "planet number alpha" - ( "planet number alpha" % 131072 ) ) % 262144 ) == 0
         or
             not "flagship planet: Mirrorlake"
-            ( ( "planet number alpha" - ( "planet number alpha" % 2 ) - ( "planet number alpha" % 4 ) - ( "planet number alpha" % 8 ) - ( "planet number alpha" % 16 ) - ( "planet number alpha" % 32 ) - ( "planet number alpha" % 64 ) - ( "planet number alpha" % 128 ) - ( "planet number alpha" % 256 ) - ( "planet number alpha" % 512 ) - ( "planet number alpha" % 1024 ) - ( "planet number alpha" % 2048 ) - ( "planet number alpha" % 4096 ) - ( "planet number alpha" % 8192 ) - ( "planet number alpha" % 16384 ) - ( "planet number alpha" % 32768 ) - ( "planet number alpha" % 65536 ) - ( "planet number alpha" % 131072 ) - ( "planet number alpha" % 262144 ) ) % 524288 ) == 0
-            "planet number alpha" < 262144
+            ( ( "planet number alpha" - ( "planet number alpha" % 262144 ) ) % 524288 ) == 0
         or
             not "flagship planet: Newhome"
-            ( ( "planet number alpha" - ( "planet number alpha" % 2 ) - ( "planet number alpha" % 4 ) - ( "planet number alpha" % 8 ) - ( "planet number alpha" % 16 ) - ( "planet number alpha" % 32 ) - ( "planet number alpha" % 64 ) - ( "planet number alpha" % 128 ) - ( "planet number alpha" % 256 ) - ( "planet number alpha" % 512 ) - ( "planet number alpha" % 1024 ) - ( "planet number alpha" % 2048 ) - ( "planet number alpha" % 4096 ) - ( "planet number alpha" % 8192 ) - ( "planet number alpha" % 16384 ) - ( "planet number alpha" % 32768 ) - ( "planet number alpha" % 65536 ) - ( "planet number alpha" % 131072 ) - ( "planet number alpha" % 262144 ) - ( "planet number alpha" % 524288 ) ) % 1048576 ) == 0
-            "planet number alpha" < 524288
+            ( ( "planet number alpha" - ( "planet number alpha" % 524288 ) ) % 1048576 ) == 0
         or
             not "flagship planet: Ochrescoop"
-            ( ( "planet number alpha" - ( "planet number alpha" % 2 ) - ( "planet number alpha" % 4 ) - ( "planet number alpha" % 8 ) - ( "planet number alpha" % 16 ) - ( "planet number alpha" % 32 ) - ( "planet number alpha" % 64 ) - ( "planet number alpha" % 128 ) - ( "planet number alpha" % 256 ) - ( "planet number alpha" % 512 ) - ( "planet number alpha" % 1024 ) - ( "planet number alpha" % 2048 ) - ( "planet number alpha" % 4096 ) - ( "planet number alpha" % 8192 ) - ( "planet number alpha" % 16384 ) - ( "planet number alpha" % 32768 ) - ( "planet number alpha" % 65536 ) - ( "planet number alpha" % 131072 ) - ( "planet number alpha" % 262144 ) - ( "planet number alpha" % 524288 ) - ( "planet number alpha" % 1048576 ) ) % 2097152 ) == 0
-            "planet number alpha" < 1048576
+            ( ( "planet number alpha" - ( "planet number alpha" % 1048576 ) ) % 2097152 ) == 0
         or
             not "flagship planet: Skyfarm"
-            ( ( "planet number alpha" - ( "planet number alpha" % 2 ) - ( "planet number alpha" % 4 ) - ( "planet number alpha" % 8 ) - ( "planet number alpha" % 16 ) - ( "planet number alpha" % 32 ) - ( "planet number alpha" % 64 ) - ( "planet number alpha" % 128 ) - ( "planet number alpha" % 256 ) - ( "planet number alpha" % 512 ) - ( "planet number alpha" % 1024 ) - ( "planet number alpha" % 2048 ) - ( "planet number alpha" % 4096 ) - ( "planet number alpha" % 8192 ) - ( "planet number alpha" % 16384 ) - ( "planet number alpha" % 32768 ) - ( "planet number alpha" % 65536 ) - ( "planet number alpha" % 131072 ) - ( "planet number alpha" % 262144 ) - ( "planet number alpha" % 524288 ) - ( "planet number alpha" % 1048576 ) - ( "planet number alpha" % 2097152 ) ) % 4194304 ) == 0
-            "planet number alpha" < 2097152
+            ( ( "planet number alpha" - ( "planet number alpha" % 2097152 ) ) % 4194304 ) == 0
         or
             not "flagship planet: Snowfeather"
-            ( ( "planet number alpha" - ( "planet number alpha" % 2 ) - ( "planet number alpha" % 4 ) - ( "planet number alpha" % 8 ) - ( "planet number alpha" % 16 ) - ( "planet number alpha" % 32 ) - ( "planet number alpha" % 64 ) - ( "planet number alpha" % 128 ) - ( "planet number alpha" % 256 ) - ( "planet number alpha" % 512 ) - ( "planet number alpha" % 1024 ) - ( "planet number alpha" % 2048 ) - ( "planet number alpha" % 4096 ) - ( "planet number alpha" % 8192 ) - ( "planet number alpha" % 16384 ) - ( "planet number alpha" % 32768 ) - ( "planet number alpha" % 65536 ) - ( "planet number alpha" % 131072 ) - ( "planet number alpha" % 262144 ) - ( "planet number alpha" % 524288 ) - ( "planet number alpha" % 1048576 ) - ( "planet number alpha" % 2097152 ) - ( "planet number alpha" % 4194304 ) ) % 8388608 ) == 0
-            "planet number alpha" < 4194304
+            ( ( "planet number alpha" - ( "planet number alpha" % 4194304 ) ) % 8388608 ) == 0
         or
             not "flagship planet: Stonebreak"
-            ( ( "planet number alpha" - ( "planet number alpha" % 2 ) - ( "planet number alpha" % 4 ) - ( "planet number alpha" % 8 ) - ( "planet number alpha" % 16 ) - ( "planet number alpha" % 32 ) - ( "planet number alpha" % 64 ) - ( "planet number alpha" % 128 ) - ( "planet number alpha" % 256 ) - ( "planet number alpha" % 512 ) - ( "planet number alpha" % 1024 ) - ( "planet number alpha" % 2048 ) - ( "planet number alpha" % 4096 ) - ( "planet number alpha" % 8192 ) - ( "planet number alpha" % 16384 ) - ( "planet number alpha" % 32768 ) - ( "planet number alpha" % 65536 ) - ( "planet number alpha" % 131072 ) - ( "planet number alpha" % 262144 ) - ( "planet number alpha" % 524288 ) - ( "planet number alpha" % 1048576 ) - ( "planet number alpha" % 2097152 ) - ( "planet number alpha" % 4194304 ) - ( "planet number alpha" % 8388608 ) ) % 16777216 ) == 0
-            "planet number alpha" < 8388608
+            ( ( "planet number alpha" - ( "planet number alpha" % 8388608 ) ) % 16777216 ) == 0
         or
             not "flagship planet: Swiftsong"
-            ( ( "planet number alpha" - ( "planet number alpha" % 2 ) - ( "planet number alpha" % 4 ) - ( "planet number alpha" % 8 ) - ( "planet number alpha" % 16 ) - ( "planet number alpha" % 32 ) - ( "planet number alpha" % 64 ) - ( "planet number alpha" % 128 ) - ( "planet number alpha" % 256 ) - ( "planet number alpha" % 512 ) - ( "planet number alpha" % 1024 ) - ( "planet number alpha" % 2048 ) - ( "planet number alpha" % 4096 ) - ( "planet number alpha" % 8192 ) - ( "planet number alpha" % 16384 ) - ( "planet number alpha" % 32768 ) - ( "planet number alpha" % 65536 ) - ( "planet number alpha" % 131072 ) - ( "planet number alpha" % 262144 ) - ( "planet number alpha" % 524288 ) - ( "planet number alpha" % 1048576 ) - ( "planet number alpha" % 2097152 ) - ( "planet number alpha" % 4194304 ) - ( "planet number alpha" % 8388608 ) - ( "planet number alpha" % 16777216 ) ) % 33554432 ) == 0
-            "planet number alpha" < 16777216
+            ( ( "planet number alpha" - ( "planet number alpha" % 16777216 ) ) % 33554432 ) == 0
         or
             not "flagship planet: Warfeed"
-            ( ( "planet number alpha" - ( "planet number alpha" % 2 ) - ( "planet number alpha" % 4 ) - ( "planet number alpha" % 8 ) - ( "planet number alpha" % 16 ) - ( "planet number alpha" % 32 ) - ( "planet number alpha" % 64 ) - ( "planet number alpha" % 128 ) - ( "planet number alpha" % 256 ) - ( "planet number alpha" % 512 ) - ( "planet number alpha" % 1024 ) - ( "planet number alpha" % 2048 ) - ( "planet number alpha" % 4096 ) - ( "planet number alpha" % 8192 ) - ( "planet number alpha" % 16384 ) - ( "planet number alpha" % 32768 ) - ( "planet number alpha" % 65536 ) - ( "planet number alpha" % 131072 ) - ( "planet number alpha" % 262144 ) - ( "planet number alpha" % 524288 ) - ( "planet number alpha" % 1048576 ) - ( "planet number alpha" % 2097152 ) - ( "planet number alpha" % 4194304 ) - ( "planet number alpha" % 8388608 ) - ( "planet number alpha" % 16777216 ) - ( "planet number alpha" % 33554432 ) ) % 67108864 ) == 0
-            "planet number alpha" < 33554432
+            ( ( "planet number alpha" - ( "planet number alpha" % 33554432 ) ) % 67108864 ) == 0
 
         or
             has "flagship planet: Allhome"
@@ -3238,12 +3083,10 @@ mission "Landing Fee Beta"
             ( ( "planet number beta" - ( "planet number beta" % 2 ) ) % 4 ) == 0
         or
             not "flagship planet: Laki Nemparu"
-            ( ( "planet number beta" - ( "planet number beta" % 2 ) - ( "planet number beta" % 4 ) ) % 8 ) == 0
-            "planet number beta" < 4
+            ( ( "planet number beta" - ( "planet number beta" % 4 ) ) % 8 ) == 0
         or
             not "flagship planet: Setar Fort"
-            ( ( "planet number beta" - ( "planet number beta" % 2 ) - ( "planet number beta" % 4 ) - ( "planet number beta" % 8 ) ) % 16 ) == 0
-            "planet number beta" < 8
+            ( ( "planet number beta" - ( "planet number beta" % 8 ) ) % 16 ) == 0
         or
             has "flagship planet: Karek Fornati"
             has "flagship planet: Korati Efreti"
