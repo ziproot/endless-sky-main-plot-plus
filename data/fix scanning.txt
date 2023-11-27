@@ -1,78 +1,78 @@
 outfit "Cargo Scanner"
-    "cargo scan efficiency" 500
+    "cargo scan efficiency" 2000
 
 outfit "Outfit Scanner"
-    "outfit scan efficiency" 1500
+    "outfit scan efficiency" 6000
 
 outfit "Surveillance Pod"
-    "cargo scan efficiency" 1000
-    "outfit scan efficiency" 2000
+    "cargo scan efficiency" 4000
+    "outfit scan efficiency" 8000
 
 outfit "Value Detector"
-    "cargo scan efficiency" 1000
+    "cargo scan efficiency" 4000
 
 outfit "Scanning Module"
-    "cargo scan efficiency" 1800
-    "outfit scan efficiency" 1800
+    "cargo scan efficiency" 7200
+    "outfit scan efficiency" 7200
 
 outfit "Research Laboratory"
-    "cargo scan efficiency" 600
+    "cargo scan efficiency" 2400
 
 outfit "Salvage Scanner"
-    "outfit scan efficiency" 1200
+    "outfit scan efficiency" 4800
 
 ship "Albatross"
     attributes
-        "outfit scan efficiency" 2400
+        "outfit scan efficiency" 9600
 
 ship "Modified Dromedary"
     attributes
-        "outfit scan efficiency" 4800
+        "outfit scan efficiency" 19200
 
 ship "Gull"
     attributes
-        "outfit scan efficiency" 2000
+        "outfit scan efficiency" 8000
 
 ship "Heron"
     attributes
-        "outfit scan efficiency" 12000
+        "outfit scan efficiency" 48000
 
 ship "Ibis"
     attributes
-        "outfit scan efficiency" 2000
+        "outfit scan efficiency" 8000
 
 ship "Merganser"
     attributes
-        "outfit scan efficiency" 1200
+        "outfit scan efficiency" 4800
 
 ship "Pelican"
     attributes
-        "outfit scan efficiency" 1200
+        "outfit scan efficiency" 4800
 
 ship "Penguin"
     attributes
-        "outfit scan efficiency" 3600
+        "outfit scan efficiency" 14400
 
 ship "Peregrine"
     attributes
-        "outfit scan efficiency" 2200
+        "outfit scan efficiency" 8800
 
 ship "Petrel"
     attributes
-        "outfit scan efficiency" 1400
+        "outfit scan efficiency" 5600
 
 ship "Puffin"
     attributes
-        "outfit scan efficiency" 2800
+        "outfit scan efficiency" 11200
 
 ship "Smew"
     attributes
-        "outfit scan efficiency" 2000
+        "outfit scan efficiency" 8000
 
 ship "Starling"
     attributes
-        "outfit scan efficiency" 2000
+        "outfit scan efficiency" 8000
 
 ship "Tern"
     attributes
-        "outfit scan efficiency" 1200
+        "outfit scan efficiency" 4800
