@@ -71,8 +71,8 @@ ship "Smew"
 
 ship "Starling"
     attributes
-        "outfit scan efficiency" 8000
+        "outfit scan efficiency" 80000
 
 ship "Tern"
     attributes
-        "outfit scan efficiency" 4800
+        "outfit scan efficiency" 48000
