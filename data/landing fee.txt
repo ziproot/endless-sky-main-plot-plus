@@ -228,7 +228,7 @@ mission "Landing Fee B"
                         has "tribute: Silver"
             action
                 payment -8000
-            `The authorities on <origin> charge you a landing fee of <payment>`
+            `The authorities on <origin> charge you a landing fee of <payment>.`
                 accept
             label "tribute"
             action

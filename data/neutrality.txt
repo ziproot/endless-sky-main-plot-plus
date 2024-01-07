@@ -62,6 +62,7 @@ event "pug notice neutrality"
 
 mission "Neutrality 2"
     invisible
+    minor
     landing
     clearance "For some reason, the spaceport controller lets you land."
     to offer
