@@ -2,6 +2,18 @@ disable mission "War Reactions: Asteroid Miners"
 disable mission "War Reactions: Navy and Free Worlds Captains"
 disable mission "War Reactions: Syndicate Orphan"
 
+event "road to hai reveal: danforth ready"
+
+event "road to hai reveal: almaaz empty"
+    system Almaaz
+        fleet "Small Oathkeeper" 10000
+
+event "road to hai reveal: almaaz normal"
+    system "Almaaz"
+        fleet "Small Northern Pirates" 500
+        fleet "Large Northern Pirates" 600
+        fleet "Large Oathkeeper" 4000
+
 mission "oathkeepers (neutrality)"
     landing
     source Farpoint
@@ -318,8 +330,140 @@ mission "War Reactions: Syndicate Orphan (patched)"
             `    Calvin waves goodbye as he walks his brother in.`
                 decline
 
-# "Road to Hai Reveal: Danforth" clears the secret leaks mission offers and unlocks wanderers, prerequisites: war reactions, oathkeepers missions
-# Then add an Alondo patch mission for those who have not met him
+mission "Hai Wormhole Warning Fix"
+    invisible
+    landing
+    to offer
+        has "Block Hai Wormhole Warning: offered"
+        has "main plot completed"
+    on offer
+        clear "Block Hai Wormhole Warning: offered"
+        fail
+
+mission "Road to Hai Reveal: Prep"
+    invisible
+    landing
+    to offer
+        has "Hai Wormhole Warning: declined"
+        or
+            has "ScS plot completed"
+            has "oathkeepers (neutrality): declined"
+        or
+            has "War Reactions: Navy and Free Worlds Captains: declined"
+            has "War Reactions: Navy and Free Worlds Captains (patched): declined"
+    on offer
+        event "road to hai reveal: danforth ready" 60 120
+        fail
+
+mission "Road to Hai Reveal: Danforth"
+    name "Stretched Thin"
+    description "Help the Navy by taking out a pirate fleet in <waypoints>, then land on <destination> to receive <payment>."
+    minor
+    clearance "You explain to the spaceport manager that you are the one who took out the pirate fleet, and upon verifying your identity he grants you landing permission."
+    waypoint Almaaz
+    substitutions
+        "<reason>" "saw your battle against the Pug"
+        "<reason>" "saw your battle against the Alphas"
+            has "ScS plot completed"
+        "<reason>" "noticed that you were abducted by the Pug"
+            has "skipped main plot"
+        "<reason>" "talked to you about their search for alien activity"
+            has "WR: Captains: navy"
+        "<perps>" "Syndicate"
+        "<perps>" "terrorists who bombed Geminus and Martini"
+            has "free worlds checkmate"
+    to offer
+        has "road to hai reveal: danforth ready"
+        random < 30
+        "combat rating" > 1000
+    source Prime
+    npc kill
+        government "Pirate"
+        personality staying plunders disables heroic nemesis target
+        dialog `You have blown up the last of the pirate ships. Time to collect your payment on <planet>.`
+        fleet "Large Northern Pirates" 3
+        fleet "Small Northern Pirates" 5
+    on offer
+        conversation
+            `   When you enter the spaceport restaurant, you notice captains Rain and Fiona, who <reason>.`
+            choice
+                `(Join them)`
+                    goto join
+                `(Not this time)`
+            `   You ignore them and head to a different table.`
+                defer
+            label join
+            `   You begin to approach them. They ignore you, and they both look upset.`
+            `   "Fiona, I know you're upset. But you heard what the officer said. We must keep the existance of the Hai secre--"`
+            `   She stops and they both turn as they notice you.`
+            choice
+                `   "Don't worry, I already know about the Hai."`
+                    goto relief
+                `   "You should be more careful. You're lucky that I already know about the Hai."`
+                    goto relief
+                `   "If the Hai get revealed, we might have to perform a philosopher's liberation. Many people see the world in black and white. Not everyone is a master of grey."`
+            `   Rain laughs. "I heard that the secret would have gotten out, but the Hai secret leaks were blocked by someone from Amazon. An Amazonite, if you will."`
+            `   Fiona sighs.`endless-sky/endless-sky
+            `   "I didn't order that."`
+            `   "Oh, sorry, wrong table," says a waiter holding a glass of wine, before heading to a neighboring table.`
+            `   As the waiter leaves, you notice someone who appears to be Admiral Danforth approaching you.`
+                goto danforth
+            label relief
+            `   Rain sighs in relief. "You didn't tell anyone, did you?"`
+            `   "Why would that matter?" Fiona asks.`
+            `   Before you can say anything, you notice someone who appears to be Admiral Danforth sits approaching you.`
+            label danforth
+            `   Upon noticing you, Danforth stops, checks something on a tablet, then turns and faces Fiona.`
+            `   "Excuse me. I assume you've been given the usual speech on keeping the existance of the Hai a secret."`
+            `   "You know about the Hai?" Rain asks.`
+            `   "Yeah, I know about the Hai. Listen, Fiona, as you entered the spaceport, I noticed somebody exiting your ship and running anxiously towards a nearby shuttle, holding something. It could be nothing, but with heightened tensions after the Pug invasion, I'm worried."`
+            `   "It's probably fine," Fiona says quickly.`
+            `   Danforth leans in so only you, Rain, and Fiona can hear. "If the existance of the Hai gets leaked, it could mean war. This is not something to be taken lightly."`
+            `   He straightens back up and says "<first> <last>, follow me."`
+            choice
+                `   "Sure."`
+                    goto follow
+                `   "No thanks."`
+            `   "I really think you should follow me."`
+            choice
+                `   "All right, fine."`
+            label follow
+            `   Danforth gestures you into an empty hallway.`
+            `   "Between trying to keep the existance of the Hai under wraps, and investigating the <perps>, it's becoming more and more difficult to keep pirates under control. There's a pirate fleet massing in <waypoint>. If you take it out for me, I will be very grateful. Land on <destination> after defeating the pirates to receive <payment>."`
+            choice
+                `   "I can handle them."`
+                `   "Sorry, but I'm also busy. I can't help you."`
+                    goto busy
+            `   "That's good news." You each head toward your ships.`
+                accept
+            label busy
+            `   "That's too bad." You each head toward your ships. You have the feeling that you missed out on something important.`
+                decline
+    on accept
+        event "road to hai reveal: almaaz empty"
+    on fail
+        event "road to hai reveal: almaaz normal"
+    on complete
+        event "road to hai reveal: almaaz normal"
+        payment 2000000
+        "reputation: Republic" += 100
+        "reputation: Navy (Oathkeeper)" += 100
+        conversation
+            branch syndicate
+                has "ScS plot completed"
+            action
+                clear "Wanderers: Truce Check: offered"
+                clear "Wanderers: Jump Drive Source: offered"
+            label syndicate
+            `   When you land on <destination>, you are approached by a Navy officer.`
+            `   "We are grateful for your service to the Navy. I will be sure to tell Danforth of your accomplishment."`
+            `   He hands you a credit ship worth <payment>, then leaves without another word.`
+    on defer
+        clear "event: road to hai reveal: danforth ready"
+        "event: road to hai reveal: danforth ready" 30 45
+
+# TBD:
+# Add an Alondo patch mission for those who have not met him
 # Then add a better "media retraction" mission that unlocks scar's legion (set symbol identification offered) and clears secret leaks
 # As the event isn't set as done scar's legion will be the only thing that completes
 # Then finally add a patch mission for the first turner mission
