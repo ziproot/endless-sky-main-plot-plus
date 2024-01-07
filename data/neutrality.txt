@@ -1,6 +1,7 @@
 mission "Neutrality 1"
     deadline 0
     invisible
+    minor
     to offer
         "year" >= 3023
         not "chosen sides"
