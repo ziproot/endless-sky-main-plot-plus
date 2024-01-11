@@ -6,7 +6,8 @@ event "road to hai reveal: danforth ready"
 
 event "road to hai reveal: almaaz empty"
     system Almaaz
-        fleet "Small Oathkeeper" 10000
+        fleet "Small Oathkeeper" 5000
+        fleet "Large Oathkeeper" 15000
 
 event "road to hai reveal: almaaz normal"
     system "Almaaz"
@@ -381,8 +382,8 @@ mission "Road to Hai Reveal: Danforth"
         government "Pirate"
         personality staying plunders disables heroic nemesis target
         dialog `You have blown up the last of the pirate ships. Time to collect your payment on <planet>.`
-        fleet "Large Northern Pirates" 3
-        fleet "Small Northern Pirates" 5
+        fleet "Large Northern Pirates" 2
+        fleet "Small Northern Pirates" 4
     on offer
         conversation
             `   When you enter the spaceport restaurant, you notice captains Rain and Fiona, who <reason>.`
@@ -413,13 +414,13 @@ mission "Road to Hai Reveal: Danforth"
             `   "Why would that matter?" Fiona asks.`
             `   Before you can say anything, you notice someone who appears to be Admiral Danforth sits approaching you.`
             label danforth
-            `   Upon noticing you, Danforth stops, checks something on a tablet, then turns and faces Fiona.`
+            `   Upon noticing you, Danforth stops, checks something on a tablet, then turns, faces Fiona, and leans in so only you, Rain, and Fiona can hear.`
             `   "Excuse me. I assume you've been given the usual speech on keeping the existance of the Hai a secret."`
             `   "You know about the Hai?" Rain asks.`
             `   "Yeah, I know about the Hai. Listen, Fiona, as you entered the spaceport, I noticed somebody exiting your ship and running anxiously towards a nearby shuttle, holding something. It could be nothing, but with heightened tensions after the Pug invasion, I'm worried."`
             `   "It's probably fine," Fiona says quickly.`
-            `   Danforth leans in so only you, Rain, and Fiona can hear. "If the existance of the Hai gets leaked, it could mean war. This is not something to be taken lightly."`
-            `   He straightens back up and says "<first> <last>, follow me."`
+            `   "If the existance of the Hai gets leaked, it could mean war. This is not something to be taken lightly."`
+            `   Danforth straightens back up and says "<first> <last>, would you please follow me?"`
             choice
                 `   "Sure."`
                     goto follow
@@ -434,10 +435,10 @@ mission "Road to Hai Reveal: Danforth"
                 `   "I can handle them."`
                 `   "Sorry, but I'm also busy. I can't help you."`
                     goto busy
-            `   "That's good news." You each head toward your ships.`
+            `   "Thank you." You head back to the restaurant, but Fiona and Rain are nowhere to be seen.`
                 accept
             label busy
-            `   "That's too bad." You each head toward your ships. You have the feeling that you missed out on something important.`
+            `   "That's too bad." You head back to the restaurant, but Fiona and Rain are nowhere to be seen. You have the feeling that you missed out on something important.`
                 decline
     on accept
         event "road to hai reveal: almaaz empty"
@@ -445,9 +446,9 @@ mission "Road to Hai Reveal: Danforth"
         event "road to hai reveal: almaaz normal"
     on complete
         event "road to hai reveal: almaaz normal"
-        payment 2000000
-        "reputation: Republic" += 100
-        "reputation: Navy (Oathkeeper)" += 100
+        payment 1400000
+        "reputation: Republic" += 70
+        "reputation: Navy (Oathkeeper)" += 70
         conversation
             branch syndicate
                 has "ScS plot completed"
@@ -457,7 +458,7 @@ mission "Road to Hai Reveal: Danforth"
             label syndicate
             `   When you land on <destination>, you are approached by a Navy officer.`
             `   "We are grateful for your service to the Navy. I will be sure to tell Danforth of your accomplishment."`
-            `   He hands you a credit ship worth <payment>, then leaves without another word.`
+            `   She hands you a credit ship worth <payment>, then leaves without another word.`
     on defer
         clear "event: road to hai reveal: danforth ready"
         "event: road to hai reveal: danforth ready" 30 45
