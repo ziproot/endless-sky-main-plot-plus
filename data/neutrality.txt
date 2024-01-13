@@ -169,6 +169,11 @@ mission "Neutrality 2b"
         never
     on offer
         clear "pug reputation override"
+        # Requires relocate mission PR
+        # relocate
+        #     "flagship only"
+        #     location
+        #         Ruin
         conversation
             # Adapted from the Ruin: Landing mission in endless sky, with major parts of the description copied.
             `You wake up inside of a tank, with an insectoid robot removing the lid. You step out onto an abandoned fueling depot: a ring of landing pads around a cluster of tanks of all different shapes and sizes. Some of them must be cyrogenic, because they are covered in ice. A few other slow-moving insectoid robots are busy clearing off the ice and cleaning the tanks, but they do not appear to be armed and you see no sign of any other creatures or of any defense systems. From the fact that some of the tanks are covered in frost and others are not, you would guess that each one, besides the one you were in, contains a different fuel, as each tank besides yours has dozens of different connectors branching off from it. You find your ship parked nearby, and with surprise, you discover that it is connected to one of the tanks, and the connector is the style used in human space. Other than the robots and the fog swirling in the valley below you, there is no sign of life or motion here, and the air is uncomfortably moist and cold despite the hot steam rising up from a few nearby vents in the ground.`
@@ -177,11 +182,6 @@ mission "Neutrality 2b"
     on accept
         log "Interacted with aliens who call themselves the Pug, and met with some of them, then got kidnapped for what looks like several years. Was likely placed in a cyrogenic tank. The Pug say that they want to bring peace and protect humanity from excessive self-harm."
         log "Factions" "Pug" `The Pug are aliens with barrel-shaped bodies and spindly legs. They claim their goals are to bring humanity peace and protect humanity from excessive self-harm.`
-        # Requires relocate mission PR
-        # relocate
-        #     "flagship only"
-        #     location
-        #         Ruin
 
         # Requires time travel
         # "pass days" 1500
