@@ -2649,7 +2649,7 @@ mission "Landing Fee Alpha"
     landing
     "apparent payment" 10000
     to offer
-        has "event: hr: secret leaks"
+        has "hr: secret leaks"
         or
             not "flagship planet: Allhome"
             ( "planet number alpha" % 2 ) == 0
