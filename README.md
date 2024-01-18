@@ -34,6 +34,9 @@ I have improved and implemented the "Landing Fees and Tax" plugin by Rafael Rama
 ## Han Sizer Month
 On PR 7805 by Zitchas, I mistakenly thought on stopover appeared on every stopover. There was going to be a popup that appeared on the last stopover of a Han Sizer month job, but it was removed as it was thought to be annoying. I have re-added it to the longest, rarest mission, so that you at least get something after having visited four planets. In vanilla, you would visit four planets, get absolutely nothing, then finally get a reward when landing on the destination. It's not truly part of the main plot, of course, but I felt like this should be added, as I was the one who messed up my review.
 
+## Korath World-Ships
+I have renamed the Korath World Ships to names that should hopefully be more memorable and more Korath Exile (rather than Korath Sestor).
+
 ## Bugs
 I have playtested this plugin and fixed any bugs, edge cases, and warnings I could find. There may still be bugs, especially with content added since then, but if there are, I couldn't find them. Bug reports and pull requests fixing bugs are welcome.
 
