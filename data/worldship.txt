@@ -1,65 +1,65 @@
 ship "Lor'kas Ik 577"
-    "display name" "Rapak Ik 577"
+    "display name" "Kasichara Rapak"
 
 ship "Lor'kas Ik 577" "Lor'kas Ik 577 (Jump)"
-    "display name" "Rapak Ik 577"
+    "display name" "Kasichara Rapak"
 
 ship "Lor'kas Ik 577" "Lor'kas Ik 577 (Digger)"
-    "display name" "Rapak Ik 577"
+    "display name" "Kasichara Rapak"
 
 ship "Ra'gru Ik 618"
-    "display name" "Lubumet Ik 618"
+    "display name" "Kasichara Lubmet"
 
 ship "Ra'gru Ik 618" "Ra'gru Ik 618 (Crippled)"
-    "display name" "Lubumet Ik 618"
+    "display name" "Kasichara Lubmet"
 
 ship "Ra'gru Ik 618" "Ra'gru Ik 618 (Ember)"
-    "display name" "Lubumet Ik 618"
+    "display name" "Kasichara Lubmet"
 
 ship "Ra'gru Ik 618" "Ra'gru Ik 618 (Grab)"
-    "display name" "Lubumet Ik 618"
+    "display name" "Kasichara Lubmet"
 
 ship "Ra'gru Ik 618" "Ra'gru Ik 618 (Storm)"
-    "display name" "Lubumet Ik 618"
+    "display name" "Kasichara Lubmet"
 
 ship "Ra'gru Ik 618" "Ra'gru Ik 618 (Mereti)"
-    "display name" "Lubumet Ik 618"
+    "display name" "Kasichara Lubmet"
 
 ship "Ra'gru Ik 618" "Ra'gru Ik 618 (Sestor)"
-    "display name" "Lubumet Ik 618"
+    "display name" "Kasichara Lubmet"
 
 ship "Kas'lor Ik 582"
-    "display name" "Tagrik Ik 582"
+    "display name" "Kasichara Tagrik"
 
 ship "Kas'lor Ik 582" "Kas'lor Ik 582 (Jump)"
-    "display name" "Tagrik Ik 582"
+    "display name" "Kasichara Tagrik"
 
 ship "Kas'lor Ik 582" "Kas'lor Ik 582 (Stranded)"
-    "display name" "Tagrik Ik 582"
+    "display name" "Kasichara Tagrik"
 
 ship "Kas'lor Ik 582" "Kas'lor Ik 582 (Ember)"
-    "display name" "Tagrik Ik 582"
+    "display name" "Kasichara Tagrik"
 
 ship "Lor'nag Ik 590"
-    "display name" "Korath Ik 590"
+    "display name" "Kasichara Akalek"
 
 ship "Lor'nag Ik 590" "Lor'nag Ik 590 (Grab)"
-    "display name" "Korath Ik 590"
+    "display name" "Kasichara Akalek"
 
 ship "Lor'nag Ik 590" "Lor'nag Ik 590 (Troop Transport)"
-    "display name" "Korath Ik 590"
+    "display name" "Kasichara Akalek"
 
 ship "Ra'at Ik 621"
-    "display name" "Acahfet Ik 621"
+    "display name" "Kasichara Aca'fet"
 
 ship "Ra'at Ik 621" "Ra'at Ik 621 (Digger)"
-    "display name" "Acahfet Ik 621"
+    "display name" "Kasichara Aca'fet"
 
 ship "Ra'at Ik 621" "Ra'at Ik 621 (Storm)"
-    "display name" "Acahfet Ik 621"
+    "display name" "Kasichara Aca'fet"
 
 ship "Ra'at Ik 621" "Ra'at Ik 621 (Automata)"
-    "display name" "Acahfet Ik 621"
+    "display name" "Kasichara Aca'fet"
 
 ship "Ra'at Ik 621" "Ra'at Ik 621 (Probes)"
-    "display name" "Acahfet Ik 621"
+    "display name" "Kasichara Aca'fet"
