@@ -13,21 +13,111 @@
 
 # Note: The Republic and the Free Worlds charge the same fees.
 
-mission "Daily Tax"
+mission "Weekly Tax and Landing Fees Begin"
     invisible
     landing
     to offer
         has "event: initial deployment 3"
-    to complete
-        never
     on offer
         conversation
+            action
+                "last payment date" = ( "days since start" - 7 )
             `As you land, you notice a crowd of people huddled around the spaceport news.`
-            `"In response to the bombing of Geminus and Martini, the Republic has passed a bill charging all spaceship captains 10,000 credits in taxes per day, and charging fees of up to 9,000 credits in order to land. Shortly after, the Free Worlds Senate passed a similar bill charging landing fees of up to 5,000 credits."`
+            `"In response to the bombing of Geminus and Martini, the Republic has passed a bill charging all spaceship captains a variable weekly tax depending on their fleet's ability to make money, and charging fees of up to 9,000 credits in order to land. Shortly after, the Free Worlds Senate passed a similar bill charging landing fees of up to 5,000 credits."`
             `A Syndicate ad then plays advertising how all Syndicate planets will "only" charge 4,000 credits per day to land, saying how this is the "cheapest price to land within one jump of Earth."`
-                accept
-    on daily
-        payment -10000
+                decline
+
+mission "Weekly Tax"
+    invisible
+    repeat
+    landing
+    to offer
+        has "event: initial deployment 3"
+        ( "days since start" - "last payment date" ) >= 7
+    on offer
+        conversation
+            action
+                "passengerCounter" = "passenger space"
+                "cargoCounter" = "cargo space"
+                "weaponCounter" = "armament deterrance"
+                "weaponCounter" -= 2
+                "paymentCounter" = 1
+                "last tax payment" = 0
+                "last payment date" = "days since start"
+
+            label "loop"
+            # exit the loop if all counters are zero
+            branch "leaveloop"
+                and
+                    not "passengerCounter"
+                    not "cargoCounter"
+                    "weaponCounter" < 1
+            # don't pay if passenger counter is zero
+            branch "nopassenger"
+                not "passengerCounter"
+            action
+                payment -1400
+                "last tax payment" += 1400
+                "passengerCounter" -= 1
+            label "nopassenger"
+            # don't pay larger sum if cargo counter is less than 10
+            branch "lowcargo"
+                "cargoCounter" < 10
+            action
+                payment -1400
+                "last tax payment" += 1400
+                "cargoCounter" -= 10
+            label "lowcargo"
+            # don't pay smaller sum if cargo counter is more than 10 or zero
+            branch "nocargo"
+                or
+                    not "cargoCounter"
+                    "cargo counter" >= 10
+            action
+                payment -140
+                "last tax payment" += 140
+                "cargoCounter" -= 1
+            label "nocargo"
+            # don't multiply weapon payment if weapons counter is zero
+            branch "noweapons"
+                "weaponCounter" < 1
+            action
+                "paymentCounter" *= 5
+            label "noweapons"
+            # go to "not loop" which sends you back to the start of the loop if at least one counter is greater than zero, otherwise break out of the loop
+            branch "notloop" "leaveloop"
+                or
+                    has "passengerCounter"
+                    has "cargoCounter"
+                    "weaponCounter" > 0
+            label "notloop"
+            branch "loop"
+                1 == 1
+            label "leaveloop"
+            action
+                "paymentCounter" *= 7
+            label "loop2"
+            # exit the loop once payment counter is zero
+            branch "leaveloop2"
+                not "paymentCounter"
+            action
+                payment -1
+                "last tax payment" += 1
+                "paymentCounter" -= 1
+            # go to "not loop" which sends you back to the start of the loop if payment counter is greater than zero, otherwise break out of the loop
+            branch "notloop2" "leaveloop2"
+                has "paymentCounter"
+            label "notloop2"
+            branch "loop2"
+                1 == 1
+            label "leaveloop2"
+            action
+                clear "passengerCounter"
+                clear "cargoCounter"
+                clear "weaponCounter"
+                clear "paymentCounter"
+            `You pay &[credits@last tax payment] in taxes.`
+                decline
 
 mission "Landing Fee A"
     invisible
