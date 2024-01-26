@@ -27,15 +27,40 @@ mission "Weekly Tax and Landing Fees Begin"
             `A Syndicate ad then plays advertising how all Syndicate planets will "only" charge 4,000 credits per day to land, saying how this is the "cheapest price to land within one jump of Earth."`
                 decline
 
-mission "Weekly Tax"
+mission "Landing Fee A"
     invisible
     repeat
     landing
+    "apparent payment" 9000
     to offer
         has "event: initial deployment 3"
-        ( "days since start" - "last payment date" ) >= 7
+        or
+            not "flagship planet: Earth"
+            ( "planet number a" % 2 ) == 0
+        or
+            not "flagship planet: I.S.S."
+            ( ( "planet number a" - ( "planet number a" % 2 ) ) % 4 ) == 0
+        or
+            not "flagship planet: Luna"
+            ( ( "planet number a" - ( "planet number a" % 4 ) ) % 8 ) == 0
+        or
+            not "flagship planet: Mars"
+            ( ( "planet number a" - ( "planet number a" % 8 ) ) % 16 ) == 0
+        or
+            not "flagship planet: Chiron"
+            ( ( "planet number a" - ( "planet number a" % 16 ) ) % 32 ) == 0
+        or
+            has "flagship planet: Earth"
+            has "flagship planet: I.S.S."
+            has "flagship planet: Luna"
+            has "flagship planet: Mars"
+            has "flagship planet: Chiron"
+    to complete
+        never
     on offer
         conversation
+            branch "skip tax"
+                ( "days since start" - "last payment date" ) < 7
             action
                 "passengerCounter" = "passenger space"
                 "cargoCounter" = "cargo space"
@@ -113,11 +138,11 @@ mission "Weekly Tax"
                     "paymentCounter" < 1
                     "paymentCounter" > 999999
             action
-                payment -1000000
-                "last tax payment" += 1000000
-                "paymentCounter" -= 1000000
+                payment -1
+                "last tax payment" += 1
+                "paymentCounter" -= 1
             label "notLowWeaponPayment"
-             go to "not loop" which sends you back to the start of the loop if payment counter is greater than zero, otherwise break out of the loop
+                go to "not loop" which sends you back to the start of the loop if payment counter is greater than zero, otherwise break out of the loop
             branch "notloop2" "leaveloop2"
                 has "paymentCounter"
             label "notloop2"
@@ -130,40 +155,7 @@ mission "Weekly Tax"
                 clear "weaponCounter"
                 clear "paymentCounter"
             `You pay &[credits@last tax payment] in taxes.`
-                decline
-
-mission "Landing Fee A"
-    invisible
-    repeat
-    landing
-    "apparent payment" 9000
-    to offer
-        has "event: initial deployment 3"
-        or
-            not "flagship planet: Earth"
-            ( "planet number a" % 2 ) == 0
-        or
-            not "flagship planet: I.S.S."
-            ( ( "planet number a" - ( "planet number a" % 2 ) ) % 4 ) == 0
-        or
-            not "flagship planet: Luna"
-            ( ( "planet number a" - ( "planet number a" % 4 ) ) % 8 ) == 0
-        or
-            not "flagship planet: Mars"
-            ( ( "planet number a" - ( "planet number a" % 8 ) ) % 16 ) == 0
-        or
-            not "flagship planet: Chiron"
-            ( ( "planet number a" - ( "planet number a" % 16 ) ) % 32 ) == 0
-        or
-            has "flagship planet: Earth"
-            has "flagship planet: I.S.S."
-            has "flagship planet: Luna"
-            has "flagship planet: Mars"
-            has "flagship planet: Chiron"
-    to complete
-        never
-    on offer
-        conversation
+            label "skip tax"
             branch "not earth"
                 not "flagship planet: Earth"
             action
@@ -217,6 +209,103 @@ mission "Landing Fee A"
                 accept
     on visit
         conversation
+            branch "skip tax"
+                ( "days since start" - "last payment date" ) < 7
+            action
+                "passengerCounter" = "passenger space"
+                "cargoCounter" = "cargo space"
+                "weaponCounter" = "armament deterrence"
+                "weaponCounter" += 1
+                "weaponCounter" /= 2
+                "paymentCounter" = 1
+                "last tax payment" = 0
+                "last payment date" = "days since start"
+            label "loop"
+            # exit the loop if all counters are zero
+            branch "leaveloop"
+                and
+                    not "passengerCounter"
+                    not "cargoCounter"
+                    "weaponCounter" < 1
+            # don't pay if passenger counter is zero
+            branch "nopassenger"
+                not "passengerCounter"
+            action
+                payment -1400
+                "last tax payment" += 1400
+                "passengerCounter" -= 1
+            label "nopassenger"
+            # don't pay larger sum if cargo counter is less than 10
+            branch "lowcargo"
+                "cargoCounter" < 10
+            action
+                payment -1400
+                "last tax payment" += 1400
+                "cargoCounter" -= 10
+            label "lowcargo"
+            # don't pay smaller sum if cargo counter is more than 10 or zero
+            branch "nocargo"
+                or
+                    not "cargoCounter"
+                    "cargo counter" >= 10
+            action
+                payment -140
+                "last tax payment" += 140
+                "cargoCounter" -= 1
+            label "nocargo"
+            # don't multiply weapon payment if weapons counter is zero
+            branch "noweapons"
+                "weaponCounter" < 1
+            action
+                "weaponCounter" -= 1
+                "paymentCounter" *= 10
+            label "noweapons"
+            # go to "not loop" which sends you back to the start of the loop if at least one counter is greater than zero, otherwise break out of the loop
+            branch "notloop" "leaveloop"
+                or
+                    has "passengerCounter"
+                    has "cargoCounter"
+                    "weaponCounter" > 0
+            label "notloop"
+            branch "loop"
+                1 == 1
+            label "leaveloop"
+            action
+                "paymentCounter" *= 7
+            label "loop2"
+            # exit the loop once payment counter is zero
+            branch "leaveloop2"
+                not "paymentCounter"
+            branch "lowWeaponPayment"
+                "paymentCounter" < 1000000
+            action
+                payment -1000000
+                "last tax payment" += 1000000
+                "paymentCounter" -= 1000000
+            label "lowWeaponPayment"
+            branch "notLowWeaponPayment"
+                or
+                    "paymentCounter" < 1
+                    "paymentCounter" > 999999
+            action
+                payment -1
+                "last tax payment" += 1
+                "paymentCounter" -= 1
+            label "notLowWeaponPayment"
+                go to "not loop" which sends you back to the start of the loop if payment counter is greater than zero, otherwise break out of the loop
+            branch "notloop2" "leaveloop2"
+                has "paymentCounter"
+            label "notloop2"
+            branch "loop2"
+                1 == 1
+            label "leaveloop2"
+            action
+                clear "passengerCounter"
+                clear "cargoCounter"
+                clear "weaponCounter"
+                clear "paymentCounter"
+            `You pay &[credits@last tax payment] in taxes.`
+            label "skip tax"
             branch "tribute"
                 or
                     and
@@ -279,6 +368,103 @@ mission "Landing Fee B"
         never
     on offer
         conversation
+            branch "skip tax"
+                ( "days since start" - "last payment date" ) < 7
+            action
+                "passengerCounter" = "passenger space"
+                "cargoCounter" = "cargo space"
+                "weaponCounter" = "armament deterrence"
+                "weaponCounter" += 1
+                "weaponCounter" /= 2
+                "paymentCounter" = 1
+                "last tax payment" = 0
+                "last payment date" = "days since start"
+            label "loop"
+            # exit the loop if all counters are zero
+            branch "leaveloop"
+                and
+                    not "passengerCounter"
+                    not "cargoCounter"
+                    "weaponCounter" < 1
+            # don't pay if passenger counter is zero
+            branch "nopassenger"
+                not "passengerCounter"
+            action
+                payment -1400
+                "last tax payment" += 1400
+                "passengerCounter" -= 1
+            label "nopassenger"
+            # don't pay larger sum if cargo counter is less than 10
+            branch "lowcargo"
+                "cargoCounter" < 10
+            action
+                payment -1400
+                "last tax payment" += 1400
+                "cargoCounter" -= 10
+            label "lowcargo"
+            # don't pay smaller sum if cargo counter is more than 10 or zero
+            branch "nocargo"
+                or
+                    not "cargoCounter"
+                    "cargo counter" >= 10
+            action
+                payment -140
+                "last tax payment" += 140
+                "cargoCounter" -= 1
+            label "nocargo"
+            # don't multiply weapon payment if weapons counter is zero
+            branch "noweapons"
+                "weaponCounter" < 1
+            action
+                "weaponCounter" -= 1
+                "paymentCounter" *= 10
+            label "noweapons"
+            # go to "not loop" which sends you back to the start of the loop if at least one counter is greater than zero, otherwise break out of the loop
+            branch "notloop" "leaveloop"
+                or
+                    has "passengerCounter"
+                    has "cargoCounter"
+                    "weaponCounter" > 0
+            label "notloop"
+            branch "loop"
+                1 == 1
+            label "leaveloop"
+            action
+                "paymentCounter" *= 7
+            label "loop2"
+            # exit the loop once payment counter is zero
+            branch "leaveloop2"
+                not "paymentCounter"
+            branch "lowWeaponPayment"
+                "paymentCounter" < 1000000
+            action
+                payment -1000000
+                "last tax payment" += 1000000
+                "paymentCounter" -= 1000000
+            label "lowWeaponPayment"
+            branch "notLowWeaponPayment"
+                or
+                    "paymentCounter" < 1
+                    "paymentCounter" > 999999
+            action
+                payment -1
+                "last tax payment" += 1
+                "paymentCounter" -= 1
+            label "notLowWeaponPayment"
+                go to "not loop" which sends you back to the start of the loop if payment counter is greater than zero, otherwise break out of the loop
+            branch "notloop2" "leaveloop2"
+                has "paymentCounter"
+            label "notloop2"
+            branch "loop2"
+                1 == 1
+            label "leaveloop2"
+            action
+                clear "passengerCounter"
+                clear "cargoCounter"
+                clear "weaponCounter"
+                clear "paymentCounter"
+            `You pay &[credits@last tax payment] in taxes.`
+            label "skip tax"
             branch "not geyser"
                 not "flagship planet: Geyser"
             action
@@ -341,6 +527,103 @@ mission "Landing Fee B"
     on visit
         payment -8000
         conversation
+            branch "skip tax"
+                ( "days since start" - "last payment date" ) < 7
+            action
+                "passengerCounter" = "passenger space"
+                "cargoCounter" = "cargo space"
+                "weaponCounter" = "armament deterrence"
+                "weaponCounter" += 1
+                "weaponCounter" /= 2
+                "paymentCounter" = 1
+                "last tax payment" = 0
+                "last payment date" = "days since start"
+            label "loop"
+            # exit the loop if all counters are zero
+            branch "leaveloop"
+                and
+                    not "passengerCounter"
+                    not "cargoCounter"
+                    "weaponCounter" < 1
+            # don't pay if passenger counter is zero
+            branch "nopassenger"
+                not "passengerCounter"
+            action
+                payment -1400
+                "last tax payment" += 1400
+                "passengerCounter" -= 1
+            label "nopassenger"
+            # don't pay larger sum if cargo counter is less than 10
+            branch "lowcargo"
+                "cargoCounter" < 10
+            action
+                payment -1400
+                "last tax payment" += 1400
+                "cargoCounter" -= 10
+            label "lowcargo"
+            # don't pay smaller sum if cargo counter is more than 10 or zero
+            branch "nocargo"
+                or
+                    not "cargoCounter"
+                    "cargo counter" >= 10
+            action
+                payment -140
+                "last tax payment" += 140
+                "cargoCounter" -= 1
+            label "nocargo"
+            # don't multiply weapon payment if weapons counter is zero
+            branch "noweapons"
+                "weaponCounter" < 1
+            action
+                "weaponCounter" -= 1
+                "paymentCounter" *= 10
+            label "noweapons"
+            # go to "not loop" which sends you back to the start of the loop if at least one counter is greater than zero, otherwise break out of the loop
+            branch "notloop" "leaveloop"
+                or
+                    has "passengerCounter"
+                    has "cargoCounter"
+                    "weaponCounter" > 0
+            label "notloop"
+            branch "loop"
+                1 == 1
+            label "leaveloop"
+            action
+                "paymentCounter" *= 7
+            label "loop2"
+            # exit the loop once payment counter is zero
+            branch "leaveloop2"
+                not "paymentCounter"
+            branch "lowWeaponPayment"
+                "paymentCounter" < 1000000
+            action
+                payment -1000000
+                "last tax payment" += 1000000
+                "paymentCounter" -= 1000000
+            label "lowWeaponPayment"
+            branch "notLowWeaponPayment"
+                or
+                    "paymentCounter" < 1
+                    "paymentCounter" > 999999
+            action
+                payment -1
+                "last tax payment" += 1
+                "paymentCounter" -= 1
+            label "notLowWeaponPayment"
+                go to "not loop" which sends you back to the start of the loop if payment counter is greater than zero, otherwise break out of the loop
+            branch "notloop2" "leaveloop2"
+                has "paymentCounter"
+            label "notloop2"
+            branch "loop2"
+                1 == 1
+            label "leaveloop2"
+            action
+                clear "passengerCounter"
+                clear "cargoCounter"
+                clear "weaponCounter"
+                clear "paymentCounter"
+            `You pay &[credits@last tax payment] in taxes.`
+            label "skip tax"
             branch "tribute"
                 or
                     and
@@ -439,6 +722,103 @@ mission "Landing Fee C"
         never
     on offer
         conversation
+            branch "skip tax"
+                ( "days since start" - "last payment date" ) < 7
+            action
+                "passengerCounter" = "passenger space"
+                "cargoCounter" = "cargo space"
+                "weaponCounter" = "armament deterrence"
+                "weaponCounter" += 1
+                "weaponCounter" /= 2
+                "paymentCounter" = 1
+                "last tax payment" = 0
+                "last payment date" = "days since start"
+            label "loop"
+            # exit the loop if all counters are zero
+            branch "leaveloop"
+                and
+                    not "passengerCounter"
+                    not "cargoCounter"
+                    "weaponCounter" < 1
+            # don't pay if passenger counter is zero
+            branch "nopassenger"
+                not "passengerCounter"
+            action
+                payment -1400
+                "last tax payment" += 1400
+                "passengerCounter" -= 1
+            label "nopassenger"
+            # don't pay larger sum if cargo counter is less than 10
+            branch "lowcargo"
+                "cargoCounter" < 10
+            action
+                payment -1400
+                "last tax payment" += 1400
+                "cargoCounter" -= 10
+            label "lowcargo"
+            # don't pay smaller sum if cargo counter is more than 10 or zero
+            branch "nocargo"
+                or
+                    not "cargoCounter"
+                    "cargo counter" >= 10
+            action
+                payment -140
+                "last tax payment" += 140
+                "cargoCounter" -= 1
+            label "nocargo"
+            # don't multiply weapon payment if weapons counter is zero
+            branch "noweapons"
+                "weaponCounter" < 1
+            action
+                "weaponCounter" -= 1
+                "paymentCounter" *= 10
+            label "noweapons"
+            # go to "not loop" which sends you back to the start of the loop if at least one counter is greater than zero, otherwise break out of the loop
+            branch "notloop" "leaveloop"
+                or
+                    has "passengerCounter"
+                    has "cargoCounter"
+                    "weaponCounter" > 0
+            label "notloop"
+            branch "loop"
+                1 == 1
+            label "leaveloop"
+            action
+                "paymentCounter" *= 7
+            label "loop2"
+            # exit the loop once payment counter is zero
+            branch "leaveloop2"
+                not "paymentCounter"
+            branch "lowWeaponPayment"
+                "paymentCounter" < 1000000
+            action
+                payment -1000000
+                "last tax payment" += 1000000
+                "paymentCounter" -= 1000000
+            label "lowWeaponPayment"
+            branch "notLowWeaponPayment"
+                or
+                    "paymentCounter" < 1
+                    "paymentCounter" > 999999
+            action
+                payment -1
+                "last tax payment" += 1
+                "paymentCounter" -= 1
+            label "notLowWeaponPayment"
+                go to "not loop" which sends you back to the start of the loop if payment counter is greater than zero, otherwise break out of the loop
+            branch "notloop2" "leaveloop2"
+                has "paymentCounter"
+            label "notloop2"
+            branch "loop2"
+                1 == 1
+            label "leaveloop2"
+            action
+                clear "passengerCounter"
+                clear "cargoCounter"
+                clear "weaponCounter"
+                clear "paymentCounter"
+            `You pay &[credits@last tax payment] in taxes.`
+            label "skip tax"
             branch "not ada"
                 not "flagship planet: Ada"
             action
@@ -564,6 +944,103 @@ mission "Landing Fee C"
                 accept
     on visit
         conversation
+            branch "skip tax"
+                ( "days since start" - "last payment date" ) < 7
+            action
+                "passengerCounter" = "passenger space"
+                "cargoCounter" = "cargo space"
+                "weaponCounter" = "armament deterrence"
+                "weaponCounter" += 1
+                "weaponCounter" /= 2
+                "paymentCounter" = 1
+                "last tax payment" = 0
+                "last payment date" = "days since start"
+            label "loop"
+            # exit the loop if all counters are zero
+            branch "leaveloop"
+                and
+                    not "passengerCounter"
+                    not "cargoCounter"
+                    "weaponCounter" < 1
+            # don't pay if passenger counter is zero
+            branch "nopassenger"
+                not "passengerCounter"
+            action
+                payment -1400
+                "last tax payment" += 1400
+                "passengerCounter" -= 1
+            label "nopassenger"
+            # don't pay larger sum if cargo counter is less than 10
+            branch "lowcargo"
+                "cargoCounter" < 10
+            action
+                payment -1400
+                "last tax payment" += 1400
+                "cargoCounter" -= 10
+            label "lowcargo"
+            # don't pay smaller sum if cargo counter is more than 10 or zero
+            branch "nocargo"
+                or
+                    not "cargoCounter"
+                    "cargo counter" >= 10
+            action
+                payment -140
+                "last tax payment" += 140
+                "cargoCounter" -= 1
+            label "nocargo"
+            # don't multiply weapon payment if weapons counter is zero
+            branch "noweapons"
+                "weaponCounter" < 1
+            action
+                "weaponCounter" -= 1
+                "paymentCounter" *= 10
+            label "noweapons"
+            # go to "not loop" which sends you back to the start of the loop if at least one counter is greater than zero, otherwise break out of the loop
+            branch "notloop" "leaveloop"
+                or
+                    has "passengerCounter"
+                    has "cargoCounter"
+                    "weaponCounter" > 0
+            label "notloop"
+            branch "loop"
+                1 == 1
+            label "leaveloop"
+            action
+                "paymentCounter" *= 7
+            label "loop2"
+            # exit the loop once payment counter is zero
+            branch "leaveloop2"
+                not "paymentCounter"
+            branch "lowWeaponPayment"
+                "paymentCounter" < 1000000
+            action
+                payment -1000000
+                "last tax payment" += 1000000
+                "paymentCounter" -= 1000000
+            label "lowWeaponPayment"
+            branch "notLowWeaponPayment"
+                or
+                    "paymentCounter" < 1
+                    "paymentCounter" > 999999
+            action
+                payment -1
+                "last tax payment" += 1
+                "paymentCounter" -= 1
+            label "notLowWeaponPayment"
+                go to "not loop" which sends you back to the start of the loop if payment counter is greater than zero, otherwise break out of the loop
+            branch "notloop2" "leaveloop2"
+                has "paymentCounter"
+            label "notloop2"
+            branch "loop2"
+                1 == 1
+            label "leaveloop2"
+            action
+                clear "passengerCounter"
+                clear "cargoCounter"
+                clear "weaponCounter"
+                clear "paymentCounter"
+            `You pay &[credits@last tax payment] in taxes.`
+            label "skip tax"
             branch "tribute"
                 or
                     and
@@ -706,6 +1183,103 @@ mission "Landing Fee D"
         never
     on offer
         conversation
+            branch "skip tax"
+                ( "days since start" - "last payment date" ) < 7
+            action
+                "passengerCounter" = "passenger space"
+                "cargoCounter" = "cargo space"
+                "weaponCounter" = "armament deterrence"
+                "weaponCounter" += 1
+                "weaponCounter" /= 2
+                "paymentCounter" = 1
+                "last tax payment" = 0
+                "last payment date" = "days since start"
+            label "loop"
+            # exit the loop if all counters are zero
+            branch "leaveloop"
+                and
+                    not "passengerCounter"
+                    not "cargoCounter"
+                    "weaponCounter" < 1
+            # don't pay if passenger counter is zero
+            branch "nopassenger"
+                not "passengerCounter"
+            action
+                payment -1400
+                "last tax payment" += 1400
+                "passengerCounter" -= 1
+            label "nopassenger"
+            # don't pay larger sum if cargo counter is less than 10
+            branch "lowcargo"
+                "cargoCounter" < 10
+            action
+                payment -1400
+                "last tax payment" += 1400
+                "cargoCounter" -= 10
+            label "lowcargo"
+            # don't pay smaller sum if cargo counter is more than 10 or zero
+            branch "nocargo"
+                or
+                    not "cargoCounter"
+                    "cargo counter" >= 10
+            action
+                payment -140
+                "last tax payment" += 140
+                "cargoCounter" -= 1
+            label "nocargo"
+            # don't multiply weapon payment if weapons counter is zero
+            branch "noweapons"
+                "weaponCounter" < 1
+            action
+                "weaponCounter" -= 1
+                "paymentCounter" *= 10
+            label "noweapons"
+            # go to "not loop" which sends you back to the start of the loop if at least one counter is greater than zero, otherwise break out of the loop
+            branch "notloop" "leaveloop"
+                or
+                    has "passengerCounter"
+                    has "cargoCounter"
+                    "weaponCounter" > 0
+            label "notloop"
+            branch "loop"
+                1 == 1
+            label "leaveloop"
+            action
+                "paymentCounter" *= 7
+            label "loop2"
+            # exit the loop once payment counter is zero
+            branch "leaveloop2"
+                not "paymentCounter"
+            branch "lowWeaponPayment"
+                "paymentCounter" < 1000000
+            action
+                payment -1000000
+                "last tax payment" += 1000000
+                "paymentCounter" -= 1000000
+            label "lowWeaponPayment"
+            branch "notLowWeaponPayment"
+                or
+                    "paymentCounter" < 1
+                    "paymentCounter" > 999999
+            action
+                payment -1
+                "last tax payment" += 1
+                "paymentCounter" -= 1
+            label "notLowWeaponPayment"
+                go to "not loop" which sends you back to the start of the loop if payment counter is greater than zero, otherwise break out of the loop
+            branch "notloop2" "leaveloop2"
+                has "paymentCounter"
+            label "notloop2"
+            branch "loop2"
+                1 == 1
+            label "leaveloop2"
+            action
+                clear "passengerCounter"
+                clear "cargoCounter"
+                clear "weaponCounter"
+                clear "paymentCounter"
+            `You pay &[credits@last tax payment] in taxes.`
+            label "skip tax"
             branch "not alexandria"
                 not "flagship planet: Alexandria"
             action
@@ -871,6 +1445,103 @@ mission "Landing Fee D"
                 accept
     on visit
         conversation
+            branch "skip tax"
+                ( "days since start" - "last payment date" ) < 7
+            action
+                "passengerCounter" = "passenger space"
+                "cargoCounter" = "cargo space"
+                "weaponCounter" = "armament deterrence"
+                "weaponCounter" += 1
+                "weaponCounter" /= 2
+                "paymentCounter" = 1
+                "last tax payment" = 0
+                "last payment date" = "days since start"
+            label "loop"
+            # exit the loop if all counters are zero
+            branch "leaveloop"
+                and
+                    not "passengerCounter"
+                    not "cargoCounter"
+                    "weaponCounter" < 1
+            # don't pay if passenger counter is zero
+            branch "nopassenger"
+                not "passengerCounter"
+            action
+                payment -1400
+                "last tax payment" += 1400
+                "passengerCounter" -= 1
+            label "nopassenger"
+            # don't pay larger sum if cargo counter is less than 10
+            branch "lowcargo"
+                "cargoCounter" < 10
+            action
+                payment -1400
+                "last tax payment" += 1400
+                "cargoCounter" -= 10
+            label "lowcargo"
+            # don't pay smaller sum if cargo counter is more than 10 or zero
+            branch "nocargo"
+                or
+                    not "cargoCounter"
+                    "cargo counter" >= 10
+            action
+                payment -140
+                "last tax payment" += 140
+                "cargoCounter" -= 1
+            label "nocargo"
+            # don't multiply weapon payment if weapons counter is zero
+            branch "noweapons"
+                "weaponCounter" < 1
+            action
+                "weaponCounter" -= 1
+                "paymentCounter" *= 10
+            label "noweapons"
+            # go to "not loop" which sends you back to the start of the loop if at least one counter is greater than zero, otherwise break out of the loop
+            branch "notloop" "leaveloop"
+                or
+                    has "passengerCounter"
+                    has "cargoCounter"
+                    "weaponCounter" > 0
+            label "notloop"
+            branch "loop"
+                1 == 1
+            label "leaveloop"
+            action
+                "paymentCounter" *= 7
+            label "loop2"
+            # exit the loop once payment counter is zero
+            branch "leaveloop2"
+                not "paymentCounter"
+            branch "lowWeaponPayment"
+                "paymentCounter" < 1000000
+            action
+                payment -1000000
+                "last tax payment" += 1000000
+                "paymentCounter" -= 1000000
+            label "lowWeaponPayment"
+            branch "notLowWeaponPayment"
+                or
+                    "paymentCounter" < 1
+                    "paymentCounter" > 999999
+            action
+                payment -1
+                "last tax payment" += 1
+                "paymentCounter" -= 1
+            label "notLowWeaponPayment"
+                go to "not loop" which sends you back to the start of the loop if payment counter is greater than zero, otherwise break out of the loop
+            branch "notloop2" "leaveloop2"
+                has "paymentCounter"
+            label "notloop2"
+            branch "loop2"
+                1 == 1
+            label "leaveloop2"
+            action
+                clear "passengerCounter"
+                clear "cargoCounter"
+                clear "weaponCounter"
+                clear "paymentCounter"
+            `You pay &[credits@last tax payment] in taxes.`
+            label "skip tax"
             branch "tribute"
                 or
                     and
@@ -1041,8 +1712,104 @@ mission "Landing Fee E"
         government "Republic" "Neutral" "Free Worlds" "Quarg"
         not attributes "uninhabited"
     on offer
-        payment -5000
         conversation
+            branch "skip tax"
+                ( "days since start" - "last payment date" ) < 7
+            action
+                "passengerCounter" = "passenger space"
+                "cargoCounter" = "cargo space"
+                "weaponCounter" = "armament deterrence"
+                "weaponCounter" += 1
+                "weaponCounter" /= 2
+                "paymentCounter" = 1
+                "last tax payment" = 0
+                "last payment date" = "days since start"
+            label "loop"
+            # exit the loop if all counters are zero
+            branch "leaveloop"
+                and
+                    not "passengerCounter"
+                    not "cargoCounter"
+                    "weaponCounter" < 1
+            # don't pay if passenger counter is zero
+            branch "nopassenger"
+                not "passengerCounter"
+            action
+                payment -1400
+                "last tax payment" += 1400
+                "passengerCounter" -= 1
+            label "nopassenger"
+            # don't pay larger sum if cargo counter is less than 10
+            branch "lowcargo"
+                "cargoCounter" < 10
+            action
+                payment -1400
+                "last tax payment" += 1400
+                "cargoCounter" -= 10
+            label "lowcargo"
+            # don't pay smaller sum if cargo counter is more than 10 or zero
+            branch "nocargo"
+                or
+                    not "cargoCounter"
+                    "cargo counter" >= 10
+            action
+                payment -140
+                "last tax payment" += 140
+                "cargoCounter" -= 1
+            label "nocargo"
+            # don't multiply weapon payment if weapons counter is zero
+            branch "noweapons"
+                "weaponCounter" < 1
+            action
+                "weaponCounter" -= 1
+                "paymentCounter" *= 10
+            label "noweapons"
+            # go to "not loop" which sends you back to the start of the loop if at least one counter is greater than zero, otherwise break out of the loop
+            branch "notloop" "leaveloop"
+                or
+                    has "passengerCounter"
+                    has "cargoCounter"
+                    "weaponCounter" > 0
+            label "notloop"
+            branch "loop"
+                1 == 1
+            label "leaveloop"
+            action
+                "paymentCounter" *= 7
+            label "loop2"
+            # exit the loop once payment counter is zero
+            branch "leaveloop2"
+                not "paymentCounter"
+            branch "lowWeaponPayment"
+                "paymentCounter" < 1000000
+            action
+                payment -1000000
+                "last tax payment" += 1000000
+                "paymentCounter" -= 1000000
+            label "lowWeaponPayment"
+            branch "notLowWeaponPayment"
+                or
+                    "paymentCounter" < 1
+                    "paymentCounter" > 999999
+            action
+                payment -1
+                "last tax payment" += 1
+                "paymentCounter" -= 1
+            label "notLowWeaponPayment"
+                go to "not loop" which sends you back to the start of the loop if payment counter is greater than zero, otherwise break out of the loop
+            branch "notloop2" "leaveloop2"
+                has "paymentCounter"
+            label "notloop2"
+            branch "loop2"
+                1 == 1
+            label "leaveloop2"
+            action
+                clear "passengerCounter"
+                clear "cargoCounter"
+                clear "weaponCounter"
+                clear "paymentCounter"
+            `You pay &[credits@last tax payment] in taxes.`
+            label "skip tax"
             branch "not bourne"
                 not "flagship planet: Bourne"
             action
@@ -1232,6 +1999,103 @@ mission "Landing Fee E"
                 accept
     on visit
         conversation
+            branch "skip tax"
+                ( "days since start" - "last payment date" ) < 7
+            action
+                "passengerCounter" = "passenger space"
+                "cargoCounter" = "cargo space"
+                "weaponCounter" = "armament deterrence"
+                "weaponCounter" += 1
+                "weaponCounter" /= 2
+                "paymentCounter" = 1
+                "last tax payment" = 0
+                "last payment date" = "days since start"
+            label "loop"
+            # exit the loop if all counters are zero
+            branch "leaveloop"
+                and
+                    not "passengerCounter"
+                    not "cargoCounter"
+                    "weaponCounter" < 1
+            # don't pay if passenger counter is zero
+            branch "nopassenger"
+                not "passengerCounter"
+            action
+                payment -1400
+                "last tax payment" += 1400
+                "passengerCounter" -= 1
+            label "nopassenger"
+            # don't pay larger sum if cargo counter is less than 10
+            branch "lowcargo"
+                "cargoCounter" < 10
+            action
+                payment -1400
+                "last tax payment" += 1400
+                "cargoCounter" -= 10
+            label "lowcargo"
+            # don't pay smaller sum if cargo counter is more than 10 or zero
+            branch "nocargo"
+                or
+                    not "cargoCounter"
+                    "cargo counter" >= 10
+            action
+                payment -140
+                "last tax payment" += 140
+                "cargoCounter" -= 1
+            label "nocargo"
+            # don't multiply weapon payment if weapons counter is zero
+            branch "noweapons"
+                "weaponCounter" < 1
+            action
+                "weaponCounter" -= 1
+                "paymentCounter" *= 10
+            label "noweapons"
+            # go to "not loop" which sends you back to the start of the loop if at least one counter is greater than zero, otherwise break out of the loop
+            branch "notloop" "leaveloop"
+                or
+                    has "passengerCounter"
+                    has "cargoCounter"
+                    "weaponCounter" > 0
+            label "notloop"
+            branch "loop"
+                1 == 1
+            label "leaveloop"
+            action
+                "paymentCounter" *= 7
+            label "loop2"
+            # exit the loop once payment counter is zero
+            branch "leaveloop2"
+                not "paymentCounter"
+            branch "lowWeaponPayment"
+                "paymentCounter" < 1000000
+            action
+                payment -1000000
+                "last tax payment" += 1000000
+                "paymentCounter" -= 1000000
+            label "lowWeaponPayment"
+            branch "notLowWeaponPayment"
+                or
+                    "paymentCounter" < 1
+                    "paymentCounter" > 999999
+            action
+                payment -1
+                "last tax payment" += 1
+                "paymentCounter" -= 1
+            label "notLowWeaponPayment"
+                go to "not loop" which sends you back to the start of the loop if payment counter is greater than zero, otherwise break out of the loop
+            branch "notloop2" "leaveloop2"
+                has "paymentCounter"
+            label "notloop2"
+            branch "loop2"
+                1 == 1
+            label "leaveloop2"
+            action
+                clear "passengerCounter"
+                clear "cargoCounter"
+                clear "weaponCounter"
+                clear "paymentCounter"
+            `You pay &[credits@last tax payment] in taxes.`
+            label "skip tax"
              branch "tribute"
                 or
                     and
@@ -1434,6 +2298,103 @@ mission "Landing Fee F"
         never
     on offer
         conversation
+            branch "skip tax"
+                ( "days since start" - "last payment date" ) < 7
+            action
+                "passengerCounter" = "passenger space"
+                "cargoCounter" = "cargo space"
+                "weaponCounter" = "armament deterrence"
+                "weaponCounter" += 1
+                "weaponCounter" /= 2
+                "paymentCounter" = 1
+                "last tax payment" = 0
+                "last payment date" = "days since start"
+            label "loop"
+            # exit the loop if all counters are zero
+            branch "leaveloop"
+                and
+                    not "passengerCounter"
+                    not "cargoCounter"
+                    "weaponCounter" < 1
+            # don't pay if passenger counter is zero
+            branch "nopassenger"
+                not "passengerCounter"
+            action
+                payment -1400
+                "last tax payment" += 1400
+                "passengerCounter" -= 1
+            label "nopassenger"
+            # don't pay larger sum if cargo counter is less than 10
+            branch "lowcargo"
+                "cargoCounter" < 10
+            action
+                payment -1400
+                "last tax payment" += 1400
+                "cargoCounter" -= 10
+            label "lowcargo"
+            # don't pay smaller sum if cargo counter is more than 10 or zero
+            branch "nocargo"
+                or
+                    not "cargoCounter"
+                    "cargo counter" >= 10
+            action
+                payment -140
+                "last tax payment" += 140
+                "cargoCounter" -= 1
+            label "nocargo"
+            # don't multiply weapon payment if weapons counter is zero
+            branch "noweapons"
+                "weaponCounter" < 1
+            action
+                "weaponCounter" -= 1
+                "paymentCounter" *= 10
+            label "noweapons"
+            # go to "not loop" which sends you back to the start of the loop if at least one counter is greater than zero, otherwise break out of the loop
+            branch "notloop" "leaveloop"
+                or
+                    has "passengerCounter"
+                    has "cargoCounter"
+                    "weaponCounter" > 0
+            label "notloop"
+            branch "loop"
+                1 == 1
+            label "leaveloop"
+            action
+                "paymentCounter" *= 7
+            label "loop2"
+            # exit the loop once payment counter is zero
+            branch "leaveloop2"
+                not "paymentCounter"
+            branch "lowWeaponPayment"
+                "paymentCounter" < 1000000
+            action
+                payment -1000000
+                "last tax payment" += 1000000
+                "paymentCounter" -= 1000000
+            label "lowWeaponPayment"
+            branch "notLowWeaponPayment"
+                or
+                    "paymentCounter" < 1
+                    "paymentCounter" > 999999
+            action
+                payment -1
+                "last tax payment" += 1
+                "paymentCounter" -= 1
+            label "notLowWeaponPayment"
+                go to "not loop" which sends you back to the start of the loop if payment counter is greater than zero, otherwise break out of the loop
+            branch "notloop2" "leaveloop2"
+                has "paymentCounter"
+            label "notloop2"
+            branch "loop2"
+                1 == 1
+            label "leaveloop2"
+            action
+                clear "passengerCounter"
+                clear "cargoCounter"
+                clear "weaponCounter"
+                clear "paymentCounter"
+            `You pay &[credits@last tax payment] in taxes.`
+            label "skip tax"
             branch "not amazon"
                 not "flagship planet: Amazon"
             action
@@ -1671,6 +2632,103 @@ mission "Landing Fee F"
                 accept
     on visit
         conversation
+            branch "skip tax"
+                ( "days since start" - "last payment date" ) < 7
+            action
+                "passengerCounter" = "passenger space"
+                "cargoCounter" = "cargo space"
+                "weaponCounter" = "armament deterrence"
+                "weaponCounter" += 1
+                "weaponCounter" /= 2
+                "paymentCounter" = 1
+                "last tax payment" = 0
+                "last payment date" = "days since start"
+            label "loop"
+            # exit the loop if all counters are zero
+            branch "leaveloop"
+                and
+                    not "passengerCounter"
+                    not "cargoCounter"
+                    "weaponCounter" < 1
+            # don't pay if passenger counter is zero
+            branch "nopassenger"
+                not "passengerCounter"
+            action
+                payment -1400
+                "last tax payment" += 1400
+                "passengerCounter" -= 1
+            label "nopassenger"
+            # don't pay larger sum if cargo counter is less than 10
+            branch "lowcargo"
+                "cargoCounter" < 10
+            action
+                payment -1400
+                "last tax payment" += 1400
+                "cargoCounter" -= 10
+            label "lowcargo"
+            # don't pay smaller sum if cargo counter is more than 10 or zero
+            branch "nocargo"
+                or
+                    not "cargoCounter"
+                    "cargo counter" >= 10
+            action
+                payment -140
+                "last tax payment" += 140
+                "cargoCounter" -= 1
+            label "nocargo"
+            # don't multiply weapon payment if weapons counter is zero
+            branch "noweapons"
+                "weaponCounter" < 1
+            action
+                "weaponCounter" -= 1
+                "paymentCounter" *= 10
+            label "noweapons"
+            # go to "not loop" which sends you back to the start of the loop if at least one counter is greater than zero, otherwise break out of the loop
+            branch "notloop" "leaveloop"
+                or
+                    has "passengerCounter"
+                    has "cargoCounter"
+                    "weaponCounter" > 0
+            label "notloop"
+            branch "loop"
+                1 == 1
+            label "leaveloop"
+            action
+                "paymentCounter" *= 7
+            label "loop2"
+            # exit the loop once payment counter is zero
+            branch "leaveloop2"
+                not "paymentCounter"
+            branch "lowWeaponPayment"
+                "paymentCounter" < 1000000
+            action
+                payment -1000000
+                "last tax payment" += 1000000
+                "paymentCounter" -= 1000000
+            label "lowWeaponPayment"
+            branch "notLowWeaponPayment"
+                or
+                    "paymentCounter" < 1
+                    "paymentCounter" > 999999
+            action
+                payment -1
+                "last tax payment" += 1
+                "paymentCounter" -= 1
+            label "notLowWeaponPayment"
+                go to "not loop" which sends you back to the start of the loop if payment counter is greater than zero, otherwise break out of the loop
+            branch "notloop2" "leaveloop2"
+                has "paymentCounter"
+            label "notloop2"
+            branch "loop2"
+                1 == 1
+            label "leaveloop2"
+            action
+                clear "passengerCounter"
+                clear "cargoCounter"
+                clear "weaponCounter"
+                clear "paymentCounter"
+            `You pay &[credits@last tax payment] in taxes.`
+            label "skip tax"
             branch "tribute"
                 or
                     and
@@ -1826,6 +2884,103 @@ mission "Landing Fee G1"
         never
     on offer
         conversation
+            branch "skip tax"
+                ( "days since start" - "last payment date" ) < 7
+            action
+                "passengerCounter" = "passenger space"
+                "cargoCounter" = "cargo space"
+                "weaponCounter" = "armament deterrence"
+                "weaponCounter" += 1
+                "weaponCounter" /= 2
+                "paymentCounter" = 1
+                "last tax payment" = 0
+                "last payment date" = "days since start"
+            label "loop"
+            # exit the loop if all counters are zero
+            branch "leaveloop"
+                and
+                    not "passengerCounter"
+                    not "cargoCounter"
+                    "weaponCounter" < 1
+            # don't pay if passenger counter is zero
+            branch "nopassenger"
+                not "passengerCounter"
+            action
+                payment -1400
+                "last tax payment" += 1400
+                "passengerCounter" -= 1
+            label "nopassenger"
+            # don't pay larger sum if cargo counter is less than 10
+            branch "lowcargo"
+                "cargoCounter" < 10
+            action
+                payment -1400
+                "last tax payment" += 1400
+                "cargoCounter" -= 10
+            label "lowcargo"
+            # don't pay smaller sum if cargo counter is more than 10 or zero
+            branch "nocargo"
+                or
+                    not "cargoCounter"
+                    "cargo counter" >= 10
+            action
+                payment -140
+                "last tax payment" += 140
+                "cargoCounter" -= 1
+            label "nocargo"
+            # don't multiply weapon payment if weapons counter is zero
+            branch "noweapons"
+                "weaponCounter" < 1
+            action
+                "weaponCounter" -= 1
+                "paymentCounter" *= 10
+            label "noweapons"
+            # go to "not loop" which sends you back to the start of the loop if at least one counter is greater than zero, otherwise break out of the loop
+            branch "notloop" "leaveloop"
+                or
+                    has "passengerCounter"
+                    has "cargoCounter"
+                    "weaponCounter" > 0
+            label "notloop"
+            branch "loop"
+                1 == 1
+            label "leaveloop"
+            action
+                "paymentCounter" *= 7
+            label "loop2"
+            # exit the loop once payment counter is zero
+            branch "leaveloop2"
+                not "paymentCounter"
+            branch "lowWeaponPayment"
+                "paymentCounter" < 1000000
+            action
+                payment -1000000
+                "last tax payment" += 1000000
+                "paymentCounter" -= 1000000
+            label "lowWeaponPayment"
+            branch "notLowWeaponPayment"
+                or
+                    "paymentCounter" < 1
+                    "paymentCounter" > 999999
+            action
+                payment -1
+                "last tax payment" += 1
+                "paymentCounter" -= 1
+            label "notLowWeaponPayment"
+                go to "not loop" which sends you back to the start of the loop if payment counter is greater than zero, otherwise break out of the loop
+            branch "notloop2" "leaveloop2"
+                has "paymentCounter"
+            label "notloop2"
+            branch "loop2"
+                1 == 1
+            label "leaveloop2"
+            action
+                clear "passengerCounter"
+                clear "cargoCounter"
+                clear "weaponCounter"
+                clear "paymentCounter"
+            `You pay &[credits@last tax payment] in taxes.`
+            label "skip tax"
             branch "not carbuncle station"
                 not "flagship planet: Carbuncle Station"
             action
@@ -1935,6 +3090,103 @@ mission "Landing Fee G1"
                 accept
     on visit
         conversation
+            branch "skip tax"
+                ( "days since start" - "last payment date" ) < 7
+            action
+                "passengerCounter" = "passenger space"
+                "cargoCounter" = "cargo space"
+                "weaponCounter" = "armament deterrence"
+                "weaponCounter" += 1
+                "weaponCounter" /= 2
+                "paymentCounter" = 1
+                "last tax payment" = 0
+                "last payment date" = "days since start"
+            label "loop"
+            # exit the loop if all counters are zero
+            branch "leaveloop"
+                and
+                    not "passengerCounter"
+                    not "cargoCounter"
+                    "weaponCounter" < 1
+            # don't pay if passenger counter is zero
+            branch "nopassenger"
+                not "passengerCounter"
+            action
+                payment -1400
+                "last tax payment" += 1400
+                "passengerCounter" -= 1
+            label "nopassenger"
+            # don't pay larger sum if cargo counter is less than 10
+            branch "lowcargo"
+                "cargoCounter" < 10
+            action
+                payment -1400
+                "last tax payment" += 1400
+                "cargoCounter" -= 10
+            label "lowcargo"
+            # don't pay smaller sum if cargo counter is more than 10 or zero
+            branch "nocargo"
+                or
+                    not "cargoCounter"
+                    "cargo counter" >= 10
+            action
+                payment -140
+                "last tax payment" += 140
+                "cargoCounter" -= 1
+            label "nocargo"
+            # don't multiply weapon payment if weapons counter is zero
+            branch "noweapons"
+                "weaponCounter" < 1
+            action
+                "weaponCounter" -= 1
+                "paymentCounter" *= 10
+            label "noweapons"
+            # go to "not loop" which sends you back to the start of the loop if at least one counter is greater than zero, otherwise break out of the loop
+            branch "notloop" "leaveloop"
+                or
+                    has "passengerCounter"
+                    has "cargoCounter"
+                    "weaponCounter" > 0
+            label "notloop"
+            branch "loop"
+                1 == 1
+            label "leaveloop"
+            action
+                "paymentCounter" *= 7
+            label "loop2"
+            # exit the loop once payment counter is zero
+            branch "leaveloop2"
+                not "paymentCounter"
+            branch "lowWeaponPayment"
+                "paymentCounter" < 1000000
+            action
+                payment -1000000
+                "last tax payment" += 1000000
+                "paymentCounter" -= 1000000
+            label "lowWeaponPayment"
+            branch "notLowWeaponPayment"
+                or
+                    "paymentCounter" < 1
+                    "paymentCounter" > 999999
+            action
+                payment -1
+                "last tax payment" += 1
+                "paymentCounter" -= 1
+            label "notLowWeaponPayment"
+                go to "not loop" which sends you back to the start of the loop if payment counter is greater than zero, otherwise break out of the loop
+            branch "notloop2" "leaveloop2"
+                has "paymentCounter"
+            label "notloop2"
+            branch "loop2"
+                1 == 1
+            label "leaveloop2"
+            action
+                clear "passengerCounter"
+                clear "cargoCounter"
+                clear "weaponCounter"
+                clear "paymentCounter"
+            `You pay &[credits@last tax payment] in taxes.`
+            label "skip tax"
             branch "tribute"
                 or
                     and
@@ -1995,6 +3247,103 @@ mission "Landing Fee G2"
         government "Republic"
     on offer
         conversation
+            branch "skip tax"
+                ( "days since start" - "last payment date" ) < 7
+            action
+                "passengerCounter" = "passenger space"
+                "cargoCounter" = "cargo space"
+                "weaponCounter" = "armament deterrence"
+                "weaponCounter" += 1
+                "weaponCounter" /= 2
+                "paymentCounter" = 1
+                "last tax payment" = 0
+                "last payment date" = "days since start"
+            label "loop"
+            # exit the loop if all counters are zero
+            branch "leaveloop"
+                and
+                    not "passengerCounter"
+                    not "cargoCounter"
+                    "weaponCounter" < 1
+            # don't pay if passenger counter is zero
+            branch "nopassenger"
+                not "passengerCounter"
+            action
+                payment -1400
+                "last tax payment" += 1400
+                "passengerCounter" -= 1
+            label "nopassenger"
+            # don't pay larger sum if cargo counter is less than 10
+            branch "lowcargo"
+                "cargoCounter" < 10
+            action
+                payment -1400
+                "last tax payment" += 1400
+                "cargoCounter" -= 10
+            label "lowcargo"
+            # don't pay smaller sum if cargo counter is more than 10 or zero
+            branch "nocargo"
+                or
+                    not "cargoCounter"
+                    "cargo counter" >= 10
+            action
+                payment -140
+                "last tax payment" += 140
+                "cargoCounter" -= 1
+            label "nocargo"
+            # don't multiply weapon payment if weapons counter is zero
+            branch "noweapons"
+                "weaponCounter" < 1
+            action
+                "weaponCounter" -= 1
+                "paymentCounter" *= 10
+            label "noweapons"
+            # go to "not loop" which sends you back to the start of the loop if at least one counter is greater than zero, otherwise break out of the loop
+            branch "notloop" "leaveloop"
+                or
+                    has "passengerCounter"
+                    has "cargoCounter"
+                    "weaponCounter" > 0
+            label "notloop"
+            branch "loop"
+                1 == 1
+            label "leaveloop"
+            action
+                "paymentCounter" *= 7
+            label "loop2"
+            # exit the loop once payment counter is zero
+            branch "leaveloop2"
+                not "paymentCounter"
+            branch "lowWeaponPayment"
+                "paymentCounter" < 1000000
+            action
+                payment -1000000
+                "last tax payment" += 1000000
+                "paymentCounter" -= 1000000
+            label "lowWeaponPayment"
+            branch "notLowWeaponPayment"
+                or
+                    "paymentCounter" < 1
+                    "paymentCounter" > 999999
+            action
+                payment -1
+                "last tax payment" += 1
+                "paymentCounter" -= 1
+            label "notLowWeaponPayment"
+                go to "not loop" which sends you back to the start of the loop if payment counter is greater than zero, otherwise break out of the loop
+            branch "notloop2" "leaveloop2"
+                has "paymentCounter"
+            label "notloop2"
+            branch "loop2"
+                1 == 1
+            label "leaveloop2"
+            action
+                clear "passengerCounter"
+                clear "cargoCounter"
+                clear "weaponCounter"
+                clear "paymentCounter"
+            `You pay &[credits@last tax payment] in taxes.`
+            label "skip tax"
             branch "tribute"
                 or
                     and
@@ -2101,6 +3450,103 @@ mission "Landing Fee H1"
         government "Free Worlds" "Neutral" "Republic"
     on offer
         conversation
+            branch "skip tax"
+                ( "days since start" - "last payment date" ) < 7
+            action
+                "passengerCounter" = "passenger space"
+                "cargoCounter" = "cargo space"
+                "weaponCounter" = "armament deterrence"
+                "weaponCounter" += 1
+                "weaponCounter" /= 2
+                "paymentCounter" = 1
+                "last tax payment" = 0
+                "last payment date" = "days since start"
+            label "loop"
+            # exit the loop if all counters are zero
+            branch "leaveloop"
+                and
+                    not "passengerCounter"
+                    not "cargoCounter"
+                    "weaponCounter" < 1
+            # don't pay if passenger counter is zero
+            branch "nopassenger"
+                not "passengerCounter"
+            action
+                payment -1400
+                "last tax payment" += 1400
+                "passengerCounter" -= 1
+            label "nopassenger"
+            # don't pay larger sum if cargo counter is less than 10
+            branch "lowcargo"
+                "cargoCounter" < 10
+            action
+                payment -1400
+                "last tax payment" += 1400
+                "cargoCounter" -= 10
+            label "lowcargo"
+            # don't pay smaller sum if cargo counter is more than 10 or zero
+            branch "nocargo"
+                or
+                    not "cargoCounter"
+                    "cargo counter" >= 10
+            action
+                payment -140
+                "last tax payment" += 140
+                "cargoCounter" -= 1
+            label "nocargo"
+            # don't multiply weapon payment if weapons counter is zero
+            branch "noweapons"
+                "weaponCounter" < 1
+            action
+                "weaponCounter" -= 1
+                "paymentCounter" *= 10
+            label "noweapons"
+            # go to "not loop" which sends you back to the start of the loop if at least one counter is greater than zero, otherwise break out of the loop
+            branch "notloop" "leaveloop"
+                or
+                    has "passengerCounter"
+                    has "cargoCounter"
+                    "weaponCounter" > 0
+            label "notloop"
+            branch "loop"
+                1 == 1
+            label "leaveloop"
+            action
+                "paymentCounter" *= 7
+            label "loop2"
+            # exit the loop once payment counter is zero
+            branch "leaveloop2"
+                not "paymentCounter"
+            branch "lowWeaponPayment"
+                "paymentCounter" < 1000000
+            action
+                payment -1000000
+                "last tax payment" += 1000000
+                "paymentCounter" -= 1000000
+            label "lowWeaponPayment"
+            branch "notLowWeaponPayment"
+                or
+                    "paymentCounter" < 1
+                    "paymentCounter" > 999999
+            action
+                payment -1
+                "last tax payment" += 1
+                "paymentCounter" -= 1
+            label "notLowWeaponPayment"
+                go to "not loop" which sends you back to the start of the loop if payment counter is greater than zero, otherwise break out of the loop
+            branch "notloop2" "leaveloop2"
+                has "paymentCounter"
+            label "notloop2"
+            branch "loop2"
+                1 == 1
+            label "leaveloop2"
+            action
+                clear "passengerCounter"
+                clear "cargoCounter"
+                clear "weaponCounter"
+                clear "paymentCounter"
+            `You pay &[credits@last tax payment] in taxes.`
+            label "skip tax"
             branch "not albatross"
                 not "flagship planet: Albatross"
             action
@@ -2242,6 +3688,103 @@ mission "Landing Fee H1"
                 accept
     on visit
         conversation
+            branch "skip tax"
+                ( "days since start" - "last payment date" ) < 7
+            action
+                "passengerCounter" = "passenger space"
+                "cargoCounter" = "cargo space"
+                "weaponCounter" = "armament deterrence"
+                "weaponCounter" += 1
+                "weaponCounter" /= 2
+                "paymentCounter" = 1
+                "last tax payment" = 0
+                "last payment date" = "days since start"
+            label "loop"
+            # exit the loop if all counters are zero
+            branch "leaveloop"
+                and
+                    not "passengerCounter"
+                    not "cargoCounter"
+                    "weaponCounter" < 1
+            # don't pay if passenger counter is zero
+            branch "nopassenger"
+                not "passengerCounter"
+            action
+                payment -1400
+                "last tax payment" += 1400
+                "passengerCounter" -= 1
+            label "nopassenger"
+            # don't pay larger sum if cargo counter is less than 10
+            branch "lowcargo"
+                "cargoCounter" < 10
+            action
+                payment -1400
+                "last tax payment" += 1400
+                "cargoCounter" -= 10
+            label "lowcargo"
+            # don't pay smaller sum if cargo counter is more than 10 or zero
+            branch "nocargo"
+                or
+                    not "cargoCounter"
+                    "cargo counter" >= 10
+            action
+                payment -140
+                "last tax payment" += 140
+                "cargoCounter" -= 1
+            label "nocargo"
+            # don't multiply weapon payment if weapons counter is zero
+            branch "noweapons"
+                "weaponCounter" < 1
+            action
+                "weaponCounter" -= 1
+                "paymentCounter" *= 10
+            label "noweapons"
+            # go to "not loop" which sends you back to the start of the loop if at least one counter is greater than zero, otherwise break out of the loop
+            branch "notloop" "leaveloop"
+                or
+                    has "passengerCounter"
+                    has "cargoCounter"
+                    "weaponCounter" > 0
+            label "notloop"
+            branch "loop"
+                1 == 1
+            label "leaveloop"
+            action
+                "paymentCounter" *= 7
+            label "loop2"
+            # exit the loop once payment counter is zero
+            branch "leaveloop2"
+                not "paymentCounter"
+            branch "lowWeaponPayment"
+                "paymentCounter" < 1000000
+            action
+                payment -1000000
+                "last tax payment" += 1000000
+                "paymentCounter" -= 1000000
+            label "lowWeaponPayment"
+            branch "notLowWeaponPayment"
+                or
+                    "paymentCounter" < 1
+                    "paymentCounter" > 999999
+            action
+                payment -1
+                "last tax payment" += 1
+                "paymentCounter" -= 1
+            label "notLowWeaponPayment"
+                go to "not loop" which sends you back to the start of the loop if payment counter is greater than zero, otherwise break out of the loop
+            branch "notloop2" "leaveloop2"
+                has "paymentCounter"
+            label "notloop2"
+            branch "loop2"
+                1 == 1
+            label "leaveloop2"
+            action
+                clear "passengerCounter"
+                clear "cargoCounter"
+                clear "weaponCounter"
+                clear "paymentCounter"
+            `You pay &[credits@last tax payment] in taxes.`
+            label "skip tax"
             branch "tribute"
                 or
                     and
@@ -2313,6 +3856,103 @@ mission "Landing Fee H2"
         government "Free Worlds"
     on offer
         conversation
+            branch "skip tax"
+                ( "days since start" - "last payment date" ) < 7
+            action
+                "passengerCounter" = "passenger space"
+                "cargoCounter" = "cargo space"
+                "weaponCounter" = "armament deterrence"
+                "weaponCounter" += 1
+                "weaponCounter" /= 2
+                "paymentCounter" = 1
+                "last tax payment" = 0
+                "last payment date" = "days since start"
+            label "loop"
+            # exit the loop if all counters are zero
+            branch "leaveloop"
+                and
+                    not "passengerCounter"
+                    not "cargoCounter"
+                    "weaponCounter" < 1
+            # don't pay if passenger counter is zero
+            branch "nopassenger"
+                not "passengerCounter"
+            action
+                payment -1400
+                "last tax payment" += 1400
+                "passengerCounter" -= 1
+            label "nopassenger"
+            # don't pay larger sum if cargo counter is less than 10
+            branch "lowcargo"
+                "cargoCounter" < 10
+            action
+                payment -1400
+                "last tax payment" += 1400
+                "cargoCounter" -= 10
+            label "lowcargo"
+            # don't pay smaller sum if cargo counter is more than 10 or zero
+            branch "nocargo"
+                or
+                    not "cargoCounter"
+                    "cargo counter" >= 10
+            action
+                payment -140
+                "last tax payment" += 140
+                "cargoCounter" -= 1
+            label "nocargo"
+            # don't multiply weapon payment if weapons counter is zero
+            branch "noweapons"
+                "weaponCounter" < 1
+            action
+                "weaponCounter" -= 1
+                "paymentCounter" *= 10
+            label "noweapons"
+            # go to "not loop" which sends you back to the start of the loop if at least one counter is greater than zero, otherwise break out of the loop
+            branch "notloop" "leaveloop"
+                or
+                    has "passengerCounter"
+                    has "cargoCounter"
+                    "weaponCounter" > 0
+            label "notloop"
+            branch "loop"
+                1 == 1
+            label "leaveloop"
+            action
+                "paymentCounter" *= 7
+            label "loop2"
+            # exit the loop once payment counter is zero
+            branch "leaveloop2"
+                not "paymentCounter"
+            branch "lowWeaponPayment"
+                "paymentCounter" < 1000000
+            action
+                payment -1000000
+                "last tax payment" += 1000000
+                "paymentCounter" -= 1000000
+            label "lowWeaponPayment"
+            branch "notLowWeaponPayment"
+                or
+                    "paymentCounter" < 1
+                    "paymentCounter" > 999999
+            action
+                payment -1
+                "last tax payment" += 1
+                "paymentCounter" -= 1
+            label "notLowWeaponPayment"
+                go to "not loop" which sends you back to the start of the loop if payment counter is greater than zero, otherwise break out of the loop
+            branch "notloop2" "leaveloop2"
+                has "paymentCounter"
+            label "notloop2"
+            branch "loop2"
+                1 == 1
+            label "leaveloop2"
+            action
+                clear "passengerCounter"
+                clear "cargoCounter"
+                clear "weaponCounter"
+                clear "paymentCounter"
+            `You pay &[credits@last tax payment] in taxes.`
+            label "skip tax"
             branch "tribute"
                 or
                     and
@@ -2447,6 +4087,103 @@ mission "Landing Fee I"
         never
     on offer
         conversation
+            branch "skip tax"
+                ( "days since start" - "last payment date" ) < 7
+            action
+                "passengerCounter" = "passenger space"
+                "cargoCounter" = "cargo space"
+                "weaponCounter" = "armament deterrence"
+                "weaponCounter" += 1
+                "weaponCounter" /= 2
+                "paymentCounter" = 1
+                "last tax payment" = 0
+                "last payment date" = "days since start"
+            label "loop"
+            # exit the loop if all counters are zero
+            branch "leaveloop"
+                and
+                    not "passengerCounter"
+                    not "cargoCounter"
+                    "weaponCounter" < 1
+            # don't pay if passenger counter is zero
+            branch "nopassenger"
+                not "passengerCounter"
+            action
+                payment -1400
+                "last tax payment" += 1400
+                "passengerCounter" -= 1
+            label "nopassenger"
+            # don't pay larger sum if cargo counter is less than 10
+            branch "lowcargo"
+                "cargoCounter" < 10
+            action
+                payment -1400
+                "last tax payment" += 1400
+                "cargoCounter" -= 10
+            label "lowcargo"
+            # don't pay smaller sum if cargo counter is more than 10 or zero
+            branch "nocargo"
+                or
+                    not "cargoCounter"
+                    "cargo counter" >= 10
+            action
+                payment -140
+                "last tax payment" += 140
+                "cargoCounter" -= 1
+            label "nocargo"
+            # don't multiply weapon payment if weapons counter is zero
+            branch "noweapons"
+                "weaponCounter" < 1
+            action
+                "weaponCounter" -= 1
+                "paymentCounter" *= 10
+            label "noweapons"
+            # go to "not loop" which sends you back to the start of the loop if at least one counter is greater than zero, otherwise break out of the loop
+            branch "notloop" "leaveloop"
+                or
+                    has "passengerCounter"
+                    has "cargoCounter"
+                    "weaponCounter" > 0
+            label "notloop"
+            branch "loop"
+                1 == 1
+            label "leaveloop"
+            action
+                "paymentCounter" *= 7
+            label "loop2"
+            # exit the loop once payment counter is zero
+            branch "leaveloop2"
+                not "paymentCounter"
+            branch "lowWeaponPayment"
+                "paymentCounter" < 1000000
+            action
+                payment -1000000
+                "last tax payment" += 1000000
+                "paymentCounter" -= 1000000
+            label "lowWeaponPayment"
+            branch "notLowWeaponPayment"
+                or
+                    "paymentCounter" < 1
+                    "paymentCounter" > 999999
+            action
+                payment -1
+                "last tax payment" += 1
+                "paymentCounter" -= 1
+            label "notLowWeaponPayment"
+                go to "not loop" which sends you back to the start of the loop if payment counter is greater than zero, otherwise break out of the loop
+            branch "notloop2" "leaveloop2"
+                has "paymentCounter"
+            label "notloop2"
+            branch "loop2"
+                1 == 1
+            label "leaveloop2"
+            action
+                clear "passengerCounter"
+                clear "cargoCounter"
+                clear "weaponCounter"
+                clear "paymentCounter"
+            `You pay &[credits@last tax payment] in taxes.`
+            label "skip tax"
             branch "not arabia"
                 not "flagship planet: Arabia"
             action
@@ -2660,6 +4397,103 @@ mission "Landing Fee I"
                 accept
     on visit
         conversation
+            branch "skip tax"
+                ( "days since start" - "last payment date" ) < 7
+            action
+                "passengerCounter" = "passenger space"
+                "cargoCounter" = "cargo space"
+                "weaponCounter" = "armament deterrence"
+                "weaponCounter" += 1
+                "weaponCounter" /= 2
+                "paymentCounter" = 1
+                "last tax payment" = 0
+                "last payment date" = "days since start"
+            label "loop"
+            # exit the loop if all counters are zero
+            branch "leaveloop"
+                and
+                    not "passengerCounter"
+                    not "cargoCounter"
+                    "weaponCounter" < 1
+            # don't pay if passenger counter is zero
+            branch "nopassenger"
+                not "passengerCounter"
+            action
+                payment -1400
+                "last tax payment" += 1400
+                "passengerCounter" -= 1
+            label "nopassenger"
+            # don't pay larger sum if cargo counter is less than 10
+            branch "lowcargo"
+                "cargoCounter" < 10
+            action
+                payment -1400
+                "last tax payment" += 1400
+                "cargoCounter" -= 10
+            label "lowcargo"
+            # don't pay smaller sum if cargo counter is more than 10 or zero
+            branch "nocargo"
+                or
+                    not "cargoCounter"
+                    "cargo counter" >= 10
+            action
+                payment -140
+                "last tax payment" += 140
+                "cargoCounter" -= 1
+            label "nocargo"
+            # don't multiply weapon payment if weapons counter is zero
+            branch "noweapons"
+                "weaponCounter" < 1
+            action
+                "weaponCounter" -= 1
+                "paymentCounter" *= 10
+            label "noweapons"
+            # go to "not loop" which sends you back to the start of the loop if at least one counter is greater than zero, otherwise break out of the loop
+            branch "notloop" "leaveloop"
+                or
+                    has "passengerCounter"
+                    has "cargoCounter"
+                    "weaponCounter" > 0
+            label "notloop"
+            branch "loop"
+                1 == 1
+            label "leaveloop"
+            action
+                "paymentCounter" *= 7
+            label "loop2"
+            # exit the loop once payment counter is zero
+            branch "leaveloop2"
+                not "paymentCounter"
+            branch "lowWeaponPayment"
+                "paymentCounter" < 1000000
+            action
+                payment -1000000
+                "last tax payment" += 1000000
+                "paymentCounter" -= 1000000
+            label "lowWeaponPayment"
+            branch "notLowWeaponPayment"
+                or
+                    "paymentCounter" < 1
+                    "paymentCounter" > 999999
+            action
+                payment -1
+                "last tax payment" += 1
+                "paymentCounter" -= 1
+            label "notLowWeaponPayment"
+                go to "not loop" which sends you back to the start of the loop if payment counter is greater than zero, otherwise break out of the loop
+            branch "notloop2" "leaveloop2"
+                has "paymentCounter"
+            label "notloop2"
+            branch "loop2"
+                1 == 1
+            label "leaveloop2"
+            action
+                clear "passengerCounter"
+                clear "cargoCounter"
+                clear "weaponCounter"
+                clear "paymentCounter"
+            `You pay &[credits@last tax payment] in taxes.`
+            label "skip tax"
             branch "tribute"
                 or
                     and
@@ -2863,6 +4697,103 @@ mission "Landing Fee Alpha"
         never
     on offer
         conversation
+            branch "skip tax"
+                ( "days since start" - "last payment date" ) < 7
+            action
+                "passengerCounter" = "passenger space"
+                "cargoCounter" = "cargo space"
+                "weaponCounter" = "armament deterrence"
+                "weaponCounter" += 1
+                "weaponCounter" /= 2
+                "paymentCounter" = 1
+                "last tax payment" = 0
+                "last payment date" = "days since start"
+            label "loop"
+            # exit the loop if all counters are zero
+            branch "leaveloop"
+                and
+                    not "passengerCounter"
+                    not "cargoCounter"
+                    "weaponCounter" < 1
+            # don't pay if passenger counter is zero
+            branch "nopassenger"
+                not "passengerCounter"
+            action
+                payment -1400
+                "last tax payment" += 1400
+                "passengerCounter" -= 1
+            label "nopassenger"
+            # don't pay larger sum if cargo counter is less than 10
+            branch "lowcargo"
+                "cargoCounter" < 10
+            action
+                payment -1400
+                "last tax payment" += 1400
+                "cargoCounter" -= 10
+            label "lowcargo"
+            # don't pay smaller sum if cargo counter is more than 10 or zero
+            branch "nocargo"
+                or
+                    not "cargoCounter"
+                    "cargo counter" >= 10
+            action
+                payment -140
+                "last tax payment" += 140
+                "cargoCounter" -= 1
+            label "nocargo"
+            # don't multiply weapon payment if weapons counter is zero
+            branch "noweapons"
+                "weaponCounter" < 1
+            action
+                "weaponCounter" -= 1
+                "paymentCounter" *= 10
+            label "noweapons"
+            # go to "not loop" which sends you back to the start of the loop if at least one counter is greater than zero, otherwise break out of the loop
+            branch "notloop" "leaveloop"
+                or
+                    has "passengerCounter"
+                    has "cargoCounter"
+                    "weaponCounter" > 0
+            label "notloop"
+            branch "loop"
+                1 == 1
+            label "leaveloop"
+            action
+                "paymentCounter" *= 7
+            label "loop2"
+            # exit the loop once payment counter is zero
+            branch "leaveloop2"
+                not "paymentCounter"
+            branch "lowWeaponPayment"
+                "paymentCounter" < 1000000
+            action
+                payment -1000000
+                "last tax payment" += 1000000
+                "paymentCounter" -= 1000000
+            label "lowWeaponPayment"
+            branch "notLowWeaponPayment"
+                or
+                    "paymentCounter" < 1
+                    "paymentCounter" > 999999
+            action
+                payment -1
+                "last tax payment" += 1
+                "paymentCounter" -= 1
+            label "notLowWeaponPayment"
+                go to "not loop" which sends you back to the start of the loop if payment counter is greater than zero, otherwise break out of the loop
+            branch "notloop2" "leaveloop2"
+                has "paymentCounter"
+            label "notloop2"
+            branch "loop2"
+                1 == 1
+            label "leaveloop2"
+            action
+                clear "passengerCounter"
+                clear "cargoCounter"
+                clear "weaponCounter"
+                clear "paymentCounter"
+            `You pay &[credits@last tax payment] in taxes.`
+            label "skip tax"
             branch "not allhome"
                 not "flagship planet: Allhome"
             action
@@ -3084,6 +5015,103 @@ mission "Landing Fee Alpha"
                 accept
     on visit
         conversation
+            branch "skip tax"
+                ( "days since start" - "last payment date" ) < 7
+            action
+                "passengerCounter" = "passenger space"
+                "cargoCounter" = "cargo space"
+                "weaponCounter" = "armament deterrence"
+                "weaponCounter" += 1
+                "weaponCounter" /= 2
+                "paymentCounter" = 1
+                "last tax payment" = 0
+                "last payment date" = "days since start"
+            label "loop"
+            # exit the loop if all counters are zero
+            branch "leaveloop"
+                and
+                    not "passengerCounter"
+                    not "cargoCounter"
+                    "weaponCounter" < 1
+            # don't pay if passenger counter is zero
+            branch "nopassenger"
+                not "passengerCounter"
+            action
+                payment -1400
+                "last tax payment" += 1400
+                "passengerCounter" -= 1
+            label "nopassenger"
+            # don't pay larger sum if cargo counter is less than 10
+            branch "lowcargo"
+                "cargoCounter" < 10
+            action
+                payment -1400
+                "last tax payment" += 1400
+                "cargoCounter" -= 10
+            label "lowcargo"
+            # don't pay smaller sum if cargo counter is more than 10 or zero
+            branch "nocargo"
+                or
+                    not "cargoCounter"
+                    "cargo counter" >= 10
+            action
+                payment -140
+                "last tax payment" += 140
+                "cargoCounter" -= 1
+            label "nocargo"
+            # don't multiply weapon payment if weapons counter is zero
+            branch "noweapons"
+                "weaponCounter" < 1
+            action
+                "weaponCounter" -= 1
+                "paymentCounter" *= 10
+            label "noweapons"
+            # go to "not loop" which sends you back to the start of the loop if at least one counter is greater than zero, otherwise break out of the loop
+            branch "notloop" "leaveloop"
+                or
+                    has "passengerCounter"
+                    has "cargoCounter"
+                    "weaponCounter" > 0
+            label "notloop"
+            branch "loop"
+                1 == 1
+            label "leaveloop"
+            action
+                "paymentCounter" *= 7
+            label "loop2"
+            # exit the loop once payment counter is zero
+            branch "leaveloop2"
+                not "paymentCounter"
+            branch "lowWeaponPayment"
+                "paymentCounter" < 1000000
+            action
+                payment -1000000
+                "last tax payment" += 1000000
+                "paymentCounter" -= 1000000
+            label "lowWeaponPayment"
+            branch "notLowWeaponPayment"
+                or
+                    "paymentCounter" < 1
+                    "paymentCounter" > 999999
+            action
+                payment -1
+                "last tax payment" += 1
+                "paymentCounter" -= 1
+            label "notLowWeaponPayment"
+                go to "not loop" which sends you back to the start of the loop if payment counter is greater than zero, otherwise break out of the loop
+            branch "notloop2" "leaveloop2"
+                has "paymentCounter"
+            label "notloop2"
+            branch "loop2"
+                1 == 1
+            label "leaveloop2"
+            action
+                clear "passengerCounter"
+                clear "cargoCounter"
+                clear "weaponCounter"
+                clear "paymentCounter"
+            `You pay &[credits@last tax payment] in taxes.`
+            label "skip tax"
             branch "tribute"
                 or
                     and
