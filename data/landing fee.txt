@@ -127,7 +127,7 @@ mission "Landing Fee A"
             branch "leaveloop2"
                 not "paymentCounter"
             branch "lowWeaponPayment"
-                "paymentCounter" < 1000000
+                "paymentCounter" < 2000000
             action
                 payment -1000000
                 "last tax payment" += 1000000
@@ -136,7 +136,7 @@ mission "Landing Fee A"
             branch "notLowWeaponPayment"
                 or
                     "paymentCounter" < 1
-                    "paymentCounter" > 999999
+                    "paymentCounter" < 1999999
             action
                 payment -1
                 "last tax payment" += 1
@@ -277,7 +277,7 @@ mission "Landing Fee A"
             branch "leaveloop2"
                 not "paymentCounter"
             branch "lowWeaponPayment"
-                "paymentCounter" < 1000000
+                "paymentCounter" < 2000000
             action
                 payment -1000000
                 "last tax payment" += 1000000
@@ -286,7 +286,7 @@ mission "Landing Fee A"
             branch "notLowWeaponPayment"
                 or
                     "paymentCounter" < 1
-                    "paymentCounter" > 999999
+                    "paymentCounter" < 1999999
             action
                 payment -1
                 "last tax payment" += 1
@@ -436,7 +436,7 @@ mission "Landing Fee B"
             branch "leaveloop2"
                 not "paymentCounter"
             branch "lowWeaponPayment"
-                "paymentCounter" < 1000000
+                "paymentCounter" < 2000000
             action
                 payment -1000000
                 "last tax payment" += 1000000
@@ -445,7 +445,7 @@ mission "Landing Fee B"
             branch "notLowWeaponPayment"
                 or
                     "paymentCounter" < 1
-                    "paymentCounter" > 999999
+                    "paymentCounter" < 1999999
             action
                 payment -1
                 "last tax payment" += 1
@@ -595,7 +595,7 @@ mission "Landing Fee B"
             branch "leaveloop2"
                 not "paymentCounter"
             branch "lowWeaponPayment"
-                "paymentCounter" < 1000000
+                "paymentCounter" < 2000000
             action
                 payment -1000000
                 "last tax payment" += 1000000
@@ -604,7 +604,7 @@ mission "Landing Fee B"
             branch "notLowWeaponPayment"
                 or
                     "paymentCounter" < 1
-                    "paymentCounter" > 999999
+                    "paymentCounter" < 1999999
             action
                 payment -1
                 "last tax payment" += 1
@@ -790,7 +790,7 @@ mission "Landing Fee C"
             branch "leaveloop2"
                 not "paymentCounter"
             branch "lowWeaponPayment"
-                "paymentCounter" < 1000000
+                "paymentCounter" < 2000000
             action
                 payment -1000000
                 "last tax payment" += 1000000
@@ -799,7 +799,7 @@ mission "Landing Fee C"
             branch "notLowWeaponPayment"
                 or
                     "paymentCounter" < 1
-                    "paymentCounter" > 999999
+                    "paymentCounter" < 1999999
             action
                 payment -1
                 "last tax payment" += 1
@@ -1012,7 +1012,7 @@ mission "Landing Fee C"
             branch "leaveloop2"
                 not "paymentCounter"
             branch "lowWeaponPayment"
-                "paymentCounter" < 1000000
+                "paymentCounter" < 2000000
             action
                 payment -1000000
                 "last tax payment" += 1000000
@@ -1021,7 +1021,7 @@ mission "Landing Fee C"
             branch "notLowWeaponPayment"
                 or
                     "paymentCounter" < 1
-                    "paymentCounter" > 999999
+                    "paymentCounter" < 1999999
             action
                 payment -1
                 "last tax payment" += 1
@@ -1251,7 +1251,7 @@ mission "Landing Fee D"
             branch "leaveloop2"
                 not "paymentCounter"
             branch "lowWeaponPayment"
-                "paymentCounter" < 1000000
+                "paymentCounter" < 2000000
             action
                 payment -1000000
                 "last tax payment" += 1000000
@@ -1260,7 +1260,7 @@ mission "Landing Fee D"
             branch "notLowWeaponPayment"
                 or
                     "paymentCounter" < 1
-                    "paymentCounter" > 999999
+                    "paymentCounter" < 1999999
             action
                 payment -1
                 "last tax payment" += 1
@@ -1513,7 +1513,7 @@ mission "Landing Fee D"
             branch "leaveloop2"
                 not "paymentCounter"
             branch "lowWeaponPayment"
-                "paymentCounter" < 1000000
+                "paymentCounter" < 2000000
             action
                 payment -1000000
                 "last tax payment" += 1000000
@@ -1522,7 +1522,7 @@ mission "Landing Fee D"
             branch "notLowWeaponPayment"
                 or
                     "paymentCounter" < 1
-                    "paymentCounter" > 999999
+                    "paymentCounter" < 1999999
             action
                 payment -1
                 "last tax payment" += 1
@@ -1781,7 +1781,7 @@ mission "Landing Fee E"
             branch "leaveloop2"
                 not "paymentCounter"
             branch "lowWeaponPayment"
-                "paymentCounter" < 1000000
+                "paymentCounter" < 2000000
             action
                 payment -1000000
                 "last tax payment" += 1000000
@@ -1790,7 +1790,7 @@ mission "Landing Fee E"
             branch "notLowWeaponPayment"
                 or
                     "paymentCounter" < 1
-                    "paymentCounter" > 999999
+                    "paymentCounter" < 1999999
             action
                 payment -1
                 "last tax payment" += 1
@@ -2067,7 +2067,7 @@ mission "Landing Fee E"
             branch "leaveloop2"
                 not "paymentCounter"
             branch "lowWeaponPayment"
-                "paymentCounter" < 1000000
+                "paymentCounter" < 2000000
             action
                 payment -1000000
                 "last tax payment" += 1000000
@@ -2076,7 +2076,7 @@ mission "Landing Fee E"
             branch "notLowWeaponPayment"
                 or
                     "paymentCounter" < 1
-                    "paymentCounter" > 999999
+                    "paymentCounter" < 1999999
             action
                 payment -1
                 "last tax payment" += 1
@@ -2366,7 +2366,7 @@ mission "Landing Fee F"
             branch "leaveloop2"
                 not "paymentCounter"
             branch "lowWeaponPayment"
-                "paymentCounter" < 1000000
+                "paymentCounter" < 2000000
             action
                 payment -1000000
                 "last tax payment" += 1000000
@@ -2375,7 +2375,7 @@ mission "Landing Fee F"
             branch "notLowWeaponPayment"
                 or
                     "paymentCounter" < 1
-                    "paymentCounter" > 999999
+                    "paymentCounter" < 1999999
             action
                 payment -1
                 "last tax payment" += 1
@@ -2700,7 +2700,7 @@ mission "Landing Fee F"
             branch "leaveloop2"
                 not "paymentCounter"
             branch "lowWeaponPayment"
-                "paymentCounter" < 1000000
+                "paymentCounter" < 2000000
             action
                 payment -1000000
                 "last tax payment" += 1000000
@@ -2709,7 +2709,7 @@ mission "Landing Fee F"
             branch "notLowWeaponPayment"
                 or
                     "paymentCounter" < 1
-                    "paymentCounter" > 999999
+                    "paymentCounter" < 1999999
             action
                 payment -1
                 "last tax payment" += 1
@@ -2952,7 +2952,7 @@ mission "Landing Fee G1"
             branch "leaveloop2"
                 not "paymentCounter"
             branch "lowWeaponPayment"
-                "paymentCounter" < 1000000
+                "paymentCounter" < 2000000
             action
                 payment -1000000
                 "last tax payment" += 1000000
@@ -2961,7 +2961,7 @@ mission "Landing Fee G1"
             branch "notLowWeaponPayment"
                 or
                     "paymentCounter" < 1
-                    "paymentCounter" > 999999
+                    "paymentCounter" < 1999999
             action
                 payment -1
                 "last tax payment" += 1
@@ -3158,7 +3158,7 @@ mission "Landing Fee G1"
             branch "leaveloop2"
                 not "paymentCounter"
             branch "lowWeaponPayment"
-                "paymentCounter" < 1000000
+                "paymentCounter" < 2000000
             action
                 payment -1000000
                 "last tax payment" += 1000000
@@ -3167,7 +3167,7 @@ mission "Landing Fee G1"
             branch "notLowWeaponPayment"
                 or
                     "paymentCounter" < 1
-                    "paymentCounter" > 999999
+                    "paymentCounter" < 1999999
             action
                 payment -1
                 "last tax payment" += 1
@@ -3315,7 +3315,7 @@ mission "Landing Fee G2"
             branch "leaveloop2"
                 not "paymentCounter"
             branch "lowWeaponPayment"
-                "paymentCounter" < 1000000
+                "paymentCounter" < 2000000
             action
                 payment -1000000
                 "last tax payment" += 1000000
@@ -3324,7 +3324,7 @@ mission "Landing Fee G2"
             branch "notLowWeaponPayment"
                 or
                     "paymentCounter" < 1
-                    "paymentCounter" > 999999
+                    "paymentCounter" < 1999999
             action
                 payment -1
                 "last tax payment" += 1
@@ -3518,7 +3518,7 @@ mission "Landing Fee H1"
             branch "leaveloop2"
                 not "paymentCounter"
             branch "lowWeaponPayment"
-                "paymentCounter" < 1000000
+                "paymentCounter" < 2000000
             action
                 payment -1000000
                 "last tax payment" += 1000000
@@ -3527,7 +3527,7 @@ mission "Landing Fee H1"
             branch "notLowWeaponPayment"
                 or
                     "paymentCounter" < 1
-                    "paymentCounter" > 999999
+                    "paymentCounter" < 1999999
             action
                 payment -1
                 "last tax payment" += 1
@@ -3756,7 +3756,7 @@ mission "Landing Fee H1"
             branch "leaveloop2"
                 not "paymentCounter"
             branch "lowWeaponPayment"
-                "paymentCounter" < 1000000
+                "paymentCounter" < 2000000
             action
                 payment -1000000
                 "last tax payment" += 1000000
@@ -3765,7 +3765,7 @@ mission "Landing Fee H1"
             branch "notLowWeaponPayment"
                 or
                     "paymentCounter" < 1
-                    "paymentCounter" > 999999
+                    "paymentCounter" < 1999999
             action
                 payment -1
                 "last tax payment" += 1
@@ -3924,7 +3924,7 @@ mission "Landing Fee H2"
             branch "leaveloop2"
                 not "paymentCounter"
             branch "lowWeaponPayment"
-                "paymentCounter" < 1000000
+                "paymentCounter" < 2000000
             action
                 payment -1000000
                 "last tax payment" += 1000000
@@ -3933,7 +3933,7 @@ mission "Landing Fee H2"
             branch "notLowWeaponPayment"
                 or
                     "paymentCounter" < 1
-                    "paymentCounter" > 999999
+                    "paymentCounter" < 1999999
             action
                 payment -1
                 "last tax payment" += 1
@@ -4155,7 +4155,7 @@ mission "Landing Fee I"
             branch "leaveloop2"
                 not "paymentCounter"
             branch "lowWeaponPayment"
-                "paymentCounter" < 1000000
+                "paymentCounter" < 2000000
             action
                 payment -1000000
                 "last tax payment" += 1000000
@@ -4164,7 +4164,7 @@ mission "Landing Fee I"
             branch "notLowWeaponPayment"
                 or
                     "paymentCounter" < 1
-                    "paymentCounter" > 999999
+                    "paymentCounter" < 1999999
             action
                 payment -1
                 "last tax payment" += 1
@@ -4465,7 +4465,7 @@ mission "Landing Fee I"
             branch "leaveloop2"
                 not "paymentCounter"
             branch "lowWeaponPayment"
-                "paymentCounter" < 1000000
+                "paymentCounter" < 2000000
             action
                 payment -1000000
                 "last tax payment" += 1000000
@@ -4474,7 +4474,7 @@ mission "Landing Fee I"
             branch "notLowWeaponPayment"
                 or
                     "paymentCounter" < 1
-                    "paymentCounter" > 999999
+                    "paymentCounter" < 1999999
             action
                 payment -1
                 "last tax payment" += 1
@@ -4765,7 +4765,7 @@ mission "Landing Fee Alpha"
             branch "leaveloop2"
                 not "paymentCounter"
             branch "lowWeaponPayment"
-                "paymentCounter" < 1000000
+                "paymentCounter" < 2000000
             action
                 payment -1000000
                 "last tax payment" += 1000000
@@ -4774,7 +4774,7 @@ mission "Landing Fee Alpha"
             branch "notLowWeaponPayment"
                 or
                     "paymentCounter" < 1
-                    "paymentCounter" > 999999
+                    "paymentCounter" < 1999999
             action
                 payment -1
                 "last tax payment" += 1
@@ -5083,7 +5083,7 @@ mission "Landing Fee Alpha"
             branch "leaveloop2"
                 not "paymentCounter"
             branch "lowWeaponPayment"
-                "paymentCounter" < 1000000
+                "paymentCounter" < 2000000
             action
                 payment -1000000
                 "last tax payment" += 1000000
@@ -5092,7 +5092,7 @@ mission "Landing Fee Alpha"
             branch "notLowWeaponPayment"
                 or
                     "paymentCounter" < 1
-                    "paymentCounter" > 999999
+                    "paymentCounter" < 1999999
             action
                 payment -1
                 "last tax payment" += 1
