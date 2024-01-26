@@ -39,12 +39,12 @@ mission "Weekly Tax"
             action
                 "passengerCounter" = "passenger space"
                 "cargoCounter" = "cargo space"
-                "weaponCounter" = "armament deterrance"
-                "weaponCounter" -= 2
+                "weaponCounter" = "armament deterrence"
+                "weaponCounter" += 1
+                "weaponCounter" /= 2
                 "paymentCounter" = 1
                 "last tax payment" = 0
                 "last payment date" = "days since start"
-
             label "loop"
             # exit the loop if all counters are zero
             branch "leaveloop"
@@ -82,7 +82,8 @@ mission "Weekly Tax"
             branch "noweapons"
                 "weaponCounter" < 1
             action
-                "paymentCounter" *= 5
+                "weaponCounter" -= 1
+                "paymentCounter" *= 10
             label "noweapons"
             # go to "not loop" which sends you back to the start of the loop if at least one counter is greater than zero, otherwise break out of the loop
             branch "notloop" "leaveloop"
@@ -100,11 +101,23 @@ mission "Weekly Tax"
             # exit the loop once payment counter is zero
             branch "leaveloop2"
                 not "paymentCounter"
+            branch "lowWeaponPayment"
+                "paymentCounter" < 1000000
             action
-                payment -1
-                "last tax payment" += 1
-                "paymentCounter" -= 1
-            # go to "not loop" which sends you back to the start of the loop if payment counter is greater than zero, otherwise break out of the loop
+                payment -1000000
+                "last tax payment" += 1000000
+                "paymentCounter" -= 1000000
+            label "lowWeaponPayment"
+            branch "notLowWeaponPayment"
+                or
+                    "paymentCounter" < 1
+                    "paymentCounter" > 999999
+            action
+                payment -1000000
+                "last tax payment" += 1000000
+                "paymentCounter" -= 1000000
+            label "notLowWeaponPayment"
+             go to "not loop" which sends you back to the start of the loop if payment counter is greater than zero, otherwise break out of the loop
             branch "notloop2" "leaveloop2"
                 has "paymentCounter"
             label "notloop2"
