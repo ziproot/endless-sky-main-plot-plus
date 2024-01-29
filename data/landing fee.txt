@@ -122,6 +122,10 @@ mission "Landing Fee A"
             label "leaveloop"
             action
                 "paymentCounter" *= 7
+            `You are sentenced to a lifetime in jail for failing to pay all your taxes.`
+                to display
+                    "paymentCounter" > "credits"
+                die
             label "loop2"
             # exit the loop once payment counter is zero
             branch "leaveloop2"
@@ -136,13 +140,13 @@ mission "Landing Fee A"
             branch "notLowWeaponPayment"
                 or
                     "paymentCounter" < 1
-                    "paymentCounter" < 1999999
+                    "paymentCounter" > 1999999
             action
                 payment -1
                 "last tax payment" += 1
                 "paymentCounter" -= 1
             label "notLowWeaponPayment"
-                go to "not loop" which sends you back to the start of the loop if payment counter is greater than zero, otherwise break out of the loop
+            # go to "not loop" which sends you back to the start of the loop if payment counter is greater than zero, otherwise break out of the loop
             branch "notloop2" "leaveloop2"
                 has "paymentCounter"
             label "notloop2"
@@ -272,6 +276,10 @@ mission "Landing Fee A"
             label "leaveloop"
             action
                 "paymentCounter" *= 7
+            `You are sentenced to a lifetime in jail for failing to pay all your taxes.`
+                to display
+                    "paymentCounter" > "credits"
+                die
             label "loop2"
             # exit the loop once payment counter is zero
             branch "leaveloop2"
@@ -286,13 +294,13 @@ mission "Landing Fee A"
             branch "notLowWeaponPayment"
                 or
                     "paymentCounter" < 1
-                    "paymentCounter" < 1999999
+                    "paymentCounter" > 1999999
             action
                 payment -1
                 "last tax payment" += 1
                 "paymentCounter" -= 1
             label "notLowWeaponPayment"
-                go to "not loop" which sends you back to the start of the loop if payment counter is greater than zero, otherwise break out of the loop
+                # go to "not loop" which sends you back to the start of the loop if payment counter is greater than zero, otherwise break out of the loop
             branch "notloop2" "leaveloop2"
                 has "paymentCounter"
             label "notloop2"
@@ -431,6 +439,10 @@ mission "Landing Fee B"
             label "leaveloop"
             action
                 "paymentCounter" *= 7
+            `You are sentenced to a lifetime in jail for failing to pay all your taxes.`
+                to display
+                    "paymentCounter" > "credits"
+                die
             label "loop2"
             # exit the loop once payment counter is zero
             branch "leaveloop2"
@@ -445,13 +457,13 @@ mission "Landing Fee B"
             branch "notLowWeaponPayment"
                 or
                     "paymentCounter" < 1
-                    "paymentCounter" < 1999999
+                    "paymentCounter" > 1999999
             action
                 payment -1
                 "last tax payment" += 1
                 "paymentCounter" -= 1
             label "notLowWeaponPayment"
-                go to "not loop" which sends you back to the start of the loop if payment counter is greater than zero, otherwise break out of the loop
+            # go to "not loop" which sends you back to the start of the loop if payment counter is greater than zero, otherwise break out of the loop
             branch "notloop2" "leaveloop2"
                 has "paymentCounter"
             label "notloop2"
@@ -590,6 +602,10 @@ mission "Landing Fee B"
             label "leaveloop"
             action
                 "paymentCounter" *= 7
+            `You are sentenced to a lifetime in jail for failing to pay all your taxes.`
+                to display
+                    "paymentCounter" > "credits"
+                die
             label "loop2"
             # exit the loop once payment counter is zero
             branch "leaveloop2"
@@ -604,13 +620,13 @@ mission "Landing Fee B"
             branch "notLowWeaponPayment"
                 or
                     "paymentCounter" < 1
-                    "paymentCounter" < 1999999
+                    "paymentCounter" > 1999999
             action
                 payment -1
                 "last tax payment" += 1
                 "paymentCounter" -= 1
             label "notLowWeaponPayment"
-                go to "not loop" which sends you back to the start of the loop if payment counter is greater than zero, otherwise break out of the loop
+                # go to "not loop" which sends you back to the start of the loop if payment counter is greater than zero, otherwise break out of the loop
             branch "notloop2" "leaveloop2"
                 has "paymentCounter"
             label "notloop2"
@@ -785,6 +801,10 @@ mission "Landing Fee C"
             label "leaveloop"
             action
                 "paymentCounter" *= 7
+            `You are sentenced to a lifetime in jail for failing to pay all your taxes.`
+                to display
+                    "paymentCounter" > "credits"
+                die
             label "loop2"
             # exit the loop once payment counter is zero
             branch "leaveloop2"
@@ -799,13 +819,13 @@ mission "Landing Fee C"
             branch "notLowWeaponPayment"
                 or
                     "paymentCounter" < 1
-                    "paymentCounter" < 1999999
+                    "paymentCounter" > 1999999
             action
                 payment -1
                 "last tax payment" += 1
                 "paymentCounter" -= 1
             label "notLowWeaponPayment"
-                go to "not loop" which sends you back to the start of the loop if payment counter is greater than zero, otherwise break out of the loop
+                # go to "not loop" which sends you back to the start of the loop if payment counter is greater than zero, otherwise break out of the loop
             branch "notloop2" "leaveloop2"
                 has "paymentCounter"
             label "notloop2"
@@ -1007,6 +1027,10 @@ mission "Landing Fee C"
             label "leaveloop"
             action
                 "paymentCounter" *= 7
+            `You are sentenced to a lifetime in jail for failing to pay all your taxes.`
+                to display
+                    "paymentCounter" > "credits"
+                die
             label "loop2"
             # exit the loop once payment counter is zero
             branch "leaveloop2"
@@ -1021,13 +1045,13 @@ mission "Landing Fee C"
             branch "notLowWeaponPayment"
                 or
                     "paymentCounter" < 1
-                    "paymentCounter" < 1999999
+                    "paymentCounter" > 1999999
             action
                 payment -1
                 "last tax payment" += 1
                 "paymentCounter" -= 1
             label "notLowWeaponPayment"
-                go to "not loop" which sends you back to the start of the loop if payment counter is greater than zero, otherwise break out of the loop
+                # go to "not loop" which sends you back to the start of the loop if payment counter is greater than zero, otherwise break out of the loop
             branch "notloop2" "leaveloop2"
                 has "paymentCounter"
             label "notloop2"
@@ -1246,6 +1270,10 @@ mission "Landing Fee D"
             label "leaveloop"
             action
                 "paymentCounter" *= 7
+            `You are sentenced to a lifetime in jail for failing to pay all your taxes.`
+                to display
+                    "paymentCounter" > "credits"
+                die
             label "loop2"
             # exit the loop once payment counter is zero
             branch "leaveloop2"
@@ -1260,13 +1288,13 @@ mission "Landing Fee D"
             branch "notLowWeaponPayment"
                 or
                     "paymentCounter" < 1
-                    "paymentCounter" < 1999999
+                    "paymentCounter" > 1999999
             action
                 payment -1
                 "last tax payment" += 1
                 "paymentCounter" -= 1
             label "notLowWeaponPayment"
-                go to "not loop" which sends you back to the start of the loop if payment counter is greater than zero, otherwise break out of the loop
+                # go to "not loop" which sends you back to the start of the loop if payment counter is greater than zero, otherwise break out of the loop
             branch "notloop2" "leaveloop2"
                 has "paymentCounter"
             label "notloop2"
@@ -1508,6 +1536,10 @@ mission "Landing Fee D"
             label "leaveloop"
             action
                 "paymentCounter" *= 7
+            `You are sentenced to a lifetime in jail for failing to pay all your taxes.`
+                to display
+                    "paymentCounter" > "credits"
+                die
             label "loop2"
             # exit the loop once payment counter is zero
             branch "leaveloop2"
@@ -1522,13 +1554,13 @@ mission "Landing Fee D"
             branch "notLowWeaponPayment"
                 or
                     "paymentCounter" < 1
-                    "paymentCounter" < 1999999
+                    "paymentCounter" > 1999999
             action
                 payment -1
                 "last tax payment" += 1
                 "paymentCounter" -= 1
             label "notLowWeaponPayment"
-                go to "not loop" which sends you back to the start of the loop if payment counter is greater than zero, otherwise break out of the loop
+                # go to "not loop" which sends you back to the start of the loop if payment counter is greater than zero, otherwise break out of the loop
             branch "notloop2" "leaveloop2"
                 has "paymentCounter"
             label "notloop2"
@@ -1776,6 +1808,10 @@ mission "Landing Fee E"
             label "leaveloop"
             action
                 "paymentCounter" *= 7
+            `You are sentenced to a lifetime in jail for failing to pay all your taxes.`
+                to display
+                    "paymentCounter" > "credits"
+                die
             label "loop2"
             # exit the loop once payment counter is zero
             branch "leaveloop2"
@@ -1790,13 +1826,13 @@ mission "Landing Fee E"
             branch "notLowWeaponPayment"
                 or
                     "paymentCounter" < 1
-                    "paymentCounter" < 1999999
+                    "paymentCounter" > 1999999
             action
                 payment -1
                 "last tax payment" += 1
                 "paymentCounter" -= 1
             label "notLowWeaponPayment"
-                go to "not loop" which sends you back to the start of the loop if payment counter is greater than zero, otherwise break out of the loop
+                # go to "not loop" which sends you back to the start of the loop if payment counter is greater than zero, otherwise break out of the loop
             branch "notloop2" "leaveloop2"
                 has "paymentCounter"
             label "notloop2"
@@ -2062,6 +2098,10 @@ mission "Landing Fee E"
             label "leaveloop"
             action
                 "paymentCounter" *= 7
+            `You are sentenced to a lifetime in jail for failing to pay all your taxes.`
+                to display
+                    "paymentCounter" > "credits"
+                die
             label "loop2"
             # exit the loop once payment counter is zero
             branch "leaveloop2"
@@ -2076,13 +2116,13 @@ mission "Landing Fee E"
             branch "notLowWeaponPayment"
                 or
                     "paymentCounter" < 1
-                    "paymentCounter" < 1999999
+                    "paymentCounter" > 1999999
             action
                 payment -1
                 "last tax payment" += 1
                 "paymentCounter" -= 1
             label "notLowWeaponPayment"
-                go to "not loop" which sends you back to the start of the loop if payment counter is greater than zero, otherwise break out of the loop
+                # go to "not loop" which sends you back to the start of the loop if payment counter is greater than zero, otherwise break out of the loop
             branch "notloop2" "leaveloop2"
                 has "paymentCounter"
             label "notloop2"
@@ -2361,6 +2401,10 @@ mission "Landing Fee F"
             label "leaveloop"
             action
                 "paymentCounter" *= 7
+            `You are sentenced to a lifetime in jail for failing to pay all your taxes.`
+                to display
+                    "paymentCounter" > "credits"
+                die
             label "loop2"
             # exit the loop once payment counter is zero
             branch "leaveloop2"
@@ -2375,13 +2419,13 @@ mission "Landing Fee F"
             branch "notLowWeaponPayment"
                 or
                     "paymentCounter" < 1
-                    "paymentCounter" < 1999999
+                    "paymentCounter" > 1999999
             action
                 payment -1
                 "last tax payment" += 1
                 "paymentCounter" -= 1
             label "notLowWeaponPayment"
-                go to "not loop" which sends you back to the start of the loop if payment counter is greater than zero, otherwise break out of the loop
+            # go to "not loop" which sends you back to the start of the loop if payment counter is greater than zero, otherwise break out of the loop
             branch "notloop2" "leaveloop2"
                 has "paymentCounter"
             label "notloop2"
@@ -2695,6 +2739,10 @@ mission "Landing Fee F"
             label "leaveloop"
             action
                 "paymentCounter" *= 7
+            `You are sentenced to a lifetime in jail for failing to pay all your taxes.`
+                to display
+                    "paymentCounter" > "credits"
+                die
             label "loop2"
             # exit the loop once payment counter is zero
             branch "leaveloop2"
@@ -2709,13 +2757,13 @@ mission "Landing Fee F"
             branch "notLowWeaponPayment"
                 or
                     "paymentCounter" < 1
-                    "paymentCounter" < 1999999
+                    "paymentCounter" > 1999999
             action
                 payment -1
                 "last tax payment" += 1
                 "paymentCounter" -= 1
             label "notLowWeaponPayment"
-                go to "not loop" which sends you back to the start of the loop if payment counter is greater than zero, otherwise break out of the loop
+                # go to "not loop" which sends you back to the start of the loop if payment counter is greater than zero, otherwise break out of the loop
             branch "notloop2" "leaveloop2"
                 has "paymentCounter"
             label "notloop2"
@@ -2947,6 +2995,10 @@ mission "Landing Fee G1"
             label "leaveloop"
             action
                 "paymentCounter" *= 7
+            `You are sentenced to a lifetime in jail for failing to pay all your taxes.`
+                to display
+                    "paymentCounter" > "credits"
+                die
             label "loop2"
             # exit the loop once payment counter is zero
             branch "leaveloop2"
@@ -2961,13 +3013,13 @@ mission "Landing Fee G1"
             branch "notLowWeaponPayment"
                 or
                     "paymentCounter" < 1
-                    "paymentCounter" < 1999999
+                    "paymentCounter" > 1999999
             action
                 payment -1
                 "last tax payment" += 1
                 "paymentCounter" -= 1
             label "notLowWeaponPayment"
-                go to "not loop" which sends you back to the start of the loop if payment counter is greater than zero, otherwise break out of the loop
+                # go to "not loop" which sends you back to the start of the loop if payment counter is greater than zero, otherwise break out of the loop
             branch "notloop2" "leaveloop2"
                 has "paymentCounter"
             label "notloop2"
@@ -3153,6 +3205,10 @@ mission "Landing Fee G1"
             label "leaveloop"
             action
                 "paymentCounter" *= 7
+            `You are sentenced to a lifetime in jail for failing to pay all your taxes.`
+                to display
+                    "paymentCounter" > "credits"
+                die
             label "loop2"
             # exit the loop once payment counter is zero
             branch "leaveloop2"
@@ -3167,13 +3223,13 @@ mission "Landing Fee G1"
             branch "notLowWeaponPayment"
                 or
                     "paymentCounter" < 1
-                    "paymentCounter" < 1999999
+                    "paymentCounter" > 1999999
             action
                 payment -1
                 "last tax payment" += 1
                 "paymentCounter" -= 1
             label "notLowWeaponPayment"
-                go to "not loop" which sends you back to the start of the loop if payment counter is greater than zero, otherwise break out of the loop
+                # go to "not loop" which sends you back to the start of the loop if payment counter is greater than zero, otherwise break out of the loop
             branch "notloop2" "leaveloop2"
                 has "paymentCounter"
             label "notloop2"
@@ -3310,6 +3366,10 @@ mission "Landing Fee G2"
             label "leaveloop"
             action
                 "paymentCounter" *= 7
+            `You are sentenced to a lifetime in jail for failing to pay all your taxes.`
+                to display
+                    "paymentCounter" > "credits"
+                die
             label "loop2"
             # exit the loop once payment counter is zero
             branch "leaveloop2"
@@ -3324,13 +3384,13 @@ mission "Landing Fee G2"
             branch "notLowWeaponPayment"
                 or
                     "paymentCounter" < 1
-                    "paymentCounter" < 1999999
+                    "paymentCounter" > 1999999
             action
                 payment -1
                 "last tax payment" += 1
                 "paymentCounter" -= 1
             label "notLowWeaponPayment"
-                go to "not loop" which sends you back to the start of the loop if payment counter is greater than zero, otherwise break out of the loop
+                # go to "not loop" which sends you back to the start of the loop if payment counter is greater than zero, otherwise break out of the loop
             branch "notloop2" "leaveloop2"
                 has "paymentCounter"
             label "notloop2"
@@ -3513,6 +3573,10 @@ mission "Landing Fee H1"
             label "leaveloop"
             action
                 "paymentCounter" *= 7
+            `You are sentenced to a lifetime in jail for failing to pay all your taxes.`
+                to display
+                    "paymentCounter" > "credits"
+                die
             label "loop2"
             # exit the loop once payment counter is zero
             branch "leaveloop2"
@@ -3527,13 +3591,13 @@ mission "Landing Fee H1"
             branch "notLowWeaponPayment"
                 or
                     "paymentCounter" < 1
-                    "paymentCounter" < 1999999
+                    "paymentCounter" > 1999999
             action
                 payment -1
                 "last tax payment" += 1
                 "paymentCounter" -= 1
             label "notLowWeaponPayment"
-                go to "not loop" which sends you back to the start of the loop if payment counter is greater than zero, otherwise break out of the loop
+                # go to "not loop" which sends you back to the start of the loop if payment counter is greater than zero, otherwise break out of the loop
             branch "notloop2" "leaveloop2"
                 has "paymentCounter"
             label "notloop2"
@@ -3751,6 +3815,10 @@ mission "Landing Fee H1"
             label "leaveloop"
             action
                 "paymentCounter" *= 7
+            `You are sentenced to a lifetime in jail for failing to pay all your taxes.`
+                to display
+                    "paymentCounter" > "credits"
+                die
             label "loop2"
             # exit the loop once payment counter is zero
             branch "leaveloop2"
@@ -3765,13 +3833,13 @@ mission "Landing Fee H1"
             branch "notLowWeaponPayment"
                 or
                     "paymentCounter" < 1
-                    "paymentCounter" < 1999999
+                    "paymentCounter" > 1999999
             action
                 payment -1
                 "last tax payment" += 1
                 "paymentCounter" -= 1
             label "notLowWeaponPayment"
-                go to "not loop" which sends you back to the start of the loop if payment counter is greater than zero, otherwise break out of the loop
+                # go to "not loop" which sends you back to the start of the loop if payment counter is greater than zero, otherwise break out of the loop
             branch "notloop2" "leaveloop2"
                 has "paymentCounter"
             label "notloop2"
@@ -3919,6 +3987,10 @@ mission "Landing Fee H2"
             label "leaveloop"
             action
                 "paymentCounter" *= 7
+            `You are sentenced to a lifetime in jail for failing to pay all your taxes.`
+                to display
+                    "paymentCounter" > "credits"
+                die
             label "loop2"
             # exit the loop once payment counter is zero
             branch "leaveloop2"
@@ -3933,13 +4005,13 @@ mission "Landing Fee H2"
             branch "notLowWeaponPayment"
                 or
                     "paymentCounter" < 1
-                    "paymentCounter" < 1999999
+                    "paymentCounter" > 1999999
             action
                 payment -1
                 "last tax payment" += 1
                 "paymentCounter" -= 1
             label "notLowWeaponPayment"
-                go to "not loop" which sends you back to the start of the loop if payment counter is greater than zero, otherwise break out of the loop
+                # go to "not loop" which sends you back to the start of the loop if payment counter is greater than zero, otherwise break out of the loop
             branch "notloop2" "leaveloop2"
                 has "paymentCounter"
             label "notloop2"
@@ -4113,7 +4185,7 @@ mission "Landing Fee I"
                 "last tax payment" += 1400
                 "passengerCounter" -= 1
             label "nopassenger"
-            # don't pay larger sum if cargo counter is less than 10
+            #  don't pay larger sum if cargo counter is less than 10
             branch "lowcargo"
                 "cargoCounter" < 10
             action
@@ -4150,6 +4222,10 @@ mission "Landing Fee I"
             label "leaveloop"
             action
                 "paymentCounter" *= 7
+            `You are sentenced to a lifetime in jail for failing to pay all your taxes.`
+                to display
+                    "paymentCounter" > "credits"
+                die
             label "loop2"
             # exit the loop once payment counter is zero
             branch "leaveloop2"
@@ -4164,13 +4240,13 @@ mission "Landing Fee I"
             branch "notLowWeaponPayment"
                 or
                     "paymentCounter" < 1
-                    "paymentCounter" < 1999999
+                    "paymentCounter" > 1999999
             action
                 payment -1
                 "last tax payment" += 1
                 "paymentCounter" -= 1
             label "notLowWeaponPayment"
-                go to "not loop" which sends you back to the start of the loop if payment counter is greater than zero, otherwise break out of the loop
+            # go to "not loop" which sends you back to the start of the loop if payment counter is greater than zero, otherwise break out of the loop
             branch "notloop2" "leaveloop2"
                 has "paymentCounter"
             label "notloop2"
@@ -4460,6 +4536,10 @@ mission "Landing Fee I"
             label "leaveloop"
             action
                 "paymentCounter" *= 7
+            `You are sentenced to a lifetime in jail for failing to pay all your taxes.`
+                to display
+                    "paymentCounter" > "credits"
+                die
             label "loop2"
             # exit the loop once payment counter is zero
             branch "leaveloop2"
@@ -4474,13 +4554,13 @@ mission "Landing Fee I"
             branch "notLowWeaponPayment"
                 or
                     "paymentCounter" < 1
-                    "paymentCounter" < 1999999
+                    "paymentCounter" > 1999999
             action
                 payment -1
                 "last tax payment" += 1
                 "paymentCounter" -= 1
             label "notLowWeaponPayment"
-                go to "not loop" which sends you back to the start of the loop if payment counter is greater than zero, otherwise break out of the loop
+                # go to "not loop" which sends you back to the start of the loop if payment counter is greater than zero, otherwise break out of the loop
             branch "notloop2" "leaveloop2"
                 has "paymentCounter"
             label "notloop2"
@@ -4760,6 +4840,10 @@ mission "Landing Fee Alpha"
             label "leaveloop"
             action
                 "paymentCounter" *= 7
+            `You are sentenced to a lifetime in jail for failing to pay all your taxes.`
+                to display
+                    "paymentCounter" > "credits"
+                die
             label "loop2"
             # exit the loop once payment counter is zero
             branch "leaveloop2"
@@ -4774,13 +4858,13 @@ mission "Landing Fee Alpha"
             branch "notLowWeaponPayment"
                 or
                     "paymentCounter" < 1
-                    "paymentCounter" < 1999999
+                    "paymentCounter" > 1999999
             action
                 payment -1
                 "last tax payment" += 1
                 "paymentCounter" -= 1
             label "notLowWeaponPayment"
-                go to "not loop" which sends you back to the start of the loop if payment counter is greater than zero, otherwise break out of the loop
+                # go to "not loop" which sends you back to the start of the loop if payment counter is greater than zero, otherwise break out of the loop
             branch "notloop2" "leaveloop2"
                 has "paymentCounter"
             label "notloop2"
@@ -5078,6 +5162,10 @@ mission "Landing Fee Alpha"
             label "leaveloop"
             action
                 "paymentCounter" *= 7
+            `You are sentenced to a lifetime in jail for failing to pay all your taxes.`
+                to display
+                    "paymentCounter" > "credits"
+                die
             label "loop2"
             # exit the loop once payment counter is zero
             branch "leaveloop2"
@@ -5092,13 +5180,13 @@ mission "Landing Fee Alpha"
             branch "notLowWeaponPayment"
                 or
                     "paymentCounter" < 1
-                    "paymentCounter" < 1999999
+                    "paymentCounter" > 1999999
             action
                 payment -1
                 "last tax payment" += 1
                 "paymentCounter" -= 1
             label "notLowWeaponPayment"
-                go to "not loop" which sends you back to the start of the loop if payment counter is greater than zero, otherwise break out of the loop
+                # go to "not loop" which sends you back to the start of the loop if payment counter is greater than zero, otherwise break out of the loop
             branch "notloop2" "leaveloop2"
                 has "paymentCounter"
             label "notloop2"

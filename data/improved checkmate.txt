@@ -21,7 +21,7 @@ government "Terrorist"
         "Navy (Oathkeeper)" -.01
         "Free Worlds" -.01
     "bribe" 0
-    "hostile hail" "hostile syndicate"
+    "hostile hail" "hostile pirate"
 
 event "fwc battle of alcyone"
     system "Alcyone"
@@ -857,7 +857,7 @@ mission "FWC Terrorists 1A"
     destination "Hephaestus"
     passengers 1
     to offer
-        has "FW Terrorists 1: done"
+        has "FWC Terrorists 1: done"
     on fail
         dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
     on offer
@@ -893,7 +893,7 @@ mission "FWC Terrorists 1A"
             `    Korban tells you that the second autonomous fleet for you to lead is on Hephaestus. "The terrorists are holed up on Stormhold," says Korban, "an old pirate world. We've also made available to you some of our new technology, developed during the war. We're planning on incorporating it on most of the ships in our fleet, and they are installed on the autonomous ships I've given you. It may prove helpful to you during this final battle. Good luck, Captain."`
                 accept
 
-mission "FW Terrorists 1B"
+mission "FWC Terrorists 1B"
     landing
     name "Final Battle"
     description "A fleet of nuclear-armed terrorists is occupying the <system> system. Travel there and use the autonomous ships to draw their fire; the Oathkeeper fleet will be right behind you."
@@ -902,7 +902,7 @@ mission "FW Terrorists 1B"
     clearance
     passengers 1
     to offer
-        has "FW Terrorists 1A: done"
+        has "FWC Terrorists 1A: done"
     on fail
         dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
     on offer
@@ -926,7 +926,7 @@ mission "FW Terrorists 1B"
                 "Quicksilver (Automata Mark II)" 2
     npc evade
         government "Terrorist"
-        system "Algenib"
+        system "Alcyone"
         personality staying heroic
             confusion 60
         fleet
@@ -935,7 +935,7 @@ mission "FW Terrorists 1B"
                 "Manta (Nuclear)" 2
     npc evade
         government "Terrorist"
-        system "Algenib"
+        system "Alcyone"
         personality staying heroic
             confusion 60
         fleet
@@ -944,7 +944,7 @@ mission "FW Terrorists 1B"
                 "Manta (Nuclear)" 2
     npc evade
         government "Terrorist"
-        system "Algenib"
+        system "Alcyone"
         personality staying heroic derelict
             confusion 60
         fleet
@@ -953,7 +953,7 @@ mission "FW Terrorists 1B"
                 "Manta (Nuclear)" 2
     npc evade
         government "Terrorist"
-        system "Algenib"
+        system "Alcyone"
         personality staying heroic
             confusion 60
         fleet 2
@@ -967,7 +967,7 @@ mission "FW Terrorists 1B"
                 "Quicksilver" 3
     npc evade
         government "Terrorist"
-        system "Algenib"
+        system "Alcyone"
         personality staying heroic derelict
             confusion 60
         fleet
@@ -981,7 +981,7 @@ mission "FW Terrorists 1B"
                 "Quicksilver" 3
     npc
         government "Syndicate (Automata)"
-        system "Algenib"
+        system "Alcyone"
         personality staying heroic derelict
             confusion 120
         fleet
@@ -1009,6 +1009,7 @@ mission "FW Terrorists 1B"
 
 
 mission "FWC Terrorists 1C"
+    landing
     name "Talk to Parliament"
     description "Travel to Earth for another meeting with Parliament. Alondo, Katya, and Tomek will meet you there. Hopefully, it will go better than your last visit."
     autosave

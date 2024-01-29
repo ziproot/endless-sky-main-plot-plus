@@ -1,10 +1,18 @@
-ship "Aerie" "Aerie (Drones)"
+ship "Aerie" "Aerie (Research)"
     remove bays
     bay "Drone" -43.5 2
         "launch effect" "human internal"
     bay "Drone" 43.5 2
         "launch effect" "human internal"
     description "This is a variation on the Lionheart Aerie, replacing its fighter bays with a complement of drone bays instead, intended to be used for scientific research."
+
+ship "Aerie" "Aerie (Drones)"
+    remove bays
+    bay "Drone" -43.5 2
+        "launch effect" "human internal"
+    bay "Drone" 43.5 2
+        "launch effect" "human internal"
+    description "This is a variation on the Lionheart Aerie, replacing its fighter bays with a complement of drone bays instead, intended to be used for scientific research, but also popular amongst miners."
 
 ship "Aerie" "Aerie (Drone Miner)"
     outfits
@@ -50,8 +58,15 @@ ship "Science Drone" "Science Drone (Purchasable)"
     "description" "The Deep Science Drone is a civilian version of the Surveillance Drone, which can still collect atmospheric data but cannot move or scan ships."
 
 fleet "Deep Research"
+    government "Deep Security"
+    names "deep"
+    fighters
+        names "deep fighter"
+    cargo 0
+    personality
+        coward disables frugal merciful opportunistic secretive surveillance timid
     variant
-        "Aerie (Drones)"
+        "Aerie (Research)"
         "Science Drone (Purchasable)" 2
 
 shipyard "All Ships"
@@ -59,7 +74,7 @@ shipyard "All Ships"
     "Science Drone (Purchasable)"
 
 shipyard "Deep Research"
-    "Aerie (Drones)"
+    "Aerie (Research)"
     "Science Drone (Purchasable)"
 
 mission "Deep Research Ships Timer"
@@ -106,8 +121,16 @@ event "deep research ships available"
         fleet "Deep Research" 9000
 
 event "miners use drone aerie"
-    ship "Aerie" "Aerie (Drones)"
-        description "This is Deep Sky's variation on the Lionheart Aerie, replacing its fighter bays with a complement of drone bays instead, intended to be used for scientific research, but also popular amongst miners."
+    shipyard "Deep Research"
+        remove "Aerie (Research)"
+        add "Aerie (Drones)"
+    fleet "Deep Research"
+        remove variant
+            "Aerie (Research)"
+            "Science Drone (Purchasable)" 2
+        add variant
+            "Aerie (Drones)"
+            "Science Drone (Purchasable)" 2
     fleet "Human Miners"
         remove variant
             "Aerie (Miner)"
