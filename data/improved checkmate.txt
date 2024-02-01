@@ -17,6 +17,7 @@ government "Terrorist"
     "player reputation" -1000
     "attitude toward"
         "Syndicate" -.01
+        "Syndicate (Automata)" -.01
         "Republic" -.01
         "Navy (Oathkeeper)" -.01
         "Free Worlds" -.01
