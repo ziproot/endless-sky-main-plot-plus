@@ -1,0 +1,3 @@
+ship "Timer Ship"
+    "hull" 25
+    "hull repair rate" .0000001
