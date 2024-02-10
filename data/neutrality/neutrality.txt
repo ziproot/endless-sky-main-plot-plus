@@ -63,7 +63,6 @@ event "pug notice neutrality"
 
 mission "Neutrality 2"
     invisible
-    minor
     landing
     clearance "For some reason, the spaceport controller lets you land."
     to offer
@@ -149,6 +148,12 @@ mission "Neutrality 2"
             `"Your decision to avoid war is honorable, so we shall honor it."`
             `Without another word, a Pug rushes towards you and hits you with its staff. Everything blacks out.`
                 accept
+    on accept
+        relocate
+            "flagship only"
+            location
+                planet "Ruin"
+        set "Ruin: Landing: offered"
 
 
 mission "Neutrality 2b"
@@ -163,17 +168,13 @@ mission "Neutrality 2b"
     to accept
         not "not neutral"
     source
-        system "Zeta Aquilae" "Rasalhague" "Orvala" "Vega" "Altair" "Delta Capricorni" "Alderamin"
+        system "Zeta Aquilae" "Rasalhague" "Orvala" "Vega" "Altair" "Delta Capricorni" "Alderamin" "Terra Incognita"
     destination "Pugglemug"
     to complete
         never
     on offer
         clear "pug reputation override"
         # Requires relocate mission PR
-        # relocate
-        #     "flagship only"
-        #     location
-        #         Ruin
         conversation
             # Adapted from the Ruin: Landing mission in endless sky, with major parts of the description copied.
             `You wake up inside of a tank, with an insectoid robot removing the lid. You step out onto an abandoned fueling depot: a ring of landing pads around a cluster of tanks of all different shapes and sizes. Some of them must be cyrogenic, because they are covered in ice. A few other slow-moving insectoid robots are busy clearing off the ice and cleaning the tanks, but they do not appear to be armed and you see no sign of any other creatures or of any defense systems. From the fact that some of the tanks are covered in frost and others are not, you would guess that each one, besides the one you were in, contains a different fuel, as each tank besides yours has dozens of different connectors branching off from it. You find your ship parked nearby, and with surprise, you discover that it is connected to one of the tanks, and the connector is the style used in human space. Other than the robots and the fog swirling in the valley below you, there is no sign of life or motion here, and the air is uncomfortably moist and cold despite the hot steam rising up from a few nearby vents in the ground.`
@@ -249,9 +250,6 @@ mission "Neutrality 2b"
         event "fwc pug defeated"
         event "syndicate tech available"
 
-        # This is merged with this mission so no need to offer it twice.
-        set "Ruin: Landing: offered"
-
         # Missions in the FW campaign based on the events
         set "oathkeepers founded: offered"
         set "FW Southern Break Ends: offered"
@@ -269,7 +267,7 @@ mission "Neutrality 2b"
         # As seen above/below, a lot of this makes no sense without two PRs being implemented. However, I am keeping this here for later. For now, use your imagination.
         dialog `Parts of this mission are dependent on future content which has not yet been released. To continue the campaign, please head to the planet 'Deneb' which should now be linked to the system you are in. It will assume you came from a wormhole and that a lot of time has passed, which will happen once the future content gets released.`
     on enter Deneb
-        dialog `This appears to be a system in the middle of human space, just one jump away from where you were kidnapped, yet it is now linked to the rest of human space. You should probably land one of the two planets and try to figure out what is going on.`
+        dialog `This appears to be a system in the middle of human space, just one jump away from where you were kidnapped, yet it is now linked to the rest of human space. You should probably land on one of the two planets and try to figure out what is going on.`
 
 
 mission "Neutrality 3"
@@ -350,7 +348,7 @@ mission "Neutrality 3a"
     landing
     to offer
         has "Neutrality 2b: active"
-        not "Neutrality 3: offered"
+        not "Neutrality 3: declined"
     source
         system Deneb
     on offer
@@ -374,18 +372,13 @@ mission "Neutrality 3b"
     to offer
         has "Neutrality 3a: declined"
         not "Neutrality 3: offered"
-        or
-            and
-                has "flagship planet: Pugglemug"
-                not "neutrality: pugglemug first"
-            and
-                has "flagship planet: Pugglequat"
-                not "neutrality: pugglequat first"
-    source
-        system Deneb
+        and
+            not "flagship planet: Pugglemug"
+            1 == 1
+    source Pugglemug
     on offer
         conversation
-            `This planet was also clearly one of the native Pug worlds. Once again, architecture is entirely alien, yet you see people working here. As you land, you see more people gesturing towards the sky. Maybe this doesn't have to do with which planet you should visit. You should probably check the spaceport to see what is going on.`
+            `This planet was also clearly one of the native Pug worlds. Once again, the architecture is entirely alien, yet you see people working here. As you land, you see more people gesturing towards the sky. Maybe this doesn't have to do with which planet you should visit. You should probably check the spaceport to see what is going on.`
                 decline
 
 mission "Neutrality 4"
@@ -393,9 +386,11 @@ mission "Neutrality 4"
     to offer
         has "Neutrality 2b: active"
     to fail
-        has "Neutrality 4: Free Worlds: done"
-        has "Neutrality 4: Syndicate: done"
-        has "Neutrality 4: Deep: done"
+        has "Neutrality 4: Free Worlds: failed"
+        has "Neutrality 4: Syndicate: failed"
+        has "Neutrality 4: Deep: failed"
+    to complete
+        never
     source
         system Deneb
     on fail
@@ -444,7 +439,7 @@ mission "Neutrality 4b: Free Worlds"
                 `(Scan your pilot's license)`
             `Scanning your pilot's license involves holding it up to a camera above the computer. Upon scanning your pilot's license, you see a panel of outfits next to a box that says "nothing selected."`
             # Literally a screenshot of the Kraz outfitter in the game
-            scene "scene/outfitter"
+            scene "outfitter"
             `Reading through the outfit descriptions, two of them catch your eye.`
             # Taken from the actual outfit descriptions of the plasma turret and flamethrower, with additions describing history
             scene "outfit/plasma turret"
@@ -494,7 +489,7 @@ mission "Neutrality 4b: Syndicate"
             `After taking a few deep breaths, the Quality Assurance agent then proceeds to recite what sounds like a scripted message.`
             `"During the war, Syndicated Systems has specialized in creating compact outfits, allowing you to fit more on your ship than ever before."`
             scene "outfit/large regenerator"
-            `"Have you ever found your ship's shield regenerator bulky? Well, worry no more. Syndicated Systems has developed a novel approach to regeneration technology with the exclusive S line of regenerators. Not only does it save outfit space, but it also repairs your hull as well. Its power needs are somewhat intensive, however, an RT-I Radiothermal can more than handle it, and the combined outfit space is less than what would be needed to achieve comparable shield regeneration with Deep Sky's D line."`
+            `"Have you ever found your ship's shield regenerator bulky? Well, worry no more. Syndicated Systems has developed a novel approach to regeneration technology with the exclusive S line of regenerators. Its power needs are somewhat intensive, however, an RT-I Radiothermal can more than handle it, and the combined outfit space is less than what would be needed to achieve comparable shield regeneration with Deep Sky's D line."`
             scene "outfit/ionic afterburner"
             `"Have you ever wanted to fit that big steering engine on your ship, but didn't have the space for it and a thruster as well? Well, with our new Ionic Afterburner, that steering engine is yours. It was designed with fuel in mind, so it is over four times more fuel efficient than the leading competitor."`
             `"Many pilots like to combine outfits from all over the galaxy, however, you will notice how our more heat intensive S line of regenerators and RT-I Radiothermal generators nicely complement our more heat efficient Ionic Afterburners and X line of ion engines."`

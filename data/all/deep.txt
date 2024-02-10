@@ -4,6 +4,22 @@ ship "Aerie" "Aerie (Research)"
         "launch effect" "human internal"
     bay "Drone" 43.5 2
         "launch effect" "human internal"
+    outfits
+        "A250 Atomic Thruster"
+        "A255 Atomic Steering"
+        "Cooling Ducts"
+        "D41-HY Shield Generator"
+        "Heavy Anti-Missile Turret"
+        "Heavy Laser Turret" 2
+        Hyperdrive
+        "KP-6 Photovoltaic Panel" 2
+        "LP072a Battery Pack"
+        "Large Radar Jammer"
+        "Laser Rifle" 3
+        "NT-200 Nucleovoltaic"
+        Ramscoop 2
+        "Sidewinder Missile" 90
+        "Sidewinder Missile Launcher" 2
     description "This is a variation on the Lionheart Aerie, replacing its fighter bays with a complement of drone bays instead, intended to be used for scientific research."
 
 ship "Aerie" "Aerie (Drones)"
@@ -12,6 +28,22 @@ ship "Aerie" "Aerie (Drones)"
         "launch effect" "human internal"
     bay "Drone" 43.5 2
         "launch effect" "human internal"
+    outfits
+        "A250 Atomic Thruster"
+        "A255 Atomic Steering"
+        "Cooling Ducts"
+        "D41-HY Shield Generator"
+        "Heavy Anti-Missile Turret"
+        "Heavy Laser Turret" 2
+        Hyperdrive
+        "KP-6 Photovoltaic Panel" 2
+        "LP072a Battery Pack"
+        "Large Radar Jammer"
+        "Laser Rifle" 3
+        "NT-200 Nucleovoltaic"
+        Ramscoop 2
+        "Sidewinder Missile" 90
+        "Sidewinder Missile Launcher" 2
     description "This is a variation on the Lionheart Aerie, replacing its fighter bays with a complement of drone bays instead, intended to be used for scientific research, but also popular amongst miners."
 
 ship "Aerie" "Aerie (Drone Miner)"

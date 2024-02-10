@@ -1,5 +1,6 @@
 disable mission "Paradise Fortune 4"
 
+# Based on the "liberation of poisonwood" event in "campaign events.txt"
 event "Poisonwood description patch"
     planet "Poisonwood"
         spaceport `The starport is a hodgepodge of small metal structures, built from the remains of Navy and pirate ships that fought for control of this world. The locals are unusually courteous and proud to welcome you to their planet.`
@@ -33,16 +34,7 @@ event "reputation patch"
     planet "Mainsail"
         "required reputation" 0
 
-mission "Disable Hai Reveal (Crisis in Management)"
-    invisible
-    landing
-    to offer
-        has "ScS plot completed"
-    on offer
-        set "Hai Reveal: Secret Leaks: offered"
-        set "Hai Reveal: Secret Leaks: Hai: offered"
-        fail
-
+# Taken almost entirely from "Paradise Fortune 4" in "human missions.txt"
 mission "Paradise Fortune 4 (patched)"
     landing
     name `Exchange of Goods`
@@ -140,7 +132,7 @@ mission "Paradise Fortune 4 (patched)"
 
 
 
-# The same event but without unvisiting planets.
+# The same event but without unvisiting planets. Based on the "fwc navy retakes cebalrai" event in "campaign events.txt"
 event "fwc navy retakes cebalrai (patched)"
     system "Cebalrai"
         government "Republic"

@@ -6,7 +6,7 @@ disable mission "FWC Checkmate 1C"
 disable mission "FWC End"
 disable mission "FW Epilogue: Danforth"
 
-# Credit to Amazinite for most of the improvements. Credit to Azure3141 for the augmented nukes.
+# Credit to Amazinite for most of the improvements, which can be found at https://github.com/Amazinite/endless-sky/tree/fw-improved-checkmate. Credit to Azure3141 for the augmented nukes.
 
 # All Content Plugin
 outfitter "All Outfits"
@@ -161,16 +161,25 @@ effect "augmented nuke residue slow"
     "velocity scale" 0.1
 
 mission "FW Question the Syndicate"
-    landing
     name "The Defector"
     description "Travel to New Tibet to question the Syndicate about the defector supposedly carrying vital evidence and information that they are behind the bombings."
-    source "Wayfarer"
-    destination "New Tibet"
     passengers 2
+    landing
     to offer
         has "FW Rand 1B: done"
         not "FW Defend New Tibet: offered"
-
+    source "Wayfarer"
+    destination "New Tibet"
+    npc
+        government Syndicate
+        personality heroic staying
+        system Alioth
+        fleet
+            names "syndicate capital"
+            variant
+                "Splinter (Mark II)" 2
+                "Manta (Mark II)" 3
+                "Quicksilver (Mark II)" 5
     on offer
         set "FW Defend New Tibet: offered"
         log "As a member of the Council, must make the deciding vote on a difficult decision. A defector from the Syndicate is claiming to have proof that the Syndicate was behind the bombings of Martini and Gemini. If that is true, the Republic may agree to make peace with the Free Worlds. But, refusing to return the defector to the Syndicate would certainly earn their enmity."
@@ -223,20 +232,10 @@ mission "FW Question the Syndicate"
             label "definitely rescue"
             `    JJ seems very relieved at your choice. "I think that's the right choice, Captain," he says. "We can take the fleet we have here, sweep up north to avoid the thickest part of the Navy's occupying fleet, and cut over to New Tibet to question the Syndicate in person."`
                 accept
-    npc
-        government Syndicate
-        personality heroic staying
-        system Alioth
-        fleet
-            names "syndicate capital"
-            variant
-                "Splinter (Mark II)" 2
-                "Manta (Mark II)" 3
-                "Quicksilver (Mark II)" 5
 
 mission "FW Defector Escorts"
-    landing
     invisible
+    landing
     to offer
         has "FW Rand 1B: done"
         not "FW Defend New Tibet: offered"
@@ -265,20 +264,23 @@ mission "FW Defector Escorts"
         ship "Argosy" "F.S. Nightingale"
 
 mission "FW Defend New Tibet (patched)"
-    landing
     name "Defend New Tibet"
     description "Defend New Tibet from the attacking Syndicate fleet."
-    source "New Tibet"
+    landing
     to offer
         has "FW Question the Syndicate: done"
         not "FW Defend New Tibet: offered"
-    on abort
-        clear "FW Defend New Tibet: active"
-        set "FW Defend New Tibet: aborted"
-        set "FW Defend New Tibet: failed"
-    on fail
-        clear "FW Defend New Tibet: active"
-        set "FW Defend New Tibet: failed"
+    source "New Tibet"
+    npc evade
+        government Syndicate
+        personality heroic staying
+        system Alioth
+        fleet
+            names "syndicate capital"
+            variant
+                "Splinter (Mark II)" 2
+                "Manta (Mark II)" 3
+                "Quicksilver (Mark II)" 5
     on offer
         set "FW Defend New Tibet: offered"
         conversation
@@ -318,26 +320,6 @@ mission "FW Defend New Tibet (patched)"
             `    Before you can begin making the journey up the mountains, you're suddenly shook as the sky lights up with incoming proton beams.`
             `    "The Syndicate is attacking us!" one of the Free Worlds captains yells. You run to your ship and fire it up to defend.`
                 launch
-
-    on accept
-        set "FW Defend New Tibet: active"
-        "reputation: Syndicate" = -1000
-        event "fw at war with Syndicate"
-        event "battle of alioth"
-
-    npc evade
-        government Syndicate
-        personality heroic staying
-        system Alioth
-        fleet
-            names "syndicate capital"
-            variant
-                "Splinter (Mark II)" 2
-                "Manta (Mark II)" 3
-                "Quicksilver (Mark II)" 5
-
-    on visit
-        dialog `You've landed on <planet>, but there are still Syndicate ships circling overhead. You should take off and help finish them off.`
     on complete
         clear "FW Defend New Tibet: active"
         set "FW Defend New Tibet: done"
@@ -385,27 +367,112 @@ mission "FW Defend New Tibet (patched)"
             `    Finally, Raven is satisfied, and radios her ship. "He's telling the truth," she tells them. "Send word to the admirals at once. And, release the captive."`
             `    The door of her ship slides open, and another woman steps out - shakily, hesitantly, shielding her eyes against the sunlight. It takes you a few seconds to realize that it's Katya.`
             `    As you all rush over to greet Katya, Raven taps your shoulder and says quietly, "Meet me in the main spaceport in a few hours and we'll figure out what's going to happen next." She returns to her ship.`
+    on accept
+        set "FW Defend New Tibet: active"
+        "reputation: Syndicate" = -1000
+        event "fw at war with Syndicate"
+        event "battle of alioth"
+    on fail
+        clear "FW Defend New Tibet: active"
+        set "FW Defend New Tibet: failed"
+    on abort
+        clear "FW Defend New Tibet: active"
+        set "FW Defend New Tibet: aborted"
+        set "FW Defend New Tibet: failed"
+    on visit
+        dialog `You've landed on <planet>, but there are still Syndicate ships circling overhead. You should take off and help finish them off.`
 
 mission "FW Liberate Delta Sagittarii (patched)"
     name "Liberate Delta Sagittarii"
     description "Lead a Free Worlds fleet to drive the Navy out of Delta Sagittarii. Another fleet ought to be arriving from the Rim at about the same time."
-    source "New Tibet"
-    destination "New Portland"
-    clearance
     passengers 2
+    clearance
     to offer
         has "FW Rand 1B: done"
         not "FW Defend New Tibet: done"
         not "FW Liberate Delta Sagittarii: offered"
+    source "New Tibet"
+    destination "New Portland"
+    npc
+        government "Free Worlds"
+        personality heroic escort
+        fleet
+            names "free worlds capital"
+            variant
+                "Falcon (Plasma)"
+                "Osprey"
+        fleet
+            names "free worlds capital"
+            variant
+                "Falcon (Heavy)"
+        fleet
+            names "free worlds capital"
+            fighters
+                names "free worlds fighters"
+            variant
+                "Skein" 2
+                "Finch" 12
+        fleet
+            names "free worlds capital"
+            variant
+                "Dreadnought"
 
-    on abort
-        clear "FW Liberate Delta Sagittarii: active"
-        set "FW Liberate Delta Sagittarii: aborted"
-        set "FW Liberate Delta Sagittarii: failed"
-    on fail
-        clear "FW Liberate Delta Sagittarii: active"
-        set "FW Liberate Delta Sagittarii: failed"
+    npc evade
+        government "Republic"
+        personality staying heroic
+        system "Delta Sagittarii"
+        fleet
+            names "republic capital"
+            fighters
+                names "republic fighter"
+            variant
+                "Carrier (Mark II)"
+                "Lance" 4
+                "Combat Drone" 6
+                "Gunboat (Mark II)" 4
+        fleet
+            names "republic capital"
+            fighters
+                names "republic fighter"
+            variant
+                "Cruiser (Mark II)"
+                "Combat Drone" 4
+                "Rainmaker (Mark II)" 4
 
+    npc
+        government "Republic"
+        personality staying derelict
+        system "Delta Sagittarii"
+        fleet
+            names "republic capital"
+            fighters
+                names "republic fighter"
+            variant
+                "Carrier (Mark II)"
+                "Frigate" 2
+        fleet
+            names "republic capital"
+            fighters
+                names "republic fighter"
+            variant
+                "Cruiser (Mark II)"
+                "Frigate" 4
+
+    npc
+        government "Free Worlds"
+        personality staying heroic
+        system "Rastaban"
+        fleet "Large Free Worlds" 4
+    npc
+        government "Republic"
+        personality staying derelict
+        system "Rastaban"
+        fleet "Large Republic" 2
+    npc
+        government "Republic"
+        personality staying heroic
+        system "Rastaban"
+        fleet "Large Republic" 2
     on offer
         set "FW Liberate Delta Sagittarii: offered"
         event "fwc southern battle"
@@ -439,101 +506,26 @@ mission "FW Liberate Delta Sagittarii (patched)"
             `    "That'll need to be one hell of a strike for it to make any difference," says Freya.`
             `    "Don't worry," says JJ, "it will be. They've been itching to get into the fray for months now. Captain <last>, we'd like you to fly along with the fleet and help to mop up whatever the Wolf Pack leaves behind in the Delta Sagittarii system. Then we'll land on New Portland and figure out what our next steps are. Freya and I will ride on your ship."`
                 accept
-
-    on accept
-        set "FW Liberate Delta Sagittarii: active"
-    on visit
-        dialog `You've landed on <planet>, but there are still Navy ships circling overhead. You should take off and help finish them off.`
     on complete
         clear "FW Liberate Delta Sagittarii: active"
         set "FW Liberate Delta Sagittarii: done"
         event "fwc southern liberation"
-
-    npc
-        government "Free Worlds"
-        personality heroic escort
-        fleet
-            names "free worlds capital"
-            variant
-                "Falcon (Plasma)"
-                "Osprey"
-        fleet
-            names "free worlds capital"
-            variant
-                "Falcon (Heavy)"
-        fleet
-            names "free worlds capital"
-            fighters
-                names "free worlds fighters"
-            variant
-                "Skein" 2
-                "Finch" 12
-        fleet
-            names "free worlds capital"
-            variant
-                "Dreadnought"
-
-    npc evade
-        personality staying heroic
-        system "Delta Sagittarii"
-        government "Republic"
-        fleet
-            names "republic capital"
-            fighters
-                names "republic fighter"
-            variant
-                "Carrier (Mark II)"
-                "Lance" 4
-                "Combat Drone" 6
-                "Gunboat (Mark II)" 4
-        fleet
-            names "republic capital"
-            fighters
-                names "republic fighter"
-            variant
-                "Cruiser (Mark II)"
-                "Combat Drone" 4
-                "Rainmaker (Mark II)" 4
-
-    npc
-        personality staying derelict
-        system "Delta Sagittarii"
-        government "Republic"
-        fleet
-            names "republic capital"
-            fighters
-                names "republic fighter"
-            variant
-                "Carrier (Mark II)"
-                "Frigate" 2
-        fleet
-            names "republic capital"
-            fighters
-                names "republic fighter"
-            variant
-                "Cruiser (Mark II)"
-                "Frigate" 4
-
-    npc
-        personality staying heroic
-        system "Rastaban"
-        government "Free Worlds"
-        fleet "Large Free Worlds" 4
-    npc
-        personality staying derelict
-        system "Rastaban"
-        government "Republic"
-        fleet "Large Republic" 2
-    npc
-        personality staying heroic
-        system "Rastaban"
-        government "Republic"
-        fleet "Large Republic" 2
+    on accept
+        set "FW Liberate Delta Sagittarii: active"
+    on fail
+        clear "FW Liberate Delta Sagittarii: active"
+        set "FW Liberate Delta Sagittarii: failed"
+    on abort
+        clear "FW Liberate Delta Sagittarii: active"
+        set "FW Liberate Delta Sagittarii: aborted"
+        set "FW Liberate Delta Sagittarii: failed"
+    on visit
+        dialog `You've landed on <planet>, but there are still Navy ships circling overhead. You should take off and help finish them off.`
 
 mission "FWC Scouting 1 (patched)"
-    landing
     name "Scout Kaus Borealis"
     description "Travel through the <waypoints> system to determine how strong the Navy presence is there, while JJ works to gather a fleet to attack it."
+    landing
     autosave
     source "New Portland"
     waypoint "Kaus Borealis"

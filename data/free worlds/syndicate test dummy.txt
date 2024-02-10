@@ -3,6 +3,8 @@ disable mission "Syndicate target practice [1]"
 disable mission "Syndicate target practice [2]"
 disable mission "Syndicate target practice [3]"
 
+# Below jobs are almost entirely copied from the "Syndicate target practice" jobs available at "syndicate jobs.txt"
+
 mission "Syndicate target practice [0b]"
     name "Syndicate target practice"
     job

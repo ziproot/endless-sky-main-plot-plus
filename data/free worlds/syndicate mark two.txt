@@ -349,10 +349,10 @@ ship "Manta" "Manta (Nuclear Mark II)"
         "Sidewinder Missile Launcher" 2
         "Sidewinder Missile" 90
         "Fission Reactor"
-        "LP072a Battery Pack"
-        "S-270 Regenerator"
+        "LP144a Battery Pack"
+        "S-970 Regenerator"
         "Water Coolant System"
-        "A250 Atomic Thruster"
+        "A370 Atomic Thruster"
         "A375 Atomic Steering"
         "Hyperdrive"
     gun "Sidewinder Missile Launcher"

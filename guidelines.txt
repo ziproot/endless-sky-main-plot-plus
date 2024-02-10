@@ -1,0 +1,112 @@
+# LAST UPDATED 2/7/2024
+mission <name>
+    name <name>
+    description <text>
+    blocked <message>
+    deadline [<days> [<multiplier>]]
+    cargo (random | <name>) <number> [<number> [<probability>]]
+        illegal <fine> [<message>]
+        stealth
+    passengers <number> [<number> [<probability>]]
+    illegal <fine> [<message>]
+    stealth
+    invisible
+    (priority | minor)
+    (job | landing | assisting | boarding | shipyard | outfitter)
+    "apparent payment" <amount>
+    boarding
+        "override capture"
+    repeat [<number>]
+    clearance [<message>]
+        ...
+    ignore clearance
+    infiltrating
+    waypoint <system>
+    stopover [<planet>]
+        ...
+    substitutions
+        <text> <replacement>
+            [<condition set>]
+        ...
+    to (offer | complete | fail | accept)
+        <condition> <comp> <value>
+        (has | not) <condition>
+        never
+        (and | or)
+            ...
+    (source | destination) <planet>
+    (source | destination)
+        [(not | neighbor)] planet <name>...
+            <name>...
+        [(not | neighbor)] system <name>...
+            <name>...
+        [(not | neighbor)] government <name>...
+            <name>...
+        [(not | neighbor)] attributes <name>...
+            <name>...
+        [(not | neighbor)] outfits <name>...
+            <name>...
+        [(not | neighbor)] category <name>...
+        [(not | neighbor)] near <system> [[<min>] <max>]
+        [(not | neighbor)] distance [<min>] <max>
+        neighbor
+            ...
+        not
+            ...
+    "distance calculation settings"
+        ["all wormholes" | "only unrestricted wormholes" | "no wormholes"]
+        "assumes jump drive"
+    npc (save | kill | board | assist | disable | "scan cargo" | "scan outfits" | evade | accompany | capture | provoke)...
+        to (spawn | despawn)
+            <condition> <comp> <value>
+            (has | not) <condition>
+            (and | or)
+                ...
+        on (kill | board | assist | disable | "scan cargo" | "scan outfits" | capture | provoke | destroy | encounter)
+            ...
+        government <name>
+        "cargo settings"
+            ...
+        personality <type>...
+            <type>...
+            confusion <amount>
+        system <system>
+        system
+            system <name>...
+                <name>...
+            government <name>...
+                <name>...
+            near <system> [[<min>] <max>]
+            distance [<min>] <max>
+        dialog <text>
+            <text>...
+        conversation <name>
+        conversation
+            ...
+        ship <model> <name>
+        fleet <name> [<count>]
+        fleet [<count>]
+            ...
+    on (offer | complete | accept | decline | defer | fail | abort | visit | stopover | waypoint | enter [<system>] | daily | disabled)
+        log [<category> <header>] <text>
+        dialog <text>
+            <text>...
+        dialog phrase <phrase>
+        conversation <name>
+        conversation
+            ...
+        outfit <outfit> [<number>]
+        require <outfit> [<number>]
+        (give | take) ship <model> [<name>]
+            count <count>
+            id <id>
+            unconstrained
+            "with outfits"
+            "requires outfits"
+        payment [<base> [<multiplier>]]
+        fine <amount>
+        <condition> (= | += | -=) <value>
+        <condition> (++ | --)
+        (set | clear) <condition>
+        event <name> [<delay> [<max>]]
+        fail [<name>]
