@@ -148,12 +148,12 @@ mission "Neutrality 2"
             `"Your decision to avoid war is honorable, so we shall honor it."`
             `Without another word, a Pug rushes towards you and hits you with its staff. Everything blacks out.`
                 accept
-    on accept
-        relocate
-            "flagship only"
-            location
-                planet "Ruin"
-        set "Ruin: Landing: offered"
+    #on accept
+    #    relocate
+    #        "flagship only"
+    #        location
+    #            planet "Ruin"
+    #    set "Ruin: Landing: offered"
 
 
 mission "Neutrality 2b"
