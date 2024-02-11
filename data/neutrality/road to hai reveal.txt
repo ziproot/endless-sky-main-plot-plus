@@ -107,7 +107,7 @@ conversation "hr: meet rain and fiona"
     label busy
     action
         event "road to hai reveal: join later" 20
-    `    "We'll probably reach out to you for help later, then. In a situation like this, the Hai need humans they can trust. They seem to trust us enough so far, so hopefully they'll also trust you by proxy, or, at the very least, you can gain their trust in short order."`
+    `    "We'll probably reach out to you for help later, then. In a situation like this, the Hai need humans they can trust. They seem to trust us enough so far, so hopefully they'll also trust you by proxy, or, at the very least, you can gain their trust in short order.`
     `    "Well, good luck with whatever it is that you're busy with," Fiona says. You say your goodbyes to Rain and Fiona, and the Hai escort them away.`
         decline
 
