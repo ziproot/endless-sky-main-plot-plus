@@ -117,6 +117,7 @@ mission "Deep Research Ships Timer"
     on offer
         event "deep research ships available" 180
         event "miners use drone aerie" 240
+        fail
 
 event "deep research ships available"
     planet Asgard
@@ -124,33 +125,33 @@ event "deep research ships available"
     planet Valhalla
         shipyard "Deep Research"
     system Aspidiske
-        fleet "Deep Research" 1000
+        fleet "Deep Research" 10000
     system Algieba
-        fleet "Deep Research" 2000
+        fleet "Deep Research" 20000
     system "Epsilon Leonis"
-        fleet "Deep Research" 3000
+        fleet "Deep Research" 30000
     system Gomeisa
-        fleet "Deep Research" 3000
+        fleet "Deep Research" 30000
     system Naos
-        fleet "Deep Research" 3000
+        fleet "Deep Research" 30000
     system Zosma
-        fleet "Deep Research" 3000
+        fleet "Deep Research" 30000
     system Fala
-        fleet "Deep Research" 4000
+        fleet "Deep Research" 40000
     system Lolami
-        fleet "Deep Research" 4000
+        fleet "Deep Research" 40000
     system Mora
-        fleet "Deep Research" 4000
+        fleet "Deep Research" 40000
     system Limen
-        fleet "Deep Research" 5000
+        fleet "Deep Research" 50000
     system Orbona
-        fleet "Deep Research" 6000
+        fleet "Deep Research" 60000
     system Regor
-        fleet "Deep Research" 6000
+        fleet "Deep Research" 60000
     system Terminus
-        fleet "Deep Research" 6000
+        fleet "Deep Research" 60000
     system "Tania Australis"
-        fleet "Deep Research" 9000
+        fleet "Deep Research" 90000
 
 event "miners use drone aerie"
     shipyard "Deep Research"

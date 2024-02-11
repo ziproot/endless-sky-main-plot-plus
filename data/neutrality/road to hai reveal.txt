@@ -1,15 +1,13 @@
 disable mission "War Reactions: Asteroid Miners"
 disable mission "War Reactions: Navy and Free Worlds Captains"
 disable mission "War Reactions: Syndicate Orphan"
-# Republic intelligence doesn't care what side you're on. If you landed on one of their planets they will talk to you about this.
-disable mission "Block Hai Wormhole Warning"
 
 government "Bounty Hunter (friendly)"
     "display name" "Bounty Hunter"
     swizzle 5
     "player reputation" 1
     "attitude toward"
-        "Pirate" -0.1
+        "Pirate" -0.01
     "bribe" .2
     "fine" 0
     "friendly hail" "friendly civilian"
@@ -19,7 +17,7 @@ event "road to hai reveal: almaaz pirates"
     system Almaaz
         remove fleet "Large Oathkeeper"
     government "Navy (Oathkeeper)"
-        travel restrictions
+        "travel restrictions"
             government "Pirate"
 
 event "road to hai reveal: almaaz empty"
@@ -33,10 +31,12 @@ event "road to hai reveal: almaaz normal"
         fleet "Large Northern Pirates" 600
         fleet "Large Oathkeeper" 4000
     government "Navy (Oathkeeper)"
-        travel restrictions
+        "travel restrictions"
             government "Test Dummy"
 
 event "road to hai reveal: join later"
+
+event "hr: secret leaks"
 
 # Based almost entirely on "hr: meet alondo" from "hai reveal 0 prologue.txt"
 conversation "hr: meet rain and fiona"
@@ -93,7 +93,7 @@ conversation "hr: meet rain and fiona"
         goto help
 
     label settled2
-    `    "Anyway," says Rain, we've been here for some time now doing what I can to help keep this situation from blowing up. We'll be meeting with others from the Free Worlds, Republic, and Syndicate on <planet> soon for a briefing. You should probably come with us. You remained neutral during one war, so maybe you can help prevent another one! We wouldn't want a misunderstanding between humanity and the Hai to turn into a conflict."`
+    `    "Anyway," says Rain, "we've been here for some time now doing what we can to help keep this situation from blowing up. We'll be meeting with others from the Free Worlds, Republic, and Syndicate on <planet> soon for a briefing. You should probably come with us. You remained neutral during one war, so maybe you can help prevent another one! We wouldn't want a misunderstanding between humanity and the Hai to turn into a conflict."`
 
     label help
     choice
@@ -107,25 +107,9 @@ conversation "hr: meet rain and fiona"
     label busy
     action
         event "road to hai reveal: join later" 20
-    `    "We'll probably reach out to you for help later, then. In a situation like this, the Hai need humans they can trust. They seem to trust us enough so far, so hopefully they'll also trust you by proxy, or, at the very least, you can gain their trust in short order.`
+    `    "We'll probably reach out to you for help later, then. In a situation like this, the Hai need humans they can trust. They seem to trust us enough so far, so hopefully they'll also trust you by proxy, or, at the very least, you can gain their trust in short order."`
     `    "Well, good luck with whatever it is that you're busy with," Fiona says. You say your goodbyes to Rain and Fiona, and the Hai escort them away.`
         decline
-
-# Based almost entirely on "oathkeepers founded" from "free worlds 1 start.txt"
-mission "Road to Hai Reveal: Oathkeepers"
-    landing
-    source Farpoint
-    to offer
-        has "event: oathkeepers founded"
-        has "skipped main plot"
-    on offer
-        log "Factions" "Oathkeepers" `The "Oathkeepers" are a regiment of Navy officers who were captured by the Free Worlds and paroled on the condition that they take no further part in fighting against the Free Worlds. They are led by William Danforth, a famous Navy admiral. Their stated mission is to protect the Paradise Worlds from the pirates who live on the anarchist worlds in the far north of human space.`
-        log "People" "William Danforth" `Danforth is a famous Navy Admiral who is a folk hero throughout human space due to his fair and honorable behavior and his willingness to use his fleet to assist people in need, even when he has to go against Parliament's orders to do so. He is currently in charge of the Navy regiment who call themselves the "Oathkeepers."`
-        conversation
-            `As you land on <origin>, you notice a Navy ship also landing, but its call sign says it is in a part of the Navy called the "Oathkeepers." When you land, you look them up, and learn that this regiment is staffed mostly by prisoners <last> <first> paroled from Kornephoros, who wanted to honor their oath to take no further part in the conflict against the Free Worlds. They are headquartered on Farpoint to defend that region of space against pirate incursions.`
-            `    Furthermore, the leader of the Oathkeepers is Admiral Danforth, an elderly admiral who is something of a folk hero and is spoken of with admiration and respect. Although he was not one of the paroled prisoners, he was an outspoken advocate for a diplomatic solution to the Free Worlds conflict, and he worked with <last> <first> to help liberate Poisonwood from Alphas not too long after.`
-                decline
-
 
 # Based almost entirely on "War Reactions: Asteroid Miners" from "post-war reactions.txt"
 mission "War Reactions: Asteroid Miners (patched)"
@@ -327,7 +311,7 @@ mission "War Reactions: Syndicate Orphan (patched)"
         "<creatures>" "Pug"
         "<creatures>" "Alphas"
             has "ScS Pug Support 2: done"
-        "<creatures2>" "our attackers""
+        "<creatures2>" "our attackers"
         "<creatures2>" "Alphas"
             has "ScS Pug Support 2: done"
     to offer
@@ -433,8 +417,11 @@ mission "Road to Hai Reveal: Prep"
     invisible
     landing
     to offer
-        has "Hai Wormhole Warning: declined"
-        has "Road to Hai Reveal: Oathkeepers: declined"
+        has "skipped main plot"
+        or
+            # Road to Hai Reveal now canonizes 'Block Hai Wormhole Warning' being a thing.
+            has "Block Hai Wormhole Warning: failed"
+            has "Hai Wormhole Warning: declined"
         or
             has "War Reactions: Navy and Free Worlds Captains: declined"
             has "War Reactions: Navy and Free Worlds Captains (patched): declined"
@@ -450,22 +437,14 @@ mission "Road to Hai Reveal: Danforth"
     clearance "You explain to the spaceport manager that you are the one who took out the pirate fleet, and upon verifying your identity he grants you landing permission."
     waypoint Almaaz
     substitutions
-        "<reason>" "saw your battle against the Pug"
-        "<reason>" "saw your battle against the Alphas"
-            has "ScS plot completed"
         "<reason>" "noticed that you were abducted by the Pug"
-            has "skipped main plot"
         "<reason>" "talked to you about their search for alien activity"
             has "WR: Captains: navy"
-        "<perps>" "Syndicate"
-        "<perps>" "terrorists who bombed Geminus and Martini"
-            has "free worlds checkmate"
     to offer
         or
             not "road to hai reveal defer date"
             "road to hai reveal defer date" - 5 > "days since start"
         has "event: road to hai reveal: almaaz pirates"
-        random < 30
         "combat rating" > 1000
     source Prime
     npc kill
@@ -604,7 +583,7 @@ mission "Road to Hai Reveal: Danforth"
                 `   "All right, fine."`
             label follow
             `   Danforth gestures you into an empty hallway.`
-            `   "Between trying to keep the existance of the Hai under wraps, and investigating the <perps>, it's becoming more and more difficult to keep pirates under control. There's a pirate fleet massing in <waypoints>. If you help take it out for me, I will be very grateful. Land on <destination> after defeating the pirates to receive <payment>. Other captains have been hired as well."`
+            `   "Between trying to keep the existance of the Hai under wraps, and investigating the terrorists who bombed Geminus and Martini, it's becoming more and more difficult to keep pirates under control. There's a pirate fleet massing in <waypoints>. If you help take it out for me, I will be very grateful. Land on <destination> after defeating the pirates to receive <payment>. Other captains have been hired as well."`
             choice
                 `   "With the help of other captains, I can handle them."`
                 `   "Sorry, but I'm also busy. I can't help you."`
@@ -627,14 +606,24 @@ mission "Road to Hai Reveal: Danforth"
         "reputation: Navy (Oathkeeper)" += 70
         clear "Wanderers: Truce Check: offered"
         clear "Wanderers: Jump Drive Source: offered"
-        set "hr: knew of hai"
         event "hr: secret leaks" 90
-        event "hr: friend arrives" 120
-        event "hr: friend settled in" 150
         conversation
             `   When you land on <destination>, you are approached by a Navy officer.`
             `   "We are grateful for your service to the Navy. I will be sure to tell Danforth of your accomplishment."`
             `   She hands you a credit ship worth <payment>, then leaves without another word.`
+
+mission "Road to Hai Reveal: Hai Secret Leaks"
+    invisible
+    landing
+    to offer
+        has "skipped main plot"
+        has "event: hr: secret leaks"
+    on offer
+        set "hr: secret leaks"
+        set "hr: knew of hai"
+        event "hr: friend arrives" 30
+        event "hr: friend settled in" 60
+        fail
 
 mission "Road to Hai Reveal: Hai Learn of Leaks"
     invisible
@@ -743,14 +732,15 @@ mission "Road to Hai Reveal: Alondo and Sayari"
         conversation
             branch late
                 has "event: road to hai reveal: join later"
-            `You follow Rain and Fiona's ships to the surface of <origin>. Instead of landing at the main spaceport, their ship veers off to a separate area of the city where a cluster of several large structures are set slightly apart from the rest. A Hai warship shadows you as you approach.`
+            `You follow Rain and Fiona's ships to the surface of <origin>. Instead of landing at the main spaceport, their ships veer off to a separate area of the city where a cluster of several large structures are set slightly apart from the rest. A Hai warship shadows you as you approach.`
             choice
                 `   (Land next to Fiona's ship)`
                     goto fiona
                 `   (Land next to Rain's ship)`
-            `    Their ships touch down in a smaller port atop one of the highrises here, and you follow suit. As you touch your ship down next to Rain's, the Hai warship following you moves to idle above the spaceport, and a Hai Centipede lands nearby`
+            `    Their ships touch down in a smaller port atop one of the highrises here, and you follow suit. As you touch your ship down next to Rain's, the Hai warship following you moves to idle above the spaceport, and a Hai Centipede lands nearby.`
             `    "Welcome to the secure port," Rain greets you as you exit your ship. "Our home away from home." The captain of the Centipede, who is surprisingly a human, exits the ship and goes to join you.`
-                goto landed            `   "Sorry about that," Alondo says. "I just needed a way to get you here, what with you being neutral and all. In exchange, you can ask me anything you want."`
+                goto landed
+            `   "Sorry about that," Alondo says. "I just needed a way to get you here, what with you being neutral and all. In exchange, you can ask me anything you want."`
 
             label fiona
             `    Their ships touch down in a smaller port atop one of the highrises here, and you follow suit. As you touch your ship down next to Fiona's, the Hai warship following you moves to idle above the spaceport, and a Hai Centipede lands nearby.`
@@ -775,7 +765,7 @@ mission "Road to Hai Reveal: Alondo and Sayari"
             label landed
 
             # This is where I transition to mainline hai reveal
-            `   "Hello, I'm Alondo Gruyere, Free Worlds council member" the third person says, shaking your hand. I'm the Free Worlds-Republic envoy. I'll be taking care of you now. Thank you Fiona. I will speak to you after the briefing.`
+            `   "Hello, I'm Alondo Gruyere, Free Worlds council member," the third person says, shaking your hand. I'm the Free Worlds-Republic envoy. I'll be taking care of you now. Thank you Fiona. I will speak to you after the briefing.`
             `   Rain's terminal beeps in what appears to sound like a train whistle. "I have to go as well. Nice seeing you again!"`
             `   Rain and Fiona re-enter their ships and are escorted by one of the Hai ships out into space.`
             `   "Sorry about that," Alondo says. "I just needed a way to get you here, what with you being neutral and all. So, do you have any questions?"`
@@ -860,6 +850,7 @@ mission "Road to Hai Reveal: Xilin"
         has "hr: just met alondo"
     on offer
         set "hr: met alondo"
+        set "Hai Reveal: Meet the Team: Xilin 1: offered"
         log "People" "Xilin Yang" `Deputy Minister Yang works in the Foreign Affairs department of the Republic government. He is a pleasant and astute man. Handling the Hai secrecy crisis has become his job while the majority of the foreign ministry remains engaged with the fallout from the Free Worlds and recent peace.`
         conversation
             `Sayari follows you out to the landing pads to meet the presenter. "Captain <last>," he says while grasping your hand in a firm handshake. "Xilin Yang, Republic Deputy Minister of Foreign Affairs. I apologize for not introducing myself sooner. It's an honor to meet a hero of the Pug crisis such as yourself."`

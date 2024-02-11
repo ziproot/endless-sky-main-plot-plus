@@ -6,7 +6,7 @@ disable mission "FWC Checkmate 1C"
 disable mission "FWC End"
 disable mission "FW Epilogue: Danforth"
 
-# Credit to Amazinite for most of the improvements, which can be found at https://github.com/Amazinite/endless-sky/tree/fw-improved-checkmate. Credit to Azure3141 for the augmented nukes.
+# Credit to Amazinite for most of the improvements. Credit to Azure3141 for the augmented nukes.
 
 # All Content Plugin
 outfitter "All Outfits"
@@ -1022,7 +1022,7 @@ mission "FWC Terrorists 1C"
 
     on offer
         set "FWC End: offered"
-        log "Succeeded in drawing the fire of the Syndicate extremists for long enough for a Navy fleet to safely arrive in-system and assist in destroying them."
+        log "Succeeded in drawing the fire of the terrorists for long enough for a Navy fleet to safely arrive in-system and assist in destroying them."
         event "fwc navy occupies alcyone"
         event "fwc navy done with alcyone" 50
         conversation

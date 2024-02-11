@@ -49,7 +49,7 @@ mission "Neutrality 1"
             label "neutral"
             action
                 set "claimed neutrality"
-            `The main looks taken aback.`
+            `The man looks taken aback.`
             `"No sides, eh? You have to pick a side!"`
                 goto "whose side are you on"
 
@@ -69,7 +69,7 @@ mission "Neutrality 2"
         has "event: pug notice neutrality"
         or
             has "pug reputation override"
-            not "reputation: Pug" < 0
+            "reputation: Pug" >= 0
     source
         system "Zeta Aquilae" "Rasalhague" "Orvala" "Vega" "Altair" "Delta Capricorni" "Alderamin"
     destination "Pugglequat"
@@ -148,13 +148,13 @@ mission "Neutrality 2"
             `"Your decision to avoid war is honorable, so we shall honor it."`
             `Without another word, a Pug rushes towards you and hits you with its staff. Everything blacks out.`
                 accept
-    #on accept
-    #    relocate
-    #        "flagship only"
-    #        location
-    #            planet "Ruin"
-    #    set "Ruin: Landing: offered"
-
+    on accept
+        # Requires relocate mission PR
+        relocate
+            "flagship only"
+            location
+                planet "Ruin"
+        set "Ruin: Landing: offered"
 
 mission "Neutrality 2b"
     invisible
@@ -164,7 +164,7 @@ mission "Neutrality 2b"
         has "event: pug notice neutrality"
         or
             has "pug reputation override"
-            not "reputation: Pug" < 0
+            "reputation: Pug" >= 0
     to accept
         not "not neutral"
     source
@@ -174,7 +174,6 @@ mission "Neutrality 2b"
         never
     on offer
         clear "pug reputation override"
-        # Requires relocate mission PR
         conversation
             # Adapted from the Ruin: Landing mission in endless sky, with major parts of the description copied.
             `You wake up inside of a tank, with an insectoid robot removing the lid. You step out onto an abandoned fueling depot: a ring of landing pads around a cluster of tanks of all different shapes and sizes. Some of them must be cyrogenic, because they are covered in ice. A few other slow-moving insectoid robots are busy clearing off the ice and cleaning the tanks, but they do not appear to be armed and you see no sign of any other creatures or of any defense systems. From the fact that some of the tanks are covered in frost and others are not, you would guess that each one, besides the one you were in, contains a different fuel, as each tank besides yours has dozens of different connectors branching off from it. You find your ship parked nearby, and with surprise, you discover that it is connected to one of the tanks, and the connector is the style used in human space. Other than the robots and the fog swirling in the valley below you, there is no sign of life or motion here, and the air is uncomfortably moist and cold despite the hot steam rising up from a few nearby vents in the ground.`
@@ -372,10 +371,15 @@ mission "Neutrality 3b"
     to offer
         has "Neutrality 3a: declined"
         not "Neutrality 3: offered"
-        and
-            not "flagship planet: Pugglemug"
-            1 == 1
-    source Pugglemug
+        or
+            and
+                not "flagship planet: Pugglemug"
+                has "neutrality: pugglemug first"
+            and
+                not "flagship planet: Pugglequat"
+                has "neutrality: pugglequat first"
+    source
+        system Deneb
     on offer
         conversation
             `This planet was also clearly one of the native Pug worlds. Once again, the architecture is entirely alien, yet you see people working here. As you land, you see more people gesturing towards the sky. Maybe this doesn't have to do with which planet you should visit. You should probably check the spaceport to see what is going on.`
@@ -393,23 +397,8 @@ mission "Neutrality 4"
         never
     source
         system Deneb
-    on fail
-        # Nukes require the militia license so you can't actually get them
-        event "fwc solace has augmented nukes"
-        event "fwc navy occupies alcyone"
-        event "fwc navy done with alcyone" 50
 
-        set "skipped main plot"
-        set "main plot completed"
-        set "free worlds checkmate"
-
-        # Disable Hai Reveal, for now, as it's broken when not siding with the free worlds anyways.
-        set "Hai Reveal: Secret Leaks: offered"
-        set "Hai Reveal: Secret Leaks: Hai: offered"
-
-        # Disable Wanderers Truce Check, for now, as I have no clue how to fix the Danforth problem.
-        set "Wanderers: Truce Check: offered"
-        set "Wanderers: Jump Drive Source: offered"
+# The last paragraph in the 'to fail' section and the log entries were based almost entirely on "oathkeepers founded" from "free worlds 1 start.txt." The first paragraph was based on the "FWC Terrorists 1" and "FWC Terrorists 1A" of Amazinite's improved checkmate campaign.
 
 mission "Neutrality 4: Free Worlds"
     name "Visit Kraz Cybernetics"
@@ -423,6 +412,33 @@ mission "Neutrality 4: Free Worlds"
     source
         system Deneb
     destination Rust
+    on fail
+        log "Factions" "Oathkeepers" `The "Oathkeepers" are a regiment of Navy officers who were captured by the Free Worlds and paroled on the condition that they take no further part in fighting against the Free Worlds. They are led by William Danforth, a famous Navy admiral. Their stated mission is to protect the Paradise Worlds from the pirates who live on the anarchist worlds in the far north of human space.`
+        log "People" "William Danforth" `Danforth is a famous Navy Admiral who is a folk hero throughout human space due to his fair and honorable behavior and his willingness to use his fleet to assist people in need, even when he has to go against Parliament's orders to do so. He is currently in charge of the Navy regiment who call themselves the "Oathkeepers."`
+        conversation
+
+        # Nukes require the militia license so you can't actually get them
+        event "fwc solace has augmented nukes"
+        event "fwc navy occupies alcyone"
+        event "fwc navy done with alcyone" 50
+
+        set "skipped main plot"
+        set "main plot completed"
+        set "free worlds checkmate"
+
+        # Disable Hai Reveal until completing Road to Hai Reveal
+        set "Hai Reveal: Secret Leaks: offered"
+        set "Hai Reveal: Secret Leaks: Hai: offered"
+
+        # Disable Wanderers Truce Check until after assisting Danforth
+        set "Wanderers: Truce Check: offered"
+        set "Wanderers: Jump Drive Source: offered"
+
+        conversation
+            `Having looked through all of the outfitters, you now have a much better grasp of what was developed during the war.`
+            `    When turning on the news, you learn that when you came through the wormhole, the Syndicate claimed in front of Parliament to have tracked down the terrorists who bombed Geminus and Martini, clearing the Free Worlds, and that was what officially ended the war and made the Free Worlds a semi-autonomous district, like the Syndicate. <last> <first> then worked with Admiral Danforth of the 'Oathkeepers,' and the Syndicate, who provided autonomous ships as cannon fodder, to take down the nuclear-armed terrorists. This has led to Alcyone being temporarily occupied by the Republic.`
+            `    When you look up the Oathkeepers, you learn that this regiment is staffed mostly by prisoners <last> <first> paroled from Kornephoros, who wanted to honor their oath to take no further part in the conflict against the Free Worlds. They are headquartered on Farpoint to defend that region of space against pirate incursions.`
+            `    Furthermore, Admiral Danforth is the leader of the Oathkeepers and an elderly admiral who is something of a folk hero, being spoken of with admiration and respect. Although he was not one of the paroled prisoners, he was an outspoken advocate for a diplomatic solution to the Free Worlds conflict, and he worked with <last> <first> to help liberate Poisonwood from Alphas not too long after.`
 
 mission "Neutrality 4b: Free Worlds"
     invisible
@@ -442,7 +458,7 @@ mission "Neutrality 4b: Free Worlds"
             scene "outfitter"
             `Reading through the outfit descriptions, two of them catch your eye.`
             # Taken from the actual outfit descriptions of the plasma turret and flamethrower, with additions describing history
-            scene "outfit/plasma turret"
+            scene "outfit/plasma tuHavingrret"
             `"The Plasma Turret is a pair of Plasma Cannons mounted on a turret so that they can fire in any direction. It is a fearsome weapon, but only the largest of ships have the space and the energy that it requires. It was developed by Kraz Cybernetics during the civil war."`
             scene "outfit/flamethrower"
             `"A crude but impressive-looking weapon, the Flamethrower ignites your hyperspace fuel and directs a stream of it towards your adversaries. The damage it does is relatively minor, but it can be useful for causing a target that is already operating near its thermal capacity to overheat, temporarily taking it out of the fight. It was developed by Kraz Cybernetics during the civil war."`
@@ -540,4 +556,3 @@ mission "Neutrality 4b: Deep"
             `"You're welcome. Come back any time. Remember, here at the Deep, we offer you Peace, Prosperity, and Progress."`
             `You are led back out into the main outfitter.`
                 decline
-
