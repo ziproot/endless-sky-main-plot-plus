@@ -397,21 +397,6 @@ mission "Neutrality 4"
         never
     source
         system Deneb
-
-# The last paragraph in the 'to fail' section and the log entries were based almost entirely on "oathkeepers founded" from "free worlds 1 start.txt." The first paragraph was based on the "FWC Terrorists 1" and "FWC Terrorists 1A" of Amazinite's improved checkmate campaign.
-
-mission "Neutrality 4: Free Worlds"
-    name "Visit Kraz Cybernetics"
-    description "Visit the main Kraz Cybernetics outfitter at <destination> to learn about new technology developed by the Free Worlds."
-    to offer
-        has "Neutrality 2b: active"
-    to complete
-        never
-    to fail
-        has "Neutrality 4b: Free Worlds: declined"
-    source
-        system Deneb
-    destination Rust
     on fail
         log "Factions" "Oathkeepers" `The "Oathkeepers" are a regiment of Navy officers who were captured by the Free Worlds and paroled on the condition that they take no further part in fighting against the Free Worlds. They are led by William Danforth, a famous Navy admiral. Their stated mission is to protect the Paradise Worlds from the pirates who live on the anarchist worlds in the far north of human space.`
         log "People" "William Danforth" `Danforth is a famous Navy Admiral who is a folk hero throughout human space due to his fair and honorable behavior and his willingness to use his fleet to assist people in need, even when he has to go against Parliament's orders to do so. He is currently in charge of the Navy regiment who call themselves the "Oathkeepers."`
@@ -439,6 +424,21 @@ mission "Neutrality 4: Free Worlds"
             `    When turning on the news, you learn that when you came through the wormhole, the Syndicate claimed in front of Parliament to have tracked down the terrorists who bombed Geminus and Martini, clearing the Free Worlds, and that was what officially ended the war and made the Free Worlds a semi-autonomous district, like the Syndicate. <last> <first> then worked with Admiral Danforth of the 'Oathkeepers,' and the Syndicate, who provided autonomous ships as cannon fodder, to take down the nuclear-armed terrorists. This has led to Alcyone being temporarily occupied by the Republic.`
             `    When you look up the Oathkeepers, you learn that this regiment is staffed mostly by prisoners <last> <first> paroled from Kornephoros, who wanted to honor their oath to take no further part in the conflict against the Free Worlds. They are headquartered on Farpoint to defend that region of space against pirate incursions.`
             `    Furthermore, Admiral Danforth is the leader of the Oathkeepers and an elderly admiral who is something of a folk hero, being spoken of with admiration and respect. Although he was not one of the paroled prisoners, he was an outspoken advocate for a diplomatic solution to the Free Worlds conflict, and he worked with <last> <first> to help liberate Poisonwood from Alphas not too long after.`
+
+# The last paragraph in the 'to fail' section and the log entries were based almost entirely on "oathkeepers founded" from "free worlds 1 start.txt." The first paragraph was based on the "FWC Terrorists 1" and "FWC Terrorists 1A" of Amazinite's improved checkmate campaign.
+
+mission "Neutrality 4: Free Worlds"
+    name "Visit Kraz Cybernetics"
+    description "Visit the main Kraz Cybernetics outfitter at <destination> to learn about new technology developed by the Free Worlds."
+    to offer
+        has "Neutrality 2b: active"
+    to complete
+        never
+    to fail
+        has "Neutrality 4b: Free Worlds: declined"
+    source
+        system Deneb
+    destination Rust
 
 mission "Neutrality 4b: Free Worlds"
     invisible
