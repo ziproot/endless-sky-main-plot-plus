@@ -244,7 +244,7 @@ mission "FW Defector Escorts"
         has "FW Defend New Tibet: done"
     npc
         government "Free Worlds"
-        personality heroic escort disables
+        personality disables escort heroic
         ship "Dreadnought" "F.S. Holly"
         ship "Falcon (Plasma)" "F.S. Nebula"
         ship "Skein" "F.S. Larkspur"
@@ -395,7 +395,7 @@ mission "FW Liberate Delta Sagittarii (patched)"
     destination "New Portland"
     npc
         government "Free Worlds"
-        personality heroic escort
+        personality escort heroic
         fleet
             names "free worlds capital"
             variant
@@ -419,7 +419,7 @@ mission "FW Liberate Delta Sagittarii (patched)"
 
     npc evade
         government "Republic"
-        personality staying heroic
+        personality heroic staying
         system "Delta Sagittarii"
         fleet
             names "republic capital"
@@ -441,7 +441,7 @@ mission "FW Liberate Delta Sagittarii (patched)"
 
     npc
         government "Republic"
-        personality staying derelict
+        personality derelict staying
         system "Delta Sagittarii"
         fleet
             names "republic capital"
@@ -460,17 +460,17 @@ mission "FW Liberate Delta Sagittarii (patched)"
 
     npc
         government "Free Worlds"
-        personality staying heroic
+        personality heroic staying
         system "Rastaban"
         fleet "Large Free Worlds" 4
     npc
         government "Republic"
-        personality staying derelict
+        personality derelict staying
         system "Rastaban"
         fleet "Large Republic" 2
     npc
         government "Republic"
-        personality staying heroic
+        personality heroic staying
         system "Rastaban"
         fleet "Large Republic" 2
     on offer
@@ -525,23 +525,18 @@ mission "FW Liberate Delta Sagittarii (patched)"
 mission "FWC Scouting 1 (patched)"
     name "Scout Kaus Borealis"
     description "Travel through the <waypoints> system to determine how strong the Navy presence is there, while JJ works to gather a fleet to attack it."
-    landing
     autosave
-    source "New Portland"
+    landing
     waypoint "Kaus Borealis"
     to offer
         has "FW Liberate Delta Sagittarii: done"
         not "FWC Scouting 1: offered"
-    on abort
-        clear "FWC Scouting 1: active"
-        set "FWC Scouting 1: aborted"
-        set "FWC Scouting 1: failed"
-        dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
-    on fail
-        clear "FWC Scouting 1: active"
-        set "FWC Scouting 1: failed"
-        dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
-
+    source "New Portland"
+    npc
+        personality heroic staying
+        system "Kaus Borealis"
+        government "Republic"
+        fleet "Large Republic" 5
     on offer
         set "FWC Scouting 1: offered"
         log `Drove the Navy out of Delta Sagittarii with the help of the "Wolf Pack," a militia group in favor of more extreme measures who launched a preemptive strike before the main Free Worlds force arrived. The Syndicate has taken the terrorist into their own hands and will be using him to prove the Free Worlds' innocence, while the Free Worlds fight the Republic to a standstill in order to buy time.`
@@ -556,40 +551,95 @@ mission "FWC Scouting 1 (patched)"
             label freya
             `    "One more thing," says Freya, "while you're traveling up North, I wonder if you could help to escort a convoy from the Zeta Aquilae system. There's no huge rush, but they're carrying supplies we need for a new reactor core for the Dreadnoughts, so the sooner you can meet up with them, the sooner the new reactors will be available."`
                 accept
-
-    on accept
-        set "FWC Scouting 1: active"
-
     on complete
         clear "FWC Scouting 1: active"
         set "FWC Scouting 1: done"
-    npc
-        personality staying heroic
-        system "Kaus Borealis"
-        government "Republic"
-        fleet "Large Republic" 5
+    on accept
+        set "FWC Scouting 1: active"
+    on fail
+        clear "FWC Scouting 1: active"
+        set "FWC Scouting 1: failed"
+        dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+    on abort
+        clear "FWC Scouting 1: active"
+        set "FWC Scouting 1: aborted"
+        set "FWC Scouting 1: failed"
+        dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
 
 mission "FWC Attack Kaus Borealis (patched)"
-    landing
     name "Attack Kaus Borealis"
     description "Destroy the Navy fleet defending Kaus Borealis. The Wolf Pack will attack them first to soften them up."
     autosave
-    source "New Portland"
-    destination "New Iceland"
+    landing
     clearance
     to offer
         has "FWC Scouting 1: done"
         not "FWC Attack Kaus Borealis: offered"
-    on abort
-        clear "FWC Attack Kaus Borealis: active"
-        set "FWC Attack Kaus Borealis: aborted"
-        set "FWC Attack Kaus Borealis: failed"
-        dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
-    on fail
-        clear "FWC Attack Kaus Borealis: active"
-        set "FWC Attack Kaus Borealis: failed"
-        dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
-
+    source "New Portland"
+    destination "New Iceland"
+    npc
+        government "Free Worlds"
+        personality escort heroic
+        fleet
+            names "free worlds capital"
+            fighters
+                names "free worlds fighters"
+            variant
+                "Dreadnought"
+                "Skein"
+                "Finch" 6
+        fleet
+            names "free worlds capital"
+            variant
+                "Dreadnought"
+                "Falcon (Heavy)"
+        fleet
+            names "free worlds capital"
+            variant
+                "Dreadnought"
+                "Falcon (Plasma)"
+        fleet
+            names "free worlds capital"
+            variant
+                "Dreadnought"
+                "Osprey"
+    npc
+        government "Republic"
+        personality derelict staying
+        system "Kaus Borealis"
+        fleet
+            names "republic capital"
+            fighters
+                names "republic fighter"
+            variant
+                "Carrier (Mark II)"
+                "Frigate" 2
+        fleet
+            names "republic capital"
+            fighters
+                names "republic fighter"
+            variant
+                "Cruiser (Mark II)"
+                "Frigate" 2
+    npc evade
+        government "Republic"
+        personality heroic staying
+        system "Kaus Borealis"
+        fleet 2
+            names "republic capital"
+            fighters
+                names "republic fighter"
+            variant
+                "Carrier (Mark II)"
+                "Lance" 4
+                "Combat Drone" 6
+        fleet 3
+            names "republic capital"
+            fighters
+                names "republic fighter"
+            variant
+                "Cruiser (Mark II)"
+                "Combat Drone" 4
     on offer
         set "FWC Attack Kaus Borealis: offered"
         event "fwc attack kaus borealis"
@@ -626,102 +676,34 @@ mission "FWC Attack Kaus Borealis (patched)"
             `    "So, now we attack Kaus Borealis?" you ask.`
             `    "That's right," he says. "Once again, the Wolf Pack will go in first and soften them up, then you and your ships will clean up. I've already given the Wolf Pack orders to attack, so please head straight to Kaus Borealis so you can join the fray before they have time to recover."`
                 accept
-
-    on accept
-        set "FWC Attack Kaus Borealis: active"
-    on visit
-        dialog `You've landed on <planet>, but there are still Navy ships circling overhead. You should take off and help finish them off.`
     on complete
         clear "FWC Attack Kaus Borealis: active"
         set "FWC Attack Kaus Borealis: done"
         event "fwc capture kaus borealis"
-
-    npc
-        government "Free Worlds"
-        personality heroic escort
-        fleet
-            names "free worlds capital"
-            fighters
-                names "free worlds fighters"
-            variant
-                "Dreadnought"
-                "Skein"
-                "Finch" 6
-        fleet
-            names "free worlds capital"
-            variant
-                "Dreadnought"
-                "Falcon (Heavy)"
-        fleet
-            names "free worlds capital"
-            variant
-                "Dreadnought"
-                "Falcon (Plasma)"
-        fleet
-            names "free worlds capital"
-            variant
-                "Dreadnought"
-                "Osprey"
-
-    npc evade
-        personality staying heroic
-        system "Kaus Borealis"
-        government "Republic"
-        fleet 2
-            names "republic capital"
-            fighters
-                names "republic fighter"
-            variant
-                "Carrier (Mark II)"
-                "Lance" 4
-                "Combat Drone" 6
-        fleet 3
-            names "republic capital"
-            fighters
-                names "republic fighter"
-            variant
-                "Cruiser (Mark II)"
-                "Combat Drone" 4
-
-    npc
-        personality staying derelict
-        system "Kaus Borealis"
-        government "Republic"
-        fleet
-            names "republic capital"
-            fighters
-                names "republic fighter"
-            variant
-                "Carrier (Mark II)"
-                "Frigate" 2
-        fleet
-            names "republic capital"
-            fighters
-                names "republic fighter"
-            variant
-                "Cruiser (Mark II)"
-                "Frigate" 2
+    on accept
+        set "FWC Attack Kaus Borealis: active"
+    on fail
+        clear "FWC Attack Kaus Borealis: active"
+        set "FWC Attack Kaus Borealis: failed"
+        dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+    on abort
+        clear "FWC Attack Kaus Borealis: active"
+        set "FWC Attack Kaus Borealis: aborted"
+        set "FWC Attack Kaus Borealis: failed"
+        dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+    on visit
+        dialog `You've landed on <planet>, but there are still Navy ships circling overhead. You should take off and help finish them off.`
 
 mission "FWC Nuke Supply 1 (patched)"
-    landing
     name "Uranium Convoy"
     description "Travel to Oblivion to escort a freighter that is delivering uranium to a warlord on Greenrock."
     autosave
-    source Tundra
-    destination Oblivion
+    landing
     to offer
         has "FWC Cebalrai 1B: done"
         not "FWC Nuke Supply 1: offered"
-    on abort
-        clear "FWC Nuke Supply 1: active"
-        set "FWC Nuke Supply 1: aborted"
-        set "FWC Nuke Supply 1: failed"
-        dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
-    on fail
-        clear "FWC Nuke Supply 1: active"
-        set "FWC Nuke Supply 1: failed"
-        dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
-
+    source Tundra
+    destination Oblivion
     on offer
         set "FWC Nuke Supply 1: offered"
         conversation
@@ -753,34 +735,33 @@ mission "FWC Nuke Supply 1 (patched)"
             label end
             `    A Free Worlds ship lands close enough to your own ship that Alondo can transfer over to it without being in sight of the snipers. "Good luck," he says as he departs. "I hope when you return we will have negotiated some sort of meeting with Parliament."`
                 accept
-    on accept
-        set "FWC Nuke Supply 1: active"
     on complete
         clear "FWC Nuke Supply 1: active"
         set "FWC Nuke Supply 1: done"
+    on accept
+        set "FWC Nuke Supply 1: active"
+    on fail
+        clear "FWC Nuke Supply 1: active"
+        set "FWC Nuke Supply 1: failed"
+        dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+    on abort
+        clear "FWC Nuke Supply 1: active"
+        set "FWC Nuke Supply 1: aborted"
+        set "FWC Nuke Supply 1: failed"
+        dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
 
 mission "FWC Checkmate 1C (patched)"
-    landing
     name "Capture <planet>"
     description "Bring a fleet to <destination>, driving off any Republic ships in the system."
+    passengers 1
     autosave
-    source "New Austria"
-    destination "Silver"
+    landing
     clearance
     to offer
         has "FWC Checkmate 1B: done"
         not "FWC Checkmate 1C: offered"
-    passengers 1
-    on abort
-        clear "FWC Checkmate 1C: active"
-        set "FWC Checkmate 1C: aborted"
-        set "FWC Checkmate 1C: failed"
-        dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
-    on fail
-        clear "FWC Checkmate 1C: active"
-        set "FWC Checkmate 1C: failed"
-        dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
-
+    source "New Austria"
+    destination "Silver"
     on offer
         set "FWC Checkmate 1C: offered"
         event "fwc attack vega"
@@ -802,10 +783,6 @@ mission "FWC Checkmate 1C (patched)"
             label end
             `[Take good care of this fleet, because it will have to last you for the rest of this campaign: if ships are disabled, board them to "repair" them once the battle is over. And, when jumping into battle, remember that you can hold down the jump key to get all your ships ready to jump simultaneously, so no single ship enters the system first and bears the brunt of the enemy fire.]`
                 accept
-    on accept
-        set "FWC Checkmate 1C: active"
-    on visit
-        dialog `You land on <planet>, but you realize that Katya is on one of your escorts that hasn't entered the system yet. Better depart and wait for it to arrive.`
     on complete
         clear "FWC Checkmate 1C: active"
         set "FWC Checkmate 1C: done"
@@ -813,20 +790,31 @@ mission "FWC Checkmate 1C (patched)"
         conversation
             `The Vega system is eerily deserted. You suspect that the Navy must have pulled back all available ships to defend Earth, rather than trying to fight you here. You try not to think about how massive the fleet there must be, and how slim your chances are of destroying it.`
             `    Katya says, "Well, this is it, the final assault. Meet me in the spaceport when you're ready for the attack on Earth."`
+    on accept
+        set "FWC Checkmate 1C: active"
+    on fail
+        clear "FWC Checkmate 1C: active"
+        set "FWC Checkmate 1C: failed"
+        dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+    on abort
+        clear "FWC Checkmate 1C: active"
+        set "FWC Checkmate 1C: aborted"
+        set "FWC Checkmate 1C: failed"
+        dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+    on visit
+        dialog `You land on <planet>, but you realize that Katya is on one of your escorts that hasn't entered the system yet. Better depart and wait for it to arrive.`
 
 # I don't care what the "official lore" is, my lore is that, as per Crisis in Management and Hai Revealed, the Pug spooked the Syndicate, and they actually are taking out the extremists, however, they're not admitting this publicly.
 
 mission "FWC Terrorists 1"
     name "Deal with the terrorists"
     description "Now that the Pug appear to have been driven off, the Syndicate have tracked down the rest of the terrorists. Travel to <destination> to meet with the CEO of the Syndicate."
-    source "Pugglemug"
-    destination "Foundry"
     passengers 1
     to offer
         has "FWC Pug 6: done"
         not "FWC End: offered"
-    on fail
-        dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+    source "Pugglemug"
+    destination "Foundry"
     on offer
         "reputation: Republic" += 20
         conversation
@@ -840,19 +828,19 @@ mission "FWC Terrorists 1"
                 `    "Anything you need to tell us before we leave?"`
             `    "Oh, yes. I've contacted New Austria and told them that Councilor Reynolds is free to leave," he says. "I'd say go meet with her, but there's still work to be done."`
                 accept
+    on fail
+        dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
 
 
 mission "FWC Terrorists 1A"
-    landing
     name "Autonomous Fleet"
     description "Alastair Korban has offered to you command of an autonomous fleet that will allow you to waste the terrorists' missiles. Travel to <planet>, where they will grant you access to the fleet."
-    source "Foundry"
-    destination "Hephaestus"
     passengers 1
+    landing
     to offer
         has "FWC Terrorists 1: done"
-    on fail
-        dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+    source "Foundry"
+    destination "Hephaestus"
     on offer
         log "The Syndicate have discovered the locations of the terrorists responsible for the bombings of Geminus and Martini. They are armed with nuclear missiles, but the Syndicate CEO has agreed to provide an autonomous fleet that will make the terrorists use their missiles without a loss of life."
         event "syndicate tech available"
@@ -885,28 +873,19 @@ mission "FWC Terrorists 1A"
             label end
             `    Korban tells you that the second autonomous fleet for you to lead is on Hephaestus. "The terrorists are holed up on Stormhold," says Korban, "an old pirate world. We've also made available to you some of our new technology, developed during the war. We're planning on incorporating it on most of the ships in our fleet, and they are installed on the autonomous ships I've given you. It may prove helpful to you during this final battle. Good luck, Captain."`
                 accept
-
-mission "FWC Terrorists 1B"
-    landing
-    name "Final Battle"
-    description "A fleet of nuclear-armed terrorists is occupying the <system> system. Travel there and use the autonomous ships to draw their fire; the Oathkeeper fleet will be right behind you."
-    source "Hephaestus"
-    destination "Stormhold"
-    clearance
-    passengers 1
-    to offer
-        has "FWC Terrorists 1A: done"
     on fail
         dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
-    on offer
-        "reputation: Syndicate (Automata)" = "reputation: Syndicate"
-        event "fwc battle of alcyone"
-        conversation
-            `You land in a private hangar full of ships that you presume are part of the autonomous fleet. A Syndicated Shipyards engineer approaches you and gives you a set of instructions on how to handle them. "They should follow you where ever you go, but please report to us if they refuse to follow any orders. If any of them go rogue, you're better off destroying them than trying to fix them. Trust me. If they completely lock up without having been disabled, it's probably because they're downloading a software update that we kept saying 'later' to. Also, these things aren't cheap to make, so please don't get too many of them blown up. Okay?"`
-            `    Meanwhile, you contact Danforth and tell him that you're ready for the assault. You should head directly for the <system> system, so that you arrive there far enough in advance of the Oathkeeper fleet.`
-                accept
-    on visit
-        dialog `You've landed on <planet>, but there are still terrorist ships circling overhead. You should take off and help finish them off.`
+
+mission "FWC Terrorists 1B"
+    name "Final Battle"
+    description "A fleet of nuclear-armed terrorists is occupying the <system> system. Travel there and use the autonomous ships to draw their fire; the Oathkeeper fleet will be right behind you."
+    passengers 1
+    landing
+    clearance
+    to offer
+        has "FWC Terrorists 1A: done"
+    source "Hephaestus"
+    destination "Stormhold"
     npc
         government "Syndicate (Automata)"
         personality heroic escort
@@ -919,36 +898,36 @@ mission "FWC Terrorists 1B"
                 "Quicksilver (Automata Mark II)" 2
     npc evade
         government "Terrorist"
-        system "Alcyone"
-        personality staying heroic
+        personality heroic staying
             confusion 60
+        system "Alcyone"
         fleet
             names "pirate"
             variant
                 "Manta (Nuclear)" 2
     npc evade
         government "Terrorist"
-        system "Alcyone"
-        personality staying heroic
+        personality heroic staying
             confusion 60
+        system "Alcyone"
         fleet
             names "pirate"
             variant
                 "Manta (Nuclear)" 2
     npc evade
         government "Terrorist"
-        system "Alcyone"
-        personality staying heroic derelict
+        personality derelict heroic staying
             confusion 60
+        system "Alcyone"
         fleet
             names "pirate"
             variant
                 "Manta (Nuclear)" 2
     npc evade
         government "Terrorist"
-        system "Alcyone"
-        personality staying heroic
+        personality heroic staying
             confusion 60
+        system "Alcyone"
         fleet 2
             names "pirate"
             variant
@@ -960,9 +939,9 @@ mission "FWC Terrorists 1B"
                 "Quicksilver" 3
     npc evade
         government "Terrorist"
-        system "Alcyone"
-        personality staying heroic derelict
+        personality derelict heroic staying
             confusion 60
+        system "Alcyone"
         fleet
             names "pirate"
             variant
@@ -974,9 +953,9 @@ mission "FWC Terrorists 1B"
                 "Quicksilver" 3
     npc
         government "Syndicate (Automata)"
-        system "Alcyone"
-        personality staying heroic derelict
+        personality derelict heroic staying
             confusion 120
+        system "Alcyone"
         fleet
             names "syndicate test vessel"
             variant
@@ -986,8 +965,8 @@ mission "FWC Terrorists 1B"
 
     npc
         government "Navy (Oathkeeper)"
-        system Deneb
         personality heroic escort
+        system Deneb
         fleet
             names "republic capital"
             fighters
@@ -999,27 +978,28 @@ mission "FWC Terrorists 1B"
                 "Cruiser (Mark II)" 3
                 "Combat Drone" 12
 
+    on offer
+        "reputation: Syndicate (Automata)" = "reputation: Syndicate"
+        event "fwc battle of alcyone"
+        conversation
+            `You land in a private hangar full of ships that you presume are part of the autonomous fleet. A Syndicated Shipyards engineer approaches you and gives you a set of instructions on how to handle them. "They should follow you where ever you go, but please report to us if they refuse to follow any orders. If any of them go rogue, you're better off destroying them than trying to fix them. Trust me. If they completely lock up without having been disabled, it's probably because they're downloading a software update that we kept saying 'later' to. Also, these things aren't cheap to make, so please don't get too many of them blown up. Okay?"`
+            `    Meanwhile, you contact Danforth and tell him that you're ready for the assault. You should head directly for the <system> system, so that you arrive there far enough in advance of the Oathkeeper fleet.`
+                accept
+    on fail
+        dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+    on visit
+        dialog `You've landed on <planet>, but there are still terrorist ships circling overhead. You should take off and help finish them off.`
 
 
 mission "FWC Terrorists 1C"
-    landing
     name "Talk to Parliament"
     description "Travel to Earth for another meeting with Parliament. Alondo, Katya, and Tomek will meet you there. Hopefully, it will go better than your last visit."
     autosave
-    source "Stormhold"
-    destination "Earth"
+    landing
     to offer
         has "FWC Terrorists 1B: done"
-    on abort
-        clear "FWC End: active"
-        set "FWC End: aborted"
-        set "FWC End: failed"
-        dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
-    on fail
-        clear "FWC End: active"
-        set "FWC End: failed"
-        dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
-
+    source "Stormhold"
+    destination "Earth"
     on offer
         set "FWC End: offered"
         log "Succeeded in drawing the fire of the terrorists for long enough for a Navy fleet to safely arrive in-system and assist in destroying them."
@@ -1041,10 +1021,6 @@ mission "FWC Terrorists 1C"
             label trial
             `    "Trust me," he says, "you won't need to worry about that this time around. Having an alien attack so close to Earth be thwarted through the assistance of the Free Worlds has put Parliament in a very... receptive mood. Good luck, Captain <last>, and I hope our paths will cross again."`
                 accept
-
-    on accept
-        set "FWC End: active"
-
     on complete
         clear "FWC End: active"
         set "FWC End: done"
@@ -1068,15 +1044,25 @@ mission "FWC Terrorists 1C"
                 `    "See if folks in the fringe worlds need any help against the pirates."`
                 `    "Use my jump drive to explore beyond human space."`
             `    "Well, we all wish you the best of luck," says Freya. "We would never have won this war without you. Be sure to stay in touch." You hug each of them goodbye, and return to your ship. What you do next is up to you...`
+    on accept
+        set "FWC End: active"
+    on fail
+        clear "FWC End: active"
+        set "FWC End: failed"
+        dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
+    on abort
+        clear "FWC End: active"
+        set "FWC End: aborted"
+        set "FWC End: failed"
+        dialog `You have failed an essential Free Worlds mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
 
 mission "FW Epilogue: Danforth (patched)"
     landing
-    source "Farpoint"
     to offer
         has "free worlds plot completed"
         not "Wanderers: Alpha Surveillance E: offered"
         not "FW Epilogue: Danforth: offered"
-
+    source "Farpoint"
     on offer
         set "FW Epilogue: Danforth: offered"
         conversation
@@ -1130,10 +1116,10 @@ mission "FW Epilogue: Danforth (patched)"
 mission "FWC Epilogue: Wolf Pack"
     minor
     landing
-    source "Solace"
     to offer
         has "event: fwc solace has augmented nukes"
         has "event: joined the free worlds"
+    source "Solace"
     on offer
         conversation
             `You recall Tomek mentioning that the Syndicate left a gift with the Wolf Pack and decide to go to the outfitter to see what it is. There you find Odie, the Wolf Pack member who oversaw the assembly of the nuclear missiles during the war. "Captain <last>! I heard you're a hero now. I was told to expect you. I take it you're here about that gift the Syndicate gave us."`

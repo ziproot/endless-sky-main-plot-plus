@@ -36,16 +36,14 @@ event "reputation patch"
 
 # Taken almost entirely from "Paradise Fortune 4" in "human missions.txt"
 mission "Paradise Fortune 4 (patched)"
-    landing
     name `Exchange of Goods`
     description `Travel to <destination> and hand the backpack of credits and Diana Howl's note over to the Navy.`
+    landing
     to offer
         has "Paradise Fortune 3: done"
-
     source "Bourne"
     destination "New Boston"
     on offer
-
         conversation
             `While in flight, Diana tells you the stories that she heard of the war. In the Paradise Planets region, they were told that declaring independence and bombing Geminus and Martini was the Free Worlds' first step in overthrowing the Republic.`
             `    "We should talk to Alondo," Diana says. "He'll be able to handle this situation."`
@@ -115,22 +113,18 @@ mission "Paradise Fortune 4 (patched)"
             label steal
             `    You rip the note apart and begin counting the credits. In total, the backpack contains a whopping 525,894,400 credits. Over half a billion credits richer, you sit down and wonder what you will spend it on.`
                 decline
-
-    on accept
-        "reputation: Republic" >?= "stored reputation: Republic"
-    on decline
-        payment 525894400
-        "reputation: Republic" <?= -1000
-        log "People" "Diana Howl" `A teenager who stole half a billion credits from her family's wealth, she decided to start a new life outside the Paradise Planets while you decided to pocket the substantial fortune she left behind to avoid being hunted down.`
     on complete
         payment 1000000
         conversation
             `You spot a fleet of docked Navy ships as you come in for a landing. A small squad of troops gather around your ship after you land. You are greeted by a Navy officer upon exiting your ship and explain to him where Diana is, showing him the note she wrote.`
             `    "That is unfortunate," he responds with a troubled look on his face. "We'll contact the Howl family about this." Before letting you go, the officer hands you <payment>. "This is the reward that Mr. Howl put out for the return of his credits. Thank you for doing the right thing, Captain."`
         log "People" "Diana Howl" `A teenager who stole half a billion credits from her family's wealth, she decided to start a new life outside the Paradise Planets while you dutifully turned in the credits to the authorities to keep the peace. You received a substantial reward for your integrity.`
-
-
-
+    on accept
+        "reputation: Republic" >?= "stored reputation: Republic"
+    on decline
+        payment 525894400
+        "reputation: Republic" <?= -1000
+        log "People" "Diana Howl" `A teenager who stole half a billion credits from her family's wealth, she decided to start a new life outside the Paradise Planets while you decided to pocket the substantial fortune she left behind to avoid being hunted down.`
 
 # The same event but without unvisiting planets. Based on the "fwc navy retakes cebalrai" event in "campaign events.txt"
 event "fwc navy retakes cebalrai (patched)"

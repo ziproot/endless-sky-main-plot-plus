@@ -432,8 +432,8 @@ mission "Road to Hai Reveal: Prep"
 mission "Road to Hai Reveal: Danforth"
     name "Stretched Thin"
     description "Help Danforth by taking out a pirate fleet in <waypoints>, then land on <destination> to receive <payment>. You will be joined by other captains."
-    minor
     autosave
+    minor
     clearance "You explain to the spaceport manager that you are the one who took out the pirate fleet, and upon verifying your identity he grants you landing permission."
     waypoint Almaaz
     substitutions
@@ -447,9 +447,14 @@ mission "Road to Hai Reveal: Danforth"
         has "event: road to hai reveal: almaaz pirates"
         "combat rating" > 1000
     source Prime
+    npc
+        government "Bounty Hunter (friendly)"
+        personality heroic
+        fleet "Hired Guns" 2
+        fleet "Bounty Hunters" 4
     npc kill
         government "Pirate"
-        personality staying plunders disables heroic target
+        personality disables heroic plunders staying target
         system Almaaz
         dialog `You have blown up the last of the pirate ships. Time to collect your payment on <planet>.`
         fleet "Marauder fleet X"
@@ -529,11 +534,6 @@ mission "Road to Hai Reveal: Danforth"
             variant 1
                 "Bactrian (Hai Weapons)"
                 "Dagger" 3
-    npc
-        government "Bounty Hunter (friendly)"
-        personality heroic
-        fleet "Hired Guns" 2
-        fleet "Bounty Hunters" 4
     on offer
         clear "road to hai reveal defer date"
         conversation
@@ -593,12 +593,6 @@ mission "Road to Hai Reveal: Danforth"
             label busy
             `   "That's too bad." You head back to the restaurant, but Fiona and Rain are nowhere to be seen. You have the feeling that you missed out on something important.`
                 decline
-    on accept
-        event "road to hai reveal: almaaz empty"
-    on fail
-        dialog `You have failed an essential Hai Reveal mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
-    on defer
-        "road to hai reveal defer date" = "days since start"
     on complete
         event "road to hai reveal: almaaz normal"
         payment 2400000
@@ -611,6 +605,12 @@ mission "Road to Hai Reveal: Danforth"
             `   When you land on <destination>, you are approached by a Navy officer.`
             `   "We are grateful for your service to the Navy. I will be sure to tell Danforth of your accomplishment."`
             `   She hands you a credit ship worth <payment>, then leaves without another word.`
+    on accept
+        event "road to hai reveal: almaaz empty"
+    on defer
+        "road to hai reveal defer date" = "days since start"
+    on fail
+        dialog `You have failed an essential Hai Reveal mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
 
 mission "Road to Hai Reveal: Hai Secret Leaks"
     invisible
@@ -639,11 +639,6 @@ mission "Road to Hai Reveal: Hai Learn of Leaks"
 mission "Road to Hai Reveal: Rain and Fiona (early)"
     name "Somewhat Likely Encounter"
     description "Head to <destination> with Rain and Fiona to learn more about the fallout of the existence of the Hai being revealed to billions in human space."
-    source
-        government "Hai"
-        not attributes "uninhabited" "station"
-        not planet "Hai-home"
-    destination "Hai-home"
     clearance
     to offer
         not "hr: met rain and fiona"
@@ -652,8 +647,11 @@ mission "Road to Hai Reveal: Rain and Fiona (early)"
         has "event: hr: friend arrives"
         not "event: hr: friend settled in"
         has "event: road to hai reveal: almaaz normal"
-    on offer
-        conversation "hr: meet rain and fiona"
+    source
+        government "Hai"
+        not attributes "uninhabited" "station"
+        not planet "Hai-home"
+    destination "Hai-home"
     npc accompany save
         government "Republic"
         personality escort timid
@@ -662,21 +660,23 @@ mission "Road to Hai Reveal: Rain and Fiona (early)"
         government "Free Worlds"
         personality escort timid
         ship "Dreadnought (Plasma Jump)" "F.S. Baobab"
+    on offer
+        conversation "hr: meet rain and fiona"
     on complete
         set "hr: meet the team"
 
 # Based almost entirely on "Hai Reveal: Join Later: Alondo" from "hai reveal 0 prologue.txt"
 mission "Road to Hai Reveal: Rain and Fiona (late trigger)"
-    landing
     name "Duty Calls"
     description "Head to <destination> to meet Rain and Fiona and learn more about the fallout of the existence of the Hai being revealed to billions in human space."
+    landing
+    clearance
+    to offer
+        has "event: road to hai reveal: join later"
     source
         government "Hai"
         not planet "Hai-home"
     destination "Hai-home"
-    clearance
-    to offer
-        has "event: road to hai reveal: join later"
     on offer
         conversation
             `You receive a message from Rain. "Captain <last>. I hope you've finished your work, as I could use your assistance in dealing with this situation. Please join us on <destination> when you're able. We're holding a briefing on the latest updates."`
@@ -687,14 +687,9 @@ mission "Road to Hai Reveal: Rain and Fiona (late trigger)"
 
 # Based almost entirely on "Hai Reveal: Late Arrival: Alondo" from "hai reveal 0 prologue.txt"
 mission "Road to Hai Reveal: Rain and Fiona (late)"
-    landing
     name "Somewhat Likely Encounter"
     description "Head to <destination> with Rain and Fiona to learn more about the fallout of the existence of the Hai being revealed to billions in human space."
-    source
-        government "Hai"
-        not attributes "uninhabited" "station"
-        not planet "Hai-home"
-    destination "Hai-home"
+    landing
     clearance
     to offer
         not "hr: met rain and fiona"
@@ -702,9 +697,11 @@ mission "Road to Hai Reveal: Rain and Fiona (late)"
         has "hr: heard the news"
         has "event: hr: friend settled in"
         has "event: road to hai reveal: almaaz normal"
-    on offer
-        set "hr: met rain and fiona"
-        conversation "hr: meet rain and fiona"
+    source
+        government "Hai"
+        not attributes "uninhabited" "station"
+        not planet "Hai-home"
+    destination "Hai-home"
     npc accompany save
         government "Republic"
         personality escort timid
@@ -713,17 +710,20 @@ mission "Road to Hai Reveal: Rain and Fiona (late)"
         government "Free Worlds"
         personality escort timid
         ship "Dreadnought (Plasma Jump)" "F.S. Baobab"
+    on offer
+        set "hr: met rain and fiona"
+        conversation "hr: meet rain and fiona"
     on complete
         set "hr: meet the team"
 
 # Based almost entirely on "Hai Reveal: Meet the Team: FW" from "hai reveal 0 prologue.txt"
 mission "Road to Hai Reveal: Alondo and Sayari"
-    landing
     invisible
-    source "Hai-home"
+    landing
     to offer
         has "hr: meet the team"
         has "event: road to hai reveal: almaaz normal"
+    source "Hai-home"
     on offer
         set "hr: just met alondo"
         set "road to hai reveal: last first killed in ember waste"
@@ -841,13 +841,13 @@ mission "Road to Hai Reveal: Alondo and Sayari"
 mission "Road to Hai Reveal: Xilin"
     name "New Arrivals"
     description "Travel to <destination> with Xilin to interview new arrivals to Hai space to determine how they arrived and what they think about the Hai."
-    source "Hai-home"
-    destination "Allhome"
-    passengers 2
     blocked "You will need <capacity> in order to take this mission."
+    passengers 2
     to offer
         has "hr: meet the team"
         has "hr: just met alondo"
+    source "Hai-home"
+    destination "Allhome"
     on offer
         set "hr: met alondo"
         set "Hai Reveal: Meet the Team: Xilin 1: offered"
@@ -867,7 +867,7 @@ mission "Road to Hai Reveal: Xilin"
             `    "I would like to follow and observe," says Sayari.`
             `    "You're free to come," says Xilin. "Let me pack a few items into your ship, Captain <last>, and we can be on our way."`
                 accept
-    on visit
-        dialog phrase "generic passenger on visit"
     on complete
         set "Hai Reveal: Meet the Team: Xilin 1: done"
+    on visit
+        dialog phrase "generic passenger on visit"

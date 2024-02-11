@@ -10,6 +10,7 @@ mission <name>
     passengers <number> [<number> [<probability>]]
     illegal <fine> [<message>]
     stealth
+    autosave
     invisible
     (priority | minor)
     (job | landing | assisting | boarding | shipyard | outfitter)

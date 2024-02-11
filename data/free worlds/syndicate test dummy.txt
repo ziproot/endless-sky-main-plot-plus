@@ -7,146 +7,143 @@ disable mission "Syndicate target practice [3]"
 
 mission "Syndicate target practice [0b]"
     name "Syndicate target practice"
+    description "Disable the robotic target dummy ship in <system>, collect test data for Syndicate engineers by scanning its cargo, and land on <planet>. Warning: the target ship is programmed to engage in self-defense behaviors to ensure a realistic simulation. Payment is <payment>."
     job
     repeat
-    description "Disable the robotic target dummy ship in <system>, collect test data for Syndicate engineers by scanning its cargo, and land on <planet>. Warning: the target ship is programmed to engage in self-defense behaviors to ensure a realistic simulation. Payment is <payment>."
-    source
-        government Syndicate
-    destination
-        distance 1 3
-        government Syndicate
     to offer
         random < 20
         "combat rating" > 5
         "combat rating" < 50
         "destroyed Syndicate target ship" < 3
         not "main plot completed"
-    npc save disable "scan cargo"
-        government "Test Dummy"
-        personality disables staying heroic target
-            confusion 120
-        system destination
-        ship "Berserker Test Dummy" "Syndicate Test Vessel"
-        dialog "You scan the disabled craft and take careful measurements of the battle damage. Time to deliver the results on <planet>."
-    on visit
-        dialog "You forgot to either disable or scan the target dummy ship in <system>! You'll need to head back there and do that before you can return here for payment."
-    on abort
-        # No penalty
-    on fail
-        dialog "The robotic target ship has been destroyed. You are hailed by an angry Syndicate official who fines you <payment> and warns you that further mistakes of this nature may remove you from eligibility for these jobs."
-        "destroyed Syndicate target ship" ++
-        "reputation: Syndicate" --
-        fine 160000
-    on complete
-        payment 80000
-        dialog "You transmit the scan results to a team of eager engineers and collect your payment of <payment>."
-
-
-mission "Syndicate target practice [1b]"
-    name "Syndicate target practice"
-    job
-    repeat
-    description "Disable the robotic target dummy ship in <system>, collect test data for Syndicate engineers by scanning its cargo, and land on <planet>. Warning: the target ship is programmed to engage in self-defense behaviors to ensure a realistic simulation. Payment is <payment>."
     source
         government Syndicate
     destination
         distance 1 3
         government Syndicate
+    npc save disable "scan cargo"
+        government "Test Dummy"
+        personality disables staying heroic target
+            confusion 120
+        system destination
+        dialog "You scan the disabled craft and take careful measurements of the battle damage. Time to deliver the results on <planet>."
+        ship "Berserker Test Dummy" "Syndicate Test Vessel"
+    on complete
+        payment 80000
+        dialog "You transmit the scan results to a team of eager engineers and collect your payment of <payment>."
+    on fail
+        dialog "The robotic target ship has been destroyed. You are hailed by an angry Syndicate official who fines you <payment> and warns you that further mistakes of this nature may remove you from eligibility for these jobs."
+        "destroyed Syndicate target ship" ++
+        "reputation: Syndicate" --
+        fine 160000
+    on abort
+        # No penalty
+    on visit
+        dialog "You forgot to either disable or scan the target dummy ship in <system>! You'll need to head back there and do that before you can return here for payment."
+
+mission "Syndicate target practice [1b]"
+    name "Syndicate target practice"
+    description "Disable the robotic target dummy ship in <system>, collect test data for Syndicate engineers by scanning its cargo, and land on <planet>. Warning: the target ship is programmed to engage in self-defense behaviors to ensure a realistic simulation. Payment is <payment>."
+    job
+    repeat
     to offer
         random < 20
         "combat rating" > 50
         "combat rating" < 250
         "destroyed Syndicate target ship" < 3
         not "main plot completed"
-    npc save disable "scan cargo"
-        government "Test Dummy"
-        personality disables staying heroic target
-            confusion 120
-        system destination
-        ship "Quicksilver Test Dummy" "Syndicate Test Vessel"
-        dialog "You scan the disabled craft and take careful measurements of the battle damage. Time to deliver the results on <planet>."
-    on visit
-        dialog "You forgot to either disable or scan the target dummy ship in <system>! You'll need to head back there and do that before you can return here for payment."
-    on abort
-        # No penalty
-    on fail
-        dialog "The robotic target ship has been destroyed. You are hailed by an angry Syndicate official who fines you <payment> and warns you that further mistakes of this nature may remove you from eligibility for these jobs."
-        "destroyed Syndicate target ship" ++
-        "reputation: Syndicate" --
-        fine 300000
-    on complete
-        payment 150000
-        dialog "You transmit the scan results to a team of eager engineers and collect your payment of <payment>."
-
-
-mission "Syndicate target practice [2b]"
-    name "Syndicate target practice"
-    job
-    repeat
-    description "Disable the robotic target dummy ship in <system>, collect test data for Syndicate engineers by scanning its cargo, and land on <planet>. Warning: the target ship is programmed to engage in self-defense behaviors to ensure a realistic simulation. Payment is <payment>."
     source
         government Syndicate
     destination
         distance 1 3
         government Syndicate
+    npc save disable "scan cargo"
+        government "Test Dummy"
+        personality disables staying heroic target
+            confusion 120
+        system destination
+        dialog "You scan the disabled craft and take careful measurements of the battle damage. Time to deliver the results on <planet>."
+        ship "Quicksilver Test Dummy" "Syndicate Test Vessel"
+    on complete
+        payment 150000
+        dialog "You transmit the scan results to a team of eager engineers and collect your payment of <payment>."
+    on fail
+        dialog "The robotic target ship has been destroyed. You are hailed by an angry Syndicate official who fines you <payment> and warns you that further mistakes of this nature may remove you from eligibility for these jobs."
+        "destroyed Syndicate target ship" ++
+        "reputation: Syndicate" --
+        fine 300000
+    on abort
+        # No penalty
+    on visit
+        dialog "You forgot to either disable or scan the target dummy ship in <system>! You'll need to head back there and do that before you can return here for payment."
+
+mission "Syndicate target practice [2b]"
+    name "Syndicate target practice"
+    description "Disable the robotic target dummy ship in <system>, collect test data for Syndicate engineers by scanning its cargo, and land on <planet>. Warning: the target ship is programmed to engage in self-defense behaviors to ensure a realistic simulation. Payment is <payment>."
+    job
+    repeat
     to offer
         random < 20
         "combat rating" > 200
         "combat rating" < 1000
         "destroyed Syndicate target ship" < 3
         not "main plot completed"
-    npc save disable "scan cargo"
-        government "Test Dummy"
-        personality disables staying heroic target
-            confusion 120
-        system destination
-        ship "Splinter Test Dummy" "Syndicate Test Vessel"
-        dialog "You scan the disabled craft and take careful measurements of the battle damage. Time to deliver the results on <planet>."
-    on visit
-        dialog "You forgot to either disable or scan the target dummy ship in <system>! You'll need to head back there and do that before you can return here for payment."
-    on abort
-        # No penalty
-    on fail
-        dialog "The robotic target ship has been destroyed. You are hailed by an angry Syndicate official who fines you <payment> and warns you that further mistakes of this nature may remove you from eligibility for these jobs."
-        "destroyed Syndicate target ship" ++
-        "reputation: Syndicate" --
-        fine 520000
-    on complete
-        payment 260000
-        dialog "You transmit the scan results to a team of eager engineers and collect your payment of <payment>."
-
-
-mission "Syndicate target practice [3b]"
-    name "Syndicate target practice"
-    job
-    repeat
-    description "Disable the robotic target dummy ship in <system>, collect test data for Syndicate engineers by scanning its cargo, and land on <planet>. Warning: the target ship is programmed to engage in self-defense behaviors to ensure a realistic simulation. Payment is <payment>."
     source
         government Syndicate
     destination
         distance 1 3
         government Syndicate
-    to offer
-        random < 20
-        "combat rating" > 1000
-        "destroyed Syndicate target ship" < 3
-        not "main plot completed"
     npc save disable "scan cargo"
         government "Test Dummy"
         personality disables staying heroic target
             confusion 120
         system destination
-        ship "Vanguard Test Dummy" "Syndicate Test Vessel"
         dialog "You scan the disabled craft and take careful measurements of the battle damage. Time to deliver the results on <planet>."
-    on visit
-        dialog "You forgot to either disable or scan the target dummy ship in <system>! You'll need to head back there and do that before you can return here for payment."
+        ship "Splinter Test Dummy" "Syndicate Test Vessel"
+    on complete
+        payment 260000
+        dialog "You transmit the scan results to a team of eager engineers and collect your payment of <payment>."
+    on fail
+        dialog "The robotic target ship has been destroyed. You are hailed by an angry Syndicate official who fines you <payment> and warns you that further mistakes of this nature may remove you from eligibility for these jobs."
+        "destroyed Syndicate target ship" ++
+        "reputation: Syndicate" --
+        fine 520000
     on abort
         # No penalty
+    on visit
+        dialog "You forgot to either disable or scan the target dummy ship in <system>! You'll need to head back there and do that before you can return here for payment."
+
+mission "Syndicate target practice [3b]"
+    name "Syndicate target practice"
+    description "Disable the robotic target dummy ship in <system>, collect test data for Syndicate engineers by scanning its cargo, and land on <planet>. Warning: the target ship is programmed to engage in self-defense behaviors to ensure a realistic simulation. Payment is <payment>."
+    job
+    repeat
+    to offer
+        random < 20
+        "combat rating" > 1000
+        "destroyed Syndicate target ship" < 3
+        not "main plot completed"
+    source
+        government Syndicate
+    destination
+        distance 1 3
+        government Syndicate
+    npc save disable "scan cargo"
+        government "Test Dummy"
+        personality disables staying heroic target
+            confusion 120
+        system destination
+        dialog "You scan the disabled craft and take careful measurements of the battle damage. Time to deliver the results on <planet>."
+        ship "Vanguard Test Dummy" "Syndicate Test Vessel"
+    on complete
+        payment 400000
+        dialog "You transmit the scan results to a team of eager engineers and collect your payment of <payment>."
     on fail
         dialog "The robotic target ship has been destroyed. You are hailed by an angry Syndicate official who fines you <payment> and warns you that further mistakes of this nature may remove you from eligibility for these jobs."
         "destroyed Syndicate target ship" ++
         "reputation: Syndicate" --
         fine 800000
-    on complete
-        payment 400000
-        dialog "You transmit the scan results to a team of eager engineers and collect your payment of <payment>."
+    on abort
+        # No penalty
+    on visit
+        dialog "You forgot to either disable or scan the target dummy ship in <system>! You'll need to head back there and do that before you can return here for payment."

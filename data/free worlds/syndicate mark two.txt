@@ -17,7 +17,6 @@ government "Syndicate (Automata)"
     "friendly disabled hail" "disabled test dummy"
     "hostile disabled hail" "disabled test dummy"
 
-
 phrase "syndicate test vessel"
     word
         "Syndicate Test Vessel"

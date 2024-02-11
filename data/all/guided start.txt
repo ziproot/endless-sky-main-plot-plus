@@ -24,6 +24,8 @@ mission "Guided Start"
         not "Guided Start: active"
         has "enabled guided start"
         "guided start: unsure" <= 3
+    to complete
+        never
     source
         near Sol 100
     on offer
@@ -167,12 +169,9 @@ mission "Guided Start"
             label "last attempt"
             `Conditions set. This is your last attempt to choose neutrality. If you reject neutrality and don't find a way to choose a side the standard way, the war will never be finished. To choose neutrality, head to one of the near Earth planets where a system that cannot be navigated to by hyperdrive is included inside the circle that appears on your map around the system you are in. If you need clearance or aren't sure where these are or what this means, depart and land or reload your save and head over to this planet's spaceport to ping a suitable destination on your map and receive clearance.`
                 accept
-
     on enter
     on enter
         set "neutral spaceport deadline"
-    to complete
-        never
 
 mission "Guided Start: Changed Mind"
     invisible
