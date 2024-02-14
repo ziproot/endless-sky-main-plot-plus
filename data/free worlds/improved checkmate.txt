@@ -483,6 +483,8 @@ mission "FW Liberate Delta Sagittarii (patched)"
                 decline
 
             label surrender
+            action
+                event "syndicate tech available"
             `When you and Freya enter the spaceport bar, JJ is talking with someone on his communicator. "The code word is 'havoc,'" he says. "Yes, I'm certain. It's the only option we have left. Good luck."`
             `    "What was that about?" asks Freya.`
             `    JJ says, "I was calling in some reinforcements," he says. "A group of ex-militia folks and bounty hunters who want to further the cause of the Free Worlds, but want to do it freelance instead of taking orders from us or the Senate. They call themselves the 'Wolf Pack.' Have you heard of them?"`
@@ -505,6 +507,7 @@ mission "FW Liberate Delta Sagittarii (patched)"
             label plan
             `    "That'll need to be one hell of a strike for it to make any difference," says Freya.`
             `    "Don't worry," says JJ, "it will be. They've been itching to get into the fray for months now. Captain <last>, we'd like you to fly along with the fleet and help to mop up whatever the Wolf Pack leaves behind in the Delta Sagittarii system. Then we'll land on New Portland and figure out what our next steps are. Freya and I will ride on your ship."`
+            `    "Oh, and one more thing. As gratitude for letting the Syndicate deal with the defector internally, they have agreed to allow us to buy some of their new technology. It may come in handy."`
                 accept
     on complete
         clear "FW Liberate Delta Sagittarii: active"
@@ -843,7 +846,6 @@ mission "FWC Terrorists 1A"
     destination "Hephaestus"
     on offer
         log "The Syndicate have discovered the locations of the terrorists responsible for the bombings of Geminus and Martini. They are armed with nuclear missiles, but the Syndicate CEO has agreed to provide an autonomous fleet that will make the terrorists use their missiles without a loss of life."
-        event "syndicate tech available"
         conversation
             `As soon as you land, a Syndicate employee meets you and escorts you and Freya to the office of Alastair Korban, the CEO. "Glad to see you could make it," Korban says with a jovial look. "Heroes of the galaxy now that you've defeated the alien invasion. I take it you're ready to be a hero once more and rid the galaxy of these terrorists for good?"`
             choice
