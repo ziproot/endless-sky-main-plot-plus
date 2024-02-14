@@ -11,8 +11,8 @@ person "ziproot"
         word
             "bugs."
             "contradictions."
-            "flaws."
             "errors."
+            "flaws."
             "imperfections."
             "inaccuracies."
             "incompleteness."
@@ -25,6 +25,7 @@ person "ziproot"
 
 ship "Alive Science Drone"
     sprite "ship/science drone"
+    # Modified surveillance drone stats so it can scan and move on its own
     attributes
         category "Fighter"
         "bunks" 1
