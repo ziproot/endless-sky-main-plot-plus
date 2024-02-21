@@ -5,6 +5,7 @@ disable mission "FWC Nuke Supply 1"
 disable mission "FWC Checkmate 1C"
 disable mission "FWC End"
 disable mission "FW Epilogue: Danforth"
+disable mission "FW Liberate Delta Sagitarii"
 
 # Credit to Amazinite for most of the improvements. Credit to Azure3141 for the augmented nukes.
 
@@ -58,12 +59,13 @@ event "fwc solace has augmented nukes"
         "Nuclear Missile (Augmented)"
 
 outfit "Nuclear Missile"
+    cost 100000
     licenses
         Militia
 
 outfit "Nuclear Missile (Augmented)"
     category "Secondary Weapons"
-    cost 1000000
+    cost 100000
     thumbnail "outfit/nuke"
     licenses
         Militia
@@ -305,6 +307,7 @@ mission "FW Defend New Tibet (patched)"
 
             action
                 set "fw did not rescue defector"
+                clear "FW Liberate Delta Sagittarii (patched): offered"
             `    "Thank you, Councilmember," Khalid says with a slight bow and a smirk on his face. "We'll keep you posted on our progress, and attempt to persuade the Republic to cease fire while we uncover more."`
             `    The Syndicate ships launch with the terrorist. "I thought we were here to take him!" JJ yells.`
             `    "Well I changed my mind," you say.`
@@ -333,7 +336,7 @@ mission "FW Defend New Tibet (patched)"
             `    JJ receives a message from one of the militia crews. "Sir, you have incoming! A scout ship, with Republic markings. Apparently unarmed. Shall we intercept them?"`
             `    "Oathkeepers?" asks JJ. "Or ordinary Navy? Who are they?"`
             `    The voice on the other end pauses. "Neither. Navy Intelligence."`
-            `    JJ thinks about that for a second, then says, "Let them land. But follow them down, and if you see so much as a hint of them powering up weapons, blow them out of the sky. Understand?" The officer acknowledges his order and signs off.`
+            `    JJ thinks about that for a second, then says, "Let them land. But follow them down, and if you see so much as a hint of them powering up weapons, blow them out of the sky. Understand?" The officer acknowlFW Defend New Tibet: declinededges his order and signs off.`
             `    The scout ship comes in for a landing and skids to a halt in the dirt a few dozen meters away. A woman steps off it. She has dark skin, and is dressed entirely in black. Even the whites of her eyes are black: when she gets closer, you can see that it is actually a scleric tattoo, an intricate Celtic knotwork pattern inked into the whites of her eyes. She sees you staring at her, and winks at you with a friendly grin.`
             choice
                 `    "I'm Captain <last> of the Free Worlds. What is your business here?"`
@@ -389,9 +392,14 @@ mission "FW Liberate Delta Sagittarii (patched)"
     clearance
     to offer
         has "FW Rand 1B: done"
-        not "FW Defend New Tibet: done"
+        or
+            not "FW Defend New Tibet: offered"
+            has "fw did not rescue defector"
         not "FW Liberate Delta Sagittarii: offered"
-    source "New Tibet"
+    source
+        or
+            planet "New Tibet"
+            planet "Wayfarer"
     destination "New Portland"
     npc
         government "Free Worlds"
