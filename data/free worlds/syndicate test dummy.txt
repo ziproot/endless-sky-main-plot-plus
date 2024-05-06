@@ -30,7 +30,7 @@ mission "Syndicate target practice [0b]"
         ship "Berserker Test Dummy" "Syndicate Test Vessel"
     on complete
         "Syndicate target practice [0]: active" --
-        "Syndicate target practice [0]: completed" ++
+        "Syndicate target practice [0]: done" ++
         payment 80000
         dialog "You transmit the scan results to a team of eager engineers and collect your payment of <payment>."
     on accept
@@ -77,7 +77,7 @@ mission "Syndicate target practice [1b]"
         ship "Quicksilver Test Dummy" "Syndicate Test Vessel"
     on complete
         "Syndicate target practice [1]: active" --
-        "Syndicate target practice [1]: completed" ++
+        "Syndicate target practice [1]: done" ++
         payment 150000
         dialog "You transmit the scan results to a team of eager engineers and collect your payment of <payment>."
     on accept
@@ -124,7 +124,7 @@ mission "Syndicate target practice [2b]"
         ship "Splinter Test Dummy" "Syndicate Test Vessel"
     on complete
         "Syndicate target practice [2]: active" --
-        "Syndicate target practice [2]: completed" ++
+        "Syndicate target practice [2]: done" ++
         payment 260000
         dialog "You transmit the scan results to a team of eager engineers and collect your payment of <payment>."
     on accept
@@ -170,7 +170,7 @@ mission "Syndicate target practice [3b]"
         ship "Vanguard Test Dummy" "Syndicate Test Vessel"
     on complete
         "Syndicate target practice [3]: active" --
-        "Syndicate target practice [3]: completed" ++
+        "Syndicate target practice [3]: done" ++
         payment 400000
         dialog "You transmit the scan results to a team of eager engineers and collect your payment of <payment>."
     on accept
