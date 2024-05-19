@@ -243,9 +243,6 @@ mission "Neutrality 2b"
         event "fwc link restoration 2"
         event "fwc link restoration 3"
         event "pug flee"
-        # patch because this plugin depends on the wormhole linking to the pleaides
-        # the 1 is to prevent race conditions by ensuring it happens after 'pug flee'
-        event "pug flee (patched)" 1
         event "fwc pug defeated"
         event "syndicate tech available"
 
