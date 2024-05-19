@@ -397,9 +397,7 @@ mission "FW Liberate Delta Sagittarii (patched)"
             has "fw did not rescue defector"
         not "FW Liberate Delta Sagittarii: offered"
     source
-        or
-            planet "New Tibet"
-            planet "Wayfarer"
+            planet "New Tibet" "Wayfarer"
     destination "New Portland"
     npc
         government "Free Worlds"
