@@ -225,7 +225,7 @@ event "syndicate using augmented nukes"
     system Sheratan
         add fleet "Syndicate Nuclear" 10000
 
-# Copy from vanilla so that uninstalling the plugin removes this from fleets
+# Copy from vanilla so that uninstalling the plugin removes this from fleets. Taken from the "variants.txt" file in endless sky.
 ship "Quicksilver" "Quicksilver (MPP Mark II)"
     outfits
         "Particle Cannon" 2
@@ -332,7 +332,7 @@ ship "Splinter" "Splinter (Laser Mark II)"
         "Hyperdrive"
         "Ionic Afterburner"
 
-# Copy from vanilla so that uninstalling the plugin removes this from fleets
+# Copy from vanilla so that uninstalling the plugin removes this from fleets. Taken from the "variants.txt" file in endless sky.
 ship "Manta" "Manta (MPP Mark II)"
     outfits
         "Particle Cannon" 4
