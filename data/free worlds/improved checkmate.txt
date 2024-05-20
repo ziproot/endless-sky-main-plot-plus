@@ -245,7 +245,6 @@ mission "FW Defector Escorts"
     to offer
         has "FW Rand 1B: done"
         not "FW Defend New Tibet: offered"
-        not "installed plugin: Mega Freight Battles"
     to fail
         or
             and
