@@ -1,11 +1,11 @@
 disable mission "FW Defend New Tibet"
+disable mission "FW Liberate Delta Sagittarii"
 disable mission "FWC Scouting 1"
 disable mission "FWC Attack Kaus Borealis"
 disable mission "FWC Nuke Supply 1"
 disable mission "FWC Checkmate 1C"
 disable mission "FWC End"
 disable mission "FW Epilogue: Danforth"
-disable mission "FW Liberate Delta Sagittarii"
 
 # Mega Freight Battles patches the following missions to add its ships in, but this conflicts with my patches, so disable these patches and incorporate them into mine if the plugin is installed
 disable mission "MGFB: FW Defend New Tibet"
@@ -1211,6 +1211,7 @@ mission "FWC Terrorists 1C"
         log "Factions" "Free Worlds" `Tensions between the Free Worlds and the Republic mounted when additional systems decided to leave the Republic and join the Free Worlds culminating in a series of military confrontations, that ended when the Pug invaded human space. After humanity united to drive out the Pug invaders, the Republic officially granted the Free Worlds autonomy.`
         event "deep sky tech available"
         event "stack core for sale"
+        event "fwc kaus borealis ceded back"
         event "fwc solace has augmented nukes"
         "salary: Free Worlds" = 8900
         set "main plot completed"
