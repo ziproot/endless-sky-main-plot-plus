@@ -52,7 +52,7 @@ mission "FW Albatross 2A (patched)"
             label alt
             `    The meeting with the elders of Albatross happens in secret, by night. They are afraid that if their current pirate overlord, Ryk Bartlett, finds out that they have met with you, they will face retribution. You wait in your ship while JJ attempts to convince the elders that they should join the Free Worlds. After some hours, JJ returns.`
             `    "They're interested," JJ says to you, "but they want the current warlord dead."`
-            `    They explained that to the best of their knowledge, Bartlett is spending most of his time near the Zeta Aquilae system, plundering merchant convoys of heavy metals coming out of Rand and Oblivion. If you can destroy Bartlett and his flagship, the Dread, his followers will probably disperse.`
+            `    "They explained that to the best of their knowledge, Bartlett is spending most of his time near the Zeta Aquilae system, plundering merchant convoys of heavy metals coming out of Rand and Oblivion. If you can destroy Bartlett and his flagship, the Dread, his followers will probably disperse."`
                 accept
     on complete
         clear "FW Albatross 2A: active"
