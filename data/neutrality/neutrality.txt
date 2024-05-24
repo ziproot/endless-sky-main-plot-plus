@@ -65,6 +65,10 @@ mission "Neutrality 2"
     invisible
     landing
     clearance "For some reason, the spaceport controller lets you land."
+    substitutions
+        "<marginal>" "no"
+        "<marginal>" "little"
+            has "FW Katya 3: done"
     to offer
         has "event: pug notice neutrality"
         or
@@ -95,8 +99,13 @@ mission "Neutrality 2"
             choice
                 `"No."`
                     goto "neutral"
-                `"Actually, yes."`
+                `"Actually, I do."`
                     goto "changed mind"
+                    to display
+                        not "neutral: war independent"
+                `"Actually, I will."`
+                    to display
+                        has "neutral: war independent"
                 `"It's not my war."`
                     to display
                         not "neutral: war independent"
@@ -128,19 +137,14 @@ mission "Neutrality 2"
 
             action
                 set "neutral: nuke independent"
-            `"And yet you have made no effort to discover who did."`
-                to display
-                    not "FW Katya 3: done"
-            `"And yet you have made little effort to discover who did."`
-                to display
-                    has "FW Katya 3: done"
+            `"And yet you have made <marginal> effort to discover who did."`
+
             choice
                 `"Who are you?"`
 
             label "pug"
             `"We are Pug. Our goal is to bring peace and prevent your species from inflicting significant harm upon itself."`
 
-            label "staff"
             action
                 clear "neutral: nuke independent"
                 clear "neutral: war independent"
