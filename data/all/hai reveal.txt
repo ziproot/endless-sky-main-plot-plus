@@ -45,7 +45,7 @@ mission "Expanding Business [1] (patched)"
         personality escort
         ship "Star Queen (Hai)" "Chryso Vasilia"
     on offer
-        set "unlock Expanding Business [1]: offered"
+        set "unlocked Expanding Business [1]: offered"
         set "Expanding Business [1]: offered"
         conversation
             `Walking through the <origin> spaceport, you notice that almost half of the people you see are humans, unlike other Hai worlds where the Hai outnumber humans by a sizable degree. A human dressed in a business suit shouts your name from across the street and approaches you.`
