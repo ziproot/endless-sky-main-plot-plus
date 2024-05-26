@@ -16,6 +16,18 @@ mission "Hai Reveal: Teaser"
             `TO BE CONTINUED`
                 decline
 
+# If the teaser mission is offered and then Delta is installed, and for the future when Hai Reveal is fully implemented
+mission "Hai Secret Leaks Patch"
+    invisible
+    landing
+    to offer
+        has "Hai Reveal: Media Retraction: offered"
+        not "hr: secret leaks"
+    on offer
+        set "hr: secret leaks"
+        fail
+
+
 # Taken from an old version of Expanding Business [1] from the "hai missions.txt" file in the 0.9.16 tag of endless sky
 mission "Expanding Business [1] (patched)"
     name "An Interesting Proposition"
@@ -25,7 +37,7 @@ mission "Expanding Business [1] (patched)"
         has "First Contact: Hai: offered"
         has "main plot completed"
         not "hr: secret leaks"
-        not "unlock Expanding Business [1]: offered"
+        not "unlocked Expanding Business [1]: offered"
     source "Greenwater"
     destination "Allhome"
     npc accompany save
