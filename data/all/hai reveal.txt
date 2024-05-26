@@ -54,6 +54,14 @@ mission "Expanding Business [1] (patched)"
 
             label downplay
             `    "No need to downplay yourself, Captain! You've done God's work in saving humanity from that alien scourge.`
+                to display
+                    has "free worlds plot completed"
+            `    "No need to downplay yourself, Captain! Remaining neutral is not easy. It takes courage to avoid being pressured into taking a side.`
+                to display
+                    has "skipped main plot"
+            `    "No need to downplay yourself, Captain! You're a successful businessman, just like me.`
+                to display
+                    has "ScS plot completed"
 
             label proposition
 
