@@ -6,9 +6,8 @@ mission "Neutrality 1"
     source
         government "Republic" "Syndicate" "Free Worlds"
     to offer
-        has "event: war begins"
-        not "chosen sides"
         "year" >= 3017
+        not "chosen sides"
         or
             "The Book of Skadenga: declined" * 8 + "event: timothy radrickson forever" * 7 + "event: terraforming timer 2" * 6 + "FW Commitment: offered" * 5 + "Shady passenger transport 3 - double cross: done" * 4 + "Adelita 5: done" * 3 + "There Might Be Riots part 3B: done" * 2 + "Pookie, Part 5: declined" * 2 + "Pirate Blockade: done" * 2 + "Turn in Tarquin: declined" * 2 + "Pact Recon 3: done" * 2 + "Humanitarian 2: done" + "Smuggler's Den 2: done" + "Expedition to Hope 2: done" + "First Contact: Quarg: declined" + "Lost Boy 3: done" + "Hauler VI cargo prototype 3: done"  >= 12
             "combat rating" > 8103
