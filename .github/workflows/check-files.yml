@@ -28,7 +28,7 @@ jobs:
         builtin: clear
         path: README.md about.txt plugin.txt data/
         exclude_file: .codespell/exclude-phrases
-        ignore_words_file: ./codespell/exclude-words
+        ignore_words_file: .codespell/exclude-words
 
   style_check:
     name: Style Check
