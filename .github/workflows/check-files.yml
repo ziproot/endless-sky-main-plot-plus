@@ -33,7 +33,7 @@ jobs:
   style_check:
     name: Style Check
     needs: changed
-    if: ${{ needs.changed.outputs.editorconfig_files == 'true || needs.changed.outputs.workflows == 'true' }}
+    if: ${{ needs.changed.outputs.editorconfig_files == 'true' || needs.changed.outputs.workflows == 'true' }}
     runs-on: self-hosted
     steps:
     - uses: actions/checkout@v4
