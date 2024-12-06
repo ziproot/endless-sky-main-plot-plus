@@ -69,9 +69,22 @@ jobs:
     if: $${{ needs.changed.outputs.data == 'true' || needs.changed.outputs.workflows == 'true' }}
     runs-on: self-hosted
     steps:
-    - name: Install Mega Freight
+     - uses: actions/checkout@v4
+      with:
+        show-progress: false
+        path: 'plugins/github-action-plugin'
+    - name: Ignore MGFB compatibility to prevent false positives
       run: |
-        mkdir -p ~/actions-runner/_work/endless-sky-main-plot-plus/endless-sky-main-plot-plus/plugins/mega-freight
-        git clone -q https://github.com/1010todd/Mega-Freight.git ~/actions-runner/_work/endless-sky-main-plot-plus/endless-sky-main-plot-plus/plugins/mega-freight
+        cd ~/actions-runner/_work/endless-sky-main-plot-plus/endless-sky-main-plot-plus/plugins/github-action-plugin/
+        rm -r 'data/MGFB compatibility'
+        rm 'data/free worlds/improved checkmate.txt'
+        mv 'improved checkmate (clean).txt' 'data/free worlds/improved checkmate.txt'
       shell: bash
-    - uses: ziproot/endless-sky-test-parse@main
+    - name: Parse datafiles
+      run: "~/Programs/'Endless Sky'/End* -d -p -c ~/actions-runner/_work/endless-sky-main-plot-plus/endless-sky-main-plot-plus"
+      shell: bash
+    - name: Clean up
+      run: |
+        rm -rf ~/actions-runner/_work/endless-sky-main-plot-plus/endless-sky-main-plot-plus/plugins
+        rmdir ~/actions-runner/_work/endless-sky-main-plot-plus/endless-sky-main-plot-plus/saves
+      shell: bash
