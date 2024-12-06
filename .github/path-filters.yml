@@ -1,0 +1,20 @@
+workflows:
+  - '.github/**/*'
+codespell:
+  - '.codespell/**'
+editorconfig_files:
+  - 'data/**/*'
+  - 'plugin.txt'
+  - 'copyright'
+data:
+  - 'data/**/*'
+media:
+  - 'images/**/*'
+  - 'sounds/**/*'
+docs:
+  - 'README.md'
+  - 'about.txt'
+  - 'plugin.txt'
+  - 'LICENSE'
+copyright:
+  - 'copyright'

@@ -1,0 +1,41 @@
+name: Check Changes
+
+on:
+  workflow_call:
+    outputs:
+      workflows:
+        value: $${{ jobs.changed.outputs.workflows }}
+      data:
+        value: ${{ jobs.changed.outputs.data }}
+      codespell:
+        value: ${{ jobs.changed.outputs.codespell }}
+      editorconfig_files:
+        value: ${{ jobs.changed.outputs.editorconfig_files }}
+      copyright:
+        value: ${{ jobs.changed.outputs.copyright }}
+      media:
+        value: ${{ jobs.changed.outputs.media }}
+      docs:
+        value: ${{ jobs.changed.outputs.docs }}
+
+jobs:
+  changed:
+    runs-on: self-hosted
+    outputs:
+      workflows: ${{ steps.filter.outputs.workflows }}
+      data: ${{ steps.filter.outputs.data }}
+      codespell: ${{ steps.filter.outputs.codespell }}
+      editorconfig_files: ${{ steps.filter.outputs.editorconfig_files }}
+      copyright: ${{ steps.filter.outputs.copyright }}
+      media: ${{ steps.filter.outputs.media }}
+      docs: ${{ steps.filter.outputs.docs }}
+    steps:
+    - uses: actions/checkout@v4
+      with:
+        fetch-depth: 2
+        show-progress: false
+    - uses: dorny/paths-filter@v3
+      id: filter
+      with:
+        filters: .github/path-filters.yml
+        token: ${{ github.token }}

@@ -1,0 +1,71 @@
+name: Check Files
+
+on:
+  push:
+    branches:
+      - main
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.head_ref || github.run_id }}
+  cancel-in-progress: true
+
+jobs:
+
+  changed:
+    uses: ../.github/workflows/check-changes.yml
+
+  spell_check:
+    name: Spell Check
+    needs: changed
+    if: $${{ needs.changed.outputs.data == 'true' || needs.changed.outputs.docs == 'true' || needs.changed.outputs.codespell == 'true' || needs.changed.outputs.workflows == 'true' }}
+    runs-on: self-hosted
+    steps:
+    - uses: actions/checkout@v4
+      with:
+        show-progress: false
+    - uses: codespell-project/actions-codespell@master
+      with:
+        builtin: clear
+        path: README.md about.txt plugin.txt data/
+        exclude_file: .codespell/exclude-phrases
+        ignore_words_file: ./codespell/exclude-words
+
+  style_check
+    name: Style Check
+    needs: changed
+    if ${{ needs.changed.outputs.editorconfig_files == 'true || needs.changed.outputs.workflows == 'true' }}
+    runs-on: self-hosted
+    steps:
+    - uses: actions/checkout@v4
+      with:
+        show-progress: false
+    - uses: editorconfig-action/action-editorconfig-checker@main
+    - run: editorconfig-checker
+
+  copyright_check
+    name: Copyright Check
+    needs: changed
+    if ${{ needs.changed.outputs.copyright == 'true' || needs.changed.outputs.workflows == 'true' }}
+    runs-on: self-hosted
+    steps:
+    - uses: actions/checkout@v4
+      with:
+        show-progress: false
+    - name: Simple check
+      run: python3 ./github/copyright-check.py
+      shell: bash
+    - name: Thorough check
+      uses: tibetiroka/debian-control-linter-action@v1
+      with:
+        type: 'debian/copyright'
+        file: 'copyright'
+        preset: 'strict'
+        enable: 'trailingSpace,upstreamContactStyle,urlForceHttps,fieldNameCapitalization,maintainerNameFullStop,urlExists,copyrightSourceStyle'
+
+    data_check
+      name: Data Check
+      needs: changed
+      if ${{ needs.changed.outputs.data == 'true' || needs.changed.outputs.workflows == 'true' }}
+      runs-on: self-hosted
+      steps:
+      - uses: ziproot/endless-sky-test-parse@main
