@@ -1,4 +1,4 @@
-ship "Aerie" "Aerie (Research)"
+ship "Aerie" "Aerie (Research)"a
     remove bays
     bay "Drone" -43.5 2
         "launch effect" "human internal"
