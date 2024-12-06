@@ -69,4 +69,9 @@ jobs:
     if: $${{ needs.changed.outputs.data == 'true' || needs.changed.outputs.workflows == 'true' }}
     runs-on: self-hosted
     steps:
+    - name: Install Mega Freight
+      run: |
+        mkdir -p ~/actions-runner/_work/endless-sky-main-plot-plus/endless-sky-main-plot-plus/plugins
+        git clone -q https://github.com/1010todd/Mega-Freight.git ~/actions-runner/_work/endless-sky-main-plot-plus/endless-sky-main-plot-plus/plugins
+      shell: bash
     - uses: ziproot/endless-sky-test-parse@main
