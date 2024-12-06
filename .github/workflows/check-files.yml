@@ -30,7 +30,7 @@ jobs:
         exclude_file: .codespell/exclude-phrases
         ignore_words_file: ./codespell/exclude-words
 
-  style_check
+  style_check:
     name: Style Check
     needs: changed
     if ${{ needs.changed.outputs.editorconfig_files == 'true || needs.changed.outputs.workflows == 'true' }}
@@ -42,7 +42,7 @@ jobs:
     - uses: editorconfig-action/action-editorconfig-checker@main
     - run: editorconfig-checker
 
-  copyright_check
+  copyright_check:
     name: Copyright Check
     needs: changed
     if ${{ needs.changed.outputs.copyright == 'true' || needs.changed.outputs.workflows == 'true' }}
@@ -62,7 +62,7 @@ jobs:
         preset: 'strict'
         enable: 'trailingSpace,upstreamContactStyle,urlForceHttps,fieldNameCapitalization,maintainerNameFullStop,urlExists,copyrightSourceStyle'
 
-    data_check
+    data_check:
       name: Data Check
       needs: changed
       if ${{ needs.changed.outputs.data == 'true' || needs.changed.outputs.workflows == 'true' }}
