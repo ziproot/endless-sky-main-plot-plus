@@ -1,4 +1,5 @@
 # Main Plot Plus
+[![Check Files](https://github.com/ziproot/endless-sky-main-plot-plus/actions/workflows/check-files.yml/badge.svg)](https://github.com/ziproot/endless-sky-main-plot-plus/actions/workflows/check-files.yml)
 A plugin for the video game “endless sky” mostly centered around improving the main plot.
 
 ## Guided Start
