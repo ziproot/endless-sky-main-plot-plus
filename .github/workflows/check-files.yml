@@ -62,10 +62,10 @@ jobs:
         preset: 'strict'
         enable: 'trailingSpace,upstreamContactStyle,urlForceHttps,fieldNameCapitalization,maintainerNameFullStop,urlExists,copyrightSourceStyle'
 
-    data_check:
-      name: Data Check
-      needs: changed
-      if: ${{ needs.changed.outputs.data == 'true' || needs.changed.outputs.workflows == 'true' }}
-      runs-on: self-hosted
-      steps:
-      - uses: ziproot/endless-sky-test-parse@main
+  data_check:
+    name: Data Check
+    needs: changed
+    if: ${{ needs.changed.outputs.data == 'true' || needs.changed.outputs.workflows == 'true' }}
+    runs-on: self-hosted
+    steps:
+    - uses: ziproot/endless-sky-test-parse@main
