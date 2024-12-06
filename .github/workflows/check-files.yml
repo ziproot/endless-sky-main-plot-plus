@@ -53,7 +53,7 @@ jobs:
       with:
         show-progress: false
     - name: Simple check
-      run: python3 ./github/copyright-check.py
+      run: python3 .github/copyright-check.py
       shell: bash
     - name: Thorough check
       uses: tibetiroka/debian-control-linter-action@v1
