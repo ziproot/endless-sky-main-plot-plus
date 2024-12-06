@@ -12,7 +12,7 @@ concurrency:
 jobs:
 
   changed:
-    uses: /.github/workflows/check-changes.yml
+    uses: ./.github/workflows/check-changes.yml
 
   spell_check:
     name: Spell Check
