@@ -34,7 +34,7 @@ jobs:
   style_check:
     name: Style Check
     needs: changed
-    if: ${{ needs.changed.outputs.editorconfig_files == 'true' || needs.changed.outputs.workflows == 'true' }}
+    if: $${{ needs.changed.outputs.editorconfig_files == 'true' || needs.changed.outputs.workflows == 'true' }}
     runs-on: self-hosted
     steps:
     - uses: actions/checkout@v4
@@ -46,7 +46,7 @@ jobs:
   copyright_check:
     name: Copyright Check
     needs: changed
-    if: ${{ needs.changed.outputs.copyright == 'true' || needs.changed.outputs.workflows == 'true' }}
+    if: $${{ needs.changed.outputs.copyright == 'true' || needs.changed.outputs.workflows == 'true' }}
     runs-on: self-hosted
     steps:
     - uses: actions/checkout@v4
@@ -66,7 +66,7 @@ jobs:
   data_check:
     name: Data Check
     needs: changed
-    if: ${{ needs.changed.outputs.data == 'true' || needs.changed.outputs.workflows == 'true' }}
+    if: $${{ needs.changed.outputs.data == 'true' || needs.changed.outputs.workflows == 'true' }}
     runs-on: self-hosted
     steps:
     - uses: ziproot/endless-sky-test-parse@main
