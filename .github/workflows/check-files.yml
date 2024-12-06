@@ -39,7 +39,7 @@ jobs:
     - uses: actions/checkout@v4
       with:
         show-progress: false
-    - uses: editorconfig-action/action-editorconfig-checker@main
+    - uses: editorconfig-checker/action-editorconfig-checker@main
     - run: editorconfig-checker
 
   copyright_check:
