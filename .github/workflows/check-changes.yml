@@ -4,7 +4,7 @@ on:
   workflow_call:
     outputs:
       workflows:
-        value: $${{ jobs.changed.outputs.workflows }}
+        value: ${{ jobs.changed.outputs.workflows }}
       data:
         value: ${{ jobs.changed.outputs.data }}
       codespell:
