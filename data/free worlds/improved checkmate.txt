@@ -39,8 +39,6 @@ event "fwc battle of alcyone"
     system "Alcyone"
         fleet "Small Syndicate" 5000
 
-
-
 event "fwc navy occupies alcyone"
     system "Alcyone"
         government "Republic"
