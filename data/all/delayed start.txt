@@ -13,12 +13,15 @@ mission "Unlock Fast Forward"
     on offer
         set "global: unlock fast forward"
         conversation
-            `   It has been two years since you purchased your first ship, or possibly even longer if you chose an earlier start. As a result, you have unlocked fast forward. This is a start which skips ahead two years in game, meaning you will not have to worry about managing a loan or mapping out human space. Enjoy!`
+            `Fast Forward Unlocked!`
+            scene "fast-forward"
+            `It has been two years since you purchased your first ship, or possibly even longer if you chose an earlier start. As a result, you have unlocked fast forward. This is a start which skips ahead two years in game, meaning you will not have to worry about managing a loan or mapping out human space. Enjoy!`
                 decline
 
 start "Fast Forward"
     name "Fast Forward"
     description `You grew up on New Boston, an uninteresting world in the Dirt Belt. You dreamed of owning a starship ever since your first visit to the spaceport at the age of 15. After many long years of working at a textile mill, you saved enough credits to apply for a pilot's license from the Republic and buy your very own Star Barge. Now, you have traveled the sky, learned about Remembrance Day, seen the horror of the Geminus and Martini bombings, and are ready to make your first upgrade...`
+    thumbnail "fast-forward"
     date 16 11 3016
     system "Tarazed"
     planet "Wayfarer"
@@ -40,6 +43,7 @@ start "Fast Forward"
     on display
         name "Fast Forward"
         description "This start is locked. It will be unlocked once you have played for two in game years."
+        thumbnail "fast-forward"
 
 conversation "fast forward"
     `As normal, when you land, you fill out the required paperwork, one of which asks for your name.`
