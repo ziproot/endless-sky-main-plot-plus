@@ -2,9 +2,9 @@
 outfitter "General Store"
     # Avgi
     Speck Round
-    "Ophrys" Nuclear Torpedo
-    "Ophrys" Nuclear Torpedo
-    "Nettle" KKV
+    `"Ophrys" Nuclear Torpedo`
+    `"Ophrys" Nuclear Torpedo`
+    `"Nettle" KKV`
     # Bunrodea
     "Swarm Missile"
     # Coalition
