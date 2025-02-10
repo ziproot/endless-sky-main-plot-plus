@@ -601,3 +601,21 @@ mission "Neutrality 4b: Deep"
             `"You're welcome. Come back any time. Remember, here at the Deep, we offer you Peace, Prosperity, and Progress."`
             `You are led back out into the main outfitter.`
                 decline
+
+mission "Neutrality Epilogue"
+    invisible
+    landing
+    to offer
+        has "Neutrality 4: failed"
+    to complete
+        never
+    on enter
+        conversation
+            scene "ship/subsidurial"
+            `It looks like someone has taken interest in you.`
+    npc save
+        government "Indigenous Lifeform (Subsidurial)"
+        personality pacifist unconstrained coward mute
+        ship "Subsidurial" "Subsidurial"
+            "never disabled"
+
