@@ -12,7 +12,7 @@ disable mission "MGFB: FW Defend New Tibet"
 disable mission "MGFB: FW Liberate Delta Sagittarii"
 disable mission "MGFB: FWC Attack Kaus Borealis"
 
-# Credit to Amazinite for most of the improvements. Credit to Azure3141 for the augmented nukes.
+# Credit to Amazinite for most of the improvements, including the nuclear launch bay. Credit to Azure3141 for the augmented nukes themselves.
 
 # All Content Plugin
 outfitter "All Outfits"
