@@ -81,7 +81,7 @@ jobs:
         mv 'improved checkmate (clean).txt' 'data/free worlds/improved checkmate.txt'
       shell: bash
     - name: Parse datafiles
-      run: "~/Programs/'Endless Sky'/End* -d -p -c ~/actions-runner/_work/endless-sky-main-plot-plus/endless-sky-main-plot-plus"
+      run: "~/Programs/'Endless Sky'/Debug* -d -p -c ~/actions-runner/_work/endless-sky-main-plot-plus/endless-sky-main-plot-plus"
       shell: bash
     - name: Clean up
       run: |
