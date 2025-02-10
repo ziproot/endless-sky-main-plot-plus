@@ -1127,7 +1127,7 @@ mission "FWC Epilogue: Wolf Pack"
             choice
                 `    "Now that sounds like an exciting weapon to use."`
                     goto exciting
-                `    "Why do you think they gave these to us? Why did they even have this?"`
+                `    "Why do you think they gave these to us? Why did they even have these?"`
             `    "I don't know why they have them or why they gave them to us. I didn't ask any questions, I just got right to work making the weapon.`
             label exciting
             `    "The nuclear launch bay is able to load two missiles at a time, and it weighs 21 tons."`
