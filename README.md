@@ -38,6 +38,9 @@ The FW Albatross 2A mission requires you to fight Ryk Bartlett, essentially like
 ### Deep Science Drones
 0.10.5 added the sunder and mining drones, so I decided that it was time to allow you to get your own science drones! Some time after you do project hawking, Valhalla and Asgard will begin selling a drone variant of the aerie along with science drones, and a fleets consisting of an aerie with two science drones will begin to travel around the Deep. A few months later, miners will begin using the drone variant with mining drones to mine. The aerie drone variant is also occasionally used by the pirate fleet in road to hai reveal.
 
+### General Store
+The General Store is a one-stop shop for all of your ammo purchasing needs! At the general store, you can purchase any kind of ammo you need, allowing you to refill your launchers from anywhere in the galaxy. In order to buy most types of alien ammo, you need the corresponding license; unless have the license to buy the launcher, you cannot buy the ammo. Some ammunition, such as that for the Korath, does not require a license, and the following types of ammunition are not sold at the general store: Nuclear Missile, Nuclear Missile (Augmented), Ka’het MHD Generator, Abyssal Composer, Jump Drive.
+
 ### Author Ships
 Author ships no longer fine you, because they aren’t canon, with the exception of Captain Pester because she’s Captain Pester.
 
