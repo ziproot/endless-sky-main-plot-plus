@@ -31,6 +31,16 @@ outfitter "General Store"
     # Wanderers
     "Thunderhead Missile"
 
+# Make certain ammunition require the same license as that of the launcher.
+
+outfit "Thunderhead Missile"
+    licenses
+        "Wanderer Outfits"
+
+outfit "Finisher Torpedo"
+    licenses
+        Heliarch
+
 # All planets with outfitters sell ammo
 planet "Aava-Aasa-Khora"
     add outfitter "General Store"
