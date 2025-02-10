@@ -615,7 +615,7 @@ mission "Neutrality Epilogue"
             `It looks like someone has taken interest in you.`
     npc save
         government "Indigenous Lifeform (Subsidurial)"
-        personality pacifist unconstrained coward mute
+        personality timid unconstrained coward appeasing mining harvests mute
         ship "Subsidurial" "Subsidurial"
             "never disabled"
 
