@@ -1,4 +1,4 @@
-# The Abyssal Composer, Jump Drive, Nuclear Missile, Nuclear Missile (Augmented) and Ka’het MHD Generator are excluded from this, as these can be used on their own without needing a respective launcher. All other ammo is included, even ammo being unlocked later, as the ammo by itself cannot be used without a respective launcher.
+# The Abyssal Composer, Jump Drive, Nuclear Missile, and Ka’het MHD Generator are excluded from this, as these can be used on their own without needing a respective launcher. All other ammo is included, even ammo being unlocked later, as the ammo by itself cannot be used without a respective launcher.
 outfitter "General Store"
     # Avgi
     "Speck Round"
@@ -20,6 +20,7 @@ outfitter "General Store"
     "Typhoon Torpedo"
     "Heavy Rocket"
     "Gatling Gun Ammo"
+    "Nuclear Missile (Augmented)"
     # Incipias
     "Star Tail Cell"
     # Ka’het

@@ -16,10 +16,12 @@ disable mission "MGFB: FWC Attack Kaus Borealis"
 
 # All Content Plugin
 outfitter "All Outfits"
+    "Nuclear Launch Bay"
     "Nuclear Missile (Augmented)"
 
 # Omnis
 outfitter "human plugin"
+    "Nuclear Launch Bay"
     "Nuclear Missile (Augmented)"
 
 government "Terrorist"
@@ -72,15 +74,26 @@ outfit "Nuclear Missile"
         Militia
 
 outfit "Nuclear Missile (Augmented)"
-    category "Secondary Weapons"
-    cost 100000
+    category "Ammunition"
+    cost 80000
     thumbnail "outfit/nuke"
     licenses
         Militia
-    "mass" 10
-    "outfit space" -10
-    "weapon capacity" -10
+    "mass" 8
+    "nuke capacity" -1
+    description "This is a more powerful nuclear missile, acting as ammunition for the Nuclear Launch Bay. The mechanisms that allow nuclear missiles to be fired without a launcher have been removed."
+
+outfit "Nuclear Launch Bay"
+    category "Secondary Weapons"
+    cost 1000000
+    thumbnail "nuke-launcher"
+    licenses
+        Militia
+    "mass" 5
+    "outfit space" -21
+    "weapon capacity" -21
     "gun ports" -1
+    "nuke capacity" 2
     weapon
         sprite "projectile/missile"
             "no repeat"
@@ -109,10 +122,7 @@ outfit "Nuclear Missile (Augmented)"
         "shield damage" -23700
         "hull damage" -15800
         "hit force" -5700
-        "missile strength" 200
     description "It has been centuries since the last nuclear war was fought, and until very recently, most people in the galaxy assumed that that era of chaos and destruction was forever behind us..."
-    description "    [Nuclear missiles are a one-shot weapon: each missile occupies a gun slot, and after it is fired, the slot it was in is left empty.]"
-
 
 outfit "Active Nuclear Missile"
     weapon
