@@ -24,6 +24,11 @@ outfitter "General Store"
     "Star Tail Cell"
     # Ka’het
     "EMP Torpedo"
+    # Korath
+    "Piercer Missile"
+    "Cluster Mine"
+    "Firelight Missile"
+    "Firestorm Torpedo"
     # Remnant
     "Teciimach Canister"
     # Successors
