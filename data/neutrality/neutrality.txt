@@ -609,13 +609,12 @@ mission "Neutrality Epilogue"
         has "Neutrality 4: failed"
     to complete
         never
-    on enter
-        conversation
-            scene "ship/subsidurial"
-            `It looks like someone has taken interest in you.`
     npc save
+        on encounter
+                conversation
+                    scene "ship/subsidurial"
+                    `It looks like someone has taken interest in you.`
         government "Indigenous Lifeform (Subsidurial)"
-        personality timid unconstrained coward appeasing mining harvests mute
+        personality timid unconstrained coward appeasing mining harvests mute entering
         ship "Subsidurial" "Subsidurial"
             "never disabled"
-

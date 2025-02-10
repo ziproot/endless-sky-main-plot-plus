@@ -72,13 +72,15 @@ outfit "Nuclear Missile"
         Militia
 
 outfit "Nuclear Missile (Augmented)"
+    "display name" "Nuclear Missile (Mark II)"
     category "Ammunition"
     cost 80000
     thumbnail "outfit/nuke"
     licenses
         Militia
     "mass" 8
-    "nuke capacity" -1
+    "outfit space" -8
+    "weapon capacity" -8
     description "This is a more powerful nuclear missile, acting as ammunition for the Nuclear Launch Bay. The mechanisms that allow nuclear missiles to be fired without a launcher have been removed."
 
 outfit "Nuclear Launch Bay"
@@ -88,10 +90,9 @@ outfit "Nuclear Launch Bay"
     licenses
         Militia
     "mass" 5
-    "outfit space" -21
-    "weapon capacity" -21
+    "outfit space" -5
+    "weapon capacity" -5
     "gun ports" -1
-    "nuke capacity" 2
     weapon
         sprite "projectile/missile"
             "no repeat"
