@@ -66,6 +66,7 @@ event "fwc navy done with alcyone"
 
 event "fwc solace has augmented nukes"
     outfitter "Nuke"
+        "Nuclear Launch Bay"
         "Nuclear Missile (Augmented)"
 
 outfit "Nuclear Missile"
@@ -1227,12 +1228,14 @@ mission "FWC Epilogue: Wolf Pack"
             choice
                 `    "Yes I am. What is it?"`
                 `    "I wouldn't call myself a hero, but if you insist. What did the Syndicate bring?"`
-            `    Odie brings you to a warehouse full of crates. One of the crates is open, revealing a weapon inside. "Plans for improved nuclear missiles. They do slightly more effective damage, but more importantly, they have a much wider blast radius, allowing them to damage more ships at once. Additionally, as a safety feature, they only detonate if they will actually hit their target. Don't worry about an asteroid vaporizing your whole fleet."`
+            scene "nuke-launcher"
+            `    Odie brings you to a warehouse full of crates. Two of the crates are open, revealing weapons inside. Odie gestures to the first crate. "Remember how we didn't have a feed system for our nuclear missiles, so we could only fire one per gun port before needing to reload? Well someone at the Syndicate was kind enough to drop off the blueprints for a working feed system."`
+            `    Odie then gestures to the second crate. "These are plans for improved nuclear missiles, designed to go along with the feed system. They do slightly more effective damage, but more importantly, they have a much wider blast radius, allowing them to damage more ships at once. Additionally, as a safety feature, they only detonate if they will actually hit their target. Don't worry about an asteroid vaporizing your whole fleet."`
             choice
                 `    "Now that sounds like an exciting weapon to use."`
                     goto exciting
-                `    "Why do you think they gave it to us? Why did they even have this?"`
-            `    "I don't know why they have it or why they gave it to us. I didn't ask any questions, I just got right to work making it.`
+                `    "Why do you think they gave these to us? Why did they even have this?"`
+            `    "I don't know why they have them or why they gave them to us. I didn't ask any questions, I just got right to work making the weapon.`
             label exciting
             `    Odie pats you on the back and smiles. "And we're giving you access to it. For a price, of course." Odie walks off, leaving you to contemplate if you'll make use of such a weapon.`
                 decline
