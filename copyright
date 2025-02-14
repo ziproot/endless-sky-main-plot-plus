@@ -32,16 +32,8 @@ Comment:
  Credit to Amazinite for most of the improvements, which can be found at
  https://github.com/Amazinite/endless-sky/tree/fw-improved-checkmate. Credit to
  Azure3141 for the augmented nukes, available at
- https://github.com/Azure3141/endless-sky/tree/nuke-buff.
- Credit to 1010todd for the Mega Freight Battles ships included for
- compatibility, used and licensed under the GPL v3 or later with permission.
-
-Files: data/free?worlds/MGFB?ships*
-Copyright: 1010todd
-License: GPL-3+
-Comment:
-  All ship definitions are from https://github.com/1010todd/Mega-Freight
-  and used for compatibility purposes only.
+ https://github.com/Azure3141/endless-sky/tree/nuke-buff. Both are licensed under
+ the GPL v3 or later.
 
 Files: data/free?worlds/ryk?bartlett?bounty*
 Copyright: ziproot and Michael Zahniser

@@ -66,7 +66,7 @@ My plugin takes the Crisis in Management plugin into account as much as possible
 Additionally, the Hai Reveal closure mission is designed not to offer if Hai Reveal can continue due to the “repair Hai Reveal” plugin or the Delta fork being installed. The patched Turner Incorporated mission will not offer in this case as the secret leaks condition will never be cleared. There should be no other issues with using this plugin in Endless Sky Delta or with the “repair Hai Reveal” plugin, but if there are other issues, feel free to leave a bug report. As for the hai.side.mission.unlocker and Lost in Midnight plugins, clearing the secret leaks tag will not break the plugins, and the old Turner Incorporated mission will not offer if another plugin mission offers, and will block the plugin mission from offering if it offers.
 
 ### Mega Freight Battles
-Mega Freight Battles by 1010todd contains three missions that conflict with this plugin, so my conflicting missions override the Mega Freight Battles missions and spawn the ships from Mega Freight Battles if the plugin is detected, with permission from 1010todd. This requires the plugin being called “Mega Freight Battles” and requires the plugin to be enabled for those ships to spawn. It additionally requires Endless Sky version 0.10.3 or later, and the version of Mega Freight Battles linked in the Endless Sky Community Discord in the #plugin-releases channel on 2/29/2024 at 14:45 UTC. If these requirements are not met, there is still a conflict and one of the two plugins should be disabled. If the conflict is because of an update to Mega Freight Battles, please report this as a bug and I will try to address the changes as soon as possible. This uses a fail-safe approach, so all Mega Freight Battles NPCs will despawn if the plugin is disabled or the mission is offered without the plugin being enabled, and will not respawn. This does not prevent there from being a conflict, rather, this is an attempt to workaround the conflict. In most normal circumstances, there should not be an issue, however, that doesn’t mean that there isn’t one, so keep this in mind.
+Mega Freight Battles conflicts with Main Plot Plus. This was something I was initially working around, however, Saugia is working on nerfing the Free Worlds battles and especially making the fleets in those battles smaller. Therefore, I am opting to nerf my verisons of the battles as Saugia does, and opting not to support Mega Freight Battles. This is because Mega Freight Battles makes the fleets even bigger, which is contrary to Saugia’s goal of reducing fleet size, and therefore is not something I will be supporting any longer. If you have Mega Freight Battles, you CAN use this plugin, however, the following missions may be one or the other due to conflicts and race conditions:
 
 Conflicting missions:
 ```
@@ -74,36 +74,6 @@ FW Defend New Tibet (patched)
 FW Liberate Delta Sagitarii (patched)
 FWC Attack Kaus Borealis (patched)
 ```
-
-### Mega Freight
-Additionally, to prevent breakage if Mega Freight is not installed, the Mega Freight ships and variants used in the conflicting missions are defined to be the same as plugin commit 486f09479c941c51957ef40ed0f0c181500a640a (the latest commit as of 11/25/24 at 16:13 UTC). This means that if you have a later version of Mega Freight, your ships may be downgraded. If this is the case, temporarily uninstall Main Plot Plus and report this as a bug, so I can update the ships.
-
-Conflicting ships and variants:
-```
-Eleonorae
-PF-80 Intrepid
-PF-80 Intrepid (Plasma Engine)
-PF-80 Intrepid (Swordfish)
-CK50T Stahbar (Proton)
-PAS-2 Bulwark
-PAS-3 Barbette
-PCS-4 Castle
-PCS-5 Citadel
-SWV4 Ravelin
-EP-3 Rat
-AGT-31 Xencar
-CS-24 Garrison
-CS-24 Garrison (Parapet)
-CSE-6 Steward
-Falcon (Parapet)
-FUe02y Gebrant Tender
-TS-CH0 Kratzbal
-Culverin Class (Mark II)
-Spetum Class (Mark II)
-Spetum Class (Mark II, ShieldRegen)
-A-14F Rondel
-```
-
 
 ## Copyright
 This was originally donated to the public domain, however, I am not sure if I am allowed to do that given that I have copied text from a work licensed under the GPL v3 or later. I have relicensed it under the GPL to make sure that I am not violating any rules. I would therefore recommend following the GPL v3 anyways.
