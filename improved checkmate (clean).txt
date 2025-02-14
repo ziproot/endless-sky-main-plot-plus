@@ -16,11 +16,13 @@ disable mission "FW Epilogue: Danforth"
 outfitter "All Outfits"
     "Nuclear Launch Bay"
     "Nuclear Missile (Augmented)"
+    "Nuclear Installation Chip"
 
 # Omnis
 outfitter "human plugin"
     "Nuclear Launch Bay"
     "Nuclear Missile (Augmented)"
+    "Nuclear Installation Chip"
 
 government "Terrorist"
     swizzle 1
@@ -64,12 +66,26 @@ event "fwc navy done with alcyone"
 
 event "fwc solace has augmented nukes"
     outfitter "Nuke"
+        "Nuclear Launch Bay"
         "Nuclear Missile (Augmented)"
+        "Nuclear Installation Chip"
 
 outfit "Nuclear Missile"
     cost 100000
     licenses
         Militia
+
+outfit "Nuclear Installation Chip"
+    category "Ammunition"
+    cost 50000
+    thumbnail "chip"
+    licenses
+        Militia
+    "mass" 1
+    "outfit space" -1
+    "nuke capacity" 1
+    ammo "Nuclear Missile (Augmented)"
+    description "A nuclear installation chip attaches onto your ship's computer, allowing it to fire an additional nuke."
 
 outfit "Nuclear Missile (Augmented)"
     "display name" "Nuclear Missile (Mark II)"
@@ -93,6 +109,7 @@ outfit "Nuclear Launch Bay"
     "outfit space" -5
     "weapon capacity" -5
     "gun ports" -1
+    "nuke capacity" 2
     weapon
         sprite "projectile/missile"
             "no repeat"
