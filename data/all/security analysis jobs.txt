@@ -662,3 +662,43 @@ mission "Security Analysis (Successor-D)"
             `Your deterrence value is &[armament deterrence].`
             `Your attraction value is &[cargo attraction].`
             `Your reputation value is &[reputation: People's Houses].`
+
+mission "Security Analysis (Avgi)"
+    name "Run security analysis"
+    description "Run a script to analyze your current security in this Avgi system. This checks your deterrence, attraction, and local reputation."
+    deadline 1
+    job
+    repeat
+    to offer
+        has "enabled security analysis jobs"
+    to complete
+        never
+    source
+        attributes avgi
+    on accept
+        conversation
+            `Your deterrence value is &[armament deterrence].`
+            `Your attraction value is &[cargo attraction].`
+            `Your reputation value is &[reputation: Avgi].`
+                to display
+                    not "flagship planet attribute: tangled shroud"
+                    not "flagship planet attribute: dissonance sympathies"
+                    not "flagship planet attribute: twilight guard"
+            `Your reputation value is &[reputation: Avgi (Consonance)].`
+                to display
+                    has "flagship planet: Weledos"
+            `Your reputation value is &[reputation: Avgi (Dissonance)].`
+                to display
+                    has "flagship planet attribute: dissonance sympathies"
+                    not "flagship planet: Outpost Enka"
+                    not "flagship planet: Outpost Leto"
+                    not "flagship planet: Outpost Tekis"
+            `Your reputation value is &[reputation: Avgi (Dissonance Angry)].`
+                to display
+                    or
+                        has "flagship planet: Outpost Enka"
+                        has "flagship planet: Outpost Leto"
+                        has "flagship planet: Outpost Tekis"
+            `Your reputation value is &[reputation: Avgi (Twilight Guard)].`
+                to display
+                    has "flagship planet attribute: twilight guard"
