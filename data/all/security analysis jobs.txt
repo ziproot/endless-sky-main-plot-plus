@@ -346,9 +346,9 @@ mission "Security Analysis (Heliarch)"
                         has "flagship planet attribute: heliarch"
                         has "event: first heliarch unlock"
             `Your reputation value is &[reputation: Coalition].`
-                  to display
-                      not "flagship planet attribute: heliarch"
-                      not "event: first heliarch unlock"
+                to display
+                    not "flagship planet attribute: heliarch"
+                    not "event: first heliarch unlock"
 
 mission "Security Analysis (Lunarium)"
     name "Run security analysis"
