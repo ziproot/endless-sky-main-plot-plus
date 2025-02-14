@@ -95,29 +95,6 @@ outfit "Korath Firelight License"
     thumbnail "firelight-license"
     description "This license allows you to purchase firestorm torpedoes and firelight missiles from all outfitters."
 
-# Offer the player a choice
-mission "Autorestock Prompt"
-    invisible
-    landing
-    on offer
-        conversation
-            `This plugin contains the ability for you to purchase ammo at any outfitter, in order to reduce the tedium of restocking launchers. Would you like this feature to be fully enabled, mostly enabled, or fully disabled? If this feature is mostly enabled, certain powerful ammo like nuclear weapons cannot be auto-restocked this way, but most other types of ammo can.`
-            choice
-                `(Completely enable this feature)`
-                `(Mostly enable this feature)`
-                    goto partial
-                `(Completely disable this feature)`
-                    goto end
-            action
-                event "Common Autorestock"
-            branch end
-            label partial
-            action
-                event "Full Autorestock"
-            label end
-            `Your setting has been applied.`
-                decline
-
 # All planets with outfitters sell ammo
 event "Common Autorestock"
     planet "Aava-Aasa-Khora"

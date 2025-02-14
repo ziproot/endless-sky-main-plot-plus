@@ -6,13 +6,24 @@ Source: https://github.com/ziproot/endless-sky-main-plot-plus
 Files: *
 Copyright: ziproot
 License: GPL-3+
+Comment: This includes data/all/preferences.txt.
 
 Files: data/all/hai?reveal*
 Copyright: ziproot, Michael Zahniser, and MasterOfGrey
 License: GPL-3+
 Comment:
  Some parts are based on or are copies of parts of various files in
- Endless Sky. Credit given in comments.
+ Endless Sky, under the same license. Credit given in comments.
+
+Files: data/all/side?plot?plus*
+Copyright: Michael Zahniser
+License: GPL-3+
+Comment: Derived from works by Michael Zahniser and Zitchas, under the same license.
+
+Files: data/all/discount?paint*
+Copyright: Blueberry1vom1t
+License: GPL-3+
+Comment: Taken from Blueberry1vom1t’s discount paint plugin at https://drive.google.com/file/d/1Yj9ky17S6lejnYf32x_vyGPnt7MWQb7A, under the same license.
 
 Files: data/free?worlds/improved?checkmate*
 Copyright: ziproot and Michael Zahniser
@@ -38,28 +49,29 @@ License: GPL-3+
 Comment:
  The patch mission is a slightly altered version of
  the "FW Albatross 2A" mission in the
- "free worlds part 2 middle.txt" file in Endless Sky.
+ "free worlds part 2 middle.txt" file in Endless Sky,
+ under the same license.
 
 Files: data/free?worlds/syndicate?mark?two*
 Copyright: ziproot and Michael Zahniser
 License: GPL-3+
 Comment:
  Some parts are based on or are copies of parts of various files in
- Endless Sky. Credit given in comments.
+ Endless Sky, under the same license. Credit given in comments.
 
 Files: data/free?worlds/syndicate?test?dummy*
 Copyright: ziproot, Michael Zahniser, and Nate Graham
 License: GPL-3+
 Comment:
  Jobs are almost entirely copied from the "Syndicate target practice"
- jobs available at "syndicate jobs.txt."
+ jobs available at "syndicate jobs.txt" under the same license.
 
 Files: data/neutrality/neutrality*
 Copyright: ziproot and Michael Zahniser
 License: GPL-3+
 Comment:
  Some parts are based on or are copies of parts of various files in
- Endless Sky. Credit given in comments. Applies to both
+ Endless Sky, under the same license. Credit given in comments. Applies to both
  data/neutrality/neutrality.txt and data/neutrality/neutrality patches.txt.
 
 Files: data/neutrality/*hai?reveal*
@@ -67,7 +79,7 @@ Copyright: ziproot, Michael Zahniser, MasterOfGrey, and an anonymous author
 License: GPL-3+
 Comment:
  Some parts are based on or are copies of parts of various files in
- Endless Sky. Credit given in comments.
+ Endless Sky, under the same license. Credit given in comments.
 
 Files: images/outfitter*
 Copyright: ziproot, Becca Tomasso, Michael Zahniser, Endless Sky contributors
@@ -98,7 +110,7 @@ Comment: Derived from works by Michael Zahniser (under the same license).
 Files: images/chip*
 Copyright: Viktor Hahn
 License: CC-BY-4.0
-Comment: Converted to PNG
+Comment: Converted to PNG.
 
 Files: images/firelight-license*
 Copyright: ziproot
