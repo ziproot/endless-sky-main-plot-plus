@@ -341,10 +341,10 @@ mission "Security Analysis (Heliarch)"
             `Your deterrence value is &[armament deterrence].`
             `Your attraction value is &[cargo attraction].`
             `Your reputation value is &[reputation: Heliarch].`
-                  to display
-                      or
-                          has "flagship planet attribute: heliarch"
-                          has "event: first heliarch unlock"
+                to display
+                    or
+                        has "flagship planet attribute: heliarch"
+                        has "event: first heliarch unlock"
             `Your reputation value is &[reputation: Coalition].`
                   to display
                       not "flagship planet attribute: heliarch"
@@ -372,11 +372,11 @@ mission "Security Analysis (Lunarium)"
             `Your deterrence value is &[armament deterrence].`
             `Your attraction value is &[cargo attraction].`
             `Your reputation value is &[reputation: Lunarium].`
-                  to display
-                      has "event: first lunarium unlock"
+                to display
+                    has "event: first lunarium unlock"
             `Your reputation value is &[reputation: Coalition].`
-                  to display
-                      not "event: first lunarium unlock"
+                to display
+                    not "event: first lunarium unlock"
 
 mission "Security Analysis (Quarg)"
     name "Run security analysis"
@@ -395,20 +395,20 @@ mission "Security Analysis (Quarg)"
             `Your deterrence value is &[armament deterrence].`
             `Your attraction value is &[cargo attraction].`
             `Your reputation value is &[reputation: Quarg].`
-                  to display
-                      has "flagship planet attribute: human quarg"
+                to display
+                    has "flagship planet attribute: human quarg"
             `Your reputation value is &[reputation: Quarg (Hai)].`
-                  to display
-                      has "flagship planet attribute: hai quarg"
+                to display
+                    has "flagship planet attribute: hai quarg"
             `Your reputation value is &[reputation: Quarg (Kor Efret)].`
-                  to display
-                      has "flagship planet attribute: korath quarg"
+                to display
+                    has "flagship planet attribute: korath quarg"
             `Your reputation value is &[reputation: Quarg (Gegno)].`
-                  to display
-                      has "flagship planet attribute: gegno quarg"
+                to display
+                    has "flagship planet attribute: gegno quarg"
             `Your reputation value is &[reputation: Quarg (Incipias)].`
-                  to display
-                      has "flagship planet attribute: incipias quarg"
+                to display
+                    has "flagship planet attribute: incipias quarg"
 
 mission "Security Analysis (Gegno)"
     name "Run security analysis"
@@ -427,15 +427,15 @@ mission "Security Analysis (Gegno)"
             `Your deterrence value is &[armament deterrence].`
             `Your attraction value is &[cargo attraction].`
             `Your reputation value is &[reputation: Gegno].`
-                  to display
-                      not "flagship planet attribute: vi"
-                      not "flagship planet attribute: scin"
+                to display
+                    not "flagship planet attribute: vi"
+                    not "flagship planet attribute: scin"
             `Your reputation value is &[reputation: Gegno Vi].`
-                  to display
-                      has "flagship planet attribute: vi"
+                to display
+                    has "flagship planet attribute: vi"
             `Your reputation value is &[reputation: Gegno Scin].`
-                  to display
-                      has "flagship planet attribute: scin"
+                to display
+                    has "flagship planet attribute: scin"
 
 mission "Security Analysis (Korath)"
     name "Run security analysis"
@@ -448,17 +448,17 @@ mission "Security Analysis (Korath)"
     to complete
         never
     source
-        government "Kor Efret" "Korath" "Korath (Station)" "Independent (Korath-Allied) Restricted" "Independent (Korath-Allied) Port"
+        government "Kor Efret" "Korath" # "Korath (Station)" "Independent (Korath-Allied) Restricted" "Independent (Korath-Allied) Port"
     on accept
         conversation
             `Your deterrence value is &[armament deterrence].`
             `Your attraction value is &[cargo attraction].`
             `Your reputation value is &[reputation: Korath].`
-                  to display
-                      not "flagship planet attribute: efret"
+                to display
+                    not "flagship planet attribute: efret"
             `Your reputation value is &[reputation: Kor Efret].`
-                  to display
-                      has "flagship planet attribute: efret"
+                to display
+                    has "flagship planet attribute: efret"
 
 mission "Security Analysis (Incipias)"
     name "Run security analysis"
@@ -477,11 +477,11 @@ mission "Security Analysis (Incipias)"
             `Your deterrence value is &[armament deterrence].`
             `Your attraction value is &[cargo attraction].`
             `Your reputation value is &[reputation: Hicemus].`
-                  to display
-                      has "flagship planet: Pon'tes"
+                to display
+                    has "flagship planet: Pon'tes"
             `Your reputation value is &[reputation: Conlatio].`
-                  to display
-                      has "flagship planet: Redias"
+                to display
+                    has "flagship planet: Redias"
 
 mission "Security Analysis (Successor)"
     name "Run security analysis"
