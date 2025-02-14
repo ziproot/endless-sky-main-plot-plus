@@ -97,6 +97,7 @@ outfit "Nuclear Missile (Augmented)"
     "mass" 8
     "outfit space" -8
     "weapon capacity" -8
+    "nuke capacity" -1
     description "This is a more powerful nuclear missile, acting as ammunition for the Nuclear Launch Bay. The mechanisms that allow nuclear missiles to be fired without a launcher have been removed."
 
 outfit "Nuclear Launch Bay"
