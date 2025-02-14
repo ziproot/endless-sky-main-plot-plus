@@ -100,6 +100,11 @@ Copyright: Viktor Hahn
 License: CC-BY-4.0
 Comment: Converted to PNG
 
+Files: images/firelight-license*
+Copyright: ziproot
+License: CC-BY-SA-4.0
+Comment: Derived from works by Michael Zahniser (under the same license), Becca Tommaso (under the same licence), and Saugia (under the same license).
+
 License: GPL-3+
  This program is free software: you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by

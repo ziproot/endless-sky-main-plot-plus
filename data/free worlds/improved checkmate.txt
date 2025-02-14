@@ -119,7 +119,7 @@ outfit "Nuclear Launch Bay"
             "frame rate" .25
         "hardpoint sprite" "hardpoint/nuke"
         sound "nuke"
-        ammo "Nuclear Missile (Augmented)""
+        ammo "Nuclear Missile (Augmented)"
         stream
         icon "icon/nuke"
         "submunition" "Active Nuclear Missile"

@@ -55,6 +55,46 @@ outfit "Finisher Torpedo"
     licenses
         Heliarch
 
+outfit "Firelight Missile"
+    licenses
+        "Korath Firelight"
+
+outfit "Firestorm Torpedo"
+    licenses
+        "Korath Firelight"
+
+mission "Korath Firelight License - Cheat"
+    invisible
+    landing
+    to offer
+        or
+            has "omnisStart"
+            has "All-Content Start: offered"
+            and
+                has "Omnis: existing save warning: offered"
+                not "Omnis: existing save warning: declined"
+    on offer
+        set "license: Korath Firelight"
+        fail
+
+
+mission "Korath Firelight License - Wanderers"
+    invisible
+    landing
+    to offer
+        has "wanderers sestor done"
+        has "event: Full Autorestock"
+    on offer
+        set "license: Korath Firelight"
+        conversation
+            `Now that you have finished the current extent of Wanderers, you have been granted the Korath Firelight license, allowing you to purchase Firestorm torpedoes and Firelight missiles from all outfitters.`
+                decline
+
+outfit "Korath Firelight License"
+    category "Licenses"
+    thumbnail "firelight-license"
+    description "This license allows you to purchase firestorm torpedoes and firelight missiles from all outfitters."
+
 # Offer the player a choice
 mission "Autorestock Prompt"
     invisible
