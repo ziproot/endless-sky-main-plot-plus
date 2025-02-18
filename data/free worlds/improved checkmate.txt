@@ -548,7 +548,21 @@ mission "FWC Scouting 1 (patched)"
         personality heroic staying
         system "Kaus Borealis"
         government "Republic"
-        fleet "Large Republic" 5
+        fleet 2
+            names "republic capital"
+            fighters
+                names "republic fighter"
+            variant
+                "Carrier (Mark II)"
+                "Lance" 8
+                "Combat Drone" 6
+        fleet 3
+            names "republic capital"
+            fighters
+                names "republic fighter"
+            variant
+                "Cruiser (Mark II)"
+                "Combat Drone" 4
     on offer
         set "FWC Scouting 1: offered"
         log `Drove the Navy out of Delta Sagittarii with the help of the "Wolf Pack," a militia group in favor of more extreme measures who launched a preemptive strike before the main Free Worlds force arrived. The Syndicate has taken the terrorist into their own hands and will be using him to prove the Free Worlds' innocence, while the Free Worlds fight the Republic to a standstill in order to buy time.`
