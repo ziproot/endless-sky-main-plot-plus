@@ -201,6 +201,12 @@ effect "augmented nuke residue slow"
     "random velocity" 7
     "velocity scale" 0.1
 
+# This effectively makes it so that you cannot cloak if you have taken damage, but it still works for nuke dodging
+outfit "Cloaking Device"
+    "cloak hull threshold" 1
+    "high shield permeability" 0.01
+    "low shield permeability" 0.01
+
 mission "FW Question the Syndicate"
     name "The Defector"
     description "Travel to New Tibet to question the Syndicate about the defector supposedly carrying vital evidence and information that they are behind the bombings."
