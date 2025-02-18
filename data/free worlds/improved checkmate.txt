@@ -138,6 +138,8 @@ outfit "Nuclear Launch Bay"
         "optical tracking" 1
         "shield damage" -23700
         "hull damage" -15800
+        "ion damage" -9480
+        "scrambling damage" -6320
         "hit force" -5700
     description "It has been centuries since the last nuclear war was fought, and until very recently, most people in the galaxy assumed that that era of chaos and destruction was forever behind us..."
 
@@ -161,6 +163,8 @@ outfit "Active Nuclear Missile"
         "blast radius" 300
         "shield damage" 24000
         "hull damage" 16000
+        "ion damage" 9600
+        "scrambling damage" 6400
         "hit force" 6000
         "missile strength" 200
 
