@@ -15,7 +15,7 @@ planet "Viminal"
     add outfitter "Remnant EMP"
 
 outfitter "Remnant Core"
-    add "EMP Torpedo"
+    "EMP Torpedo"
 
 # The Abyssal Composer, Jump Drive, Nuclear Missile, and Ka’het MHD Generator are excluded from this, as these can be used on their own without needing a respective launcher. All other ammo is included, even ammo being unlocked later, as the ammo by itself cannot be used without a respective launcher.
 
