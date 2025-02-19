@@ -317,6 +317,9 @@ ship "Heliarch Stalker"
 ship "Heron"
     attributes
         cost 128187500
+ship "Amalgam"
+    attributes
+        cost 600000
 ship "Hogshead"
     attributes
         cost 1575000
