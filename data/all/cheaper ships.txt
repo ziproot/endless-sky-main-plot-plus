@@ -320,6 +320,7 @@ ship "Heron"
 ship "Amalgam"
     attributes
         cost 600000
+        drag 3.2
 ship "Hogshead"
     attributes
         cost 1575000
