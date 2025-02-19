@@ -71,13 +71,13 @@ event "fwc solace has augmented nukes"
         "Nuclear Installation Chip"
 
 outfit "Nuclear Missile"
-    cost 100000
+    cost 50000
     licenses
         Militia
 
 outfit "Nuclear Installation Chip"
     category "Ammunition"
-    cost 50000
+    cost 25000
     thumbnail "chip"
     licenses
         Militia
@@ -90,7 +90,7 @@ outfit "Nuclear Installation Chip"
 outfit "Nuclear Missile (Augmented)"
     "display name" "Nuclear Missile (Mark II)"
     category "Ammunition"
-    cost 80000
+    cost 40000
     thumbnail "outfit/nuke"
     licenses
         Militia
@@ -102,7 +102,7 @@ outfit "Nuclear Missile (Augmented)"
 
 outfit "Nuclear Launch Bay"
     category "Secondary Weapons"
-    cost 1000000
+    cost 500000
     thumbnail "nuke-launcher"
     licenses
         Militia
