@@ -106,15 +106,15 @@ outfit "Aeon Cell"
     cost "2192000"
 outfit "Afterburner"
     cost "35000"
-outfit "Afterburner (Asteroid Class)
+outfit "Afterburner (Asteroid Class)"
     cost "68000"
-outfit "Afterburner (Comet Class)
+outfit "Afterburner (Comet Class)"
     cost "149500"
-outfit "Afterburner (Lunar Class)
+outfit "Afterburner (Lunar Class)"
     cost "323500"
-outfit "Afterburner (Planetary Class)
+outfit "Afterburner (Planetary Class)"
     cost "729500"
-outfit "Afterburner (Stellar Class)
+outfit "Afterburner (Stellar Class)"
     cost "1640000"
 outfit "Aluminum"
     cost "900"
@@ -164,7 +164,7 @@ outfit "Bombardment Turret"
     cost "922500"
 outfit "Boulder Reactor"
     cost "2875000"
-outfit "Bow Drive (Meteor Class)
+outfit "Bow Drive (Meteor Class)"
     cost "93500"
 outfit "Breeder Reactor"
     cost "1250000"
@@ -276,21 +276,21 @@ outfit "Dragonflame Cannon"
     cost "75000000"
 outfit "Drak Anti-Missile Field"
     cost "500000"
-outfit "Drak Anti-Missile Field (Augmented)
+outfit "Drak Anti-Missile Field (Augmented)"
     cost "5000000"
 outfit "Drak Antimatter Cannon"
     cost "5000000"
-outfit "Drak Antimatter Cannon (Augmented)
+outfit "Drak Antimatter Cannon (Augmented)"
     cost "50000000"
 outfit "Drak Distancer"
     cost "500000"
 outfit "Drak Draining Field"
     cost "5000000"
-outfit "Drak Draining Field (Augmented)
+outfit "Drak Draining Field (Augmented)"
     cost "50000000"
 outfit "Drak Turret"
     cost "500000"
-outfit "Drak Turret (Augmented)
+outfit "Drak Turret (Augmented)"
     cost "5000000"
 outfit "Dual Sunbeam Turret"
     cost "1860000"
@@ -320,7 +320,7 @@ outfit "Enforcer Confrontation Gear"
     cost "184500"
 outfit "Enforcer Riot Staff"
     cost "48500"
-outfit "Engine (Meteor Class)
+outfit "Engine (Meteor Class)"
     cost "93500"
 outfit "Epoch Cell"
     cost "1061500"
@@ -394,11 +394,11 @@ outfit "Gatling Gun Ammo"
     cost "2"
 outfit "Gatling Turret"
     cost "60000"
-outfit "Generator (Candle Class)
+outfit "Generator (Candle Class)"
     cost "246500"
-outfit "Generator (Furnace Class)
+outfit "Generator (Furnace Class)"
     cost "462500"
-outfit "Generator (Inferno Class)
+outfit "Generator (Inferno Class)"
     cost "938500"
 outfit "Geode Reactor"
     cost "875000"
@@ -516,7 +516,7 @@ outfit "Javelin Turret"
     cost "55000"
 outfit "Jump Drive"
     cost "500000"
-outfit "Jump Drive (Broken)
+outfit "Jump Drive (Broken)"
     cost "12500"
 outfit "KP-6 Photovoltaic Array"
     cost "30000"
@@ -758,7 +758,7 @@ outfit "Nerve Gas"
 #    cost "500000"
 #outfit "Nuclear Missile"
 #    cost "50000"
-#outfit "Nuclear Missile (Augmented)
+#outfit "Nuclear Missile (Augmented)"
 #    cost "40000"
 outfit `OC-"Mavra" Betavoltaic Cell`
     cost "270000"
@@ -916,15 +916,15 @@ outfit "Research Laboratory"
     cost "250000"
 outfit "Reverse Thruster"
     cost "70000"
-outfit "Reverser (Asteroid Class)
+outfit "Reverser (Asteroid Class)"
     cost "56500"
-outfit "Reverser (Comet Class)
+outfit "Reverser (Comet Class)"
     cost "124500"
-outfit "Reverser (Lunar Class)
+outfit "Reverser (Lunar Class)"
     cost "269500"
-outfit "Reverser (Planetary Class)
+outfit "Reverser (Planetary Class)"
     cost "608000"
-outfit "Reverser (Stellar Class)
+outfit "Reverser (Stellar Class)"
     cost "1366500"
 outfit "S-270 Regenerator"
     cost "110000"
@@ -1040,15 +1040,15 @@ outfit "Star Tail Cell"
     cost "750"
 outfit "Star Tail Storage"
     cost "3000"
-outfit "Steering (Asteroid Class)
+outfit "Steering (Asteroid Class)"
     cost "47500"
-outfit "Steering (Comet Class)
+outfit "Steering (Comet Class)"
     cost "110500"
-outfit "Steering (Lunar Class)
+outfit "Steering (Lunar Class)"
     cost "236500"
-outfit "Steering (Planetary Class)
+outfit "Steering (Planetary Class)"
     cost "538500"
-outfit "Steering (Stellar Class)
+outfit "Steering (Stellar Class)"
     cost "1217500"
 outfit "Subarashii Rift Steering"
     cost "788500"
@@ -1074,13 +1074,13 @@ outfit "Swarm Missile"
     cost "125"
 outfit "Swarm Pod"
     cost "181500"
-outfit "Systems Core (Large)
+outfit "Systems Core (Large)"
     cost "4537500"
-outfit "Systems Core (Medium)
+outfit "Systems Core (Medium)"
     cost "1815000"
-outfit "Systems Core (Small)
+outfit "Systems Core (Small)"
     cost "726000"
-outfit "Systems Core (Tiny)
+outfit "Systems Core (Tiny)"
     cost "310500"
 outfit "Tactical Scanner"
     cost "72000"
@@ -1108,15 +1108,15 @@ outfit "Thrasher Cannon"
     cost "109000"
 outfit "Thrasher Turret"
     cost "490000"
-outfit "Thruster (Asteroid Class)
+outfit "Thruster (Asteroid Class)"
     cost "56500"
-outfit "Thruster (Comet Class)
+outfit "Thruster (Comet Class)"
     cost "124500"
-outfit "Thruster (Lunar Class)
+outfit "Thruster (Lunar Class)"
     cost "269500"
-outfit "Thruster (Planetary Class)
+outfit "Thruster (Planetary Class)"
     cost "608000"
-outfit "Thruster (Stellar Class)
+outfit "Thruster (Stellar Class)"
     cost "1366500"
 outfit "Thunderhead Launcher"
     cost "225000"
