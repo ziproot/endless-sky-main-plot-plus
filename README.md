@@ -7,7 +7,7 @@ A plugin for the video game “endless sky” mostly centered around improving t
 This is an optional feature that can be enabled or disabled upon creating a new save or loading an existing one with this plugin installed for the first time. If you haven't chosen sides in the human civil war by July 3017, Guided Start will allow you to join the Free Worlds, and also the Syndicate if you have the Crisis in Management plugin installed. It will additionally allow you to remain neutral (see below). Any conditions blocking the campaigns from starting will be cleared. If you enter the spaceport, a map indicator will lead you to the planet to get started and remind you to enter the spaceport if necessary.
 
 ## Fast Forward
-This is a start two years later than the present. To unlock it, you must have made it to the point where Fast Forward begins. It automatically reveals all of human space and puts you in Wayfarer with no loan and enough credits to buy a Blackbird. Since it is two years later, you can immediately start doing the free worlds prologue missions, but you are also unable to do pact recon.
+This is a start two years later than the present. To unlock it, you must have made it to the point where Fast Forward begins. It automatically reveals all of human space and puts you in Wayfarer with no loan and enough credits to buy an Osprey. Since it is two years later, you can immediately start doing the free worlds prologue missions, but you are also unable to do pact recon.
 
 ## Neutrality
 You can choose to remain neutral in the human civil war. To do this, just play the game normally without choosing sides, then when asked what side you are on, say that you are neutral. When pressed, continue to remain neutral. Shortly after, land on any world one jump away from a Pug planet and tell the Pug that you are neutral, and you will be able to skip the main plot. However, there's a catch: a different pilot will do the free worlds campaign instead, and they will choose checkmate. If you want the reconciliation ending, join the Syndicate with the Crisis in Management plugin or join the Free Worlds and choose reconciliation. The missions are designed so that you will be relocated to Ruin and time will advance by several years, but this is waiting on several pull requests to be merged, so at the moment you will have to use your imagination. Your reward for completing Neutrality is a subsidurial pet.
@@ -44,13 +44,19 @@ The FW Albatross 2A mission requires you to fight Ryk Bartlett, essentially like
 ### General Store
 The General Store is an optional one-stop shop for all of your ammo purchasing needs! At the general store, you can purchase any kind of ammo you need, allowing you to refill your launchers from anywhere in the galaxy. In order to buy most types of alien ammo, you need the corresponding license; unless have the license to buy the launcher, you cannot buy the ammo. The firestorm torpedoes and firelight missiles are special, as they require you to have a “Korath Firelight” license that you get either through having a cheat plugin active or through finishing wanderers up to its current end point. The following types of ammunition are not sold at the general store: Nuclear Missile, Ka’het MHD Generator, Abyssal Composer, Jump Drive. The following types of ammunition can be removed from the general store if you so desire: Nuclear Missile (Augmented), "Orchid" Nuclear Missile, "Ophrys" Nuclear Torpedo, Finisher Torpedo, Firelight Missile, Firestorm Torpedo. Note that deactivating or removing the more powerful ammo from the general store means you will be unable to get the Korath Firelight license, since it won’t have any use.
 
+### More Ammo Locations
+Even if you have the general store off, you can still more easily acquire ammunition, as the Remnant will now always sell EMP Torpedoes, while the Kor Efreti will now sell missiles used by the automata ships.
+
 ### Author Ships
 Author ships no longer fine you, because they aren’t canon, with the exception of Captain Pester because she’s Captain Pester.
 
 ### Hai Reveal Closure and Side Missions
 Hai Reveal is *not* unlocked in Main Plot Plus, however, when you finish all there is to Hai Reveal, you now get a pop-up explaining this and are able to once again do any side missions blocked by Hai Reveal. Turner Incorporated is also unlocked until Hai Reveal starts and after the pop-up.
 
-## Security Analyses and Blueberry1vom1t’s Discount Paint Plugin
+### Total Sale
+All items in the game, with the exception of the mug™ due to lore reasons, are 50% off. Crew salaries, bribes, maintenance costs, tributes, salaries, commodity prices, mission and job payments and basically anything else is untouched, which should have the effect of nerfing capturing and looting by buffing other means of getting income.
+
+### Security Analyses and Blueberry1vom1t’s Discount Paint Plugin
 I have included Blueberry1vom1t’s “Discount Paint Plugin,” which you can toggle on or off, allowing you to change the swizzle of your ship via the job board. I have also included jobs in nearly every populated planet that allow to see your armament deterrance, cargo attraction, and local reputation, which changes based on what I think makes the most sense, but is usually the planetary government or is mentioned in the job description. The main exceptions are the Avgi systems, which are dependent on hidden planet attributes that determine which faction the planet is likely to be aligned with, however, landing on a non tangled shroud planet will get you the generic Avgi reputation, while landing on a twilight guard or dissonance planet will get you twilight guard or angry dissonance reputation. Landing on Weledos will give you the Avgi consonance reputation, and landing on any other Consonance planet in the tangled shroud will get you the Avgi dissonance reputation.
 
 ## Bugs
