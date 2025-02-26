@@ -27,6 +27,7 @@ mission "Navy License [0]"
     destination "Prime"
     to offer
         has "main plot completed"
+        has "guided start: navy"
         not "event: geminus rebuilt soon"
     to fail
         has "event: geminus rebuilt"
