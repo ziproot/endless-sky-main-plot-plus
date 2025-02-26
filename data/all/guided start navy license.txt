@@ -318,14 +318,15 @@ mission "Navy License [5]"
     on complete
         set "license: Navy"
         set "license: Navy Cruiser"
+        set "license: Navy Auxiliary"
         set "license: Navy Carrier"
         conversation
             `    Returning to the Geminus spaceport, you notice Officer Smith standing down on the ground waiting for you to land. As you exit your ship, he extends his hand out to you.`
             `    "Thanks for the help, Captain. Some of the soldiers were telling me over comms that you really saved their rears."`
             `    "Anything to help out," you respond as you shake hands.`
             `    "In terms of the rebuilding, I think that we have everything set here. We should have the shipyard back up and running within the next few months."`
-            `    "As you break away from the handshake, Officer Smith reaches into his pocket and hands you something. You look at them and realize that they are license for Navy ships."`
-            `    "If anyone asks, you found them."`
+            `    "As you break away from the handshake, Officer Smith reaches into his pocket and hands you something. You look at them and realize that they are licenses for Navy ships."`
+            `    "The Navy campaign will come out, eventually."`
             `    Officer Smith smiles and gives you a quick pat on the back before walking off back to the tents outside of the spaceport.`
 
 mission "Geminus Rebuilt Notification"
