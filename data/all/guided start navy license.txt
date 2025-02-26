@@ -222,7 +222,7 @@ mission "Navy License [4]"
             names "republic capital"
             variant
                 "Carrier" 2
-                "Lance" 8
+                "Lance" 16
                 "Combat Drone" 12
 
     npc kill
@@ -258,7 +258,7 @@ mission "Navy License [4]"
             fighters "republic fighter"
             variant
                 "Carrier" 2
-                "Lance" 8
+                "Lance" 16
                 "Combat Drone" 10
                 "Cruiser" 1
                 "Frigate" 2
@@ -273,7 +273,7 @@ mission "Navy License [4]"
             fighters "republic fighter"
             variant
                 "Carrier" 2
-                "Lance" 8
+                "Lance" 16
                 "Combat Drone" 10
                 "Frigate" 3
                 "Gunboat" 4
@@ -317,8 +317,8 @@ mission "Navy License [5]"
         dialog "You have failed your mission in assisting to rebuild the Geminus shipyard, as you took too long and the shipyard was eventually rebuilt without you."
     on complete
         set "license: Navy"
-        set "license: Cruiser"
-        set "license: Carrier"
+        set "license: Navy Cruiser"
+        set "license: Navy Carrier"
         conversation
             `    Returning to the Geminus spaceport, you notice Officer Smith standing down on the ground waiting for you to land. As you exit your ship, he extends his hand out to you.`
             `    "Thanks for the help, Captain. Some of the soldiers were telling me over comms that you really saved their rears."`
