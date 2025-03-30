@@ -575,7 +575,7 @@ mission "Road to Hai Reveal: Danforth"
             action
                 set "road to hai reveal: alone"
             `   You ignore them and head to a different table. After you are almost done with your meal, you see Danforth check something on a tablet before approaching you.`
-            `   "<first> <last>, would you please follow me?"
+            `   "<first> <last>, would you please follow me?"`
                 goto alone
             label "join"
             `   You begin to approach them. They ignore you, and they both look upset.`
@@ -622,11 +622,11 @@ mission "Road to Hai Reveal: Danforth"
                     goto "busy"
             `   "Thank you." You head back to the restaurant, but Fiona and Rain are nowhere to be seen.`
                 to display
-                    "not: road to hai reveal: alone"
+                    not "road to hai reveal: alone"
                 accept
             `   "Thank you." You head back to the restaurant to finish your meal.`
                 to display
-                    "has: road to hai reveal: alone"
+                    has "road to hai reveal: alone"
                 accept
             label "busy"
             branch "alone2"
