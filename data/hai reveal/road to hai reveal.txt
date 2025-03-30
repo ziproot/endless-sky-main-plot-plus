@@ -473,9 +473,6 @@ mission "Road to Hai Reveal: Danforth"
         "<reason>" "talked to you about their search for alien activity"
             has "WR: Captains: navy"
     to offer
-        or
-            not "road to hai reveal defer date"
-            "road to hai reveal defer date" - 5 > "days since start"
         has "event: road to hai reveal: almaaz pirates"
         "combat rating" > 1000
     source Prime
@@ -567,7 +564,6 @@ mission "Road to Hai Reveal: Danforth"
                 "Bactrian (Hai Weapons)"
                 "Dagger" 3
     on offer
-        clear "road to hai reveal defer date"
         conversation
             `   When you enter the spaceport restaurant, you notice captains Rain and Fiona, who <reason>.`
                 to display
@@ -576,8 +572,11 @@ mission "Road to Hai Reveal: Danforth"
                 `(Join them)`
                     goto "join"
                 `(Ignore them)`
-            `   You ignore them and head to a different table.`
-                defer
+            action
+                set "road to hai reveal: alone"
+            `   You ignore them and head to a different table. After you are almost done with your meal, you see Danforth check something on a tablet before approaching you.`
+            `   "<first> <last>, would you please follow me?"
+                goto alone
             label "join"
             `   You begin to approach them. They ignore you, and they both look upset.`
             `   "Fiona, I know you're upset. But you heard what the officer said. We must keep the existence of the Hai secre--"`
@@ -606,6 +605,7 @@ mission "Road to Hai Reveal: Danforth"
             `   "It's probably fine," Fiona says quickly.`
             `   "If the existence of the Hai gets leaked, it could mean war. This is not something to be taken lightly."`
             `   Danforth straightens back up and says "<first> <last>, would you please follow me?"`
+            label "alone"
             choice
                 `   "Sure."`
                     goto "follow"
@@ -621,10 +621,22 @@ mission "Road to Hai Reveal: Danforth"
                 `   "Sorry, but I'm also busy. I can't help you."`
                     goto "busy"
             `   "Thank you." You head back to the restaurant, but Fiona and Rain are nowhere to be seen.`
+                to display
+                    "not: road to hai reveal: alone"
+                accept
+            `   "Thank you." You head back to the restaurant to finish your meal.`
+                to display
+                    "has: road to hai reveal: alone"
                 accept
             label "busy"
+            branch "alone2"
+                has "road to hai reveal: alone"
             `   "That's too bad." You head back to the restaurant, but Fiona and Rain are nowhere to be seen. You have the feeling that you missed out on something important.`
                 decline
+            label "alone2"
+            `   "That's too bad." You head back to the restaurant to finish your meal. You have the feeling that you missed out on something important.`
+    on accept
+        clear "road to hai reveal: alone"
     on complete
         event "road to hai reveal: almaaz normal"
         payment 2400000
