@@ -906,7 +906,7 @@ mission "FWC Terrorists 1A"
             `    Korban looks down, "Understandable," then looks back up at you with a smile, "but such is the cost of business, we say.`
             label absolutely
             `    "Now, we know that the terrorists still have nuclear weapons. We sent a ship to scout out their strength that barely made it out alive. We have a plan to take care of that, though.`
-            `    "Before the war, we began to work heavily toward developing automation for use on ships.
+            `    "Before the war, we began to work heavily toward developing automation for use on ships.`
             `    "You may have done some of our 'target practice' jobs. Those were tests of our automation technology. This allowed us to drastically reduce the crew needed to pilot ships of any size, and we'll be sending a fleet of such ships as cannon fodder to have these terrorists waste their nukes."`
             `    Freya looks shocked, "You're sending people on a suicide mission to take the nukes out of play? Can't we use diplomacy to stop adding bodies to the pile that this war has created?"`
             `    Korban says, "These are terrorists, dear. They aren't to be negotiated with. But fear not, because, as you would have known if you had done those 'target practice' jobs, these ships won't be manned. They'll be fully autonomous warships. Their combat skills are rough around the edges, and this will be an expensive loss - each of these ships costs us at least tens times the production of a normal ship - but much cheaper than the loss of innocent human lives."`
