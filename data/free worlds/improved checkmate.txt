@@ -10,7 +10,7 @@ disable mission "FWC Checkmate 1C"
 disable mission "FWC End"
 disable mission "FW Epilogue: Danforth"
 
-# Credit to Amazinite for most of the improvements, including the nuclear launch bay. Credit to Azure3141 for the augmented nukes themselves.
+# Credit to Amazinite for most of the improvements, including the nuclear launch bay. Credit to Azure3141 for the augmented nuke baseline.
 
 # All Content Plugin
 outfitter "All Outfits"
