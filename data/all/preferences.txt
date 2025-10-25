@@ -1,3 +1,33 @@
+mission "Main Plot Plus Prompts Patches (guided start)"
+    invisible
+    landing
+    to offer
+        has "enabled guided start"
+    on offer
+        set "global: enabled guided start"
+        clear "enabled guided start"
+        fail
+
+mission "Main Plot Plus Prompts Patches (paint trim jobs)"
+    invisible
+    landing
+    to offer
+        has "enabled paint trim jobs"
+    on offer
+        set "global: enabled paint trim jobs"
+        clear "enabled paint trim jobs"
+        fail
+
+mission "Main Plot Plus Prompts Patches (security analysis jobs)"
+    invisible
+    landing
+    to offer
+        has "enabled security analysis jobs"
+    on offer
+        set "global: enabled security analysis jobs"
+        clear "enabled security analysis jobs"
+        fail
+
 mission "Main Plot Plus Prompts"
     invisible
     landing
