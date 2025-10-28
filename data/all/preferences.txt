@@ -43,7 +43,7 @@ mission "Main Plot Plus Prompts"
                     goto noguide
             action
                 set "enabled guided start"
-            `Alright, I have enabeld guided start.`
+            `Alright, I have enabled guided start.`
                 goto security
             label noguide
             `Alright, I have disabled guided start.`
@@ -90,7 +90,7 @@ mission "Main Plot Plus Prompts"
 
             # Save default features
             label setpreset
-            `Finally, would you like to save these settings as the default preset, so that you can re-use them on other saves without having to go through this process?`
+            `Finally, would you like to save these settings as the default preset, so that you can reuse them on other saves without having to go through this process?`
             choice
                 `(Yes)`
                 `(No)`
