@@ -82,21 +82,21 @@ jobs:
         rmdir ~/actions-runner/_work/endless-sky-main-plot-plus/endless-sky-main-plot-plus/saves
       shell: bash
 
-    asset_check:
-      name: Asset Check
-      needs: changed
-      if: ${{ needs.changed.outputs.media == 'true' || needs.changed.outputs.workflows == 'true' }}
-      runs-on: self-hosted
-      steps:
-      - uses: actions/checkout@v5
-        with:
-          show-progress: false
-          path: 'plugins/github-action-plugin'
-      - name: Parse assets
-        run: "~/Programs/'Endless Sky'/Debug* -d --parse-assets -c ~/actions-runner/_work/endless-sky-main-plot-plus/endless-sky-main-plot-plus"
-        shell: bash
-      - name: Clean up
-        run: |
-          rm -rf ~/actions-runner/_work/endless-sky-main-plot-plus/endless-sky-main-plot-plus/plugins
-          rmdir ~/actions-runner/_work/endless-sky-main-plot-plus/endless-sky-main-plot-plus/saves
-        shell: bash
+  asset_check:
+    name: Asset Check
+    needs: changed
+    if: ${{ needs.changed.outputs.media == 'true' || needs.changed.outputs.workflows == 'true' }}
+    runs-on: self-hosted
+    steps:
+    - uses: actions/checkout@v5
+      with:
+        show-progress: false
+        path: 'plugins/github-action-plugin'
+    - name: Parse assets
+      run: "~/Programs/'Endless Sky'/Debug* -d --parse-assets -c ~/actions-runner/_work/endless-sky-main-plot-plus/endless-sky-main-plot-plus"
+      shell: bash
+    - name: Clean up
+      run: |
+        rm -rf ~/actions-runner/_work/endless-sky-main-plot-plus/endless-sky-main-plot-plus/plugins
+        rmdir ~/actions-runner/_work/endless-sky-main-plot-plus/endless-sky-main-plot-plus/saves
+      shell: bash
