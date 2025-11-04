@@ -460,7 +460,7 @@ mission "Road to Hai Reveal: Danforth Hint"
             `"This is the Republic Navy Advisory System: The systems in the far north are under an increased pirate threat. Volunteers with substantial combat experience are requested to head to <destination> to assist the Navy in dealing with the pirates. A stipend of <payment> will be provided upon rendering of assistance to cover fuel, crew, and any incidental expenses."`
                 accept
     on visit
-        dialog `
+        dialog `You land, but a Navy officer tells you that the person you want to talk to is currently on their lunch break and that you should head to the spaceport restaurant if you want to render assistance.`
 
 
 mission "Road to Hai Reveal: Danforth"
