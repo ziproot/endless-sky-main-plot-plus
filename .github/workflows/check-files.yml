@@ -18,7 +18,7 @@ jobs:
   spell_check:
     name: Spell Check
     needs: changed
-    if: ${{ needs.changed.outputs.data == 'true' || needs.changed.outputs.docs == 'true' || needs.changed.outputs.codespell == 'true' || needs.changed.outputs.workflows == 'true' }}
+    if: ${{ needs.changed.outputs.data == 'true' || needs.changed.outputs.docs == 'true' || needs.changed.outputs.codespell == 'true' || needs.changed.outputs.copyright == 'true' || needs.changed.outputs.workflows == 'true' }}
     runs-on: self-hosted
     steps:
     - uses: actions/checkout@v5
@@ -27,7 +27,7 @@ jobs:
     - uses: codespell-project/actions-codespell@master
       with:
         builtin: clear
-        path: README.md about.txt plugin.txt data/
+        path: README.md about.txt plugin.txt copyright data/
         exclude_file: .codespell/exclude-phrases
         ignore_words_file: .codespell/exclude-words
 
@@ -81,3 +81,22 @@ jobs:
         rm -rf ~/actions-runner/_work/endless-sky-main-plot-plus/endless-sky-main-plot-plus/plugins
         rmdir ~/actions-runner/_work/endless-sky-main-plot-plus/endless-sky-main-plot-plus/saves
       shell: bash
+
+    asset_check:
+      name: Asset Check
+      needs: changed
+      if: ${{ needs.changed.outputs.media == 'true' || needs.changed.outputs.workflows == 'true' }}
+      runs-on: self-hosted
+      steps:
+      - uses: actions/checkout@v5
+        with:
+          show-progress: false
+          path: 'plugins/github-action-plugin'
+      - name: Parse assets
+        run: "~/Programs/'Endless Sky'/Debug* -d --parse-assets -c ~/actions-runner/_work/endless-sky-main-plot-plus/endless-sky-main-plot-plus"
+        shell: bash
+      - name: Clean up
+        run: |
+          rm -rf ~/actions-runner/_work/endless-sky-main-plot-plus/endless-sky-main-plot-plus/plugins
+          rmdir ~/actions-runner/_work/endless-sky-main-plot-plus/endless-sky-main-plot-plus/saves
+        shell: bash
