@@ -1,7 +1,7 @@
 mission "Main Plot Plus Check"
     invisible
-    landing
     non-blocking
+    landing
     to offer
         has "chosen sides"
         not "main plot plus: enabled guided start"
@@ -10,8 +10,8 @@ mission "Main Plot Plus Check"
         fail
 mission "Main Plot Plus Prompts"
     invisible
-    landing
     non-blocking
+    landing
     on offer
         conversation
             `Welcome to Main Plot Plus! I am JamesGPT. As an AI language model, it is my job to help you configure Main Plot Plus the way you want. To assist you in this effort, I have compiled several presets for you. Which one would you like to use?`

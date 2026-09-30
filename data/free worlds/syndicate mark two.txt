@@ -53,31 +53,34 @@ fleet "Syndicate Automata"
 
 mission "Syndicate Using Nukes (Pre-War)"
     invisible
-    landing
     non-blocking
+    transition
     to offer
         "year" < 3014
+    destination Geminus
     on offer
         event "syndicate using nukes (pre-war)"
         fail
 
 mission "Syndicate Cease Using Nukes"
     invisible
-    landing
     non-blocking
+    transition
     to offer
         "year" >= 3014
         has "event: syndicate using nukes (pre-war)"
+    destination Geminus
     on offer
         event "syndicate cease using nukes"
         fail
 
 mission "Syndicate Mark II"
     invisible
-    landing
     non-blocking
+    transition
     to offer
         has "main plot completed"
+    destination Geminus
     on offer
         "reputation: Syndicate (Automata)" = "reputation: Syndicate"
         event "syndicate using mark II ships"
@@ -85,9 +88,9 @@ mission "Syndicate Mark II"
 
 mission "Syndicate Mark II (Nuclear)"
     invisible
+    non-blocking
     landing
     repeat
-    non-blocking
     to offer
         has "free worlds checkmate"
         not "installed plugin: LowerDamage"
@@ -102,9 +105,9 @@ mission "Syndicate Mark II (Nuclear)"
 
 mission "Syndicate Mark II (Nuclear LowerDamage)"
     invisible
+    non-blocking
     landing
     repeat
-    non-blocking
     to offer
         has "free worlds checkmate"
         has "installed plugin: LowerDamage"
@@ -119,9 +122,9 @@ mission "Syndicate Mark II (Nuclear LowerDamage)"
 
 mission "Syndicate Mark II (Nuclear EvenLowerDamage)"
     invisible
+    non-blocking
     landing
     repeat
-    non-blocking
     to offer
         has "free worlds checkmate"
         not "installed plugin: LowerDamage"

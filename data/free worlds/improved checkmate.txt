@@ -23,9 +23,9 @@ outfitter "human plugin"
 
 mission "Main Plot Plus Augmented Nukes (Normal Damage)"
     invisible
+    non-blocking
     landing
     repeat
-    non-blocking
     to offer
         not "installed plugin: LowerDamage"
         not "installed plugin: EvenLowerDamage"
@@ -39,9 +39,9 @@ mission "Main Plot Plus Augmented Nukes (Normal Damage)"
 
 mission "Main Plot Plus Augmented Nukes (LowerDamage)"
     invisible
+    non-blocking
     landing
     repeat
-    non-blocking
     to offer
         has "installed plugin: LowerDamage"
         not "installed plugin: EvenLowerDamage"
@@ -55,9 +55,9 @@ mission "Main Plot Plus Augmented Nukes (LowerDamage)"
 
 mission "Main Plot Plus Augmented Nukes (EvenLowerDamage)"
     invisible
+    non-blocking
     landing
     repeat
-    non-blocking
     to offer
         has "installed plugin: EvenLowerDamage"
         not "augmented nukes have even lower damage"

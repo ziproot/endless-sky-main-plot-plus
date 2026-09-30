@@ -439,8 +439,8 @@ mission "War Reactions: Syndicate Orphan (patched)"
 
 mission "Road to Hai Reveal: Prep"
     invisible
-    landing
     non-blocking
+    transition
     to offer
         has "skipped main plot"
         # Required if hai wormhole warning was blocked
@@ -452,6 +452,7 @@ mission "Road to Hai Reveal: Prep"
         or
             has "War Reactions: Navy and Free Worlds Captains: declined"
             has "War Reactions: Navy and Free Worlds Captains (patched): declined"
+    destination Hai-home
     on offer
         event "road to hai reveal: almaaz pirates" 95
         fail
