@@ -1,7 +1,6 @@
 mission "Main Plot Plus Postverta Patch (Hidden)"
     invisible
     landing
-    repeat
     non-blocking
     to offer
         has "main plot plus: enabled main plot soft block"
@@ -14,7 +13,6 @@ mission "Main Plot Plus Postverta Patch (Hidden)"
 mission "Main Plot Plus Postverta Patch (Unhidden)"
     invisible
     landing
-    repeat
     non-blocking
     to offer
         or
@@ -37,7 +35,6 @@ event "main plot plus: postverta reveal patch - unhidden"
 mission "Main Plot Plus Patir Patch (Hidden)"
     invisible
     landing
-    repeat
     non-blocking
     to offer
         has "main plot plus: enabled main plot soft block"
@@ -50,7 +47,6 @@ mission "Main Plot Plus Patir Patch (Hidden)"
 mission "Main Plot Plus Patir Patch (Unhidden)"
     invisible
     landing
-    repeat
     non-blocking
     to offer
         or
@@ -73,7 +69,6 @@ event "main plot plus: patir reveal patch - unhidden"
 mission "Main Plot Plus Zubenelhakrabi Patch (Hidden)"
     invisible
     landing
-    repeat
     non-blocking
     to offer
         has "main plot plus: enabled main plot soft block"
@@ -86,7 +81,6 @@ mission "Main Plot Plus Zubenelhakrabi Patch (Hidden)"
 mission "Main Plot Plus Zubenelhakrabi Patch (Unhidden)"
     invisible
     landing
-    repeat
     non-blocking
     to offer
         or
