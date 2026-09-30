@@ -685,9 +685,9 @@ mission "Road to Hai Reveal: Hai Concealed"
         has "Road to Hai Reveal: Hai Secret Leaks: offered"
         not "Road to Hai Reveal: Xilin: offered"
     on offer
-    conversation
-        `When you updated the plugin, you were in the middle of Road to Hai Reveal. Hai Reveal has since been removed from the latest version of vanilla and Road to Hai Reveal has now gone with it. You will receive no further missions for this storyline.`
-            decline
+        conversation
+            `When you updated the plugin, you were in the middle of Road to Hai Reveal. Hai Reveal has since been removed from the latest version of vanilla and Road to Hai Reveal has now gone with it. You will receive no further missions for this storyline.`
+                decline
 
 mission "Road to Hai Reveal: Hai Secret Leaks"
     invisible
