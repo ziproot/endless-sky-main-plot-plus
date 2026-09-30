@@ -677,7 +677,17 @@ mission "Road to Hai Reveal: Danforth"
     on fail
         dialog `You have failed an essential Hai Concealed mission. If you want to complete the story line, revert to the autosave or another earlier snapshot of the game.`
 
-misson "Road to Hai Reveal: Hai Concealed"
+mission "Road to Hai Reveal: Hai Concealed"
+    invisible
+    landing
+    non-blocking
+    to offer
+        has "Road to Hai Reveal: Hai Secret Leaks: offered"
+        not "Road to Hai Reveal: Xilin: offered"
+    on offer
+    conversation
+        `When you updated the plugin, you were in the middle of Road to Hai Reveal. Hai Reveal has since been removed from the latest version of vanilla and Road to Hai Reveal has now gone with it. You will receive no further missions for this storyline.`
+            decline
 
 mission "Road to Hai Reveal: Hai Secret Leaks"
     invisible
@@ -709,6 +719,9 @@ mission "Road to Hai Reveal: Hai Learn of Leaks"
     on offer
         clear "Hai Reveal: Secret Leaks: Hai: offered"
         fail
+
+# Deprecated variant
+ship "Dreadnought" "Dreadnought (Plasma Jump)"
 
 # Based almost entirely on "Hai Reveal: Early Arrival: Alondo" from "hai reveal 0 prologue.txt"
 mission "Road to Hai Reveal: Rain and Fiona (early)"

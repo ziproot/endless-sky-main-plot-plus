@@ -5,10 +5,10 @@ government "Syndicate (Automata)"
     "player reputation" 2
     "attitude toward"
         "Syndicate" 1
+        "Bounty" -.4
+        "Bounty (Disguised)" -.4
         "Merchant" .3
         "Pirate" -.4
-        "Pirate (Devil-Run Gang)" -.4
-        "Smuggler (Hai Trafficker)" .3
         "Korath" -.5
     # You can't bribe automata
     bribe 0
@@ -485,8 +485,8 @@ ship "Manta" "Manta (Nuclear Mark II LD)"
         "Hyperdrive"
     gun "Sidewinder Missile Launcher"
     gun "Sidewinder Missile Launcher"
-    gun "Nuclear Launch Bay"
-    gun "Nuclear Launch Bay"
+    gun "Nuclear Launch Bay (LowerDamage)"
+    gun "Nuclear Launch Bay (LowerDamage)"
 
 ship "Manta" "Manta (Nuclear Mark II ELD)"
     outfits
@@ -503,8 +503,8 @@ ship "Manta" "Manta (Nuclear Mark II ELD)"
         "Hyperdrive"
     gun "Sidewinder Missile Launcher"
     gun "Sidewinder Missile Launcher"
-    gun "Nuclear Launch Bay"
-    gun "Nuclear Launch Bay"
+    gun "Nuclear Launch Bay (EvenLowerDamage)"
+    gun "Nuclear Launch Bay (EvenLowerDamage)"
 
 ship "Protector" "Protector (Mark II)"
     outfits

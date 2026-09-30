@@ -707,7 +707,7 @@ mission "FW Liberate Delta Sagittarii (patched)"
             has "fw did not rescue defector"
         not "FW Liberate Delta Sagittarii: offered"
     to accept
-        has "fw did not resuce defector"
+        has "fw did not rescue defector"
     source
             planet "New Tibet" "Wayfarer"
     destination "New Portland"
