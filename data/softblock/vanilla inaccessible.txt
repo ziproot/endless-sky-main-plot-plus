@@ -4,7 +4,7 @@ mission "Main Plot Plus Postverta Patch (Hidden)"
     non-blocking
     to offer
         has "event: remnant: postverta reveal"
-        has "enabled main plot soft block"
+        has "main plot plus: enabled main plot soft block"
         not "main plot completed"
     on offer
         event "main plot plus: postverta reveal patch - hidden"
@@ -16,7 +16,7 @@ mission "Main Plot Plus Postverta Patch (Unhidden)"
     to offer
         has "event: remnant: postverta reveal"
         or
-            not "enabled main plot soft block"
+            not "main plot plus: enabled main plot soft block"
             not "main plot completed"
     on offer
         event "main plot plus: postverta reveal patch - unhidden"
@@ -36,7 +36,7 @@ mission "Main Plot Plus Patir Patch (Hidden)"
     non-blocking
     to offer
         has "event: patir appears"
-        has "enabled main plot soft block"
+        has "main plot plus: enabled main plot soft block"
         not "main plot completed"
     on offer
         event "main plot plus: patir reveal patch - hidden"
@@ -48,7 +48,7 @@ mission "Main Plot Plus Patir Patch (Unhidden)"
     to offer
         has "event: patir appears"
         or
-            not "enabled main plot soft block"
+            not "main plot plus: enabled main plot soft block"
             has "main plot completed"
     on offer
         event "main plot plus: patir reveal patch - unhidden"
@@ -68,7 +68,7 @@ mission "Main Plot Plus Al Hurr Patch (Hidden)"
     non-blocking
     to offer
         has "event: lofty goals"
-        has "enabled main plot soft block"
+        has "main plot plus: enabled main plot soft block"
         not "main plot completed"
     on offer
         event "main plot plus: al hurr reveal patch - hidden"
@@ -80,7 +80,7 @@ mission "Main Plot Plus Al Hurr Patch (Unhidden)"
     to offer
         has "event: lofty goals"
         or
-            not "enabled main plot soft block"
+            not "main plot plus: enabled main plot soft block"
             has "main plot completed"
     on offer
         event "main plot plus: al hurr reveal patch - unhidden"
@@ -100,7 +100,7 @@ mission "Main Plot Plus Devil-Hide Patch (Hidden)"
     non-blocking
     to offer
         has "event: reveal devil-hide"
-        has "enabled main plot soft block"
+        has "main plot plus: enabled main plot soft block"
         not "main plot completed"
     on offer
         event "main plot plus: devil-hide reveal patch - hidden"
@@ -112,7 +112,7 @@ mission "Main Plot Plus Devil-Hide Patch (Unhidden)"
     to offer
         has "event: reveal devil-hide"
         or
-            not "enabled main plot soft block"
+            not "main plot plus: enabled main plot soft block"
             has "main plot completed"
     on offer
         event "main plot plus: devil-hide reveal patch - unhidden"
@@ -132,7 +132,7 @@ mission "Main Plot Plus Devil-Run Patch (Hidden)"
     non-blocking
     to offer
         has "event: reveal devil-run"
-        has "enabled main plot soft block"
+        has "main plot plus: enabled main plot soft block"
         not "main plot completed"
     on offer
         event "main plot plus: devil-run reveal patch - hidden"
@@ -144,7 +144,7 @@ mission "Main Plot Plus Devil-Run Patch (Unhidden)"
     to offer
         has "event: reveal devil-run"
         or
-            not "enabled main plot soft block"
+            not "main plot plus: enabled main plot soft block"
             has "main plot completed"
     on offer
         event "main plot plus: devil-run reveal patch - unhidden"
@@ -164,7 +164,7 @@ mission "Main Plot Plus Zubenelhakrabi Patch (Hidden)"
     non-blocking
     to offer
         has "event: zubenelhakrabi discovered"
-        has "enabled main plot soft block"
+        has "main plot plus: enabled main plot soft block"
         not "main plot completed"
     on offer
         event "main plot plus: zubenelhakrabi reveal patch - hidden"
@@ -176,7 +176,7 @@ mission "Main Plot Plus Zubenelhakrabi Patch (Unhidden)"
     to offer
         has "event: zubenelhakrabi discovered"
         or
-            not "enabled main plot soft block"
+            not "main plot plus: enabled main plot soft block"
             has "main plot completed"
     on offer
         event "main plot plus: zubenelhakrabi reveal patch - unhidden"
