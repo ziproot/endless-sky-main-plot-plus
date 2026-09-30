@@ -14,7 +14,7 @@ mission "Navy License [-1]"
     non-blocking
     to offer
         has "main plot completed"
-        has "guided start: navy"
+        has "main plot plus: enabled navy license mission"
     on offer
         event "geminus rebuilt soon" 60
         fail
@@ -28,7 +28,7 @@ mission "Navy License [0]"
     destination "Prime"
     to offer
         has "main plot completed"
-        has "guided start: navy"
+        has "main plot plus: enabled navy license mission"
         not "event: geminus rebuilt soon"
     to fail
         has "event: geminus rebuilt"
