@@ -11,7 +11,7 @@ mission "Main Plot Plus Hazehai Patch (Hidden)"
     to accept
         has "event: reveal Hazehai"
     destination Ruin
-    on offer
+    on accept
         event "main plot plus: hazehai reveal patch - hidden"
 
 mission "Main Plot Plus Hazehai Patch (Unhidden)"
@@ -29,7 +29,7 @@ mission "Main Plot Plus Hazehai Patch (Unhidden)"
     to accept
         has "event: reveal Hazehai"
     destination Ruin
-    on offer
+    on accept
         event "main plot plus: hazehai reveal patch - unhidden"
 
 event "main plot plus: hazehai reveal patch - hidden"
@@ -69,7 +69,7 @@ mission "Main Plot Plus Pebble Beach Patch (Hidden)"
     to accept
         has "event: reveal Pebble Beach"
     destination Ruin
-    on offer
+    on accept
         event "main plot plus: pebble beach reveal patch - hidden"
 
 mission "Main Plot Plus Pebble Beach Patch (Unhidden)"
@@ -87,7 +87,7 @@ mission "Main Plot Plus Pebble Beach Patch (Unhidden)"
     to accept
         has "event: reveal Pebble Beach"
     destination Ruin
-    on offer
+    on accept
         event "main plot plus: pebble beach reveal patch - unhidden"
 
 event "main plot plus: pebble beach reveal patch - hidden"
@@ -112,7 +112,7 @@ mission "Main Plot Plus Aya'arak Patch (Hidden)"
     to accept
         has "event: reveal Aya'arak"
     destination Ruin
-    on offer
+    on accept
         event "main plot plus: aya'arak reveal patch - hidden"
 
 mission "Main Plot Plus Aya'arak Patch (Unhidden)"
@@ -130,7 +130,7 @@ mission "Main Plot Plus Aya'arak Patch (Unhidden)"
     to accept
         has "event: reveal Aya'arak"
     destination Ruin
-    on offer
+    on accept
         event "main plot plus: aya'arak reveal patch - unhidden"
 
 event "main plot plus: aya'arak reveal patch - hidden"
@@ -155,7 +155,7 @@ mission "Main Plot Plus Genesis Patch (Hidden)"
     to accept
         has "event: reveal Genesis"
     destination Ruin
-    on offer
+    on accept
         event "main plot plus: genesis reveal patch - hidden"
 
 mission "Main Plot Plus Genesis Patch (Unhidden)"
@@ -173,7 +173,7 @@ mission "Main Plot Plus Genesis Patch (Unhidden)"
     to accept
         has "event: reveal Genesis"
     destination Ruin
-    on offer
+    on accept
         event "main plot plus: genesis reveal patch - unhidden"
 
 event "main plot plus: genesis reveal patch - hidden"
@@ -198,7 +198,7 @@ mission "Main Plot Plus Watcher's Nest Patch (Hidden)"
     to accept
         has "event: Reveal Watcher's Nest"
     destination Ruin
-    on offer
+    on accept
         event "main plot plus: watcher's nest reveal patch - hidden"
 
 mission "Main Plot Plus Watcher's Nest Patch (Unhidden)"
@@ -216,7 +216,7 @@ mission "Main Plot Plus Watcher's Nest Patch (Unhidden)"
     to accept
         has "event: Reveal Watcher's Nest"
     destination Ruin
-    on offer
+    on accept
         event "main plot plus: watcher's nest reveal patch - unhidden"
 
 event "main plot plus: watcher's nest reveal patch - hidden"
@@ -241,7 +241,7 @@ mission "Main Plot Plus Temeh Patch (Hidden)"
     to accept
         has "event: Reveal Temeh"
     destination Ruin
-    on offer
+    on accept
         event "main plot plus: temeh reveal patch - hidden"
 
 mission "Main Plot Plus Temeh Patch (Unhidden)"
@@ -259,7 +259,7 @@ mission "Main Plot Plus Temeh Patch (Unhidden)"
     to accept
         has "event: Reveal Temeh"
     destination Ruin
-    on offer
+    on accept
         event "main plot plus: temeh reveal patch - unhidden"
 
 event "main plot plus: temeh reveal patch - hidden"
@@ -284,7 +284,7 @@ mission "Main Plot Plus Archipelago Patch (Hidden)"
     to accept
         has "event: Archipelago reveal"
     destination Ruin
-    on offer
+    on accept
         event "main plot plus: archipelago reveal patch - hidden"
 
 mission "Main Plot Plus Archipelago Patch (Unhidden)"
@@ -302,7 +302,7 @@ mission "Main Plot Plus Archipelago Patch (Unhidden)"
     to accept
         has "event: Archipelago reveal"
     destination Ruin
-    on offer
+    on accept
         event "main plot plus: archipelago reveal patch - unhidden"
 
 event "main plot plus: archipelago reveal patch - hidden"
@@ -327,7 +327,7 @@ mission "Main Plot Plus Diyu Patch (Hidden)"
     to accept
         has "event: Diyu reveal"
     destination Ruin
-    on offer
+    on accept
         event "main plot plus: diyu reveal patch - hidden"
 
 mission "Main Plot Plus Diyu Patch (Unhidden)"
@@ -345,7 +345,7 @@ mission "Main Plot Plus Diyu Patch (Unhidden)"
     to accept
         has "event: Diyu reveal"
     destination Ruin
-    on offer
+    on accept
         event "main plot plus: diyu reveal patch - unhidden"
 
 event "main plot plus: diyu reveal patch - hidden"
@@ -370,7 +370,7 @@ mission "Main Plot Plus Chasm Patch (Hidden)"
     to accept
         has "event: reveal Chasm"
     destination Ruin
-    on offer
+    on accept
         event "main plot plus: chasm reveal patch - hidden"
 
 mission "Main Plot Plus Chasm Patch (Unhidden)"
@@ -388,7 +388,7 @@ mission "Main Plot Plus Chasm Patch (Unhidden)"
     to accept
         has "event: reveal Chasm"
     destination Ruin
-    on offer
+    on accept
         event "main plot plus: chasm reveal patch - unhidden"
 
 event "main plot plus: chasm reveal patch - hidden"
@@ -413,7 +413,7 @@ mission "Main Plot Plus Nebulous Patch (Hidden)"
     to accept
         has "event: reveal Nebulous"
     destination Ruin
-    on offer
+    on accept
         event "main plot plus: nebulous reveal patch - hidden"
 
 mission "Main Plot Plus Nebulous Patch (Unhidden)"
@@ -431,7 +431,7 @@ mission "Main Plot Plus Nebulous Patch (Unhidden)"
     to accept
         has "event: reveal Nebulous"
     destination Ruin
-    on offer
+    on accept
         event "main plot plus: nebulous reveal patch - unhidden"
 
 event "main plot plus: nebulous reveal patch - hidden"

@@ -2,9 +2,9 @@ mission "FW Pug 2B (patched)"
     invisible
     landing
     non-blocking
-    to offer
+    to accept
         has "main plot plus: enabled main plot soft block"
-    on offer
+    on accept
         set "FW Pug 2C: Jump Drive: offered"
         set "FW Pug 2C: Hyperdrive: offered"
         set "FW Pug 2C: Scram Drive: offered"

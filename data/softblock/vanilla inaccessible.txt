@@ -10,7 +10,7 @@ mission "Main Plot Plus Postverta Patch (Hidden)"
     to accept
         has "event: remnant: postverta reveal"
     destination Ruin
-    on offer
+    on accept
         event "main plot plus: postverta reveal patch - hidden"
 
 
@@ -28,7 +28,7 @@ mission "Main Plot Plus Postverta Patch (Unhidden)"
     to accept
         has "event: remnant: postverta reveal"
     destination Ruin
-    on offer
+    on accept
         event "main plot plus: postverta reveal patch - unhidden"
 
 event "main plot plus: postverta reveal patch - hidden"
@@ -52,7 +52,7 @@ mission "Main Plot Plus Patir Patch (Hidden)"
     to accept
         has "event: patir appears"
     destination Ruin
-    on offer
+    on accept
         event "main plot plus: patir reveal patch - hidden"
 
 mission "Main Plot Plus Patir Patch (Unhidden)"
@@ -69,7 +69,7 @@ mission "Main Plot Plus Patir Patch (Unhidden)"
     to accept
         has "event: patir appears"
     destination Ruin
-    on offer
+    on accept
         event "main plot plus: patir reveal patch - unhidden"
 
 event "main plot plus: patir reveal patch - hidden"
@@ -93,7 +93,7 @@ mission "Main Plot Plus Zubenelhakrabi Patch (Hidden)"
     to accept
         has "event: zubenelhakrabi discovered"
     destination Ruin
-    on offer
+    on accept
         event "main plot plus: zubenelhakrabi reveal patch - hidden"
 
 mission "Main Plot Plus Zubenelhakrabi Patch (Unhidden)"
@@ -110,7 +110,7 @@ mission "Main Plot Plus Zubenelhakrabi Patch (Unhidden)"
     to accept
         has "event: zubenelhakrabi discovered"
     destination Ruin
-    on offer
+    on accept
         event "main plot plus: zubenelhakrabi reveal patch - unhidden"
 
 event "main plot plus: zubenelhakrabi reveal patch - hidden"
