@@ -19,8 +19,8 @@ mission "Discount Paint Set"
     job
     repeat
     to offer
-        has "Discount Paint Prompt: offered"
-        not "main plot plus: enabled paint trim jobs"
+        has "Discount Paint Clear: offered"
+        not "enabled paint trim jobs"
     on accept
         dialog `Paint trim jobs have been enabled.`
         set "main plot plus: enabled paint trim jobs"
