@@ -30,7 +30,7 @@ jobs:
       media: ${{ steps.filter.outputs.media }}
       docs: ${{ steps.filter.outputs.docs }}
     steps:
-    - uses: actions/checkout@v6
+    - uses: actions/checkout@v7
       with:
         fetch-depth: 2
         show-progress: false
